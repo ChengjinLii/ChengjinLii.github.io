@@ -81,13 +81,13 @@ a {
   border: 1px solid var(--line);
   background: transparent;
   color: var(--ink);
-  font: 800 11px/1 var(--sans);
+  font: 800 12.5px/1 var(--sans);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .nav-links a {
-  padding: 10px 12px;
+  padding: 11px 14px;
 }
 
 .language-switch {
@@ -97,7 +97,7 @@ a {
 
 .lang-btn {
   cursor: pointer;
-  padding: 10px 12px;
+  padding: 11px 13px;
 }
 
 .nav-links a:hover,
@@ -181,7 +181,7 @@ h3 {
   margin: 0;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -200,7 +200,7 @@ h3 {
 
 .profile-links {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -210,10 +210,28 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+.profile-links li {
+  display: grid;
+  gap: 3px;
+}
+
+.profile-links span {
+  color: var(--soft);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .profile-links a {
   border-bottom: 1px solid var(--line-strong);
   color: var(--accent);
   font-weight: 800;
+}
+
+.profile-links em {
+  color: var(--muted);
+  font-style: normal;
 }
 
 .content-column {
@@ -234,7 +252,7 @@ h3 {
 .kicker,
 .section-title span {
   color: var(--accent);
-  font: 900 11px/1.2 var(--sans);
+  font: 900 16px/1.15 var(--sans);
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -269,10 +287,10 @@ h3 {
 
 .section-title {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
+  grid-template-columns: 190px minmax(0, 1fr);
   gap: 24px;
   align-items: baseline;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .section-title p {
@@ -305,6 +323,13 @@ h3 {
 .entry-main h3 {
   font-size: 28px;
   line-height: 1.08;
+}
+
+.entry-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
 }
 
 .entry-meta {
@@ -358,12 +383,19 @@ h3 {
   text-transform: uppercase;
 }
 
-.tag-row,
-.entry-links {
+.tag-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
+}
+
+.entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 1px;
 }
 
 .tag-row span {
@@ -371,9 +403,63 @@ h3 {
 }
 
 .entry-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
   color: var(--accent);
-  border-bottom: 1px solid var(--accent);
+  background: var(--panel);
   font-weight: 900;
+  font-size: 12px;
+}
+
+.project-details {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.project-details summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.project-details summary:hover {
+  color: var(--ink);
+}
+
+.project-details p {
+  margin-top: 12px;
+}
+
+.project-details figure {
+  margin: 14px 0 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.project-details img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(155, 143, 128, 0.45);
+}
+
+.project-details figcaption {
+  margin-top: 8px;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .compact-list {
@@ -382,7 +468,7 @@ h3 {
 
 .compact-list article {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
+  grid-template-columns: 210px minmax(0, 1fr);
   gap: 24px;
   padding: 16px 0;
   border-bottom: 1px solid var(--line);
@@ -390,7 +476,7 @@ h3 {
 
 .compact-list strong {
   color: var(--blue);
-  font: 900 11px/1.3 var(--sans);
+  font: 900 14px/1.28 var(--sans);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -439,10 +525,20 @@ h3 {
 }
 
 .contact-card a {
+  display: grid;
+  grid-template-columns: 92px minmax(0, auto);
+  gap: 12px;
   width: fit-content;
   border-bottom: 1px solid rgba(245, 240, 232, 0.45);
   color: var(--paper);
   font-weight: 800;
+}
+
+.contact-card a span {
+  color: rgba(245, 240, 232, 0.64);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .site-footer {
@@ -550,6 +646,23 @@ html:lang(zh-CN) .compact-list strong {
   .compact-list article {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .entry-head {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-links {
+    justify-content: flex-start;
+  }
+
+  .figure-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card a {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 
   .entry-main h3 {
