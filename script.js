@@ -26,6 +26,133 @@ languageButtons.forEach((button) => {
 year.textContent = new Date().getFullYear();
 applyLanguage(localStorage.getItem(languageStorageKey) || "zh");
 
+function createSnowLayer(canvas, options) {
+  if (!canvas) return null;
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+  const layer = {
+    canvas,
+    context,
+    flakes: [],
+    options,
+    width: 0,
+    height: 0,
+  };
+
+  function randomFlake() {
+    const { radius, speed, wind } = options;
+    return {
+      x: Math.random() * layer.width,
+      y: Math.random() * layer.height,
+      r: radius[0] + Math.random() * (radius[1] - radius[0]),
+      vy: speed[0] + Math.random() * (speed[1] - speed[0]),
+      vx: wind[0] + Math.random() * (wind[1] - wind[0]),
+      phase: Math.random() * Math.PI * 2,
+    };
+  }
+
+  layer.resize = () => {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+    layer.width = Math.max(1, rect.width);
+    layer.height = Math.max(1, rect.height);
+    canvas.width = Math.floor(layer.width * ratio);
+    canvas.height = Math.floor(layer.height * ratio);
+    canvas.style.width = `${layer.width}px`;
+    canvas.style.height = `${layer.height}px`;
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    layer.flakes = Array.from({ length: options.count }, randomFlake);
+  };
+
+  layer.draw = () => {
+    context.clearRect(0, 0, layer.width, layer.height);
+    context.fillStyle = options.color;
+    layer.flakes.forEach((flake) => {
+      flake.phase += 0.012;
+      flake.x += flake.vx + Math.sin(flake.phase) * 0.12;
+      flake.y += flake.vy;
+      if (flake.y > layer.height + flake.r) {
+        flake.y = -flake.r;
+        flake.x = Math.random() * layer.width;
+      }
+      if (flake.x > layer.width + flake.r) flake.x = -flake.r;
+      if (flake.x < -flake.r) flake.x = layer.width + flake.r;
+      context.beginPath();
+      context.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+      context.fill();
+    });
+  };
+
+  return layer;
+}
+
+function setupSeasonalTopbar() {
+  const topbar = document.querySelector(".topbar.theme-xmas");
+  const meteors = document.querySelector(".hero-meteors");
+  const farCanvas = document.querySelector(".snow-canvas--far");
+  const nearCanvas = document.querySelector(".snow-canvas--near");
+  if (!topbar || !meteors || !farCanvas || !nearCanvas) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isMobile = window.innerWidth <= 640;
+  const snowLayers = [
+    createSnowLayer(farCanvas, {
+      count: isMobile ? 16 : 26,
+      color: "rgba(243, 248, 255, 0.55)",
+      radius: [0.6, 2.2],
+      speed: [0.6, 1.6],
+      wind: [-0.2, 1.2],
+    }),
+    createSnowLayer(nearCanvas, {
+      count: isMobile ? 8 : 14,
+      color: "rgba(255, 255, 255, 0.45)",
+      radius: [1.6, 3.4],
+      speed: [1.2, 2.4],
+      wind: [-0.4, 1.6],
+    }),
+  ].filter(Boolean);
+
+  function resizeSnow() {
+    snowLayers.forEach((layer) => layer.resize());
+  }
+
+  function animateSnow() {
+    snowLayers.forEach((layer) => layer.draw());
+    window.requestAnimationFrame(animateSnow);
+  }
+
+  function randomizeMeteors() {
+    if (reduceMotion && !isMobile) {
+      meteors.innerHTML = "";
+      return;
+    }
+    const count = Math.random() < 0.5 ? 2 : 3;
+    meteors.innerHTML = "";
+    Array.from({ length: count }).forEach((_, index) => {
+      const meteor = document.createElement("span");
+      meteor.className = "hero-meteor";
+      meteor.style.top = `${Math.random() * 28 - 8}%`;
+      meteor.style.left = `${Math.random() * 45 + 5}%`;
+      meteor.style.animationDelay = `${index * 0.7 + Math.random() * 0.35}s`;
+      meteors.appendChild(meteor);
+    });
+  }
+
+  resizeSnow();
+  if (!reduceMotion || isMobile) {
+    animateSnow();
+  }
+  randomizeMeteors();
+  window.setInterval(randomizeMeteors, 10000);
+  window.addEventListener("resize", resizeSnow);
+}
+
+if (document.readyState === "complete") {
+  setupSeasonalTopbar();
+} else {
+  window.addEventListener("load", setupSeasonalTopbar, { once: true });
+}
+
 const bot = document.querySelector(".floating-sidebar");
 const botLauncher = document.querySelector(".floating-sidebar__bubble");
 const botPanel = document.querySelector(".floating-sidebar__panel");

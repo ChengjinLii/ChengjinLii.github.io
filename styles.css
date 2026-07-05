@@ -46,16 +46,28 @@ a {
 
 .topbar {
   position: relative;
+  overflow: hidden;
   z-index: 20;
+  width: 100%;
+  min-height: 86px;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.14);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.12), transparent 30%),
+    #050506;
+  color: var(--paper);
+  box-shadow: 0 18px 44px rgba(23, 20, 16, 0.20);
+}
+
+.topbar-inner {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
   width: min(1160px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 22px 0 16px;
-  border-bottom: 1px solid var(--line);
-  background: transparent;
+  padding: 24px 0 21px;
 }
 
 .brand {
@@ -67,6 +79,7 @@ a {
 .brand strong {
   font: 750 18px/1 var(--serif);
   letter-spacing: 0.02em;
+  color: #fffaf0;
 }
 
 .nav-links {
@@ -90,6 +103,14 @@ a {
   padding: 11px 14px;
 }
 
+.topbar .nav-links a,
+.topbar .lang-btn {
+  border-color: rgba(245, 240, 232, 0.20);
+  background: rgba(245, 240, 232, 0.04);
+  color: rgba(245, 240, 232, 0.82);
+  backdrop-filter: blur(8px);
+}
+
 .language-switch {
   display: flex;
   gap: 6px;
@@ -109,12 +130,77 @@ a {
   color: var(--paper);
 }
 
+.topbar .nav-links a:hover,
+.topbar .lang-btn:hover,
+.topbar .lang-btn.is-active {
+  border-color: rgba(255, 255, 255, 0.60);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.theme-xmas .xmas-snowfall {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.theme-xmas .xmas-snowfall canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.theme-xmas .hero-meteors {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.theme-xmas .hero-meteor {
+  position: absolute;
+  width: 180px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(186, 255, 221, 0.25) 45%,
+    rgba(210, 255, 238, 0.85) 85%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(120, 255, 200, 0.32));
+  animation: hero-meteor 12s linear infinite;
+}
+
+.theme-xmas .hero-meteor::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(219, 255, 240, 0.9) 45%,
+    rgba(219, 255, 240, 0.15) 70%,
+    rgba(219, 255, 240, 0) 100%
+  );
+  box-shadow: 0 0 10px rgba(130, 255, 210, 0.45);
+}
+
 .page-shell {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
   gap: 46px;
   width: min(1160px, calc(100% - 40px));
-  margin: 54px auto 0;
+  margin: 48px auto 0;
 }
 
 .profile-sidebar {
@@ -1003,6 +1089,24 @@ h3 {
   }
 }
 
+@keyframes hero-meteor {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(32deg);
+  }
+  4% {
+    opacity: 0.9;
+  }
+  16% {
+    opacity: 0;
+    transform: translate(280px, 220px) rotate(32deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(280px, 220px) rotate(32deg);
+  }
+}
+
 html:lang(zh-CN) body {
   font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -1048,7 +1152,7 @@ html:lang(zh-CN) .compact-list strong {
 }
 
 @media (max-width: 980px) {
-  .topbar {
+  .topbar-inner {
     grid-template-columns: auto auto;
   }
 
@@ -1071,13 +1175,18 @@ html:lang(zh-CN) .compact-list strong {
 }
 
 @media (max-width: 680px) {
-  .topbar,
+  .topbar-inner,
   .page-shell {
     width: min(100% - 24px, 1160px);
   }
 
   .topbar {
+    min-height: 122px;
+  }
+
+  .topbar-inner {
     gap: 12px;
+    padding: 18px 0 16px;
   }
 
   .brand strong {
@@ -1086,6 +1195,11 @@ html:lang(zh-CN) .compact-list strong {
 
   .nav-links a {
     padding: 9px 10px;
+  }
+
+  .theme-xmas .hero-meteor {
+    width: 150px;
+    height: 2px;
   }
 
   .profile-sidebar,
