@@ -51,9 +51,7 @@ a {
   width: 100%;
   min-height: 78px;
   border-bottom: 1px solid rgba(155, 143, 128, 0.34);
-  background:
-    radial-gradient(circle at 14% -40%, rgba(245, 240, 232, 0.22), transparent 34%),
-    linear-gradient(180deg, #2b241c 0%, #1f1a14 100%);
+  background: #241e17;
   color: #f8f1e5;
   box-shadow: 0 14px 34px rgba(46, 37, 27, 0.16);
 }
@@ -201,13 +199,7 @@ a {
   width: 180px;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(245, 226, 196, 0.18) 45%,
-    rgba(255, 239, 214, 0.64) 85%,
-    rgba(255, 250, 240, 0.92) 100%
-  );
+  background: rgba(255, 239, 214, 0.62);
   opacity: 0;
   filter: drop-shadow(0 0 5px rgba(255, 232, 198, 0.24));
   animation: hero-meteor 12s linear infinite;
@@ -221,13 +213,7 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 238, 210, 0.82) 45%,
-    rgba(255, 238, 210, 0.14) 70%,
-    rgba(255, 238, 210, 0) 100%
-  );
+  background: rgba(255, 250, 240, 0.92);
   box-shadow: 0 0 10px rgba(255, 232, 198, 0.34);
 }
 
