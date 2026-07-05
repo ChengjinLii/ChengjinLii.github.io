@@ -34,7 +34,6 @@ const botMessages = document.querySelector(".portfolio-bot__messages");
 const botForm = document.querySelector(".portfolio-bot__form");
 const botInput = document.querySelector(".portfolio-bot__input");
 const botStarters = document.querySelectorAll(".portfolio-bot__starters button");
-const botPositionStorageKey = "portfolio-studyhub-bot-position-v2";
 
 function clampBotPosition(x, y) {
   if (!bot) return { x, y };
@@ -56,15 +55,6 @@ function applyBotPosition(position) {
   bot.style.top = `${position.y}px`;
   bot.style.right = "auto";
   bot.style.bottom = "auto";
-}
-
-try {
-  const savedPosition = JSON.parse(localStorage.getItem(botPositionStorageKey) || "null");
-  if (savedPosition && Number.isFinite(savedPosition.x) && Number.isFinite(savedPosition.y)) {
-    requestAnimationFrame(() => applyBotPosition(clampBotPosition(savedPosition.x, savedPosition.y)));
-  }
-} catch {
-  // Ignore invalid stored bot positions.
 }
 
 let eyeAnimationFrame = null;
@@ -129,7 +119,6 @@ function moveBot(event) {
   didMoveBot = true;
   const next = clampBotPosition(event.clientX - dragOffset.x, event.clientY - dragOffset.y);
   applyBotPosition(next);
-  localStorage.setItem(botPositionStorageKey, JSON.stringify(next));
 }
 
 function stopBotDrag() {
@@ -177,7 +166,6 @@ window.addEventListener("resize", () => {
   if (!bot || !bot.style.top || !bot.style.left) return;
   const next = clampBotPosition(parseFloat(bot.style.left), parseFloat(bot.style.top));
   applyBotPosition(next);
-  localStorage.setItem(botPositionStorageKey, JSON.stringify(next));
 });
 
 const botAnswers = {

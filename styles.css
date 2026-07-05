@@ -648,7 +648,10 @@ h3 {
 
 .floating-sidebar__bubble::before,
 .floating-sidebar__bubble::after {
-  display: none;
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  animation: none !important;
 }
 
 .floating-sidebar__bubble .floating-face {
@@ -687,8 +690,8 @@ h3 {
 
 .floating-sidebar__panel {
   position: absolute;
-  left: 0;
-  top: calc(100% + 14px);
+  left: calc(100% + 18px);
+  top: 0;
   width: min(340px, calc(100vw - 32px));
   max-height: 80vh;
   overflow: hidden;
@@ -702,7 +705,7 @@ h3 {
   box-shadow:
     0 26px 60px rgba(15, 23, 42, 0.30),
     inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  transform-origin: top left;
+  transform-origin: left top;
   backdrop-filter: blur(18px);
   animation: panel-pop 220ms ease;
 }
@@ -1147,6 +1150,8 @@ html:lang(zh-CN) .compact-list strong {
   }
 
   .floating-sidebar__panel {
+    left: 0;
+    top: calc(100% + 14px);
     width: calc(100vw - 28px);
     max-height: 72vh;
     padding: 16px 18px 18px;
