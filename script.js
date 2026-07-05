@@ -34,18 +34,150 @@ const botMessages = document.querySelector(".portfolio-bot__messages");
 const botForm = document.querySelector(".portfolio-bot__form");
 const botInput = document.querySelector(".portfolio-bot__input");
 const botStarters = document.querySelectorAll(".portfolio-bot__starters button");
+const botPositionStorageKey = "portfolio-studyhub-bot-position";
+
+function clampBotPosition(x, y) {
+  if (!bot) return { x, y };
+  const width = bot.offsetWidth || 320;
+  const height = bot.offsetHeight || 360;
+  const minX = 14;
+  const minY = 76;
+  const maxX = Math.max(minX, window.innerWidth - width - 14);
+  const maxY = Math.max(minY, window.innerHeight - height - 14);
+  return {
+    x: Math.min(Math.max(minX, x), maxX),
+    y: Math.min(Math.max(minY, y), maxY),
+  };
+}
+
+function applyBotPosition(position) {
+  if (!bot) return;
+  bot.style.left = `${position.x}px`;
+  bot.style.top = `${position.y}px`;
+  bot.style.right = "auto";
+  bot.style.bottom = "auto";
+}
+
+try {
+  const savedPosition = JSON.parse(localStorage.getItem(botPositionStorageKey) || "null");
+  if (savedPosition && Number.isFinite(savedPosition.x) && Number.isFinite(savedPosition.y)) {
+    requestAnimationFrame(() => applyBotPosition(clampBotPosition(savedPosition.x, savedPosition.y)));
+  }
+} catch {
+  // Ignore invalid stored bot positions.
+}
+
+let eyeAnimationFrame = null;
+let eyeSampleTimer = null;
+const lastPointer = { x: 0, y: 0 };
+const eyeTarget = { x: 0, y: 0 };
+const eyeCurrent = { x: 0, y: 0 };
+let hasPointer = false;
 
 window.addEventListener("pointermove", (event) => {
-  if (!botLauncher) return;
+  hasPointer = true;
+  lastPointer.x = event.clientX;
+  lastPointer.y = event.clientY;
+});
+
+function sampleEyeTarget() {
+  if (!botLauncher || !hasPointer) return;
   const rect = botLauncher.getBoundingClientRect();
   const centerX = rect.left + rect.width / 2;
   const centerY = rect.top + rect.height / 2;
-  const dx = event.clientX - centerX;
-  const dy = event.clientY - centerY;
+  const dx = lastPointer.x - centerX;
+  const dy = lastPointer.y - centerY;
   const distance = Math.max(Math.hypot(dx, dy), 1);
   const maxOffset = 6;
-  botLauncher.style.setProperty("--eye-x", `${(dx / distance) * maxOffset}px`);
-  botLauncher.style.setProperty("--eye-y", `${(dy / distance) * maxOffset}px`);
+  eyeTarget.x = (dx / distance) * maxOffset;
+  eyeTarget.y = (dy / distance) * maxOffset;
+}
+
+function animateEyes() {
+  if (botLauncher) {
+    const lerp = 0.05;
+    eyeCurrent.x += (eyeTarget.x - eyeCurrent.x) * lerp;
+    eyeCurrent.y += (eyeTarget.y - eyeCurrent.y) * lerp;
+    botLauncher.style.setProperty("--eye-x", `${eyeCurrent.x}px`);
+    botLauncher.style.setProperty("--eye-y", `${eyeCurrent.y}px`);
+  }
+  eyeAnimationFrame = requestAnimationFrame(animateEyes);
+}
+
+eyeSampleTimer = window.setInterval(sampleEyeTarget, 150);
+eyeAnimationFrame = requestAnimationFrame(animateEyes);
+
+let dragStart = null;
+let dragOffset = { x: 0, y: 0 };
+let isDraggingBot = false;
+let didMoveBot = false;
+let suppressBotClick = false;
+
+function moveBot(event) {
+  if (!bot || !dragStart) return;
+  const distance = Math.hypot(event.clientX - dragStart.x, event.clientY - dragStart.y);
+  if (!isDraggingBot && distance < 6) return;
+  if (!isDraggingBot) {
+    const rect = bot.getBoundingClientRect();
+    dragOffset = {
+      x: dragStart.x - rect.left,
+      y: dragStart.y - rect.top,
+    };
+    isDraggingBot = true;
+    bot.classList.add("is-dragging");
+  }
+  didMoveBot = true;
+  const next = clampBotPosition(event.clientX - dragOffset.x, event.clientY - dragOffset.y);
+  applyBotPosition(next);
+  localStorage.setItem(botPositionStorageKey, JSON.stringify(next));
+}
+
+function stopBotDrag() {
+  document.removeEventListener("pointermove", moveBot);
+  document.removeEventListener("pointerup", stopBotDrag);
+  document.removeEventListener("pointercancel", stopBotDrag);
+  dragStart = null;
+  bot?.classList.remove("is-dragging");
+  if (!isDraggingBot) {
+    suppressBotClick = false;
+    return;
+  }
+  isDraggingBot = false;
+  suppressBotClick = didMoveBot;
+  didMoveBot = false;
+  if (suppressBotClick) {
+    window.setTimeout(() => {
+      suppressBotClick = false;
+    }, 0);
+  }
+}
+
+function startBotDrag(event) {
+  if (event.target.closest(".floating-sidebar__close, input, button:not(.floating-sidebar__bubble)")) return;
+  event.preventDefault();
+  dragStart = { x: event.clientX, y: event.clientY };
+  isDraggingBot = false;
+  didMoveBot = false;
+  if (event.currentTarget.setPointerCapture) {
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // Ignore browsers that reject pointer capture here.
+    }
+  }
+  document.addEventListener("pointermove", moveBot);
+  document.addEventListener("pointerup", stopBotDrag);
+  document.addEventListener("pointercancel", stopBotDrag);
+}
+
+botLauncher?.addEventListener("pointerdown", startBotDrag);
+document.querySelector(".floating-sidebar__header")?.addEventListener("pointerdown", startBotDrag);
+
+window.addEventListener("resize", () => {
+  if (!bot || !bot.style.top || !bot.style.left) return;
+  const next = clampBotPosition(parseFloat(bot.style.left), parseFloat(bot.style.top));
+  applyBotPosition(next);
+  localStorage.setItem(botPositionStorageKey, JSON.stringify(next));
 });
 
 const botAnswers = {
@@ -120,6 +252,10 @@ function pickAnswer(raw) {
 }
 
 botLauncher?.addEventListener("click", () => {
+  if (suppressBotClick) {
+    suppressBotClick = false;
+    return;
+  }
   if (bot?.classList.contains("open")) {
     closeBot();
   } else {
