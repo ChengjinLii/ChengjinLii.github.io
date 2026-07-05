@@ -581,18 +581,18 @@ h3 {
 .floating-sidebar {
   position: fixed;
   left: 24px;
-  bottom: 24px;
+  top: 33vh;
+  bottom: auto;
   --hat-scale: 1.6;
   --hat-x: -62%;
   --hat-y: -90%;
   --hat-rot: -10deg;
   --hat-width: 110%;
   --hat-height: 74%;
+  width: 52px;
+  height: 52px;
   z-index: 40;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
-  gap: 10px;
+  display: block;
   animation: floaty-bob 6s ease-in-out infinite;
   filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.25));
 }
@@ -648,22 +648,7 @@ h3 {
 
 .floating-sidebar__bubble::before,
 .floating-sidebar__bubble::after {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border: 1px dashed rgba(255, 255, 255, 0.5);
-  border-radius: 999px;
-  opacity: 0.75;
-  pointer-events: none;
-  animation: orbit-spin 8s linear infinite;
-}
-
-.floating-sidebar__bubble::after {
-  inset: -14px;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.25);
-  animation-duration: 12s;
-  animation-direction: reverse;
+  display: none;
 }
 
 .floating-sidebar__bubble .floating-face {
@@ -701,6 +686,9 @@ h3 {
 }
 
 .floating-sidebar__panel {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 14px);
   width: min(340px, calc(100vw - 32px));
   max-height: 80vh;
   overflow: hidden;
@@ -714,7 +702,7 @@ h3 {
   box-shadow:
     0 26px 60px rgba(15, 23, 42, 0.30),
     inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  transform-origin: bottom left;
+  transform-origin: top left;
   backdrop-filter: blur(18px);
   animation: panel-pop 220ms ease;
 }
@@ -754,7 +742,6 @@ h3 {
   background: radial-gradient(circle at 40% 30%, #e0f2fe, #7dd3fc 45%, #2563eb 85%);
   border-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 14px 26px rgba(14, 165, 233, 0.35);
-  transform: translateY(-2px) scale(1.03);
 }
 
 .floating-sidebar:not(.open) .floating-sidebar__panel {
@@ -831,6 +818,48 @@ h3 {
 
 .portfolio-bot__message p {
   margin: 0;
+}
+
+.portfolio-bot__message p + p,
+.portfolio-bot__message p + ul {
+  margin-top: 8px;
+}
+
+.portfolio-bot__message--bot > p:first-child {
+  color: #0f172a;
+  font-family: Georgia, "Noto Serif CJK SC", "Songti SC", serif;
+  font-size: 13.8px;
+  letter-spacing: -0.01em;
+}
+
+.portfolio-bot__message strong {
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.portfolio-bot__message--user strong {
+  color: #ffffff;
+}
+
+.portfolio-bot__message ul {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding-left: 16px;
+}
+
+.portfolio-bot__message li::marker {
+  color: #2563eb;
+}
+
+.portfolio-bot__message code {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.05);
+  color: #0f172a;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.92em;
+  padding: 1px 5px;
 }
 
 .portfolio-bot__message--bot {
@@ -1099,7 +1128,8 @@ html:lang(zh-CN) .compact-list strong {
 
   .floating-sidebar {
     left: 14px;
-    bottom: 14px;
+    top: 33vh;
+    bottom: auto;
     --hat-scale: 1.5;
     --hat-x: -58%;
     --hat-y: -74%;
