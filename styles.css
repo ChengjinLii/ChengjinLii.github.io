@@ -287,7 +287,7 @@ h3 {
 
 .section-title {
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
+  grid-template-columns: 1fr;
   gap: 24px;
   align-items: baseline;
   margin-bottom: 20px;
@@ -420,20 +420,8 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
-.project-details summary {
-  width: fit-content;
-  cursor: pointer;
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.project-details summary:hover {
-  color: var(--ink);
-}
-
 .project-details p {
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .project-details figure {
@@ -456,9 +444,8 @@ h3 {
   font-size: 12px;
 }
 
-.figure-grid {
+.figure-stack {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
@@ -656,7 +643,7 @@ html:lang(zh-CN) .compact-list strong {
     justify-content: flex-start;
   }
 
-  .figure-grid {
+  .figure-stack {
     grid-template-columns: 1fr;
   }
 

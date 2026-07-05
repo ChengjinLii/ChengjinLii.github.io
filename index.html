@@ -97,9 +97,6 @@
         <section class="content-section reveal" id="projects">
           <div class="section-title">
             <span data-en="Selected Projects" data-zh="代表项目">代表项目</span>
-            <p data-en="Open-source systems and research software." data-zh="开源系统与科研软件。">
-              开源系统与科研软件。
-            </p>
           </div>
 
           <article class="entry">
@@ -129,8 +126,7 @@
               <div class="tag-row">
                 <span>FastAPI</span><span>Next.js</span><span>MySQL</span><span>Redis</span><span>OSS</span>
               </div>
-              <details class="project-details">
-                <summary data-en="More details and representative figure" data-zh="展开详细说明与代表图">展开详细说明与代表图</summary>
+              <div class="project-details">
                 <p
                   data-en="StudyHub has evolved from a campus resource-sharing product into an AI-enabled learning platform. The AI layer includes search and recommendation interfaces, moderation design, a read-only secure MCP tool boundary, and a learning-agent foundation with retrieval, recommendation, problem-explanation assistance, and learning-event persistence."
                   data-zh="StudyHub 从校园资料共享产品逐步扩展为带 AI 能力的学习平台。AI 层包括搜索与推荐接口、审核设计、只读安全 MCP 工具边界，以及支持检索、推荐、题解辅助和学习事件持久化的学习 Agent 底座。"
@@ -141,7 +137,11 @@
                   <img src="./assets/studyhub-poster.png" alt="StudyHub poster" loading="lazy" />
                   <figcaption data-en="StudyHub platform poster." data-zh="StudyHub 平台展示图。">StudyHub 平台展示图。</figcaption>
                 </figure>
-              </details>
+                <figure>
+                  <img src="./assets/StudyHub-Agent.png" alt="StudyHub Agent architecture" loading="lazy" />
+                  <figcaption data-en="StudyHub AI/MCP/Agent architecture." data-zh="StudyHub AI / MCP / Agent 架构示意图。">StudyHub AI / MCP / Agent 架构示意图。</figcaption>
+                </figure>
+              </div>
             </div>
           </article>
 
@@ -162,15 +162,14 @@
                 基于 DTI 标量图实现白质表面与软脑膜表面重建流程，覆盖预处理、双流网络推理、模板空间预测与 native-space 回传。相关工作已被 Advanced Science 录用，中科院一区 Top 期刊，影响因子 14.1。
               </p>
               <div class="tag-row"><span>PyTorch</span><span>dMRI</span><span>Surface Reconstruction</span></div>
-              <details class="project-details">
-                <summary data-en="More details and representative figures" data-zh="展开详细说明与代表图">展开详细说明与代表图</summary>
+              <div class="project-details">
                 <p
                   data-en="DDSurfer reconstructs cortical surfaces directly from diffusion MRI derived scalar maps, reducing dependence on conventional T1-only workflows and enabling a diffusion-oriented surface reconstruction pipeline."
                   data-zh="DDSurfer 面向 diffusion MRI 派生标量图进行皮层表面重建，降低对传统 T1-only 流程的依赖，形成面向扩散影像场景的表面重建路线。"
                 >
                   DDSurfer 面向 diffusion MRI 派生标量图进行皮层表面重建，降低对传统 T1-only 流程的依赖，形成面向扩散影像场景的表面重建路线。
                 </p>
-                <div class="figure-grid">
+                <div class="figure-stack">
                   <figure>
                     <img src="./assets/ddsurfer_framework_overview.png" alt="DDSurfer framework overview" loading="lazy" />
                     <figcaption data-en="Framework overview." data-zh="整体框架示意图。">整体框架示意图。</figcaption>
@@ -180,7 +179,7 @@
                     <figcaption data-en="Network architecture." data-zh="网络结构示意图。">网络结构示意图。</figcaption>
                   </figure>
                 </div>
-              </details>
+              </div>
             </div>
           </article>
 
@@ -201,8 +200,7 @@
                 面向扩散 MRI 工作流的协议驱动型智能体系统，采用 planner / executor 协作与协议化流程控制，支持任务规划、QC 追踪和结构化日志审计；相关论文正在投 Nature Communications。
               </p>
               <div class="tag-row"><span>Agent</span><span>dMRI</span><span>Workflow Automation</span></div>
-              <details class="project-details">
-                <summary data-en="More details and representative figure" data-zh="展开详细说明与代表图">展开详细说明与代表图</summary>
+              <div class="project-details">
                 <p
                   data-en="The system formalizes diffusion MRI workflow execution into protocol-constrained stages, allowing planner/executor collaboration, QC tracking, structured logs, and auditable automation for reproducible neuroimaging pipelines."
                   data-zh="该系统将 diffusion MRI 工作流拆解为受协议约束的阶段，支持 planner / executor 协作、QC 追踪、结构化日志和可审计自动化，用于可复现神经影像流程。"
@@ -213,7 +211,11 @@
                   <img src="./assets/dMRI-Agent.png" alt="dMRI-Agent overview" loading="lazy" />
                   <figcaption data-en="dMRI-Agent workflow overview." data-zh="dMRI-Agent 工作流示意图。">dMRI-Agent 工作流示意图。</figcaption>
                 </figure>
-              </details>
+                <figure>
+                  <img src="./assets/dMRI-Agent-workflow.png" alt="dMRI-Agent protocol workflow" loading="lazy" />
+                  <figcaption data-en="Protocol-driven execution workflow." data-zh="协议驱动执行流程示意图。">协议驱动执行流程示意图。</figcaption>
+                </figure>
+              </div>
             </div>
           </article>
 
@@ -234,15 +236,14 @@
                 开发 3D Slicer 扩展模块，统一封装 DDSurfer、DDParcel、DDSeg 与 Microstructure 等 diffusion MRI 流程，提供输入校验、任务编排与界面入口；相关 protocol 论文正在投 Nature Protocols。
               </p>
               <div class="tag-row"><span>3D Slicer</span><span>Python</span><span>dMRI Pipeline</span></div>
-              <details class="project-details">
-                <summary data-en="More details" data-zh="展开详细说明">展开详细说明</summary>
+              <div class="project-details">
                 <p
                   data-en="SlicerDDSurfer packages multiple diffusion MRI pipelines into a consistent 3D Slicer interface, emphasizing reproducible input validation, workflow orchestration, and extensibility for tractography, connectomics, and visualization."
                   data-zh="SlicerDDSurfer 将多条 diffusion MRI 流程封装到统一的 3D Slicer 界面中，重点处理输入校验、任务编排和后续纤维追踪、连接组分析、可视化扩展。"
                 >
                   SlicerDDSurfer 将多条 diffusion MRI 流程封装到统一的 3D Slicer 界面中，重点处理输入校验、任务编排和后续纤维追踪、连接组分析、可视化扩展。
                 </p>
-              </details>
+              </div>
             </div>
           </article>
         </section>
@@ -250,9 +251,6 @@
         <section class="content-section reveal" id="research">
           <div class="section-title">
             <span data-en="Research" data-zh="科研">科研</span>
-            <p data-en="Publications, presentations, and challenges." data-zh="论文、会议展示与挑战赛。">
-              论文、会议展示与挑战赛。
-            </p>
           </div>
           <div class="compact-list">
             <article>
@@ -300,9 +298,6 @@
         <section class="content-section reveal" id="honors">
           <div class="section-title">
             <span data-en="Honors" data-zh="奖项与荣誉">奖项与荣誉</span>
-            <p data-en="Competition awards and sustained academic recognition." data-zh="竞赛奖项与持续学业认可。">
-              竞赛奖项与持续学业认可。
-            </p>
           </div>
           <div class="honor-list">
             <p
@@ -341,9 +336,6 @@
         <section class="content-section contact-section reveal" id="contact">
           <div class="section-title">
             <span data-en="Contact" data-zh="联系">联系</span>
-            <p data-en="Open to research collaboration and engineering work." data-zh="欢迎科研合作与工程项目交流。">
-              欢迎科研合作与工程项目交流。
-            </p>
           </div>
           <div class="contact-card">
             <p
