@@ -12,15 +12,18 @@
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
-    <header class="site-header">
-      <a class="mark" href="#top" aria-label="Chengjin Li home">
+
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Chengjin Li home">
         <span>CL</span>
+        <strong data-en="Chengjin Li" data-zh="李承锦">李承锦</strong>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#projects" data-en="Projects" data-zh="项目">Projects</a>
-        <a href="#research" data-en="Research" data-zh="科研">Research</a>
-        <a href="#honors" data-en="Honors" data-zh="荣誉">Honors</a>
-        <a href="#contact" data-en="Contact" data-zh="联系">Contact</a>
+        <a href="#about" data-en="About" data-zh="简介">简介</a>
+        <a href="#projects" data-en="Projects" data-zh="项目">项目</a>
+        <a href="#research" data-en="Research" data-zh="科研">科研</a>
+        <a href="#honors" data-en="Honors" data-zh="荣誉">荣誉</a>
+        <a href="#contact" data-en="Contact" data-zh="联系">联系</a>
       </nav>
       <div class="language-switch" aria-label="Language switch">
         <button class="lang-btn" type="button" data-lang="en">EN</button>
@@ -28,293 +31,269 @@
       </div>
     </header>
 
-    <main id="top">
-      <section class="hero reveal">
-        <div class="hero-kicker">
-          <span data-en="Research + Engineering Portfolio" data-zh="科研 + 工程作品集">
-            Research + Engineering Portfolio
-          </span>
-        </div>
-        <div class="hero-grid">
+    <main class="page-shell" id="top">
+      <aside class="profile-sidebar reveal">
+        <div class="portrait" aria-hidden="true">CL</div>
+        <h1>
+          <span data-en="Chengjin Li" data-zh="李承锦">李承锦</span>
+          <small data-en="Li Chengjin" data-zh="Chengjin Li">Chengjin Li</small>
+        </h1>
+        <p
+          class="profile-line"
+          data-en="M.S.–B.Eng. student in Information and Communication Engineering at UESTC."
+          data-zh="电子科技大学信息与通信工程专业本硕。"
+        >
+          电子科技大学信息与通信工程专业本硕。
+        </p>
+
+        <dl class="profile-facts">
           <div>
-            <h1>
-              <span data-en="Chengjin Li" data-zh="李承锦">Chengjin Li</span>
-              <small data-en="Li Chengjin" data-zh="Chengjin Li">Li Chengjin</small>
-            </h1>
-            <p class="hero-copy">
-              <span
-                data-en="M.S.–B.Eng. student in Information and Communication Engineering at UESTC, working across medical imaging algorithms, protocol-driven agent systems, and production-grade full-stack platforms."
-                data-zh="电子科技大学信息与通信工程专业本硕，方向覆盖医学图像算法、协议驱动智能体系统与可运营的全栈平台。"
-              >
-                M.S.–B.Eng. student in Information and Communication Engineering at UESTC,
-                working across medical imaging algorithms, protocol-driven agent systems, and
-                production-grade full-stack platforms.
-              </span>
+            <dt data-en="Research" data-zh="研究方向">研究方向</dt>
+            <dd data-en="dMRI / AI Agents" data-zh="dMRI / AI 智能体">dMRI / AI 智能体</dd>
+          </div>
+          <div>
+            <dt data-en="Engineering" data-zh="工程方向">工程方向</dt>
+            <dd data-en="Full-stack systems" data-zh="全栈系统">全栈系统</dd>
+          </div>
+          <div>
+            <dt data-en="Platform" data-zh="平台成果">平台成果</dt>
+            <dd data-en="StudyHub: 345 users" data-zh="StudyHub：345 用户">StudyHub：345 用户</dd>
+          </div>
+        </dl>
+
+        <div class="sidebar-actions">
+          <a href="./assets/李承锦-CV-中文.pdf" data-en="Chinese CV" data-zh="中文简历">中文简历</a>
+          <a href="./assets/Chengjin-Li-CV-English.pdf" data-en="English CV" data-zh="英文简历">英文简历</a>
+        </div>
+
+        <ul class="profile-links" aria-label="Profile links">
+          <li><a href="mailto:chengjinli@std.uestc.edu.cn">chengjinli@std.uestc.edu.cn</a></li>
+          <li><a href="https://github.com/ChengjinLii">github.com/ChengjinLii</a></li>
+          <li><a href="https://study-hub.cn">study-hub.cn</a></li>
+          <li data-en="UESTC Qingshuihe Campus, Chengdu" data-zh="四川成都 · 电子科技大学清水河校区">
+            四川成都 · 电子科技大学清水河校区
+          </li>
+        </ul>
+      </aside>
+
+      <div class="content-column">
+        <section class="intro-card reveal" id="about">
+          <p class="kicker" data-en="Research + Engineering Portfolio" data-zh="科研 + 工程作品集">
+            科研 + 工程作品集
+          </p>
+          <h2
+            data-en="Medical imaging algorithms, protocol-driven agents, and useful software systems."
+            data-zh="医学图像算法、协议驱动智能体与可用软件系统。"
+          >
+            医学图像算法、协议驱动智能体与可用软件系统。
+          </h2>
+          <p
+            data-en="I work at the intersection of diffusion MRI, deep learning, agentic workflow automation, and production-grade web systems. My projects aim to make research pipelines more reproducible, accessible, and connected to real users."
+            data-zh="我关注扩散 MRI、深度学习、智能体工作流自动化与可运营的 Web 系统，目标是让科研流程更可复现、更容易使用，并与真实用户场景连接。"
+          >
+            我关注扩散 MRI、深度学习、智能体工作流自动化与可运营的 Web 系统，目标是让科研流程更可复现、更容易使用，并与真实用户场景连接。
+          </p>
+          <div class="focus-strip">
+            <span data-en="Deep Learning" data-zh="深度学习">深度学习</span>
+            <span data-en="Medical Imaging" data-zh="医学影像">医学影像</span>
+            <span data-en="Agent Systems" data-zh="智能体系统">智能体系统</span>
+            <span data-en="Full-stack Engineering" data-zh="全栈工程">全栈工程</span>
+          </div>
+        </section>
+
+        <section class="content-section reveal" id="projects">
+          <div class="section-title">
+            <span data-en="Selected Projects" data-zh="代表项目">代表项目</span>
+            <p data-en="Open-source systems and research software." data-zh="开源系统与科研软件。">
+              开源系统与科研软件。
             </p>
-            <div class="hero-actions">
-              <a class="button primary" href="#projects" data-en="View Work" data-zh="查看项目">
-                View Work
-              </a>
-              <a class="button" href="./assets/Chengjin-Li-CV-English.pdf" data-en="English CV" data-zh="英文简历">
-                English CV
-              </a>
-              <a class="button" href="./assets/李承锦-CV-中文.pdf" data-en="Chinese CV" data-zh="中文简历">
-                Chinese CV
-              </a>
-            </div>
           </div>
 
-          <aside class="signal-card" aria-label="Profile highlights">
-            <div class="signal-row">
-              <span data-en="University" data-zh="学校">University</span>
-              <strong data-en="UESTC" data-zh="电子科技大学">UESTC</strong>
-            </div>
-            <div class="signal-row">
-              <span data-en="Field" data-zh="专业">Field</span>
-              <strong
-                data-en="Information & Communication Engineering"
-                data-zh="信息与通信工程"
-              >
-                Information & Communication Engineering
-              </strong>
-            </div>
-            <div class="signal-row">
-              <span data-en="Research" data-zh="研究">Research</span>
-              <strong data-en="dMRI / AI Agents" data-zh="dMRI / AI 智能体">
-                dMRI / AI Agents
-              </strong>
-            </div>
-            <div class="signal-row">
-              <span data-en="Platform" data-zh="平台">Platform</span>
-              <strong data-en="StudyHub: 345 users" data-zh="StudyHub：345 用户">
-                StudyHub: 345 users
-              </strong>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section reveal" id="projects">
-        <div class="section-heading">
-          <p data-en="Selected Work" data-zh="代表项目">Selected Work</p>
-          <h2 data-en="Systems that connect research with usable software." data-zh="连接科研问题与可用系统。">
-            Systems that connect research with usable software.
-          </h2>
-        </div>
-
-        <div class="project-list">
-          <article class="project-card featured">
-            <div class="card-index">01</div>
-            <div class="card-body">
+          <article class="entry featured-entry">
+            <div class="entry-year">01</div>
+            <div class="entry-main">
               <h3>StudyHub</h3>
-              <p class="card-subtitle" data-en="Campus knowledge-sharing platform" data-zh="校园知识共享平台">
-                Campus knowledge-sharing platform
+              <p class="entry-meta" data-en="Campus knowledge-sharing platform" data-zh="校园知识共享平台">
+                校园知识共享平台
               </p>
               <p
                 data-en="Independently designed, built, and operated a campus platform for materials, experience sharing, requests, and marketplace scenarios. It includes AI search, recommendation, moderation, a read-only secure MCP tool interface, and a learning-agent foundation for material retrieval, recommendation, problem-explanation assistance, and learning-event persistence."
                 data-zh="独立设计、开发并运营校园知识共享与互助平台，覆盖资料共享、经验分享、求购协作与校园集市；搭建智能搜索、推荐、审核、只读安全 MCP 工具接口与学习 Agent 底座，支持资料检索、推荐、题解辅助和学习事件持久化。"
               >
-                Independently designed, built, and operated a campus platform for materials,
-                experience sharing, requests, and marketplace scenarios. It includes AI search,
-                recommendation, moderation, a read-only secure MCP tool interface, and a
-                learning-agent foundation for material retrieval, recommendation,
-                problem-explanation assistance, and learning-event persistence.
+                独立设计、开发并运营校园知识共享与互助平台，覆盖资料共享、经验分享、求购协作与校园集市；搭建智能搜索、推荐、审核、只读安全 MCP 工具接口与学习 Agent 底座，支持资料检索、推荐、题解辅助和学习事件持久化。
               </p>
-              <div class="metrics">
-                <span><strong>345</strong><em data-en="users" data-zh="用户">users</em></span>
-                <span><strong>1,628</strong><em data-en="downloads" data-zh="下载">downloads</em></span>
-                <span><strong>AI + MCP</strong><em data-en="agent layer" data-zh="智能体层">agent layer</em></span>
+              <div class="metric-row">
+                <span><strong>345</strong><em data-en="users" data-zh="用户">用户</em></span>
+                <span><strong>1,628</strong><em data-en="downloads" data-zh="下载">下载</em></span>
+                <span><strong>AI + MCP</strong><em data-en="agent layer" data-zh="智能体层">智能体层</em></span>
               </div>
-              <div class="tags">
+              <div class="tag-row">
                 <span>FastAPI</span><span>Next.js</span><span>MySQL</span><span>Redis</span><span>OSS</span>
               </div>
-              <div class="links">
+              <div class="entry-links">
                 <a href="https://study-hub.cn">study-hub.cn</a>
                 <a href="https://github.com/ChengjinLii/studyhub">GitHub</a>
               </div>
             </div>
           </article>
 
-          <article class="project-card">
-            <div class="card-index">02</div>
-            <div class="card-body">
+          <article class="entry">
+            <div class="entry-year">02</div>
+            <div class="entry-main">
               <h3>DDSurfer</h3>
-              <p class="card-subtitle" data-en="dMRI cortical surface reconstruction" data-zh="dMRI 皮层表面重建">
-                dMRI cortical surface reconstruction
+              <p class="entry-meta" data-en="dMRI cortical surface reconstruction" data-zh="dMRI 皮层表面重建">
+                dMRI 皮层表面重建
               </p>
               <p
                 data-en="A DTI-based pipeline for white and pial surface reconstruction, covering preprocessing, dual-stream inference, template-space prediction, and native-space back-projection. The related work has been accepted by Advanced Science, a JCR Q1 top-tier journal with Impact Factor 14.1."
                 data-zh="基于 DTI 标量图实现白质表面与软脑膜表面重建流程，覆盖预处理、双流网络推理、模板空间预测与 native-space 回传。相关工作已被 Advanced Science 录用，中科院一区 Top 期刊，影响因子 14.1。"
               >
-                A DTI-based pipeline for white and pial surface reconstruction, covering
-                preprocessing, dual-stream inference, template-space prediction, and native-space
-                back-projection. The related work has been accepted by Advanced Science, a JCR Q1
-                top-tier journal with Impact Factor 14.1.
+                基于 DTI 标量图实现白质表面与软脑膜表面重建流程，覆盖预处理、双流网络推理、模板空间预测与 native-space 回传。相关工作已被 Advanced Science 录用，中科院一区 Top 期刊，影响因子 14.1。
               </p>
-              <div class="tags"><span>PyTorch</span><span>dMRI</span><span>Surface Reconstruction</span></div>
-              <div class="links"><a href="https://github.com/ChengjinLii/DDSurfer">GitHub</a></div>
+              <div class="tag-row"><span>PyTorch</span><span>dMRI</span><span>Surface Reconstruction</span></div>
+              <div class="entry-links"><a href="https://github.com/ChengjinLii/DDSurfer">GitHub</a></div>
             </div>
           </article>
 
-          <article class="project-card">
-            <div class="card-index">03</div>
-            <div class="card-body">
+          <article class="entry">
+            <div class="entry-year">03</div>
+            <div class="entry-main">
               <h3>dMRI-Agent</h3>
-              <p class="card-subtitle" data-en="Protocol-driven agent system for diffusion MRI" data-zh="协议驱动 dMRI 智能体系统">
-                Protocol-driven agent system for diffusion MRI
+              <p class="entry-meta" data-en="Protocol-driven agent system for diffusion MRI" data-zh="协议驱动 dMRI 智能体系统">
+                协议驱动 dMRI 智能体系统
               </p>
               <p
                 data-en="A protocol-driven agent system for diffusion MRI workflows, using a planner/executor architecture with structured protocol control, task planning, QC tracking, and auditable logs. The related manuscript is submitted to Nature Communications."
                 data-zh="面向扩散 MRI 工作流的协议驱动型智能体系统，采用 planner / executor 协作与协议化流程控制，支持任务规划、QC 追踪和结构化日志审计；相关论文正在投 Nature Communications。"
               >
-                A protocol-driven agent system for diffusion MRI workflows, using a
-                planner/executor architecture with structured protocol control, task planning, QC
-                tracking, and auditable logs. The related manuscript is submitted to Nature
-                Communications.
+                面向扩散 MRI 工作流的协议驱动型智能体系统，采用 planner / executor 协作与协议化流程控制，支持任务规划、QC 追踪和结构化日志审计；相关论文正在投 Nature Communications。
               </p>
-              <div class="tags"><span>Agent</span><span>dMRI</span><span>Workflow Automation</span></div>
-              <div class="links"><a href="https://github.com/ChengjinLii/MRI_Agent">GitHub</a></div>
+              <div class="tag-row"><span>Agent</span><span>dMRI</span><span>Workflow Automation</span></div>
+              <div class="entry-links"><a href="https://github.com/ChengjinLii/MRI_Agent">GitHub</a></div>
             </div>
           </article>
 
-          <article class="project-card">
-            <div class="card-index">04</div>
-            <div class="card-body">
+          <article class="entry">
+            <div class="entry-year">04</div>
+            <div class="entry-main">
               <h3>SlicerDDSurfer</h3>
-              <p class="card-subtitle" data-en="3D Slicer extension" data-zh="3D Slicer 扩展">
-                3D Slicer extension
+              <p class="entry-meta" data-en="3D Slicer extension" data-zh="3D Slicer 扩展">
+                3D Slicer 扩展
               </p>
               <p
                 data-en="A 3D Slicer extension that unifies DDSurfer, DDParcel, DDSeg, and Microstructure diffusion MRI workflows under a consistent interface with input validation and workflow orchestration. The protocol manuscript is submitted to Nature Protocols."
                 data-zh="开发 3D Slicer 扩展模块，统一封装 DDSurfer、DDParcel、DDSeg 与 Microstructure 等 diffusion MRI 流程，提供输入校验、任务编排与界面入口；相关 protocol 论文正在投 Nature Protocols。"
               >
-                A 3D Slicer extension that unifies DDSurfer, DDParcel, DDSeg, and Microstructure
-                diffusion MRI workflows under a consistent interface with input validation and
-                workflow orchestration. The protocol manuscript is submitted to Nature Protocols.
+                开发 3D Slicer 扩展模块，统一封装 DDSurfer、DDParcel、DDSeg 与 Microstructure 等 diffusion MRI 流程，提供输入校验、任务编排与界面入口；相关 protocol 论文正在投 Nature Protocols。
               </p>
-              <div class="tags"><span>3D Slicer</span><span>Python</span><span>dMRI Pipeline</span></div>
-              <div class="links"><a href="https://github.com/ChengjinLii/SlicerDDSurfer">GitHub</a></div>
+              <div class="tag-row"><span>3D Slicer</span><span>Python</span><span>dMRI Pipeline</span></div>
+              <div class="entry-links"><a href="https://github.com/ChengjinLii/SlicerDDSurfer">GitHub</a></div>
             </div>
           </article>
-        </div>
-      </section>
+        </section>
 
-      <section class="section split reveal" id="research">
-        <div class="section-heading compact">
-          <p data-en="Research" data-zh="科研">Research</p>
-          <h2 data-en="Medical imaging, intelligent workflows, and reproducible systems." data-zh="医学影像、智能工作流与可复现系统。">
-            Medical imaging, intelligent workflows, and reproducible systems.
-          </h2>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span>Advanced Science</span>
-            <p
-              data-en="DDSurfer-related work accepted by Advanced Science (JCR Q1 / top-tier journal, Impact Factor 14.1)."
-              data-zh="DDSurfer 相关工作已被 Advanced Science 录用（中科院一区 Top 期刊，影响因子 14.1）。"
-            >
-              DDSurfer-related work accepted by Advanced Science (JCR Q1 / top-tier journal, Impact
-              Factor 14.1).
+        <section class="content-section reveal" id="research">
+          <div class="section-title">
+            <span data-en="Research" data-zh="科研">科研</span>
+            <p data-en="Publications, presentations, and challenges." data-zh="论文、会议展示与挑战赛。">
+              论文、会议展示与挑战赛。
             </p>
           </div>
-          <div class="timeline-item">
-            <span>ISMRM 2025</span>
-            <p data-en="Research work accepted as an Oral Presentation." data-zh="研究工作被接收为 Oral Presentation。">
-              Research work accepted as an Oral Presentation.
-            </p>
+          <div class="compact-list">
+            <article>
+              <strong>Advanced Science</strong>
+              <p
+                data-en="DDSurfer-related work accepted by Advanced Science (JCR Q1 / top-tier journal, Impact Factor 14.1)."
+                data-zh="DDSurfer 相关工作已被 Advanced Science 录用（中科院一区 Top 期刊，影响因子 14.1）。"
+              >
+                DDSurfer 相关工作已被 Advanced Science 录用（中科院一区 Top 期刊，影响因子 14.1）。
+              </p>
+            </article>
+            <article>
+              <strong>ISMRM 2025</strong>
+              <p data-en="Research work accepted as an Oral Presentation." data-zh="研究工作被接收为 Oral Presentation。">
+                研究工作被接收为 Oral Presentation。
+              </p>
+            </article>
+            <article>
+              <strong>OHBM 2025</strong>
+              <p data-en="Research work accepted as a Poster Presentation." data-zh="研究工作被接收为 Poster Presentation。">
+                研究工作被接收为 Poster Presentation。
+              </p>
+            </article>
+            <article>
+              <strong>MICCAI / ISICDM 2025</strong>
+              <p
+                data-en="Third Prize in MICCAI PDCADxFoundation Challenge classification and segmentation tracks; Third Prize in ISICDM 2025 poster session."
+                data-zh="MICCAI 2025 PDCADxFoundation Challenge 分类与分割赛道均获三等奖；ISICDM 2025 海报展示获三等奖。"
+              >
+                MICCAI 2025 PDCADxFoundation Challenge 分类与分割赛道均获三等奖；ISICDM 2025 海报展示获三等奖。
+              </p>
+            </article>
           </div>
-          <div class="timeline-item">
-            <span>OHBM 2025</span>
-            <p data-en="Research work accepted as a Poster Presentation." data-zh="研究工作被接收为 Poster Presentation。">
-              Research work accepted as a Poster Presentation.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <span>MICCAI / ISICDM 2025</span>
-            <p
-              data-en="Third Prize in MICCAI PDCADxFoundation Challenge classification and segmentation tracks; Third Prize in ISICDM 2025 poster session."
-              data-zh="MICCAI 2025 PDCADxFoundation Challenge 分类与分割赛道均获三等奖；ISICDM 2025 海报展示获三等奖。"
-            >
-              Third Prize in MICCAI PDCADxFoundation Challenge classification and segmentation
-              tracks; Third Prize in ISICDM 2025 poster session.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="section reveal" id="honors">
-        <div class="section-heading">
-          <p data-en="Honors" data-zh="奖项与荣誉">Honors</p>
-          <h2 data-en="Competition awards and sustained academic recognition." data-zh="竞赛奖项与持续学业认可。">
-            Competition awards and sustained academic recognition.
-          </h2>
-        </div>
-        <div class="honor-grid">
-          <article>
-            <span>01</span>
+        <section class="content-section reveal" id="honors">
+          <div class="section-title">
+            <span data-en="Honors" data-zh="奖项与荣誉">奖项与荣誉</span>
+            <p data-en="Competition awards and sustained academic recognition." data-zh="竞赛奖项与持续学业认可。">
+              竞赛奖项与持续学业认可。
+            </p>
+          </div>
+          <div class="honor-list">
             <p
-              data-en="First Prize, AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest."
+              data-en="First Prize in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest."
               data-zh="中国研究生电子设计竞赛人工智能赛道西南赛区一等奖。"
             >
-              First Prize, AI Track, Southwest Regional Contest, China Graduate Electronics Design
-              Contest.
+              中国研究生电子设计竞赛人工智能赛道西南赛区一等奖。
             </p>
-          </article>
-          <article>
-            <span>02</span>
             <p
               data-en="National Third Prize, Huawei Cup China Undergraduate Mathematical Contest in Modeling, as team leader."
               data-zh="华为杯全国大学生数学建模竞赛国家三等奖，担任队长。"
             >
-              National Third Prize, Huawei Cup China Undergraduate Mathematical Contest in Modeling,
-              as team leader.
+              华为杯全国大学生数学建模竞赛国家三等奖，担任队长。
             </p>
-          </article>
-          <article>
-            <span>03</span>
             <p
               data-en="Gold Award at UESTC campus round and Silver Award at Sichuan provincial round, China International College Students' Innovation Competition."
               data-zh="中国国际大学生创新大赛校赛金奖、四川省省赛银奖。"
             >
-              Gold Award at UESTC campus round and Silver Award at Sichuan provincial round, China
-              International College Students' Innovation Competition.
+              中国国际大学生创新大赛校赛金奖、四川省省赛银奖。
             </p>
-          </article>
-          <article>
-            <span>04</span>
             <p
               data-en="Outstanding Student Scholarship for four consecutive academic years; UESTC Undergraduate Innovation Award."
               data-zh="连续四学年获得电子科技大学校级优秀学生奖学金；获电子科技大学本科毕业创新奖。"
             >
-              Outstanding Student Scholarship for four consecutive academic years; UESTC
-              Undergraduate Innovation Award.
+              连续四学年获得电子科技大学校级优秀学生奖学金；获电子科技大学本科毕业创新奖。
             </p>
-          </article>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <section class="section contact-panel reveal" id="contact">
-        <div>
-          <p class="eyebrow" data-en="Contact" data-zh="联系">Contact</p>
-          <h2 data-en="Open to research collaboration, engineering work, and AI-for-science systems." data-zh="欢迎科研合作、工程项目与 AI for Science 系统方向交流。">
-            Open to research collaboration, engineering work, and AI-for-science systems.
-          </h2>
-        </div>
-        <div class="contact-links">
-          <a href="mailto:chengjinli@std.uestc.edu.cn">chengjinli@std.uestc.edu.cn</a>
-          <a href="https://github.com/ChengjinLii">github.com/ChengjinLii</a>
-          <a href="https://study-hub.cn">study-hub.cn</a>
-          <span data-en="UESTC Qingshuihe Campus, Chengdu, China" data-zh="四川成都 · 电子科技大学清水河校区">
-            UESTC Qingshuihe Campus, Chengdu, China
-          </span>
-        </div>
-      </section>
+        <section class="content-section contact-section reveal" id="contact">
+          <div class="section-title">
+            <span data-en="Contact" data-zh="联系">联系</span>
+            <p data-en="Open to research collaboration and engineering work." data-zh="欢迎科研合作与工程项目交流。">
+              欢迎科研合作与工程项目交流。
+            </p>
+          </div>
+          <div class="contact-card">
+            <p
+              data-en="Open to research collaboration, engineering work, and AI-for-science systems."
+              data-zh="欢迎科研合作、工程项目与 AI for Science 系统方向交流。"
+            >
+              欢迎科研合作、工程项目与 AI for Science 系统方向交流。
+            </p>
+            <a href="mailto:chengjinli@std.uestc.edu.cn">chengjinli@std.uestc.edu.cn</a>
+            <a href="https://github.com/ChengjinLii">github.com/ChengjinLii</a>
+            <a href="https://study-hub.cn">study-hub.cn</a>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <span>© <span id="year"></span> Chengjin Li</span>
+          <span data-en="Built for GitHub Pages." data-zh="为 GitHub Pages 构建。">为 GitHub Pages 构建。</span>
+        </footer>
+      </div>
     </main>
-
-    <footer class="site-footer">
-      <span>© <span id="year"></span> Chengjin Li</span>
-      <span data-en="Built for GitHub Pages." data-zh="为 GitHub Pages 构建。">Built for GitHub Pages.</span>
-    </footer>
 
     <script src="./script.js"></script>
   </body>
