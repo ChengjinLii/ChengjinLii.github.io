@@ -580,83 +580,94 @@ h3 {
 
 .portfolio-bot {
   position: fixed;
-  right: 22px;
-  bottom: 22px;
+  left: 24px;
+  bottom: 24px;
   z-index: 30;
-  display: grid;
-  justify-items: end;
+  display: flex;
+  align-items: flex-end;
   gap: 12px;
+  animation: floaty-bob 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 18px rgba(23, 20, 16, 0.22));
 }
 
 .portfolio-bot__launcher {
   position: relative;
-  display: grid;
-  grid-template-columns: 54px auto;
-  gap: 10px;
+  display: flex;
   align-items: center;
-  min-height: 58px;
-  padding: 8px 14px 8px 8px;
-  border: 1px solid var(--line-strong);
-  background: var(--panel);
-  color: var(--ink);
-  box-shadow: var(--shadow);
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: 2px solid var(--paper);
+  border-radius: 999px;
+  background: var(--ink);
+  box-shadow:
+    0 10px 18px rgba(23, 20, 16, 0.18),
+    0 0 12px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+  overflow: visible;
+  animation: bubble-pulse 2.8s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .portfolio-bot__launcher:hover {
-  border-color: var(--ink);
+  transform: translateY(-2px) scale(1.04);
 }
 
 .portfolio-bot__hat {
   position: absolute;
-  left: 16px;
-  top: -19px;
-  width: 44px;
-  height: 28px;
+  left: 50%;
+  top: 0;
+  width: 74px;
+  height: 38px;
   background: url("./assets/studyhub-bot-cap.svg") no-repeat 50% 50% / contain;
-  transform: rotate(-5deg);
+  transform: translate(-49%, -50%) rotate(-4deg);
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .portfolio-bot__face {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
-  width: 46px;
-  height: 46px;
-  border: 2px solid var(--paper);
   border-radius: 999px;
-  background: var(--ink);
-  box-shadow: 0 10px 20px rgba(23, 20, 16, 0.18);
+  background: transparent;
+  overflow: hidden;
 }
 
 .portfolio-bot__face::before {
   content: "";
   position: absolute;
-  top: 15px;
-  left: 13px;
-  width: 5px;
-  height: 14px;
+  top: 18px;
+  left: 17px;
+  width: 6px;
+  height: 16px;
   border-radius: 999px;
   background: var(--paper);
   box-shadow: 14px 0 0 var(--paper);
-  animation: bot-eye-blink 5.5s ease-in-out infinite;
+  animation: eye-blink 5s ease-in-out infinite;
+  transform: translate(var(--eye-x, 0px), var(--eye-y, 0px));
+  transition: transform 0.08s ease-out;
 }
 
 .portfolio-bot__face::after {
   content: "";
   position: absolute;
-  inset: -7px;
-  border: 1px dashed rgba(23, 20, 16, 0.22);
+  inset: -9px;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
   border-radius: 999px;
+  opacity: 0.75;
+  animation: orbit-spin 8s linear infinite;
 }
 
-.portfolio-bot__label {
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
+.portfolio-bot__launcher::after {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  animation: orbit-spin 12s linear infinite reverse;
+  pointer-events: none;
 }
 
 .portfolio-bot__panel {
@@ -665,6 +676,8 @@ h3 {
   background: var(--panel);
   color: var(--ink);
   box-shadow: var(--shadow);
+  animation: panel-pop 220ms ease;
+  transform-origin: bottom left;
 }
 
 .portfolio-bot__header {
@@ -779,14 +792,56 @@ h3 {
   font-weight: 900;
 }
 
-@keyframes bot-eye-blink {
+@keyframes floaty-bob {
   0%,
-  92%,
   100% {
-    transform: scaleY(1);
+    transform: translateY(0);
   }
-  95% {
-    transform: scaleY(0.16);
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes bubble-pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 24px rgba(23, 20, 16, 0.20), 0 0 18px rgba(76, 101, 135, 0.24);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 16px 28px rgba(23, 20, 16, 0.28), 0 0 24px rgba(76, 101, 135, 0.32);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes eye-blink {
+  0%,
+  90%,
+  100% {
+    transform: translate(var(--eye-x, 0px), var(--eye-y, 0px)) scaleY(1);
+  }
+  94% {
+    transform: translate(var(--eye-x, 0px), var(--eye-y, 0px)) scaleY(0.2);
+  }
+  96% {
+    transform: translate(var(--eye-x, 0px), var(--eye-y, 0px)) scaleY(0.05);
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes panel-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -917,17 +972,8 @@ html:lang(zh-CN) .compact-list strong {
   }
 
   .portfolio-bot {
-    right: 14px;
+    left: 14px;
     bottom: 14px;
-  }
-
-  .portfolio-bot__launcher {
-    grid-template-columns: 46px;
-    padding: 7px;
-  }
-
-  .portfolio-bot__label {
-    display: none;
   }
 
   .portfolio-bot__panel {

@@ -35,6 +35,19 @@ const botForm = document.querySelector(".portfolio-bot__form");
 const botInput = document.querySelector(".portfolio-bot__input");
 const botStarters = document.querySelectorAll(".portfolio-bot__starters button");
 
+window.addEventListener("pointermove", (event) => {
+  if (!botLauncher) return;
+  const rect = botLauncher.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const dx = event.clientX - centerX;
+  const dy = event.clientY - centerY;
+  const distance = Math.max(Math.hypot(dx, dy), 1);
+  const maxOffset = 6;
+  botLauncher.style.setProperty("--eye-x", `${(dx / distance) * maxOffset}px`);
+  botLauncher.style.setProperty("--eye-y", `${(dy / distance) * maxOffset}px`);
+});
+
 const botAnswers = {
   projects: {
     zh:
