@@ -370,6 +370,50 @@
       </div>
     </main>
 
+    <aside class="portfolio-bot" aria-label="StudyHub Bot portfolio assistant">
+      <button class="portfolio-bot__launcher" type="button" aria-expanded="false" aria-controls="portfolio-bot-panel">
+        <span class="portfolio-bot__hat" aria-hidden="true"></span>
+        <span class="portfolio-bot__face" aria-hidden="true"></span>
+        <span class="portfolio-bot__label">StudyHub Bot</span>
+      </button>
+      <section class="portfolio-bot__panel" id="portfolio-bot-panel" hidden>
+        <header class="portfolio-bot__header">
+          <div>
+            <span class="portfolio-bot__eyebrow">StudyHub Bot</span>
+            <h2 data-en="Ask about Chengjin" data-zh="问问李承锦">问问李承锦</h2>
+          </div>
+          <button class="portfolio-bot__close" type="button" aria-label="Close bot">×</button>
+        </header>
+        <div class="portfolio-bot__messages" role="log" aria-live="polite">
+          <article class="portfolio-bot__message portfolio-bot__message--bot">
+            <p
+              data-en="Hi, I am the StudyHub-style bot for this portfolio. Pick a question below or ask me about Chengjin's research, projects, papers, awards, or contact information."
+              data-zh="你好，我是这个主页里的 StudyHub 风格助手。你可以点击下方预设问题，也可以问我关于李承锦的研究、项目、论文、奖项或联系方式。"
+            >
+              你好，我是这个主页里的 StudyHub 风格助手。你可以点击下方预设问题，也可以问我关于李承锦的研究、项目、论文、奖项或联系方式。
+            </p>
+          </article>
+        </div>
+        <div class="portfolio-bot__starters" aria-label="Preset questions">
+          <button type="button" data-question="projects" data-en="What projects are most representative?" data-zh="哪些项目最有代表性？">哪些项目最有代表性？</button>
+          <button type="button" data-question="research" data-en="What papers and submissions does he have?" data-zh="有哪些论文和在投工作？">有哪些论文和在投工作？</button>
+          <button type="button" data-question="studyhub" data-en="What is special about StudyHub?" data-zh="StudyHub 有什么亮点？">StudyHub 有什么亮点？</button>
+          <button type="button" data-question="contact" data-en="How can I contact him?" data-zh="如何联系他？">如何联系他？</button>
+        </div>
+        <form class="portfolio-bot__form">
+          <input
+            class="portfolio-bot__input"
+            type="text"
+            data-en-placeholder="Ask about projects, papers, awards..."
+            data-zh-placeholder="输入你想了解的项目、论文、奖项..."
+            placeholder="输入你想了解的项目、论文、奖项..."
+            aria-label="Ask portfolio bot"
+          />
+          <button type="submit" data-en="Ask" data-zh="提问">提问</button>
+        </form>
+      </section>
+    </aside>
+
     <script src="./script.js"></script>
   </body>
 </html>

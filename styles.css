@@ -578,6 +578,218 @@ h3 {
   font-size: 13px;
 }
 
+.portfolio-bot {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 30;
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.portfolio-bot__launcher {
+  position: relative;
+  display: grid;
+  grid-template-columns: 54px auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 58px;
+  padding: 8px 14px 8px 8px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.portfolio-bot__launcher:hover {
+  border-color: var(--ink);
+}
+
+.portfolio-bot__hat {
+  position: absolute;
+  left: 16px;
+  top: -19px;
+  width: 44px;
+  height: 28px;
+  background: url("./assets/studyhub-bot-cap.svg") no-repeat 50% 50% / contain;
+  transform: rotate(-5deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.portfolio-bot__face {
+  position: relative;
+  display: block;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--paper);
+  border-radius: 999px;
+  background: var(--ink);
+  box-shadow: 0 10px 20px rgba(23, 20, 16, 0.18);
+}
+
+.portfolio-bot__face::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 13px;
+  width: 5px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 14px 0 0 var(--paper);
+  animation: bot-eye-blink 5.5s ease-in-out infinite;
+}
+
+.portfolio-bot__face::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px dashed rgba(23, 20, 16, 0.22);
+  border-radius: 999px;
+}
+
+.portfolio-bot__label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.portfolio-bot__panel {
+  width: min(380px, calc(100vw - 32px));
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.portfolio-bot__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio-bot__eyebrow {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portfolio-bot__header h2 {
+  margin-top: 4px;
+  font-size: 22px;
+}
+
+.portfolio-bot__close {
+  align-self: start;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.portfolio-bot__messages {
+  display: grid;
+  gap: 10px;
+  max-height: 280px;
+  overflow: auto;
+  padding: 16px 18px;
+}
+
+.portfolio-bot__message {
+  max-width: 88%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.portfolio-bot__message p {
+  margin: 0;
+}
+
+.portfolio-bot__message--bot {
+  justify-self: start;
+  background: var(--paper);
+  color: var(--muted);
+}
+
+.portfolio-bot__message--user {
+  justify-self: end;
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.portfolio-bot__starters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 18px 14px;
+}
+
+.portfolio-bot__starters button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--accent);
+  padding: 7px 9px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.portfolio-bot__starters button:hover {
+  border-color: var(--accent);
+}
+
+.portfolio-bot__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.portfolio-bot__input {
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 10px 11px;
+  font: inherit;
+}
+
+.portfolio-bot__form button {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+@keyframes bot-eye-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.16);
+  }
+}
+
 html:lang(zh-CN) body {
   font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -702,5 +914,23 @@ html:lang(zh-CN) .compact-list strong {
 
   .site-footer {
     flex-direction: column;
+  }
+
+  .portfolio-bot {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .portfolio-bot__launcher {
+    grid-template-columns: 46px;
+    padding: 7px;
+  }
+
+  .portfolio-bot__label {
+    display: none;
+  }
+
+  .portfolio-bot__panel {
+    width: calc(100vw - 28px);
   }
 }
