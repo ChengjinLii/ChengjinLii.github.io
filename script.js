@@ -26,10 +26,10 @@ languageButtons.forEach((button) => {
 year.textContent = new Date().getFullYear();
 applyLanguage(localStorage.getItem(languageStorageKey) || "zh");
 
-const bot = document.querySelector(".portfolio-bot");
-const botLauncher = document.querySelector(".portfolio-bot__launcher");
-const botPanel = document.querySelector(".portfolio-bot__panel");
-const botClose = document.querySelector(".portfolio-bot__close");
+const bot = document.querySelector(".floating-sidebar");
+const botLauncher = document.querySelector(".floating-sidebar__bubble");
+const botPanel = document.querySelector(".floating-sidebar__panel");
+const botClose = document.querySelector(".floating-sidebar__close");
 const botMessages = document.querySelector(".portfolio-bot__messages");
 const botForm = document.querySelector(".portfolio-bot__form");
 const botInput = document.querySelector(".portfolio-bot__input");
@@ -88,13 +88,13 @@ const botAnswers = {
 };
 
 function openBot() {
-  bot?.classList.add("is-open");
+  bot?.classList.add("open");
   botPanel.hidden = false;
   botLauncher.setAttribute("aria-expanded", "true");
 }
 
 function closeBot() {
-  bot?.classList.remove("is-open");
+  bot?.classList.remove("open");
   botPanel.hidden = true;
   botLauncher.setAttribute("aria-expanded", "false");
 }
@@ -120,7 +120,7 @@ function pickAnswer(raw) {
 }
 
 botLauncher?.addEventListener("click", () => {
-  if (bot?.classList.contains("is-open")) {
+  if (bot?.classList.contains("open")) {
     closeBot();
   } else {
     openBot();
