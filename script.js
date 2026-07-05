@@ -19,12 +19,27 @@ function applyLanguage(language) {
   localStorage.setItem(languageStorageKey, language);
 }
 
+function languageFromUrl() {
+  const value = new URLSearchParams(window.location.search).get("lang");
+  return value === "en" || value === "zh" ? value : null;
+}
+
+function setLanguageUrl(language) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", language);
+  window.history.replaceState({}, "", url);
+}
+
 languageButtons.forEach((button) => {
-  button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    applyLanguage(button.dataset.lang);
+    setLanguageUrl(button.dataset.lang);
+  });
 });
 
 year.textContent = new Date().getFullYear();
-applyLanguage(localStorage.getItem(languageStorageKey) || "zh");
+applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
 
 function createSnowLayer(canvas, options) {
   if (!canvas) return null;
@@ -340,9 +355,9 @@ const botAnswers = {
   },
   cv: {
     zh:
-      "**简历入口**\n- 左侧栏提供中文简历和英文简历 PDF。\n- 中文简历：`assets/李承锦-CV-中文.pdf`\n- 英文简历：`assets/Chengjin-Li-CV-English.pdf`\n- 如果用于科研实习或算法岗，建议优先查看中文简历的项目与科研部分。",
+      "**简历入口**\n可以直接查看下面两个版本：\n[中文简历](./assets/李承锦-CV-中文.pdf)\n[English CV](./assets/Chengjin-Li-CV-English.pdf)",
     en:
-      "**CV links**\n- The sidebar provides both Chinese and English CV PDFs.\n- Chinese CV: `assets/李承锦-CV-中文.pdf`\n- English CV: `assets/Chengjin-Li-CV-English.pdf`\n- For research internships or AI engineering roles, start from the project and research sections.",
+      "**CV links**\nOpen either version directly:\n[Chinese CV](./assets/李承锦-CV-中文.pdf)\n[English CV](./assets/Chengjin-Li-CV-English.pdf)",
   },
   default: {
     zh:
@@ -379,9 +394,18 @@ function renderInlineMarkdown(value) {
     .replace(/`(.+?)`/g, "<code>$1</code>");
 }
 
+function renderLinkButton(line) {
+  const match = line.match(/^\[(.+?)\]\((.+?)\)$/);
+  if (!match) return null;
+  const label = escapeHtml(match[1]);
+  const href = escapeHtml(match[2]);
+  return `<a class="portfolio-bot__link-button" href="${href}" target="_blank" rel="noopener">${label}</a>`;
+}
+
 function renderBotMarkdown(value) {
   const blocks = [];
   let listItems = [];
+  let linkButtons = [];
 
   function flushList() {
     if (listItems.length) {
@@ -390,20 +414,37 @@ function renderBotMarkdown(value) {
     }
   }
 
+  function flushLinks() {
+    if (linkButtons.length) {
+      blocks.push(`<div class="portfolio-bot__link-row">${linkButtons.join("")}</div>`);
+      linkButtons = [];
+    }
+  }
+
   value.split("\n").forEach((line) => {
     const trimmed = line.trim();
     if (!trimmed) {
       flushList();
+      flushLinks();
+      return;
+    }
+    const button = renderLinkButton(trimmed);
+    if (button) {
+      flushList();
+      linkButtons.push(button);
       return;
     }
     if (trimmed.startsWith("- ")) {
+      flushLinks();
       listItems.push(renderInlineMarkdown(trimmed.slice(2)));
       return;
     }
     flushList();
+    flushLinks();
     blocks.push(`<p>${renderInlineMarkdown(trimmed)}</p>`);
   });
   flushList();
+  flushLinks();
   return blocks.join("");
 }
 
