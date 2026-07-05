@@ -98,14 +98,14 @@ function setupSeasonalTopbar() {
   const snowLayers = [
     createSnowLayer(farCanvas, {
       count: isMobile ? 16 : 26,
-      color: "rgba(243, 248, 255, 0.55)",
+      color: "rgba(248, 241, 229, 0.38)",
       radius: [0.6, 2.2],
       speed: [0.6, 1.6],
       wind: [-0.2, 1.2],
     }),
     createSnowLayer(nearCanvas, {
       count: isMobile ? 8 : 14,
-      color: "rgba(255, 255, 255, 0.45)",
+      color: "rgba(255, 250, 240, 0.32)",
       radius: [1.6, 3.4],
       speed: [1.2, 2.4],
       wind: [-0.4, 1.6],
