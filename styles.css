@@ -202,9 +202,16 @@ a {
   width: 180px;
   height: 2px;
   border-radius: 999px;
-  background: rgba(255, 239, 214, 0.62);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(186, 255, 221, 0.25) 45%,
+    rgba(210, 255, 238, 0.85) 85%,
+    rgba(255, 255, 255, 1) 100%
+  );
   opacity: 0;
-  filter: drop-shadow(0 0 5px rgba(255, 232, 198, 0.24));
+  transform: rotate(32deg);
+  filter: drop-shadow(0 0 5px rgba(120, 255, 200, 0.32));
   animation: hero-meteor 12s linear infinite;
 }
 
@@ -216,8 +223,14 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255, 250, 240, 0.92);
-  box-shadow: 0 0 10px rgba(255, 232, 198, 0.34);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(219, 255, 240, 0.9) 45%,
+    rgba(219, 255, 240, 0.15) 70%,
+    rgba(219, 255, 240, 0) 100%
+  );
+  box-shadow: 0 0 10px rgba(130, 255, 210, 0.45);
 }
 
 .page-shell {
