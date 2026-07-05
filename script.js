@@ -6,7 +6,7 @@ const languageStorageKey = "site-language-v2";
 function applyLanguage(language) {
   document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
   translatable.forEach((node) => {
-    node.textContent = node.dataset[language];
+    node.innerHTML = node.dataset[language];
   });
   languageButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === language);

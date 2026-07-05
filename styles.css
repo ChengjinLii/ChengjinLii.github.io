@@ -156,6 +156,10 @@ h3 {
   line-height: 1.65;
 }
 
+.profile-line strong {
+  color: var(--ink);
+}
+
 .profile-facts {
   margin: 22px 0 0;
   border-top: 1px solid var(--line);
@@ -183,6 +187,35 @@ h3 {
   font-family: var(--serif);
   font-size: 14px;
   font-weight: 650;
+}
+
+.profile-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 18px 0 0;
+}
+
+.profile-summary div {
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: rgba(251, 248, 242, 0.55);
+}
+
+.profile-summary dt {
+  color: var(--soft);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.profile-summary dd {
+  margin: 4px 0 0;
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 750;
 }
 
 .sidebar-actions {
@@ -346,6 +379,13 @@ h3 {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.72;
+}
+
+.entry-main strong,
+.compact-list strong + p strong,
+.honor-list strong {
+  color: var(--ink);
+  font-weight: 900;
 }
 
 .metric-row {
