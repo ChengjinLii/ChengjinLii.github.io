@@ -41,6 +41,71 @@ languageButtons.forEach((button) => {
 year.textContent = new Date().getFullYear();
 applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
 
+function setupImageLightbox() {
+  const projectImages = document.querySelectorAll(".project-details img");
+  if (!projectImages.length) return;
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "image-lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "Image preview");
+  lightbox.innerHTML = `
+    <button class="image-lightbox__close" type="button" aria-label="Close image preview">×</button>
+    <figure class="image-lightbox__frame">
+      <img alt="" />
+      <figcaption class="image-lightbox__caption"></figcaption>
+    </figure>
+  `;
+  document.body.appendChild(lightbox);
+
+  const previewImage = lightbox.querySelector("img");
+  const previewCaption = lightbox.querySelector(".image-lightbox__caption");
+  const closeButton = lightbox.querySelector(".image-lightbox__close");
+
+  function openLightbox(sourceImage) {
+    const caption = sourceImage.closest("figure")?.querySelector("figcaption")?.textContent.trim();
+    previewImage.src = sourceImage.currentSrc || sourceImage.src;
+    previewImage.alt = sourceImage.alt || "";
+    previewCaption.textContent = caption || sourceImage.alt || "";
+    lightbox.classList.add("is-open");
+    document.body.classList.add("lightbox-open");
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    document.body.classList.remove("lightbox-open");
+    previewImage.removeAttribute("src");
+  }
+
+  projectImages.forEach((image) => {
+    image.tabIndex = 0;
+    image.setAttribute("role", "button");
+    image.setAttribute("aria-label", `Open larger view: ${image.alt || "project figure"}`);
+    image.addEventListener("click", () => openLightbox(image));
+    image.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openLightbox(image);
+    });
+  });
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox || event.target === closeButton) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
+  });
+}
+
+setupImageLightbox();
+
 function createSnowLayer(canvas, options) {
   if (!canvas) return null;
   const context = canvas.getContext("2d");
