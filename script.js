@@ -10,6 +10,10 @@ function applyLanguage(language) {
   translatable.forEach((node) => {
     node.innerHTML = node.dataset[language];
   });
+  document.querySelectorAll("[data-en-title][data-zh-title]").forEach((node) => {
+    node.setAttribute("title", node.dataset[`${language}Title`]);
+    node.setAttribute("aria-label", node.dataset[`${language}Title`]);
+  });
   document.querySelectorAll("[data-en-placeholder][data-zh-placeholder]").forEach((node) => {
     node.setAttribute("placeholder", node.dataset[`${language}Placeholder`]);
   });
@@ -63,6 +67,21 @@ function setupCopyButtons() {
   });
 }
 
+function setupBackToTop() {
+  const button = document.querySelector(".back-to-top");
+  if (!button) return;
+
+  const updateVisibility = () => {
+    button.classList.toggle("is-visible", window.scrollY > 420);
+  };
+
+  button.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+  updateVisibility();
+}
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -74,6 +93,7 @@ languageButtons.forEach((button) => {
 year.textContent = new Date().getFullYear();
 applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
 setupCopyButtons();
+setupBackToTop();
 
 function setupImageLightbox() {
   const projectImages = document.querySelectorAll(".project-details img");
