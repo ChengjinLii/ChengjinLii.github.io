@@ -908,13 +908,13 @@ body.lightbox-open {
 }
 
 .honor-list p {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 22px;
+  align-items: baseline;
   min-height: 0;
   margin: 0;
-  padding: 16px 18px;
+  padding: 20px 22px;
   border: 1px solid var(--line);
   border-radius: 18px;
   background:
@@ -928,19 +928,25 @@ body.lightbox-open {
 
 .honor-list p::before {
   content: attr(data-timeline);
-  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   max-width: 100%;
-  padding: 6px 9px;
-  border: 1px solid rgba(43, 90, 138, 0.18);
-  border-radius: 999px;
-  background: rgba(43, 90, 138, 0.08);
   color: var(--blue);
   font: 900 10px/1.35 var(--sans);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.honor-text {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .honor-list p {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 }
 
 @media (hover: none) {
