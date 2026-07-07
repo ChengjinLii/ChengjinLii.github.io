@@ -30,6 +30,39 @@ function setLanguageUrl(language) {
   window.history.replaceState({}, "", url);
 }
 
+async function copyText(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = value;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+}
+
+function setupCopyButtons() {
+  document.querySelectorAll("[data-copy-value]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const defaultLabel = button.dataset[activeLanguage] || button.textContent;
+      try {
+        await copyText(button.dataset.copyValue);
+        button.textContent = activeLanguage === "zh" ? "已复制" : "Copied";
+      } catch {
+        button.textContent = activeLanguage === "zh" ? "复制失败" : "Failed";
+      }
+      window.setTimeout(() => {
+        button.textContent = defaultLabel;
+      }, 1400);
+    });
+  });
+}
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -40,6 +73,7 @@ languageButtons.forEach((button) => {
 
 year.textContent = new Date().getFullYear();
 applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
+setupCopyButtons();
 
 function setupImageLightbox() {
   const projectImages = document.querySelectorAll(".project-details img");
@@ -396,9 +430,9 @@ const botAnswers = {
   },
   contact: {
     zh:
-      "**联系方式**\n- 邮箱：`chengjinli@std.uestc.edu.cn`\n- GitHub：`github.com/ChengjinLii`\n- 项目网站：`study-hub.cn`\n- 地址：电子科技大学清水河校区",
+      "**联系方式**\n- 邮箱：`chengjinli@std.uestc.edu.cn`\n- GitHub：`github.com/ChengjinLii`\n- 项目网站：`study-hub.cn`\n- 地址：四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731",
     en:
-      "**Contact**\n- Email: `chengjinli@std.uestc.edu.cn`\n- GitHub: `github.com/ChengjinLii`\n- Project site: `study-hub.cn`\n- Address: UESTC Qingshuihe Campus, Chengdu",
+      "**Contact**\n- Email: `chengjinli@std.uestc.edu.cn`\n- GitHub: `github.com/ChengjinLii`\n- Project site: `study-hub.cn`\n- Address: UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China",
   },
   awards: {
     zh:
