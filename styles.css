@@ -902,21 +902,25 @@ body.lightbox-open {
 .honor-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 12px;
   border: 0;
   background: transparent;
 }
 
 .honor-list p {
-  display: grid;
-  grid-template-columns: 132px minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
   min-height: 0;
   margin: 0;
-  padding: 15px 18px;
+  padding: 16px 18px;
   border: 1px solid var(--line);
-  background: var(--panel);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(43, 90, 138, 0.08), transparent 42%),
+    var(--panel);
+  box-shadow: 0 12px 28px rgba(38, 48, 66, 0.06);
   color: var(--muted);
   font-size: 14.5px;
   line-height: 1.58;
@@ -924,7 +928,15 @@ body.lightbox-open {
 
 .honor-list p::before {
   content: attr(data-timeline);
-  display: block;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid rgba(43, 90, 138, 0.18);
+  border-radius: 999px;
+  background: rgba(43, 90, 138, 0.08);
   color: var(--blue);
   font: 900 10px/1.35 var(--sans);
   letter-spacing: 0.12em;
