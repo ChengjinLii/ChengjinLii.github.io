@@ -470,7 +470,7 @@ h3 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  margin: 22px 0;
+  margin: 16px 0 18px;
 }
 
 .sidebar-actions a {
