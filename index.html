@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=1180" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
       content="Chengjin Li - medical imaging algorithms, agent systems, and full-stack engineering."
@@ -16,11 +16,28 @@
     <meta property="og:url" content="https://chengjinlii.github.io/" />
     <meta property="og:image" content="https://chengjinlii.github.io/assets/studyhub-poster.png" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Chengjin Li",
+        "alternateName": "李承锦",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Electronic Science and Technology of China"
+        },
+        "email": "mailto:chengjinli@std.uestc.edu.cn",
+        "url": "https://chengjinlii.github.io/",
+        "sameAs": ["https://github.com/ChengjinLii", "https://study-hub.cn"],
+        "knowsAbout": ["Medical imaging", "Deep learning", "Agent systems", "Full-stack engineering"]
+      }
+    </script>
     <title>Chengjin Li | 李承锦</title>
-    <link rel="stylesheet" href="./styles.css?v=20260707-back-top" />
+    <link rel="stylesheet" href="./styles.css?v=20260707-responsive-media" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
+    <div class="sr-live" aria-live="polite" aria-atomic="true"></div>
 
     <header class="topbar theme-xmas">
       <div class="xmas-snowfall" aria-hidden="true">
@@ -185,11 +202,25 @@
                   StudyHub 从校园资料共享产品逐步扩展为带 AI 能力的学习平台。AI 层包括搜索与推荐接口、审核设计、只读安全 MCP 工具边界，以及支持检索、推荐、题解辅助和学习事件持久化的学习 Agent 底座。
                 </p>
                 <figure>
-                  <img src="./assets/studyhub-poster.png" alt="StudyHub poster" loading="lazy" width="3840" height="2160" />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcset="./assets/studyhub-poster-960.webp 960w, ./assets/studyhub-poster-1600.webp 1600w, ./assets/studyhub-poster-2400.webp 2400w"
+                      sizes="(max-width: 680px) 92vw, (max-width: 980px) 84vw, 780px"
+                    />
+                    <img src="./assets/studyhub-poster.png" data-full="./assets/studyhub-poster.png" alt="StudyHub poster" loading="lazy" width="3840" height="2160" />
+                  </picture>
                   <figcaption data-en="<strong>Figure 1.</strong> StudyHub platform poster." data-zh="<strong>图 1.</strong> StudyHub 平台展示图。"><strong>图 1.</strong> StudyHub 平台展示图。</figcaption>
                 </figure>
                 <figure>
-                  <img src="./assets/StudyHub-Agent.png?v=20260707-1156" alt="StudyHub Agent architecture" loading="lazy" width="2147" height="1543" />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcset="./assets/StudyHub-Agent-960.webp 960w, ./assets/StudyHub-Agent-1600.webp 1600w, ./assets/StudyHub-Agent-2147.webp 2147w"
+                      sizes="(max-width: 680px) 92vw, (max-width: 980px) 84vw, 780px"
+                    />
+                    <img src="./assets/StudyHub-Agent.png?v=20260707-1156" data-full="./assets/StudyHub-Agent.png?v=20260707-1156" alt="StudyHub Agent architecture" loading="lazy" width="2147" height="1543" />
+                  </picture>
                   <figcaption data-en="<strong>Figure 2.</strong> StudyHub AI/MCP/Agent architecture." data-zh="<strong>图 2.</strong> StudyHub AI / MCP / Agent 架构示意图。"><strong>图 2.</strong> StudyHub AI / MCP / Agent 架构示意图。</figcaption>
                 </figure>
               </div>
@@ -227,11 +258,25 @@
                 </p>
                 <div class="figure-stack">
                   <figure>
-                    <img src="./assets/ddsurfer_framework_overview.png" alt="DDSurfer framework overview" loading="lazy" width="1681" height="1605" />
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcset="./assets/ddsurfer_framework_overview-960.webp 960w, ./assets/ddsurfer_framework_overview-1600.webp 1600w, ./assets/ddsurfer_framework_overview-1681.webp 1681w"
+                        sizes="(max-width: 680px) 92vw, (max-width: 980px) 84vw, 780px"
+                      />
+                      <img src="./assets/ddsurfer_framework_overview.png" data-full="./assets/ddsurfer_framework_overview.png" alt="DDSurfer framework overview" loading="lazy" width="1681" height="1605" />
+                    </picture>
                     <figcaption data-en="<strong>Figure 3.</strong> Framework overview." data-zh="<strong>图 3.</strong> 整体框架示意图。"><strong>图 3.</strong> 整体框架示意图。</figcaption>
                   </figure>
                   <figure>
-                    <img src="./assets/ddsurfer_network_architecture.png" alt="DDSurfer network architecture" loading="lazy" width="2044" height="1711" />
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcset="./assets/ddsurfer_network_architecture-960.webp 960w, ./assets/ddsurfer_network_architecture-1600.webp 1600w, ./assets/ddsurfer_network_architecture-2044.webp 2044w"
+                        sizes="(max-width: 680px) 92vw, (max-width: 980px) 84vw, 780px"
+                      />
+                      <img src="./assets/ddsurfer_network_architecture.png" data-full="./assets/ddsurfer_network_architecture.png" alt="DDSurfer network architecture" loading="lazy" width="2044" height="1711" />
+                    </picture>
                     <figcaption data-en="<strong>Figure 4.</strong> Network architecture." data-zh="<strong>图 4.</strong> 网络结构示意图。"><strong>图 4.</strong> 网络结构示意图。</figcaption>
                   </figure>
                 </div>
@@ -268,11 +313,25 @@
                   该系统将 diffusion MRI 工作流拆解为受协议约束的阶段，支持 planner / executor 协作、QC 追踪、结构化日志和可审计自动化，用于可复现神经影像流程。
                 </p>
                 <figure>
-                  <img src="./assets/dMRI-Agent-workflow.png" alt="dMRI-Agent protocol workflow" loading="lazy" width="2353" height="1222" />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcset="./assets/dMRI-Agent-workflow-960.webp 960w, ./assets/dMRI-Agent-workflow-1600.webp 1600w, ./assets/dMRI-Agent-workflow-2353.webp 2353w"
+                      sizes="(max-width: 680px) 92vw, (max-width: 980px) 84vw, 780px"
+                    />
+                    <img src="./assets/dMRI-Agent-workflow.png" data-full="./assets/dMRI-Agent-workflow.png" alt="dMRI-Agent protocol workflow" loading="lazy" width="2353" height="1222" />
+                  </picture>
                   <figcaption data-en="<strong>Figure 5.</strong> dMRI-Agent workflow overview." data-zh="<strong>图 5.</strong> dMRI-Agent 工作流示意图。"><strong>图 5.</strong> dMRI-Agent 工作流示意图。</figcaption>
                 </figure>
                 <figure>
-                  <img src="./assets/dMRI-Agent.png" alt="dMRI-Agent overview" loading="lazy" width="3533" height="1356" />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcset="./assets/dMRI-Agent-960.webp 960w, ./assets/dMRI-Agent-1600.webp 1600w, ./assets/dMRI-Agent-2400.webp 2400w"
+                      sizes="(max-width: 680px) 92vw, (max-width: 980px) 84vw, 780px"
+                    />
+                    <img src="./assets/dMRI-Agent.png" data-full="./assets/dMRI-Agent.png" alt="dMRI-Agent overview" loading="lazy" width="3533" height="1356" />
+                  </picture>
                   <figcaption data-en="<strong>Figure 6.</strong> Protocol-driven execution workflow." data-zh="<strong>图 6.</strong> 协议驱动执行流程示意图。"><strong>图 6.</strong> 协议驱动执行流程示意图。</figcaption>
                 </figure>
               </div>
@@ -492,6 +551,7 @@
       <span aria-hidden="true">↑</span>
     </button>
 
-    <script src="./script.js?v=20260707-back-top"></script>
+    <script src="./site-data.js?v=20260707-responsive-media"></script>
+    <script src="./script.js?v=20260707-responsive-media"></script>
   </body>
 </html>

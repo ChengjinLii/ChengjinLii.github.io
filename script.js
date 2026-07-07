@@ -1,6 +1,8 @@
 const languageButtons = document.querySelectorAll(".lang-btn");
 const translatable = document.querySelectorAll("[data-en][data-zh]");
 const year = document.querySelector("#year");
+const liveRegion = document.querySelector(".sr-live");
+const siteData = window.siteData || {};
 const languageStorageKey = "site-language-v2";
 let activeLanguage = "zh";
 
@@ -54,11 +56,15 @@ function setupCopyButtons() {
   document.querySelectorAll("[data-copy-value]").forEach((button) => {
     button.addEventListener("click", async () => {
       const defaultLabel = button.dataset[activeLanguage] || button.textContent;
+      const successMessage = activeLanguage === "zh" ? "已复制到剪贴板" : "Copied to clipboard";
+      const failedMessage = activeLanguage === "zh" ? "复制失败" : "Copy failed";
       try {
         await copyText(button.dataset.copyValue);
         button.textContent = activeLanguage === "zh" ? "已复制" : "Copied";
+        if (liveRegion) liveRegion.textContent = successMessage;
       } catch {
         button.textContent = activeLanguage === "zh" ? "复制失败" : "Failed";
+        if (liveRegion) liveRegion.textContent = failedMessage;
       }
       window.setTimeout(() => {
         button.textContent = defaultLabel;
@@ -119,7 +125,7 @@ function setupImageLightbox() {
 
   function openLightbox(sourceImage) {
     const caption = sourceImage.closest("figure")?.querySelector("figcaption")?.textContent.trim();
-    previewImage.src = sourceImage.currentSrc || sourceImage.src;
+    previewImage.src = sourceImage.dataset.full || sourceImage.currentSrc || sourceImage.src;
     previewImage.alt = sourceImage.alt || "";
     previewCaption.textContent = caption || sourceImage.alt || "";
     lightbox.classList.add("is-open");
@@ -429,36 +435,46 @@ window.addEventListener("resize", () => {
   applyBotPosition(next);
 });
 
+const links = siteData.links || {};
+const contact = siteData.contact || {};
+const studyhubData = siteData.studyhub || {};
+const researchData = siteData.research || {};
+const awardData = siteData.awards || {};
+const submissions = researchData.submissions || [];
+const submissionTextZh = submissions.map((item) => `${item.project} 投 **${item.venue}**`).join("；");
+const submissionTextEn = submissions.map((item) => `${item.project} to **${item.venue}**`).join("; ");
+const awardListZh = awardData.zh || [];
+const awardListEn = awardData.en || [];
 const botAnswers = {
   projects: {
     zh:
-      "**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **345 名用户** 与 **1,628 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **Advanced Science** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，论文正在投 **Nature Communications**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **Nature Protocols**。",
+      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "345"} 名用户** 与 **${studyhubData.downloads || "1,628"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，论文正在投 **${submissions[0]?.venue || "Nature Communications"}**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
     en:
-      "**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **345 users** and **1,628 downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **Advanced Science**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, submitted to **Nature Communications**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **Nature Protocols**.",
+      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "345"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, submitted to **${submissions[0]?.venue || "Nature Communications"}**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
   },
   research: {
     zh:
-      "**科研进展概览**\n- **Advanced Science 2026**：DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。\n- **ISMRM 2025**：研究工作接收为 **Oral presentation**。\n- **OHBM 2025**：研究工作接收为 **Poster presentation**。\n- **在投工作**：dMRI-Agent 投 **Nature Communications**；SlicerDDSurfer 投 **Nature Protocols**。",
+      `**科研进展概览**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**：${researchData.journal?.zh || "DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。"}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**：${researchData.conferences?.[0]?.zh || "研究工作接收为 **Oral presentation**。"}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**：${researchData.conferences?.[1]?.zh || "研究工作接收为 **Poster presentation**。"}\n- **在投工作**：${submissionTextZh || "dMRI-Agent 投 **Nature Communications**；SlicerDDSurfer 投 **Nature Protocols**"}。`,
     en:
-      "**Research snapshot**\n- **Advanced Science 2026**: DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.\n- **ISMRM 2025**: accepted as an **Oral presentation**.\n- **OHBM 2025**: accepted as a **Poster presentation**.\n- **Submitted manuscripts**: dMRI-Agent to **Nature Communications**; SlicerDDSurfer to **Nature Protocols**.",
+      `**Research snapshot**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**: ${researchData.journal?.en || "DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**."}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**: ${researchData.conferences?.[0]?.en || "Accepted as an **Oral presentation**."}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**: ${researchData.conferences?.[1]?.en || "Accepted as a **Poster presentation**."}\n- **Submitted manuscripts**: ${submissionTextEn || "dMRI-Agent to **Nature Communications**; SlicerDDSurfer to **Nature Protocols**"}.`,
   },
   studyhub: {
     zh:
-      "**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **345 名用户**、**1,628 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：`study-hub.cn`",
+      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "345"} 名用户**、**${studyhubData.downloads || "1,628"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
     en:
-      "**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **345 users** and **1,628 downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: `study-hub.cn`",
+      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "345"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
   },
   contact: {
     zh:
-      "**联系方式**\n- 邮箱：`chengjinli@std.uestc.edu.cn`\n- GitHub：`github.com/ChengjinLii`\n- 项目网站：`study-hub.cn`\n- 地址：四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731",
+      `**联系方式**\n- 邮箱：\`${contact.email || "chengjinli@std.uestc.edu.cn"}\`\n- GitHub：\`${(links.github || "https://github.com/ChengjinLii").replace(/^https?:\/\//, "")}\`\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\`\n- 地址：${contact.addressZh || "四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731"}`,
     en:
-      "**Contact**\n- Email: `chengjinli@std.uestc.edu.cn`\n- GitHub: `github.com/ChengjinLii`\n- Project site: `study-hub.cn`\n- Address: UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China",
+      `**Contact**\n- Email: \`${contact.email || "chengjinli@std.uestc.edu.cn"}\`\n- GitHub: \`${(links.github || "https://github.com/ChengjinLii").replace(/^https?:\/\//, "")}\`\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\`\n- Address: ${contact.addressEn || "UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China"}`,
   },
   awards: {
     zh:
-      "**主要奖项**\n- 2026 年中国研究生电子设计竞赛人工智能赛道西南赛区 **一等奖**。\n- 2025年“华为杯”第二十二届中国研究生数学建模竞赛国家 **三等奖**，担任队长。\n- 中国国际大学生创新大赛校赛 **金奖**、四川省省赛 **银奖**。\n- 连续四学年获得 **优秀学生奖学金**。\n- 获本科毕业创新奖与 **优秀毕设**。",
+      `**主要奖项**\n${(awardListZh.length ? awardListZh : ["2026 年中国研究生电子设计竞赛人工智能赛道西南赛区 **一等奖**。"]).map((item) => `- ${item}`).join("\n")}`,
     en:
-      "**Selected honors**\n- 2026 **First Prize** in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest.\n- National **Third Prize** in the 2025 Huawei Cup, the 22nd China Graduate Mathematical Contest in Modeling, as team leader.\n- **Gold Award** at UESTC and **Silver Award** at Sichuan provincial round, China International College Students' Innovation Competition.\n- **Outstanding Student Scholarship** for four consecutive academic years.\n- Undergraduate Innovation Award and **Outstanding Undergraduate Thesis**.",
+      `**Selected honors**\n${(awardListEn.length ? awardListEn : ["2026 **First Prize** in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest."]).map((item) => `- ${item}`).join("\n")}`,
   },
   agent: {
     zh:
@@ -474,9 +490,9 @@ const botAnswers = {
   },
   cv: {
     zh:
-      "**简历入口**\n可以直接查看下面两个版本：\n[中文简历](./assets/李承锦-CV-中文.pdf)\n[English CV](./assets/Chengjin-Li-CV-English.pdf)",
+      `**简历入口**\n可以直接查看下面两个版本：\n[中文简历](${links.chineseCv || "./assets/李承锦-CV-中文.pdf"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
     en:
-      "**CV links**\nOpen either version directly:\n[Chinese CV](./assets/李承锦-CV-中文.pdf)\n[English CV](./assets/Chengjin-Li-CV-English.pdf)",
+      `**CV links**\nOpen either version directly:\n[Chinese CV](${links.chineseCv || "./assets/李承锦-CV-中文.pdf"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
   },
   default: {
     zh:
@@ -488,12 +504,14 @@ const botAnswers = {
 
 function openBot() {
   bot?.classList.add("open");
+  document.body.classList.add("bot-open");
   botPanel.hidden = false;
   botLauncher.setAttribute("aria-expanded", "true");
 }
 
 function closeBot() {
   bot?.classList.remove("open");
+  document.body.classList.remove("bot-open");
   botPanel.hidden = true;
   botLauncher.setAttribute("aria-expanded", "false");
 }
