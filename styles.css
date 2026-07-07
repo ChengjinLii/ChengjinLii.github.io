@@ -748,16 +748,15 @@ h3 {
 
 .project-details figure {
   margin: 14px 0 0;
-  padding: 10px;
-  border: 1px solid var(--line);
-  background: var(--panel);
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .project-details img {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid rgba(155, 143, 128, 0.45);
   cursor: zoom-in;
   transition:
     transform 180ms ease,

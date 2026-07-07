@@ -384,9 +384,9 @@ const botAnswers = {
   },
   research: {
     zh:
-      "**科研进展概览**\n- **Advanced Science**：DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。\n- **ISMRM 2025**：研究工作接收为 **Oral presentation**。\n- **OHBM 2025**：研究工作接收为 **Poster presentation**。\n- **在投工作**：dMRI-Agent 投 **Nature Communications**；SlicerDDSurfer 投 **Nature Protocols**。",
+      "**科研进展概览**\n- **Advanced Science 2026**：DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。\n- **ISMRM 2025**：研究工作接收为 **Oral presentation**。\n- **OHBM 2025**：研究工作接收为 **Poster presentation**。\n- **在投工作**：dMRI-Agent 投 **Nature Communications**；SlicerDDSurfer 投 **Nature Protocols**。",
     en:
-      "**Research snapshot**\n- **Advanced Science**: DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.\n- **ISMRM 2025**: accepted as an **Oral presentation**.\n- **OHBM 2025**: accepted as a **Poster presentation**.\n- **Submitted manuscripts**: dMRI-Agent to **Nature Communications**; SlicerDDSurfer to **Nature Protocols**.",
+      "**Research snapshot**\n- **Advanced Science 2026**: DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.\n- **ISMRM 2025**: accepted as an **Oral presentation**.\n- **OHBM 2025**: accepted as a **Poster presentation**.\n- **Submitted manuscripts**: dMRI-Agent to **Nature Communications**; SlicerDDSurfer to **Nature Protocols**.",
   },
   studyhub: {
     zh:
