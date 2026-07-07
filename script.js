@@ -402,9 +402,9 @@ const botAnswers = {
   },
   awards: {
     zh:
-      "**主要奖项**\n- 研电赛人工智能赛道西南赛区 **一等奖**。\n- 华为杯全国大学生数学建模竞赛国家 **三等奖**，担任队长。\n- 中国国际大学生创新大赛校赛 **金奖**、四川省省赛 **银奖**。\n- 连续四学年获得 **优秀学生奖学金**。\n- 获本科毕业创新奖与 **优秀毕设**。",
+      "**主要奖项**\n- 2026 年中国研究生电子设计竞赛人工智能赛道西南赛区 **一等奖**。\n- 2025年“华为杯”第二十二届中国研究生数学建模竞赛国家 **三等奖**，担任队长。\n- 中国国际大学生创新大赛校赛 **金奖**、四川省省赛 **银奖**。\n- 连续四学年获得 **优秀学生奖学金**。\n- 获本科毕业创新奖与 **优秀毕设**。",
     en:
-      "**Selected honors**\n- **First Prize** in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest.\n- National **Third Prize** in Huawei Cup CUMCM, as team leader.\n- **Gold Award** at UESTC and **Silver Award** at Sichuan provincial round, China International College Students' Innovation Competition.\n- **Outstanding Student Scholarship** for four consecutive academic years.\n- Undergraduate Innovation Award and **Outstanding Undergraduate Thesis**.",
+      "**Selected honors**\n- 2026 **First Prize** in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest.\n- National **Third Prize** in the 2025 Huawei Cup, the 22nd China Graduate Mathematical Contest in Modeling, as team leader.\n- **Gold Award** at UESTC and **Silver Award** at Sichuan provincial round, China International College Students' Innovation Competition.\n- **Outstanding Student Scholarship** for four consecutive academic years.\n- Undergraduate Innovation Award and **Outstanding Undergraduate Thesis**.",
   },
   agent: {
     zh:
