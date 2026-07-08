@@ -114,20 +114,30 @@ function setupImageLightbox() {
     <button class="image-lightbox__close" type="button" aria-label="Close image preview">×</button>
     <figure class="image-lightbox__frame">
       <img alt="" />
-      <figcaption class="image-lightbox__caption"></figcaption>
+      <figcaption class="image-lightbox__meta">
+        <span class="image-lightbox__caption"></span>
+        <a class="image-lightbox__download" href="#" download>下载原图 PNG</a>
+      </figcaption>
     </figure>
   `;
   document.body.appendChild(lightbox);
 
   const previewImage = lightbox.querySelector("img");
   const previewCaption = lightbox.querySelector(".image-lightbox__caption");
+  const downloadLink = lightbox.querySelector(".image-lightbox__download");
   const closeButton = lightbox.querySelector(".image-lightbox__close");
 
   function openLightbox(sourceImage) {
     const caption = sourceImage.closest("figure")?.querySelector("figcaption")?.textContent.trim();
-    previewImage.src = sourceImage.dataset.full || sourceImage.currentSrc || sourceImage.src;
+    const fullImage = sourceImage.dataset.full || sourceImage.currentSrc || sourceImage.src;
+    const cleanUrl = new URL(fullImage, window.location.href);
+    const filename = cleanUrl.pathname.split("/").pop() || "project-figure.png";
+    previewImage.src = fullImage;
     previewImage.alt = sourceImage.alt || "";
     previewCaption.textContent = caption || sourceImage.alt || "";
+    downloadLink.href = fullImage;
+    downloadLink.download = filename.replace(/\?.*$/, "");
+    downloadLink.textContent = activeLanguage === "zh" ? "下载原图 PNG" : "Download PNG";
     lightbox.classList.add("is-open");
     document.body.classList.add("lightbox-open");
     closeButton.focus();
