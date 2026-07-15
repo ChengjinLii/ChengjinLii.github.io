@@ -33,7 +33,8 @@
       }
     </script>
     <title>Chengjin Li | 李承锦</title>
-    <link rel="stylesheet" href="./styles.css?v=20260707-responsive-media" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260715-moonshot-refactor" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -46,6 +47,13 @@
       </div>
       <div class="hero-meteors" aria-hidden="true"></div>
       <div class="topbar-inner">
+        <a class="site-mark" href="#top" aria-label="Chengjin Li homepage">
+          <span class="site-mark__glyph" aria-hidden="true">CL</span>
+          <span class="site-mark__text">
+            <strong>Chengjin Li</strong>
+            <small data-en="Research / Engineering" data-zh="科研 / 工程">科研 / 工程</small>
+          </span>
+        </a>
         <nav class="nav-links" aria-label="Primary">
           <a href="#about" data-en="About" data-zh="简介">简介</a>
           <a href="#projects" data-en="Projects" data-zh="项目">项目</a>
@@ -61,7 +69,27 @@
     </header>
 
     <main class="page-shell" id="top">
+      <section class="intro-strip reveal" aria-label="Profile summary">
+        <div class="intro-strip__meta">
+          <span data-en="AI Researcher &amp; Builder" data-zh="AI 研究者与工程实践者">AI 研究者与工程实践者</span>
+          <span data-en="Chengdu · China" data-zh="中国 · 成都">中国 · 成都</span>
+        </div>
+        <p
+          data-en="Research-oriented engineer working across medical imaging, agent systems, and deployable AI platforms."
+          data-zh="面向科研与工程落地，聚焦医学影像、智能体系统与可部署 AI 平台。"
+        >
+          面向科研与工程落地，聚焦医学影像、智能体系统与可部署 AI 平台。
+        </p>
+        <div class="intro-strip__signals" aria-label="Focus areas">
+          <span><i aria-hidden="true"></i>Deep Learning</span>
+          <span><i aria-hidden="true"></i>Medical Imaging</span>
+          <span><i aria-hidden="true"></i>Agent Systems</span>
+          <span><i aria-hidden="true"></i>Full-stack AI</span>
+        </div>
+      </section>
+
       <aside class="profile-sidebar reveal" id="about">
+        <p class="profile-eyebrow"><span aria-hidden="true"></span><span data-en="Profile / 2026" data-zh="个人档案 / 2026">个人档案 / 2026</span></p>
         <h1>
           <span data-en="Chengjin Li" data-zh="李承锦">李承锦</span>
           <small data-en="Li Chengjin" data-zh="Chengjin Li">Chengjin Li</small>
@@ -148,18 +176,10 @@
       </aside>
 
       <div class="content-column">
-        <section class="intro-strip reveal" aria-label="Profile summary">
-          <p
-            data-en="Research-oriented engineer working across medical imaging, agent systems, and deployable AI platforms."
-            data-zh="面向科研与工程落地，聚焦医学影像、智能体系统与可部署 AI 平台。"
-          >
-            面向科研与工程落地，聚焦医学影像、智能体系统与可部署 AI 平台。
-          </p>
-        </section>
-
         <section class="content-section reveal" id="projects">
           <div class="section-title">
             <span data-en="Selected Projects" data-zh="代表项目">代表项目</span>
+            <small>01 / SELECTED WORK</small>
           </div>
 
           <article class="entry">
@@ -385,6 +405,7 @@
         <section class="content-section reveal" id="research">
           <div class="section-title">
             <span data-en="Research" data-zh="科研">科研</span>
+            <small>02 / RESEARCH LOG</small>
           </div>
           <div class="compact-list">
             <article>
@@ -437,6 +458,7 @@
         <section class="content-section reveal" id="honors">
           <div class="section-title">
             <span data-en="Honors" data-zh="奖项与荣誉">奖项与荣誉</span>
+            <small>03 / RECOGNITION</small>
           </div>
           <div class="honor-list">
             <p data-timeline="2026 / Award">
@@ -490,6 +512,7 @@
         <section class="content-section contact-section reveal" id="contact">
           <div class="section-title">
             <span data-en="Contact" data-zh="联系">联系</span>
+            <small>04 / CONNECT</small>
           </div>
           <div class="contact-card">
             <p
@@ -562,7 +585,7 @@
       <span aria-hidden="true">↑</span>
     </button>
 
-    <script src="./site-data.js?v=20260707-responsive-media"></script>
-    <script src="./script.js?v=20260707-responsive-media"></script>
+    <script src="./site-data.js?v=20260715-moonshot-refactor"></script>
+    <script src="./script.js?v=20260715-moonshot-refactor"></script>
   </body>
 </html>

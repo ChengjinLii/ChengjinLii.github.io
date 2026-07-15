@@ -88,6 +88,29 @@ function setupBackToTop() {
   updateVisibility();
 }
 
+function setupSectionNavigation() {
+  const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  if (!links.length || !sections.length || !("IntersectionObserver" in window)) return;
+
+  const linkById = new Map(links.map((link) => [link.getAttribute("href").slice(1), link]));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.remove("is-current"));
+      linkById.get(visible.target.id)?.classList.add("is-current");
+    },
+    { rootMargin: "-18% 0px -62%", threshold: [0.05, 0.25, 0.5] },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -100,6 +123,7 @@ year.textContent = new Date().getFullYear();
 applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
 setupCopyButtons();
 setupBackToTop();
+setupSectionNavigation();
 
 function setupImageLightbox() {
   const projectImages = document.querySelectorAll(".project-details img");
@@ -272,7 +296,7 @@ function setupSeasonalTopbar() {
   }
 
   function randomizeMeteors() {
-    if (reduceMotion && !isMobile) {
+    if (reduceMotion) {
       meteors.innerHTML = "";
       return;
     }
@@ -289,7 +313,7 @@ function setupSeasonalTopbar() {
   }
 
   resizeSnow();
-  if (!reduceMotion || isMobile) {
+  if (!reduceMotion) {
     animateSnow();
   }
   randomizeMeteors();
