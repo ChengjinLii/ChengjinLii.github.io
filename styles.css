@@ -197,7 +197,7 @@ section,
   gap: 18px;
 }
 
-/* Seasonal header layer */
+/* Seasonal hero layer */
 .xmas-snowfall,
 .hero-meteors {
   position: absolute;
@@ -504,53 +504,103 @@ h3 {
 
 .profile-links {
   display: grid;
-  gap: 14px;
+  gap: 0;
   padding: 0;
+  border-top: 1px solid var(--ink);
   list-style: none;
 }
 
 .profile-links li {
   display: grid;
-  gap: 5px;
+  grid-template-columns: 62px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
   min-width: 0;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-links > li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 3px;
+  color: var(--muted);
+}
+
+.profile-links > li > span::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-dark);
 }
 
 .profile-links a,
 .profile-links em {
   color: var(--ink-2);
-  font-size: 11px;
+  font-size: 10.5px;
   font-style: normal;
-  line-height: 1.5;
+  line-height: 1.55;
   overflow-wrap: anywhere;
 }
 
 .profile-links a {
-  width: fit-content;
-  border-bottom: 1px solid var(--line-strong);
   font-weight: 650;
 }
 
+.profile-links > li > a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 8px;
+  width: 100%;
+}
+
+.profile-links > li > a::after {
+  content: "↗";
+  color: var(--soft);
+  font: 700 11px/1.4 var(--mono);
+  transition: color 160ms ease, transform 160ms ease;
+}
+
 .profile-links a:hover {
-  border-color: var(--accent-dark);
   color: var(--accent-dark);
 }
 
+.profile-links > li > a:hover::after {
+  color: var(--accent-dark);
+  transform: translate(1px, -1px);
+}
+
+.profile-links em {
+  color: var(--muted);
+}
+
 .profile-link-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  min-width: 0;
+}
+
+.profile-link-row a {
+  min-width: 0;
 }
 
 .copy-btn {
-  min-height: 24px;
-  padding: 0 8px;
+  min-height: 23px;
+  padding: 0 7px;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  background: transparent;
+  border-radius: 4px;
+  background: var(--surface);
   color: var(--muted);
-  font: 700 9px/1 var(--mono);
+  font: 700 8px/1 var(--mono);
+  letter-spacing: 0.04em;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .copy-btn:hover {
@@ -574,6 +624,11 @@ h3 {
   border-radius: 24px;
   background: #0a0c0d;
   color: #ffffff;
+}
+
+.intro-strip .xmas-snowfall,
+.intro-strip .hero-meteors {
+  border-radius: inherit;
 }
 
 .intro-strip::before,
@@ -693,13 +748,6 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--surface);
-  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-}
-
-.entry:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 18px 48px rgba(10, 12, 13, 0.07);
-  transform: translateY(-2px);
 }
 
 .entry-year {

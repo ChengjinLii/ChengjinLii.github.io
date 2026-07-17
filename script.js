@@ -260,12 +260,13 @@ function createSnowLayer(canvas, options) {
   return layer;
 }
 
-function setupSeasonalTopbar() {
-  const topbar = document.querySelector(".topbar.theme-xmas");
-  const meteors = document.querySelector(".hero-meteors");
-  const farCanvas = document.querySelector(".snow-canvas--far");
-  const nearCanvas = document.querySelector(".snow-canvas--near");
-  if (!topbar || !meteors || !farCanvas || !nearCanvas) return;
+function setupSeasonalHero() {
+  const hero = document.querySelector(".intro-strip.theme-xmas");
+  if (!hero) return;
+  const meteors = hero.querySelector(".hero-meteors");
+  const farCanvas = hero.querySelector(".snow-canvas--far");
+  const nearCanvas = hero.querySelector(".snow-canvas--near");
+  if (!meteors || !farCanvas || !nearCanvas) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = window.innerWidth <= 640;
@@ -322,9 +323,9 @@ function setupSeasonalTopbar() {
 }
 
 if (document.readyState === "complete") {
-  setupSeasonalTopbar();
+  setupSeasonalHero();
 } else {
-  window.addEventListener("load", setupSeasonalTopbar, { once: true });
+  window.addEventListener("load", setupSeasonalHero, { once: true });
 }
 
 const bot = document.querySelector(".floating-sidebar");
