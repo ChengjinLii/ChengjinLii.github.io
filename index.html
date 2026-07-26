@@ -34,11 +34,60 @@
     </script>
     <title>Chengjin Li | 李承锦</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260717-hero-contact" />
+    <link rel="stylesheet" href="./styles.css?v=20260727-splash-screen" />
   </head>
-  <body>
+  <body class="splash-active">
     <div class="grain" aria-hidden="true"></div>
     <div class="sr-live" aria-live="polite" aria-atomic="true"></div>
+
+    <section class="splash-screen theme-xmas" id="splash-screen" aria-labelledby="splash-title" tabindex="-1">
+      <div class="xmas-snowfall" aria-hidden="true">
+        <canvas class="snow-canvas snow-canvas--far"></canvas>
+        <canvas class="snow-canvas snow-canvas--near"></canvas>
+      </div>
+      <div class="hero-meteors" aria-hidden="true"></div>
+      <div class="splash-screen__orbit" aria-hidden="true"><span></span></div>
+
+      <div class="splash-screen__inner">
+        <header class="splash-screen__top">
+          <div class="splash-screen__brand" aria-label="Chengjin Li">
+            <span aria-hidden="true">CL</span>
+            <strong>Chengjin Li</strong>
+            <em>李承锦</em>
+          </div>
+          <span class="splash-screen__index">PORTFOLIO / 2026</span>
+        </header>
+
+        <div class="splash-screen__content">
+          <div class="splash-screen__meta">
+            <span data-en="AI Researcher &amp; Builder" data-zh="AI 研究者与工程实践者">AI 研究者与工程实践者</span>
+            <span data-en="Chengdu · China" data-zh="中国 · 成都">中国 · 成都</span>
+          </div>
+          <h1
+            id="splash-title"
+            data-en="Research-oriented engineer working across medical imaging, agent systems, and deployable AI platforms."
+            data-zh="面向科研与工程落地，聚焦<span class='splash-nowrap'>医学影像</span>、智能体系统与可部署 <span class='splash-nowrap'>AI 平台</span>。"
+          >
+            面向科研与工程落地，聚焦<span class="splash-nowrap">医学影像</span>、智能体系统与可部署
+            <span class="splash-nowrap">AI 平台</span>。
+          </h1>
+          <div class="splash-screen__signals" aria-label="Focus areas">
+            <span><i aria-hidden="true"></i>Deep Learning</span>
+            <span><i aria-hidden="true"></i>Medical Imaging</span>
+            <span><i aria-hidden="true"></i>Agent Systems</span>
+            <span><i aria-hidden="true"></i>Full-stack AI</span>
+          </div>
+        </div>
+
+        <footer class="splash-screen__footer">
+          <span data-en="Research · Engineering · Open Source" data-zh="科研 · 工程 · 开源">科研 · 工程 · 开源</span>
+          <button class="splash-screen__enter" type="button">
+            <span data-en="Enter Portfolio" data-zh="进入个人主页">进入个人主页</span>
+            <i aria-hidden="true">↗</i>
+          </button>
+        </footer>
+      </div>
+    </section>
 
     <header class="topbar">
       <div class="topbar-inner">
@@ -63,31 +112,7 @@
       </div>
     </header>
 
-    <main class="page-shell" id="top">
-      <section class="intro-strip theme-xmas reveal" aria-label="Profile summary">
-        <div class="xmas-snowfall" aria-hidden="true">
-          <canvas class="snow-canvas snow-canvas--far"></canvas>
-          <canvas class="snow-canvas snow-canvas--near"></canvas>
-        </div>
-        <div class="hero-meteors" aria-hidden="true"></div>
-        <div class="intro-strip__meta">
-          <span data-en="AI Researcher &amp; Builder" data-zh="AI 研究者与工程实践者">AI 研究者与工程实践者</span>
-          <span data-en="Chengdu · China" data-zh="中国 · 成都">中国 · 成都</span>
-        </div>
-        <p
-          data-en="Research-oriented engineer working across medical imaging, agent systems, and deployable AI platforms."
-          data-zh="面向科研与工程落地，聚焦医学影像、智能体系统与可部署 AI 平台。"
-        >
-          面向科研与工程落地，聚焦医学影像、智能体系统与可部署 AI 平台。
-        </p>
-        <div class="intro-strip__signals" aria-label="Focus areas">
-          <span><i aria-hidden="true"></i>Deep Learning</span>
-          <span><i aria-hidden="true"></i>Medical Imaging</span>
-          <span><i aria-hidden="true"></i>Agent Systems</span>
-          <span><i aria-hidden="true"></i>Full-stack AI</span>
-        </div>
-      </section>
-
+    <main class="page-shell" id="top" tabindex="-1">
       <aside class="profile-sidebar reveal" id="about">
         <p class="profile-eyebrow"><span aria-hidden="true"></span><span data-en="Profile / 2026" data-zh="个人档案 / 2026">个人档案 / 2026</span></p>
         <h1>
@@ -575,6 +600,6 @@
     </button>
 
     <script src="./site-data.js?v=20260715-moonshot-refactor"></script>
-    <script src="./script.js?v=20260717-hero-contact"></script>
+    <script src="./script.js?v=20260727-splash-screen"></script>
   </body>
 </html>

@@ -4,6 +4,7 @@ const year = document.querySelector("#year");
 const liveRegion = document.querySelector(".sr-live");
 const siteData = window.siteData || {};
 const languageStorageKey = "site-language-v2";
+const splashStorageKey = "portfolio-splash-seen-v1";
 let activeLanguage = "zh";
 
 function applyLanguage(language) {
@@ -34,6 +35,85 @@ function setLanguageUrl(language) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", language);
   window.history.replaceState({}, "", url);
+}
+
+function setupSplashScreen() {
+  const splash = document.querySelector(".splash-screen");
+  const enterButton = splash?.querySelector(".splash-screen__enter");
+  const main = document.querySelector(".page-shell");
+  const regions = [
+    document.querySelector(".topbar"),
+    main,
+    document.querySelector(".floating-sidebar"),
+    document.querySelector(".back-to-top"),
+  ].filter(Boolean);
+
+  if (!splash || !enterButton) {
+    document.body.classList.remove("splash-active");
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const forceSplash = params.get("splash") === "1";
+  const directToPortfolio = params.get("view") === "home" || (window.location.hash && window.location.hash !== "#top");
+  let hasSeenSplash = false;
+
+  try {
+    hasSeenSplash = window.sessionStorage.getItem(splashStorageKey) === "1";
+  } catch {
+    hasSeenSplash = false;
+  }
+
+  function setPortfolioInert(inert) {
+    regions.forEach((region) => {
+      region.inert = inert;
+      if (inert) {
+        region.setAttribute("aria-hidden", "true");
+      } else {
+        region.removeAttribute("aria-hidden");
+      }
+    });
+  }
+
+  if (!forceSplash && (hasSeenSplash || directToPortfolio)) {
+    splash.hidden = true;
+    document.body.classList.remove("splash-active");
+    setPortfolioInert(false);
+    return;
+  }
+
+  if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+  setPortfolioInert(true);
+
+  enterButton.addEventListener("click", () => {
+    if (splash.classList.contains("is-leaving")) return;
+    enterButton.disabled = true;
+
+    try {
+      window.sessionStorage.setItem(splashStorageKey, "1");
+    } catch {
+      // The splash still works when storage is unavailable.
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("splash");
+    window.history.replaceState({}, "", url);
+
+    splash.classList.add("is-leaving");
+    document.body.classList.remove("splash-active");
+    setPortfolioInert(false);
+    splash.dispatchEvent(new CustomEvent("portfolio:splash-leave"));
+
+    window.setTimeout(() => {
+      splash.hidden = true;
+      splash.classList.remove("is-leaving");
+      main?.focus({ preventScroll: true });
+      if (liveRegion) {
+        liveRegion.textContent = activeLanguage === "zh" ? "已进入个人主页" : "Portfolio opened";
+      }
+    }, 740);
+  });
 }
 
 async function copyText(value) {
@@ -121,6 +201,7 @@ languageButtons.forEach((button) => {
 
 year.textContent = new Date().getFullYear();
 applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
+setupSplashScreen();
 setupCopyButtons();
 setupBackToTop();
 setupSectionNavigation();
@@ -260,26 +341,29 @@ function createSnowLayer(canvas, options) {
   return layer;
 }
 
-function setupSeasonalHero() {
-  const hero = document.querySelector(".intro-strip.theme-xmas");
-  if (!hero) return;
-  const meteors = hero.querySelector(".hero-meteors");
-  const farCanvas = hero.querySelector(".snow-canvas--far");
-  const nearCanvas = hero.querySelector(".snow-canvas--near");
+function setupSeasonalSplash() {
+  const splash = document.querySelector(".splash-screen.theme-xmas");
+  if (!splash || splash.hidden || splash.classList.contains("is-leaving")) return;
+  const meteors = splash.querySelector(".hero-meteors");
+  const farCanvas = splash.querySelector(".snow-canvas--far");
+  const nearCanvas = splash.querySelector(".snow-canvas--near");
   if (!meteors || !farCanvas || !nearCanvas) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = window.innerWidth <= 640;
+  let animationFrame = 0;
+  let meteorTimer = 0;
+  let active = true;
   const snowLayers = [
     createSnowLayer(farCanvas, {
-      count: isMobile ? 16 : 26,
+      count: isMobile ? 20 : 46,
       color: "rgba(248, 241, 229, 0.38)",
       radius: [0.6, 2.2],
       speed: [0.6, 1.6],
       wind: [-0.2, 1.2],
     }),
     createSnowLayer(nearCanvas, {
-      count: isMobile ? 8 : 14,
+      count: isMobile ? 10 : 24,
       color: "rgba(255, 250, 240, 0.32)",
       radius: [1.6, 3.4],
       speed: [1.2, 2.4],
@@ -292,8 +376,9 @@ function setupSeasonalHero() {
   }
 
   function animateSnow() {
+    if (!active) return;
     snowLayers.forEach((layer) => layer.draw());
-    window.requestAnimationFrame(animateSnow);
+    animationFrame = window.requestAnimationFrame(animateSnow);
   }
 
   function randomizeMeteors() {
@@ -306,26 +391,35 @@ function setupSeasonalHero() {
     Array.from({ length: count }).forEach((_, index) => {
       const meteor = document.createElement("span");
       meteor.className = "hero-meteor";
-      meteor.style.top = `${Math.random() * 28 - 8}%`;
-      meteor.style.left = `${Math.random() * 45 + 5}%`;
+      meteor.style.top = `${Math.random() * 52 - 8}%`;
+      meteor.style.left = `${Math.random() * 68 + 2}%`;
       meteor.style.animationDelay = `${index * 0.7 + Math.random() * 0.35}s`;
       meteors.appendChild(meteor);
     });
   }
 
+  function stopSeasonalEffects() {
+    active = false;
+    if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    if (meteorTimer) window.clearInterval(meteorTimer);
+    window.removeEventListener("resize", resizeSnow);
+    meteors.innerHTML = "";
+  }
+
   resizeSnow();
   if (!reduceMotion) {
     animateSnow();
+    meteorTimer = window.setInterval(randomizeMeteors, 10000);
   }
   randomizeMeteors();
-  window.setInterval(randomizeMeteors, 10000);
   window.addEventListener("resize", resizeSnow);
+  splash.addEventListener("portfolio:splash-leave", stopSeasonalEffects, { once: true });
 }
 
 if (document.readyState === "complete") {
-  setupSeasonalHero();
+  setupSeasonalSplash();
 } else {
-  window.addEventListener("load", setupSeasonalHero, { once: true });
+  window.addEventListener("load", setupSeasonalSplash, { once: true });
 }
 
 const bot = document.querySelector(".floating-sidebar");
