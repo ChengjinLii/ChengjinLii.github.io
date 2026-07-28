@@ -41,8 +41,11 @@ body.lightbox-open {
   overflow: hidden;
 }
 
-body.splash-active {
-  overflow: hidden;
+body.splash-active .floating-sidebar,
+body.splash-active .back-to-top {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 a {
@@ -621,19 +624,15 @@ h3 {
 
 /* Full-screen introduction */
 .splash-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 3000;
+  position: relative;
+  z-index: 1;
+  width: 100%;
   min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
   background: #07090a;
   color: #f7f9f8;
   isolation: isolate;
-}
-
-.splash-screen[hidden] {
-  display: none;
 }
 
 .splash-screen::before {
@@ -645,18 +644,12 @@ h3 {
   pointer-events: none;
 }
 
-.splash-screen.is-leaving {
-  pointer-events: none;
-  animation: splash-exit 720ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
-}
-
-.splash-screen.is-leaving .splash-screen__inner {
-  opacity: 0;
-  transform: translateY(-18px);
+.splash-screen:focus {
+  outline: none;
 }
 
 .splash-screen__orbit {
-  position: fixed;
+  position: absolute;
   right: -13vmin;
   bottom: -31vmin;
   z-index: 0;
@@ -1411,6 +1404,7 @@ body.bot-open .back-to-top {
   display: block;
   animation: floaty-bob 6s ease-in-out infinite;
   filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.25));
+  transition: opacity 180ms ease, visibility 180ms ease;
 }
 
 .floating-sidebar.is-dragging {
@@ -1825,22 +1819,6 @@ body.bot-open .back-to-top {
   }
 }
 
-@keyframes splash-exit {
-  0% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
-  }
-
-  70% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    clip-path: inset(0 0 100% 0);
-  }
-}
-
 @keyframes hero-meteor {
   0%,
   68% {
@@ -1957,11 +1935,6 @@ html:lang(zh-CN) .contact-card p {
 }
 
 @media (max-width: 680px) {
-  .splash-screen {
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
   .topbar-inner,
   .page-shell,
   .splash-screen__inner {

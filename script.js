@@ -4,7 +4,6 @@ const year = document.querySelector("#year");
 const liveRegion = document.querySelector(".sr-live");
 const siteData = window.siteData || {};
 const languageStorageKey = "site-language-v2";
-const splashStorageKey = "portfolio-splash-seen-v1";
 let activeLanguage = "zh";
 
 function applyLanguage(language) {
@@ -40,80 +39,59 @@ function setLanguageUrl(language) {
 function setupSplashScreen() {
   const splash = document.querySelector(".splash-screen");
   const enterButton = splash?.querySelector(".splash-screen__enter");
-  const main = document.querySelector(".page-shell");
-  const regions = [
-    document.querySelector(".topbar"),
-    main,
-    document.querySelector(".floating-sidebar"),
-    document.querySelector(".back-to-top"),
-  ].filter(Boolean);
+  const topbar = document.querySelector(".topbar");
 
-  if (!splash || !enterButton) {
+  if (!splash || !enterButton || !topbar) {
     document.body.classList.remove("splash-active");
     return;
   }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let splashActive = null;
+
+  function closePortfolioBot() {
+    const bot = document.querySelector(".floating-sidebar");
+    const launcher = bot?.querySelector(".floating-sidebar__bubble");
+    const panel = bot?.querySelector(".floating-sidebar__panel");
+    bot?.classList.remove("open");
+    if (launcher) launcher.setAttribute("aria-expanded", "false");
+    if (panel) panel.hidden = true;
+    document.body.classList.remove("bot-open");
+  }
+
+  function updateSplashState() {
+    const nextState = splash.getBoundingClientRect().bottom > 1;
+    if (nextState === splashActive) return;
+    splashActive = nextState;
+    document.body.classList.toggle("splash-active", splashActive);
+    if (splashActive) closePortfolioBot();
+    document.dispatchEvent(new CustomEvent("portfolio:splash-state", { detail: { active: splashActive } }));
+  }
+
+  function enterPortfolio() {
+    topbar.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
+    if (liveRegion) {
+      liveRegion.textContent = activeLanguage === "zh" ? "正在进入个人主页" : "Opening portfolio";
+    }
+  }
+
+  enterButton.addEventListener("click", enterPortfolio);
+  splash.addEventListener("keydown", (event) => {
+    if (!["ArrowDown", "PageDown"].includes(event.key)) return;
+    event.preventDefault();
+    enterPortfolio();
+  });
+  window.addEventListener("scroll", updateSplashState, { passive: true });
+  window.addEventListener("resize", updateSplashState);
+  updateSplashState();
 
   const params = new URLSearchParams(window.location.search);
-  const forceSplash = params.get("splash") === "1";
-  const directToPortfolio = params.get("view") === "home" || (window.location.hash && window.location.hash !== "#top");
-  let hasSeenSplash = false;
-
-  try {
-    hasSeenSplash = window.sessionStorage.getItem(splashStorageKey) === "1";
-  } catch {
-    hasSeenSplash = false;
+  if (params.get("view") === "home" && !window.location.hash) {
+    window.requestAnimationFrame(() => topbar.scrollIntoView({ behavior: "auto", block: "start" }));
   }
-
-  function setPortfolioInert(inert) {
-    regions.forEach((region) => {
-      region.inert = inert;
-      if (inert) {
-        region.setAttribute("aria-hidden", "true");
-      } else {
-        region.removeAttribute("aria-hidden");
-      }
-    });
-  }
-
-  if (!forceSplash && (hasSeenSplash || directToPortfolio)) {
-    splash.hidden = true;
-    document.body.classList.remove("splash-active");
-    setPortfolioInert(false);
-    return;
-  }
-
-  if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
-  window.scrollTo(0, 0);
-  setPortfolioInert(true);
-
-  enterButton.addEventListener("click", () => {
-    if (splash.classList.contains("is-leaving")) return;
-    enterButton.disabled = true;
-
-    try {
-      window.sessionStorage.setItem(splashStorageKey, "1");
-    } catch {
-      // The splash still works when storage is unavailable.
-    }
-
-    const url = new URL(window.location.href);
-    url.searchParams.delete("splash");
-    window.history.replaceState({}, "", url);
-
-    splash.classList.add("is-leaving");
-    document.body.classList.remove("splash-active");
-    setPortfolioInert(false);
-    splash.dispatchEvent(new CustomEvent("portfolio:splash-leave"));
-
-    window.setTimeout(() => {
-      splash.hidden = true;
-      splash.classList.remove("is-leaving");
-      main?.focus({ preventScroll: true });
-      if (liveRegion) {
-        liveRegion.textContent = activeLanguage === "zh" ? "已进入个人主页" : "Portfolio opened";
-      }
-    }, 740);
-  });
 }
 
 async function copyText(value) {
@@ -343,7 +321,7 @@ function createSnowLayer(canvas, options) {
 
 function setupSeasonalSplash() {
   const splash = document.querySelector(".splash-screen.theme-xmas");
-  if (!splash || splash.hidden || splash.classList.contains("is-leaving")) return;
+  if (!splash) return;
   const meteors = splash.querySelector(".hero-meteors");
   const farCanvas = splash.querySelector(".snow-canvas--far");
   const nearCanvas = splash.querySelector(".snow-canvas--near");
@@ -353,7 +331,7 @@ function setupSeasonalSplash() {
   const isMobile = window.innerWidth <= 640;
   let animationFrame = 0;
   let meteorTimer = 0;
-  let active = true;
+  let active = false;
   const snowLayers = [
     createSnowLayer(farCanvas, {
       count: isMobile ? 20 : 46,
@@ -399,21 +377,40 @@ function setupSeasonalSplash() {
   }
 
   function stopSeasonalEffects() {
+    if (!active) return;
     active = false;
-    if (animationFrame) window.cancelAnimationFrame(animationFrame);
-    if (meteorTimer) window.clearInterval(meteorTimer);
+    if (animationFrame) {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
+    if (meteorTimer) {
+      window.clearInterval(meteorTimer);
+      meteorTimer = 0;
+    }
     window.removeEventListener("resize", resizeSnow);
     meteors.innerHTML = "";
   }
 
-  resizeSnow();
-  if (!reduceMotion) {
-    animateSnow();
-    meteorTimer = window.setInterval(randomizeMeteors, 10000);
+  function startSeasonalEffects() {
+    if (active) return;
+    active = true;
+    resizeSnow();
+    randomizeMeteors();
+    window.addEventListener("resize", resizeSnow);
+    if (!reduceMotion) {
+      animateSnow();
+      meteorTimer = window.setInterval(randomizeMeteors, 10000);
+    }
   }
-  randomizeMeteors();
-  window.addEventListener("resize", resizeSnow);
-  splash.addEventListener("portfolio:splash-leave", stopSeasonalEffects, { once: true });
+
+  document.addEventListener("portfolio:splash-state", (event) => {
+    if (event.detail?.active) startSeasonalEffects();
+    else stopSeasonalEffects();
+  });
+
+  if (splash.getBoundingClientRect().bottom > 1) {
+    startSeasonalEffects();
+  }
 }
 
 if (document.readyState === "complete") {
