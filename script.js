@@ -319,13 +319,153 @@ function createSnowLayer(canvas, options) {
   return layer;
 }
 
+function createHeroNetwork(canvas, container, options) {
+  if (!canvas || !container) return null;
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+
+  const layer = {
+    width: 0,
+    height: 0,
+    nodes: [],
+    pointer: {
+      x: 0,
+      y: 0,
+      targetX: 0,
+      targetY: 0,
+      active: false,
+    },
+  };
+
+  function createNode() {
+    return {
+      x: Math.random() * layer.width,
+      y: Math.random() * layer.height,
+      vx: (Math.random() - 0.5) * options.speed,
+      vy: (Math.random() - 0.5) * options.speed,
+      radius: Math.random() * 1.25 + 0.55,
+      phase: Math.random() * Math.PI * 2,
+    };
+  }
+
+  function setPointerTarget(event) {
+    const rect = container.getBoundingClientRect();
+    layer.pointer.targetX = event.clientX - rect.left;
+    layer.pointer.targetY = event.clientY - rect.top;
+    layer.pointer.active = true;
+  }
+
+  function resetPointer() {
+    layer.pointer.active = false;
+    layer.pointer.targetX = layer.width * 0.72;
+    layer.pointer.targetY = layer.height * 0.48;
+  }
+
+  layer.resize = () => {
+    const rect = container.getBoundingClientRect();
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    layer.width = Math.max(1, rect.width);
+    layer.height = Math.max(1, rect.height);
+    canvas.width = Math.floor(layer.width * ratio);
+    canvas.height = Math.floor(layer.height * ratio);
+    canvas.style.width = `${layer.width}px`;
+    canvas.style.height = `${layer.height}px`;
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    layer.nodes = Array.from({ length: options.count }, createNode);
+    if (!layer.pointer.x && !layer.pointer.y) {
+      layer.pointer.x = layer.width * 0.72;
+      layer.pointer.y = layer.height * 0.48;
+    }
+    resetPointer();
+  };
+
+  layer.draw = () => {
+    const { pointer } = layer;
+    context.clearRect(0, 0, layer.width, layer.height);
+    pointer.x += (pointer.targetX - pointer.x) * 0.065;
+    pointer.y += (pointer.targetY - pointer.y) * 0.065;
+
+    layer.nodes.forEach((node) => {
+      node.phase += 0.008;
+      node.x += node.vx + Math.cos(node.phase) * 0.035;
+      node.y += node.vy + Math.sin(node.phase) * 0.035;
+      if (node.x < -8) node.x = layer.width + 8;
+      if (node.x > layer.width + 8) node.x = -8;
+      if (node.y < -8) node.y = layer.height + 8;
+      if (node.y > layer.height + 8) node.y = -8;
+    });
+
+    const linkDistance = options.linkDistance;
+    for (let firstIndex = 0; firstIndex < layer.nodes.length; firstIndex += 1) {
+      const first = layer.nodes[firstIndex];
+      for (let secondIndex = firstIndex + 1; secondIndex < layer.nodes.length; secondIndex += 1) {
+        const second = layer.nodes[secondIndex];
+        const distance = Math.hypot(first.x - second.x, first.y - second.y);
+        if (distance >= linkDistance) continue;
+        const alpha = (1 - distance / linkDistance) * 0.16;
+        context.beginPath();
+        context.moveTo(first.x, first.y);
+        context.lineTo(second.x, second.y);
+        context.strokeStyle = `rgba(126, 153, 146, ${alpha})`;
+        context.lineWidth = 0.65;
+        context.stroke();
+      }
+    }
+
+    layer.nodes.forEach((node) => {
+      const pointerDistance = Math.hypot(node.x - pointer.x, node.y - pointer.y);
+      if (pointerDistance < options.pointerDistance) {
+        const alpha = (1 - pointerDistance / options.pointerDistance) * (pointer.active ? 0.55 : 0.22);
+        context.beginPath();
+        context.moveTo(node.x, node.y);
+        context.lineTo(pointer.x, pointer.y);
+        context.strokeStyle = `rgba(85, 230, 193, ${alpha})`;
+        context.lineWidth = 0.8;
+        context.stroke();
+      }
+
+      context.beginPath();
+      context.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      context.fillStyle = pointerDistance < options.pointerDistance ? "rgba(156, 255, 229, 0.72)" : "rgba(144, 162, 157, 0.44)";
+      context.fill();
+    });
+
+    context.beginPath();
+    context.arc(pointer.x, pointer.y, pointer.active ? 11 : 7, 0, Math.PI * 2);
+    context.strokeStyle = pointer.active ? "rgba(85, 230, 193, 0.7)" : "rgba(85, 230, 193, 0.28)";
+    context.lineWidth = 0.8;
+    context.stroke();
+    context.beginPath();
+    context.moveTo(pointer.x - 18, pointer.y);
+    context.lineTo(pointer.x + 18, pointer.y);
+    context.moveTo(pointer.x, pointer.y - 18);
+    context.lineTo(pointer.x, pointer.y + 18);
+    context.strokeStyle = pointer.active ? "rgba(85, 230, 193, 0.32)" : "rgba(85, 230, 193, 0.12)";
+    context.stroke();
+
+    const shiftX = (pointer.x / layer.width - 0.5) * 22;
+    const shiftY = (pointer.y / layer.height - 0.5) * 16;
+    container.style.setProperty("--hero-shift-x", `${shiftX.toFixed(2)}px`);
+    container.style.setProperty("--hero-shift-y", `${shiftY.toFixed(2)}px`);
+  };
+
+  layer.clear = () => {
+    context.clearRect(0, 0, layer.width, layer.height);
+  };
+
+  container.addEventListener("pointermove", setPointerTarget, { passive: true });
+  container.addEventListener("pointerleave", resetPointer);
+  return layer;
+}
+
 function setupSeasonalSplash() {
   const splash = document.querySelector(".splash-screen.theme-xmas");
   if (!splash) return;
   const meteors = splash.querySelector(".hero-meteors");
+  const networkCanvas = splash.querySelector(".hero-network");
   const farCanvas = splash.querySelector(".snow-canvas--far");
   const nearCanvas = splash.querySelector(".snow-canvas--near");
-  if (!meteors || !farCanvas || !nearCanvas) return;
+  if (!meteors || !networkCanvas || !farCanvas || !nearCanvas) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = window.innerWidth <= 640;
@@ -348,15 +488,23 @@ function setupSeasonalSplash() {
       wind: [-0.4, 1.6],
     }),
   ].filter(Boolean);
+  const networkLayer = createHeroNetwork(networkCanvas, splash, {
+    count: isMobile ? 30 : 62,
+    speed: isMobile ? 0.17 : 0.22,
+    linkDistance: isMobile ? 102 : 132,
+    pointerDistance: isMobile ? 130 : 190,
+  });
 
-  function resizeSnow() {
+  function resizeHeroEffects() {
     snowLayers.forEach((layer) => layer.resize());
+    networkLayer?.resize();
   }
 
-  function animateSnow() {
+  function animateHeroEffects() {
     if (!active) return;
     snowLayers.forEach((layer) => layer.draw());
-    animationFrame = window.requestAnimationFrame(animateSnow);
+    networkLayer?.draw();
+    animationFrame = window.requestAnimationFrame(animateHeroEffects);
   }
 
   function randomizeMeteors() {
@@ -364,14 +512,14 @@ function setupSeasonalSplash() {
       meteors.innerHTML = "";
       return;
     }
-    const count = Math.random() < 0.5 ? 2 : 3;
+    const count = Math.random() < 0.5 ? 3 : 4;
     meteors.innerHTML = "";
     Array.from({ length: count }).forEach((_, index) => {
       const meteor = document.createElement("span");
       meteor.className = "hero-meteor";
       meteor.style.top = `${Math.random() * 52 - 8}%`;
       meteor.style.left = `${Math.random() * 68 + 2}%`;
-      meteor.style.animationDelay = `${index * 0.7 + Math.random() * 0.35}s`;
+      meteor.style.animationDelay = `-${(index * 1.15 + Math.random() * 4.2).toFixed(2)}s`;
       meteors.appendChild(meteor);
     });
   }
@@ -387,19 +535,22 @@ function setupSeasonalSplash() {
       window.clearInterval(meteorTimer);
       meteorTimer = 0;
     }
-    window.removeEventListener("resize", resizeSnow);
+    window.removeEventListener("resize", resizeHeroEffects);
     meteors.innerHTML = "";
+    networkLayer?.clear();
   }
 
   function startSeasonalEffects() {
     if (active) return;
     active = true;
-    resizeSnow();
+    resizeHeroEffects();
     randomizeMeteors();
-    window.addEventListener("resize", resizeSnow);
+    window.addEventListener("resize", resizeHeroEffects);
     if (!reduceMotion) {
-      animateSnow();
+      animateHeroEffects();
       meteorTimer = window.setInterval(randomizeMeteors, 10000);
+    } else {
+      networkLayer?.draw();
     }
   }
 

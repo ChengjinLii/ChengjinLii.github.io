@@ -34,19 +34,25 @@
     </script>
     <title>Chengjin Li | 李承锦</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260728-scroll-splash" />
+    <link rel="stylesheet" href="./styles.css?v=20260728-hero-lab" />
   </head>
   <body class="splash-active">
     <div class="grain" aria-hidden="true"></div>
     <div class="sr-live" aria-live="polite" aria-atomic="true"></div>
 
     <section class="splash-screen theme-xmas" id="splash-screen" aria-labelledby="splash-title" tabindex="-1">
+      <canvas class="hero-network" aria-hidden="true"></canvas>
       <div class="xmas-snowfall" aria-hidden="true">
         <canvas class="snow-canvas snow-canvas--far"></canvas>
         <canvas class="snow-canvas snow-canvas--near"></canvas>
       </div>
       <div class="hero-meteors" aria-hidden="true"></div>
-      <div class="splash-screen__orbit" aria-hidden="true"><span></span></div>
+      <div class="splash-screen__orbit" aria-hidden="true">
+        <span class="orbit-runner orbit-runner--outer"></span>
+        <span class="orbit-runner orbit-runner--inner"></span>
+        <span class="orbit-core"></span>
+        <i>SYSTEM / LIVE</i>
+      </div>
 
       <div class="splash-screen__inner">
         <header class="splash-screen__top">
@@ -65,25 +71,28 @@
           </div>
           <h1
             id="splash-title"
-            data-en="Research-oriented engineer working across medical imaging, agent systems, and deployable AI platforms."
-            data-zh="面向科研与工程落地，聚焦<span class='splash-nowrap'>医学影像</span>、智能体系统与可部署 <span class='splash-nowrap'>AI 平台</span>。"
+            data-en="<span>From research,</span><span>to <em>real systems</em>.</span>"
+            data-zh="<span>从研究，</span><span>到<em>真实系统</em>。</span>"
           >
-            面向科研与工程落地，聚焦<span class="splash-nowrap">医学影像</span>、智能体系统与可部署
-            <span class="splash-nowrap">AI 平台</span>。
+            <span>从研究，</span><span>到<em>真实系统</em>。</span>
           </h1>
           <div class="splash-screen__signals" aria-label="Focus areas">
-            <span><i aria-hidden="true"></i>Deep Learning</span>
-            <span><i aria-hidden="true"></i>Medical Imaging</span>
-            <span><i aria-hidden="true"></i>Agent Systems</span>
-            <span><i aria-hidden="true"></i>Full-stack AI</span>
+            <span><b>01</b>Deep Learning</span>
+            <span><b>02</b>Medical Imaging</span>
+            <span><b>03</b>Agent Systems</span>
+            <span><b>04</b>Full-stack AI</span>
           </div>
         </div>
 
         <footer class="splash-screen__footer">
-          <span data-en="Research · Engineering · Open Source" data-zh="科研 · 工程 · 开源">科研 · 工程 · 开源</span>
+          <span data-en="Selected work / Research / 2026" data-zh="作品集 / 研究 / 2026">作品集 / 研究 / 2026</span>
           <button class="splash-screen__enter" type="button">
-            <span data-en="Enter Portfolio" data-zh="进入个人主页">进入个人主页</span>
-            <i aria-hidden="true">↗</i>
+            <span data-en="Explore portfolio" data-zh="向下探索">向下探索</span>
+            <i aria-hidden="true">
+              <svg viewBox="0 0 20 20" focusable="false">
+                <path d="M10 3v13M5.5 11.5 10 16l4.5-4.5"></path>
+              </svg>
+            </i>
           </button>
         </footer>
       </div>
@@ -600,6 +609,6 @@
     </button>
 
     <script src="./site-data.js?v=20260715-moonshot-refactor"></script>
-    <script src="./script.js?v=20260728-scroll-splash"></script>
+    <script src="./script.js?v=20260728-hero-lab"></script>
   </body>
 </html>
