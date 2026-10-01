@@ -10,7 +10,6 @@ from PIL import Image, ImageOps
 ASSETS = Path(__file__).resolve().parents[1] / "assets"
 IMAGE_NAMES = (
     "studyhub-poster",
-    "StudyHub-Agent",
     "ddsurfer_framework_overview",
     "ddsurfer_network_architecture",
     "dMRI-Agent-workflow",

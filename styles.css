@@ -64,7 +64,7 @@ a {
 
 section,
 #about {
-  scroll-margin-top: 104px;
+  scroll-margin-top: var(--header-offset, 104px);
 }
 
 .sr-live {
@@ -102,7 +102,7 @@ section,
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 42px;
   width: min(var(--site-width), calc(100% - 48px));
@@ -111,8 +111,10 @@ section,
 }
 
 .nav-links {
+  grid-column: 2;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  justify-content: safe center;
   gap: 34px;
 }
 
@@ -156,6 +158,8 @@ section,
 }
 
 .language-switch {
+  grid-column: 3;
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: 18px;
@@ -428,8 +432,18 @@ h3 {
 }
 
 .profile-summary dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
   margin: 8px 0 0;
   font: 700 26px/1.1 var(--mono);
+}
+
+.profile-summary dd small {
+  color: var(--accent-dark);
+  font: 650 12px/1.4 var(--sans);
+  white-space: nowrap;
 }
 
 .profile-links {
@@ -1555,10 +1569,6 @@ html:lang(en) .education-track em {
     display: none;
   }
 
-  .language-switch {
-    justify-self: end;
-  }
-
   .page-shell {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -1611,7 +1621,12 @@ html:lang(en) .education-track em {
   }
 
   .nav-links {
+    grid-column: 1;
     gap: 19px;
+  }
+
+  .language-switch {
+    grid-column: 1;
   }
 
   .nav-links a,
@@ -1783,6 +1798,11 @@ html:lang(en) .education-track em {
 }
 
 @media (max-width: 420px) {
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 2px 12px;
+  }
+
   .language-switch {
     gap: 13px;
   }

@@ -90,6 +90,15 @@ function setupBackToTop() {
 
 function setupSectionNavigation() {
   const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const aboutLink = links.find((link) => link.getAttribute("href") === "#about");
+  aboutLink?.addEventListener("click", (event) => {
+    event.preventDefault();
+    // A stuck sidebar cannot reliably be positioned by native anchor scrolling.
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.location.hash !== "#about") {
+      window.history.pushState({}, "", aboutLink.href);
+    }
+  });
   const sections = links
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
@@ -109,6 +118,21 @@ function setupSectionNavigation() {
   );
 
   sections.forEach((section) => observer.observe(section));
+}
+
+function setupHeaderOffset() {
+  const header = document.querySelector(".topbar");
+  if (!header) return;
+
+  const updateOffset = () => {
+    document.documentElement.style.setProperty("--header-offset", `${header.offsetHeight + 24}px`);
+  };
+
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(updateOffset).observe(header);
+  }
+  window.addEventListener("resize", updateOffset, { passive: true });
+  updateOffset();
 }
 
 function setupProfileSidebar() {
@@ -141,6 +165,7 @@ applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "
 setupCopyButtons();
 setupBackToTop();
 setupSectionNavigation();
+setupHeaderOffset();
 setupProfileSidebar();
 
 function setupImageLightbox() {
