@@ -355,9 +355,9 @@ const awardListEn = awardData.en || [];
 const botAnswers = {
   projects: {
     zh:
-      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "345"} 名用户** 与 **${studyhubData.downloads || "1,628"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，论文正在投 **${submissions[0]?.venue || "Nature Communications"}**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
+      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "376"} 名用户** 与 **${studyhubData.downloads || "1,628"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，论文正在投 **${submissions[0]?.venue || "Nature Communications"}**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
     en:
-      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "345"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, submitted to **${submissions[0]?.venue || "Nature Communications"}**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
+      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "376"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, submitted to **${submissions[0]?.venue || "Nature Communications"}**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
   },
   research: {
     zh:
@@ -367,9 +367,9 @@ const botAnswers = {
   },
   studyhub: {
     zh:
-      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "345"} 名用户**、**${studyhubData.downloads || "1,628"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "376"} 名用户**、**${studyhubData.downloads || "1,628"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
     en:
-      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "345"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "376"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
   },
   contact: {
     zh:
@@ -513,7 +513,7 @@ function pickAnswer(raw) {
   if (/skill|stack|技术|能力|python|typescript|pytorch|fastapi|next/.test(text)) return botAnswers.skills;
   if (/cv|resume|简历|pdf/.test(text)) return botAnswers.cv;
   if (/paper|论文|advanced|ismrm|ohbm|nature|期刊|会议|在投/.test(text)) return botAnswers.research;
-  if (/award|honor|奖|奖学金|毕设|竞赛|华为杯/.test(text)) return botAnswers.awards;
+  if (/award|honor|academic star|奖|奖学金|毕设|竞赛|华为杯|学术之星|荣耀/.test(text)) return botAnswers.awards;
   if (/contact|email|github|联系|邮箱|网站/.test(text)) return botAnswers.contact;
   if (/project|项目|ddsurfer|slicer|dmri/.test(text)) return botAnswers.projects;
   return botAnswers.default;
