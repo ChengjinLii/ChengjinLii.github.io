@@ -111,6 +111,23 @@ function setupSectionNavigation() {
   sections.forEach((section) => observer.observe(section));
 }
 
+function setupProfileSidebar() {
+  const sidebar = document.querySelector(".profile-sidebar");
+  if (!sidebar) return;
+
+  const updatePosition = () => {
+    // Let tall profiles scroll before sticking, so their contact rows remain reachable.
+    const top = Math.min(116, window.innerHeight - sidebar.offsetHeight - 24);
+    sidebar.style.setProperty("--profile-sticky-top", `${top}px`);
+  };
+
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(updatePosition).observe(sidebar);
+  }
+  window.addEventListener("resize", updatePosition, { passive: true });
+  updatePosition();
+}
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -124,6 +141,7 @@ applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "
 setupCopyButtons();
 setupBackToTop();
 setupSectionNavigation();
+setupProfileSidebar();
 
 function setupImageLightbox() {
   const projectImages = document.querySelectorAll(".project-details img");
@@ -137,7 +155,7 @@ function setupImageLightbox() {
   lightbox.innerHTML = `
     <button class="image-lightbox__close" type="button" aria-label="Close image preview">×</button>
     <figure class="image-lightbox__frame">
-      <img alt="" />
+      <img alt="" decoding="async" />
       <figcaption class="image-lightbox__meta">
         <span class="image-lightbox__caption"></span>
         <a class="image-lightbox__download" href="#" download>下载原图 PNG</a>
@@ -150,13 +168,19 @@ function setupImageLightbox() {
   const previewCaption = lightbox.querySelector(".image-lightbox__caption");
   const downloadLink = lightbox.querySelector(".image-lightbox__download");
   const closeButton = lightbox.querySelector(".image-lightbox__close");
+  let previewRequest = 0;
+  let activeSource = null;
 
   function openLightbox(sourceImage) {
+    const request = ++previewRequest;
+    activeSource = sourceImage;
     const caption = sourceImage.closest("figure")?.querySelector("figcaption")?.textContent.trim();
     const fullImage = sourceImage.dataset.full || sourceImage.currentSrc || sourceImage.src;
     const cleanUrl = new URL(fullImage, window.location.href);
     const filename = cleanUrl.pathname.split("/").pop() || "project-figure.png";
-    previewImage.src = fullImage;
+    previewImage.width = sourceImage.width;
+    previewImage.height = sourceImage.height;
+    previewImage.src = sourceImage.currentSrc || sourceImage.src;
     previewImage.alt = sourceImage.alt || "";
     previewCaption.textContent = caption || sourceImage.alt || "";
     downloadLink.href = fullImage;
@@ -165,12 +189,30 @@ function setupImageLightbox() {
     lightbox.classList.add("is-open");
     document.body.classList.add("lightbox-open");
     closeButton.focus();
+
+    // Reuse the loaded display image immediately, then upgrade without a blank preview.
+    const original = new Image();
+    original.decoding = "async";
+    original.onload = async () => {
+      try {
+        await original.decode();
+      } catch {
+        return;
+      }
+      if (request === previewRequest && lightbox.classList.contains("is-open")) {
+        previewImage.src = fullImage;
+      }
+    };
+    original.src = fullImage;
   }
 
   function closeLightbox() {
+    ++previewRequest;
     lightbox.classList.remove("is-open");
     document.body.classList.remove("lightbox-open");
     previewImage.removeAttribute("src");
+    activeSource?.focus({ preventScroll: true });
+    activeSource = null;
   }
 
   projectImages.forEach((image) => {
