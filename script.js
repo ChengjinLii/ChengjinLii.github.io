@@ -271,6 +271,8 @@ const bot = document.querySelector(".floating-sidebar");
 const botLauncher = document.querySelector(".floating-sidebar__bubble");
 const botPanel = document.querySelector(".floating-sidebar__panel");
 const botClose = document.querySelector(".floating-sidebar__close");
+const botBackdrop = document.querySelector(".bot-backdrop");
+const botMobileViewport = window.matchMedia("(max-width: 680px)");
 const botMessages = document.querySelector(".portfolio-bot__messages");
 const botForm = document.querySelector(".portfolio-bot__form");
 const botInput = document.querySelector(".portfolio-bot__input");
@@ -281,7 +283,9 @@ function clampBotPosition(x, y) {
   const width = bot.offsetWidth || 320;
   const height = bot.offsetHeight || 360;
   const minX = 14;
-  const minY = 76;
+  const minY = botMobileViewport.matches
+    ? (document.querySelector(".topbar")?.getBoundingClientRect().bottom || 76) + 12
+    : 76;
   const maxX = Math.max(minX, window.innerWidth - width - 14);
   const maxY = Math.max(minY, window.innerHeight - height - 14);
   return {
@@ -296,6 +300,44 @@ function applyBotPosition(position) {
   bot.style.top = `${position.y}px`;
   bot.style.right = "auto";
   bot.style.bottom = "auto";
+  positionBotPanel();
+}
+
+function positionBotPanel() {
+  if (!bot?.classList.contains("open") || !botPanel) return;
+  if (botBackdrop) botBackdrop.hidden = !botMobileViewport.matches;
+  if (!botMobileViewport.matches) {
+    ["left", "top", "bottom", "width", "max-height"].forEach((property) => {
+      botPanel.style.removeProperty(property);
+    });
+    botPanel.classList.remove("is-compact");
+    botPanel.removeAttribute("aria-modal");
+    return;
+  }
+
+  const viewport = window.visualViewport;
+  const visibleTop = viewport?.offsetTop || 0;
+  const visibleLeft = viewport?.offsetLeft || 0;
+  const visibleWidth = viewport?.width || window.innerWidth;
+  const visibleHeight = viewport?.height || window.innerHeight;
+  const headerBottom = document.querySelector(".topbar")?.getBoundingClientRect().bottom || 0;
+  const top = Math.max(visibleTop, headerBottom) + 12;
+  const keyboardOpen = visibleHeight < window.innerHeight * 0.75;
+  const bottom = visibleTop + visibleHeight - (keyboardOpen ? 16 : 84);
+  const availableHeight = Math.max(120, bottom - top);
+
+  botPanel.style.width = `${Math.max(240, visibleWidth - 32)}px`;
+  botPanel.style.maxHeight = `${availableHeight}px`;
+  botPanel.classList.toggle("is-compact", availableHeight < 360);
+  botPanel.setAttribute("aria-modal", "true");
+
+  // Anchor the dialog to the visible viewport without moving the draggable mascot.
+  const anchor = bot.getBoundingClientRect();
+  const x = visibleLeft + (visibleWidth - botPanel.offsetWidth) / 2;
+  const y = Math.max(top, bottom - botPanel.offsetHeight);
+  botPanel.style.left = `${x - anchor.left}px`;
+  botPanel.style.top = `${y - anchor.top}px`;
+  botPanel.style.bottom = "auto";
 }
 
 let eyeAnimationFrame = null;
@@ -404,10 +446,19 @@ botLauncher?.addEventListener("pointerdown", startBotDrag);
 document.querySelector(".floating-sidebar__header")?.addEventListener("pointerdown", startBotDrag);
 
 window.addEventListener("resize", () => {
-  if (!bot || !bot.style.top || !bot.style.left) return;
-  const next = clampBotPosition(parseFloat(bot.style.left), parseFloat(bot.style.top));
-  applyBotPosition(next);
+  if (bot?.style.top && bot.style.left) {
+    const next = clampBotPosition(parseFloat(bot.style.left), parseFloat(bot.style.top));
+    applyBotPosition(next);
+  }
+  positionBotPanel();
 });
+
+botMobileViewport.addEventListener("change", positionBotPanel);
+window.visualViewport?.addEventListener("resize", positionBotPanel);
+window.visualViewport?.addEventListener("scroll", positionBotPanel);
+if (botPanel && "ResizeObserver" in window) {
+  new ResizeObserver(positionBotPanel).observe(botPanel);
+}
 
 const links = siteData.links || {};
 const contact = siteData.contact || {};
@@ -477,17 +528,23 @@ const botAnswers = {
 };
 
 function openBot() {
+  const wasOpen = bot?.classList.contains("open");
   bot?.classList.add("open");
   document.body.classList.add("bot-open");
   botPanel.hidden = false;
   botLauncher.setAttribute("aria-expanded", "true");
+  positionBotPanel();
+  if (!wasOpen && botMobileViewport.matches) botClose?.focus({ preventScroll: true });
 }
 
 function closeBot() {
   bot?.classList.remove("open");
   document.body.classList.remove("bot-open");
   botPanel.hidden = true;
+  botPanel.removeAttribute("aria-modal");
+  if (botBackdrop) botBackdrop.hidden = true;
   botLauncher.setAttribute("aria-expanded", "false");
+  botLauncher?.focus({ preventScroll: true });
 }
 
 function escapeHtml(value) {
@@ -570,6 +627,7 @@ function addBotMessage(role, content) {
     article.appendChild(paragraph);
   }
   botMessages.appendChild(article);
+  positionBotPanel();
   botMessages.scrollTop = botMessages.scrollHeight;
 }
 
@@ -599,6 +657,27 @@ botLauncher?.addEventListener("click", () => {
 });
 
 botClose?.addEventListener("click", closeBot);
+botBackdrop?.addEventListener("click", closeBot);
+
+document.addEventListener("keydown", (event) => {
+  if (!bot?.classList.contains("open")) return;
+  if (event.key === "Escape") {
+    closeBot();
+    return;
+  }
+  if (event.key !== "Tab" || !botMobileViewport.matches) return;
+  const controls = [...botPanel.querySelectorAll("button, input, a[href]")]
+    .filter((control) => !control.disabled && control.getClientRects().length);
+  const first = controls[0];
+  const last = controls.at(-1);
+  if (!first) return;
+  const outside = !botPanel.contains(document.activeElement);
+  if (outside || (event.shiftKey && document.activeElement === first)
+    || (!event.shiftKey && document.activeElement === last)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first).focus();
+  }
+});
 
 botStarters.forEach((button) => {
   button.addEventListener("click", () => {
