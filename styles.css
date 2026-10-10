@@ -446,6 +446,20 @@ h3 {
   white-space: nowrap;
 }
 
+.profile-summary .journal-summary dd {
+  align-items: center;
+}
+
+.profile-summary .journal-note {
+  display: grid;
+  gap: 3px;
+}
+
+.journal-note strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
 .profile-links {
   display: grid;
   gap: 0;
@@ -774,6 +788,16 @@ h3 {
 
 .project-details img:hover {
   filter: brightness(0.96);
+}
+
+.project-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #080a0b;
 }
 
 .project-details figcaption {

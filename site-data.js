@@ -15,16 +15,16 @@ window.siteData = {
     addressEn: "UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China",
   },
   studyhub: {
-    users: "376",
-    downloads: "1,628",
+    users: "378",
+    downloads: "1,872",
   },
   research: {
     journal: {
       venue: "Advanced Science",
       year: "2026",
       impactFactor: "14.1",
-      zh: "DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。",
-      en: "DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.",
+      zh: "以 **第一作者** 完成的 DDSurfer 论文已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。",
+      en: "The **first-author** DDSurfer paper has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.",
     },
     conferences: [
       {
@@ -39,7 +39,7 @@ window.siteData = {
       },
     ],
     submissions: [
-      { project: "dMRI-Agent", venue: "Nature Communications" },
+      { project: "dMRI-Agent" },
       { project: "SlicerDDSurfer", venue: "Nature Protocols" },
     ],
   },

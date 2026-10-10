@@ -466,28 +466,48 @@ const studyhubData = siteData.studyhub || {};
 const researchData = siteData.research || {};
 const awardData = siteData.awards || {};
 const submissions = researchData.submissions || [];
-const submissionTextZh = submissions.map((item) => `${item.project} 投 **${item.venue}**`).join("；");
-const submissionTextEn = submissions.map((item) => `${item.project} to **${item.venue}**`).join("; ");
+const submissionTextZh = submissions
+  .map((item) => item.venue ? `${item.project} 投 **${item.venue}**` : `${item.project}：**在投**`)
+  .join("；");
+const submissionTextEn = submissions
+  .map((item) => item.venue ? `${item.project} to **${item.venue}**` : `${item.project}: **Submitted**`)
+  .join("; ");
 const awardListZh = awardData.zh || [];
 const awardListEn = awardData.en || [];
 const botAnswers = {
+  greeting: {
+    zh: "你好！我是 **Chengjin Bot**。你可以问我李承锦的项目、科研、技术能力或简历。",
+    en: "Hello! I'm **Chengjin Bot**. Ask me about Chengjin Li's projects, research, technical skills, or CV.",
+  },
+  identity: {
+    zh: "我是 **Chengjin Bot**，李承锦个人主页的资料助手。我根据本站整理好的资料，介绍他的项目、科研成果、技术能力和联系方式。",
+    en: "I'm **Chengjin Bot**, the guide to Chengjin Li's portfolio. I use the information prepared for this site to answer questions about his projects, research, skills, and contact details.",
+  },
+  thanks: {
+    zh: "不客气！需要项目、论文或简历信息，随时问我。",
+    en: "You're welcome! Ask anytime about projects, papers, or the CV.",
+  },
+  goodbye: {
+    zh: "再见！有需要时，点击我的悬浮图标就能继续提问。",
+    en: "Goodbye! Click my floating icon whenever you'd like to ask another question.",
+  },
   projects: {
     zh:
-      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "376"} 名用户** 与 **${studyhubData.downloads || "1,628"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，论文正在投 **${submissions[0]?.venue || "Nature Communications"}**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
+      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "378"} 名用户** 与 **${studyhubData.downloads || "1,872"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，相关论文**在投**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
     en:
-      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "376"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, submitted to **${submissions[0]?.venue || "Nature Communications"}**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
+      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "378"} users** and **${studyhubData.downloads || "1,872"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, with a **submitted manuscript**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
   },
   research: {
     zh:
-      `**科研进展概览**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**：${researchData.journal?.zh || "DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。"}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**：${researchData.conferences?.[0]?.zh || "研究工作接收为 **Oral presentation**。"}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**：${researchData.conferences?.[1]?.zh || "研究工作接收为 **Poster presentation**。"}\n- **在投工作**：${submissionTextZh || "dMRI-Agent 投 **Nature Communications**；SlicerDDSurfer 投 **Nature Protocols**"}。`,
+      `**科研进展概览**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**：${researchData.journal?.zh || "DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。"}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**：${researchData.conferences?.[0]?.zh || "研究工作接收为 **Oral presentation**。"}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**：${researchData.conferences?.[1]?.zh || "研究工作接收为 **Poster presentation**。"}\n- **在投工作**：${submissionTextZh || "dMRI-Agent：**在投**；SlicerDDSurfer 投 **Nature Protocols**"}。`,
     en:
-      `**Research snapshot**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**: ${researchData.journal?.en || "DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**."}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**: ${researchData.conferences?.[0]?.en || "Accepted as an **Oral presentation**."}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**: ${researchData.conferences?.[1]?.en || "Accepted as a **Poster presentation**."}\n- **Submitted manuscripts**: ${submissionTextEn || "dMRI-Agent to **Nature Communications**; SlicerDDSurfer to **Nature Protocols**"}.`,
+      `**Research snapshot**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**: ${researchData.journal?.en || "DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**."}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**: ${researchData.conferences?.[0]?.en || "Accepted as an **Oral presentation**."}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**: ${researchData.conferences?.[1]?.en || "Accepted as a **Poster presentation**."}\n- **Submitted manuscripts**: ${submissionTextEn || "dMRI-Agent: **Submitted**; SlicerDDSurfer to **Nature Protocols**"}.`,
   },
   studyhub: {
     zh:
-      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "376"} 名用户**、**${studyhubData.downloads || "1,628"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "378"} 名用户**、**${studyhubData.downloads || "1,872"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
     en:
-      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "376"} users** and **${studyhubData.downloads || "1,628"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "378"} users** and **${studyhubData.downloads || "1,872"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
   },
   contact: {
     zh:
@@ -503,9 +523,9 @@ const botAnswers = {
   },
   agent: {
     zh:
-      "**dMRI-Agent**\n- 目标：把 diffusion MRI 分析流程转化为可审计、可复现的智能体工作流。\n- 架构：采用 **planner / executor** 协作模式。\n- 能力：支持任务规划、阶段执行、QC 追踪和结构化日志。\n- 状态：相关论文正在投 **Nature Communications**。",
+      "**dMRI-Agent**\n- 目标：把 diffusion MRI 分析流程转化为可审计、可复现的智能体工作流。\n- 架构：采用 **planner / executor** 协作模式。\n- 能力：支持任务规划、阶段执行、QC 追踪和结构化日志。\n- 状态：相关论文**在投**。",
     en:
-      "**dMRI-Agent**\n- Goal: convert diffusion MRI analysis into an auditable and reproducible agentic workflow.\n- Architecture: a **planner / executor** collaboration pattern.\n- Capabilities: task planning, staged execution, QC tracking, and structured logs.\n- Status: the related manuscript is submitted to **Nature Communications**.",
+      "**dMRI-Agent**\n- Goal: convert diffusion MRI analysis into an auditable and reproducible agentic workflow.\n- Architecture: a **planner / executor** collaboration pattern.\n- Capabilities: task planning, staged execution, QC tracking, and structured logs.\n- Status: a related manuscript has been **submitted**.",
   },
   skills: {
     zh:
@@ -632,15 +652,20 @@ function addBotMessage(role, content) {
 }
 
 function pickAnswer(raw) {
-  const text = raw.toLowerCase();
+  const text = raw.toLowerCase().trim();
+  if (/你是谁|你叫什么|你的名字|介绍(?:一下)?你自己|who\s+(?:are|r)\s+(?:you|u)|what(?:'s|\s+is)\s+your\s+name/.test(text)) return botAnswers.identity;
+  if (/你(?:能|可以).*(?:做|帮|回答)|你会(?:什么|些什么)|你有什么(?:功能|能力)|怎么(?:用|提问)|what\s+can\s+you\s+do|how\s+(?:do|can)\s+i\s+(?:use|ask)|^help[!?.\s]*$/.test(text)) return botAnswers.default;
+  if (/cv|resume|简历|pdf/.test(text)) return botAnswers.cv;
   if (/studyhub|用户|下载|平台|mcp|搜索|推荐/.test(text)) return botAnswers.studyhub;
   if (/agent|智能体|dmri-agent|dmri agent|workflow|工作流/.test(text)) return botAnswers.agent;
   if (/skill|stack|技术|能力|python|typescript|pytorch|fastapi|next/.test(text)) return botAnswers.skills;
-  if (/cv|resume|简历|pdf/.test(text)) return botAnswers.cv;
   if (/paper|论文|advanced|ismrm|ohbm|nature|期刊|会议|在投/.test(text)) return botAnswers.research;
   if (/award|honor|academic star|奖|奖学金|毕设|竞赛|华为杯|学术之星|荣耀/.test(text)) return botAnswers.awards;
   if (/contact|email|github|联系|邮箱|网站/.test(text)) return botAnswers.contact;
   if (/project|项目|ddsurfer|slicer|dmri/.test(text)) return botAnswers.projects;
+  if (/^(你好(?:呀|啊)?|您好|嗨|哈[喽啰]|早上好|下午好|晚上好|hi|hello|hey)(?:[！!。，,.?？\s]|$)/.test(text)) return botAnswers.greeting;
+  if (/谢谢|感谢|多谢|thanks|thank\s*you|thx/.test(text)) return botAnswers.thanks;
+  if (/再见|拜拜|goodbye|bye|see\s+you/.test(text)) return botAnswers.goodbye;
   return botAnswers.default;
 }
 

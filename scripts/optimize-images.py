@@ -14,21 +14,30 @@ IMAGE_NAMES = (
     "ddsurfer_network_architecture",
     "dMRI-Agent-workflow",
     "dMRI-Agent",
+    "slicerddsurfer-workflow",
 )
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--only",
+        nargs="+",
+        choices=IMAGE_NAMES,
+        help="Build variants only for the selected images.",
+    )
+    parser.add_argument(
         "--refresh-webp",
         action="store_true",
         help="Rebuild existing WebP variants after changing the source PNGs.",
     )
     args = parser.parse_args()
-    for name in IMAGE_NAMES:
+    for name in args.only or IMAGE_NAMES:
         with Image.open(ASSETS / f"{name}.png") as source:
             original = ImageOps.exif_transpose(source).convert("RGB")
-            widths = sorted({640, 960, 1280, 1600, min(2400, original.width)})
+            widths = sorted(
+                {min(width, original.width) for width in (640, 960, 1280, 1600, 2400)}
+            )
             for width in widths:
                 height = round(original.height * width / original.width)
                 display = original.resize((width, height), Image.Resampling.LANCZOS)
