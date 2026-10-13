@@ -493,9 +493,9 @@ const botAnswers = {
   },
   projects: {
     zh:
-      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "378"} 名用户** 与 **${studyhubData.downloads || "1,872"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，相关论文**在投**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
+      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "380"} 名用户** 与 **${studyhubData.downloads || "1,885"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，相关论文**在投**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
     en:
-      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "378"} users** and **${studyhubData.downloads || "1,872"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, with a **submitted manuscript**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
+      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "380"} users** and **${studyhubData.downloads || "1,885"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, with a **submitted manuscript**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
   },
   research: {
     zh:
@@ -505,9 +505,9 @@ const botAnswers = {
   },
   studyhub: {
     zh:
-      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "378"} 名用户**、**${studyhubData.downloads || "1,872"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "380"} 名用户**、**${studyhubData.downloads || "1,885"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
     en:
-      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "378"} users** and **${studyhubData.downloads || "1,872"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "380"} users** and **${studyhubData.downloads || "1,885"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
   },
   contact: {
     zh:
@@ -529,9 +529,9 @@ const botAnswers = {
   },
   skills: {
     zh:
-      "**技术能力**\n- 语言：`Python` / `TypeScript` / `C` / `MATLAB`\n- 医学影像与深度学习：`PyTorch` / `3D Slicer` / `SimpleITK` / `nibabel`\n- 全栈与后端：`FastAPI` / `Next.js` / `MySQL` / `Redis` / `OSS`\n- 工程工具：`Docker` / `Git`",
+      "**技术能力**\n- 语言：`Python` / `TypeScript`\n- 医学影像与深度学习：`PyTorch` / `3D Slicer` / `SimpleITK` / `nibabel`\n- 全栈与后端：`FastAPI` / `Next.js` / `MySQL` / `Redis` / `OSS`\n- 工程工具：`Docker` / `Git`",
     en:
-      "**Technical stack**\n- Languages: `Python` / `TypeScript` / `C` / `MATLAB`\n- Medical imaging and deep learning: `PyTorch` / `3D Slicer` / `SimpleITK` / `nibabel`\n- Full-stack and backend: `FastAPI` / `Next.js` / `MySQL` / `Redis` / `OSS`\n- Engineering tools: `Docker` / `Git`",
+      "**Technical stack**\n- Languages: `Python` / `TypeScript`\n- Medical imaging and deep learning: `PyTorch` / `3D Slicer` / `SimpleITK` / `nibabel`\n- Full-stack and backend: `FastAPI` / `Next.js` / `MySQL` / `Redis` / `OSS`\n- Engineering tools: `Docker` / `Git`",
   },
   cv: {
     zh:

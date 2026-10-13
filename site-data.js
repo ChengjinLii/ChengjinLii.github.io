@@ -15,8 +15,8 @@ window.siteData = {
     addressEn: "UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China",
   },
   studyhub: {
-    users: "378",
-    downloads: "1,872",
+    users: "380",
+    downloads: "1,885",
   },
   research: {
     journal: {
