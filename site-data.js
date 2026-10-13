@@ -23,8 +23,8 @@ window.siteData = {
       venue: "Advanced Science",
       year: "2026",
       impactFactor: "14.1",
-      zh: "以 **第一作者** 完成的 DDSurfer 论文已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。",
-      en: "The **first-author** DDSurfer paper has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.",
+      zh: "DDSurfer 论文已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。",
+      en: "The DDSurfer paper has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.",
     },
     conferences: [
       {
