@@ -1134,6 +1134,10 @@ body.bot-open .back-to-top {
   cursor: grabbing;
 }
 
+.floating-sidebar.open {
+  animation-play-state: paused;
+}
+
 .floating-sidebar__bubble {
   position: relative;
   display: flex;
@@ -1254,6 +1258,7 @@ body.bot-open .back-to-top {
   color: var(--ink);
   box-shadow: 0 28px 80px rgba(10, 12, 13, 0.26);
   transform-origin: left top;
+  transition-property: opacity, transform;
   animation: panel-pop 190ms ease;
 }
 
@@ -1319,21 +1324,27 @@ body.bot-open .back-to-top {
 
 .portfolio-bot__messages {
   display: grid;
+  align-content: start;
   gap: 10px;
+  min-height: 0;
+  min-width: 0;
   max-height: 310px;
   overflow: auto;
+  overscroll-behavior: contain;
   padding: 15px;
   background-color: #edf1ef;
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H24M0 0V24' fill='none' stroke='%230a0c0d' stroke-opacity='.035'/%3E%3C/svg%3E");
 }
 
 .portfolio-bot__message {
+  min-width: 0;
   max-width: 92%;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 13px;
   font-size: 12px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .portfolio-bot__message p {
@@ -1411,6 +1422,10 @@ body.bot-open .back-to-top {
 .portfolio-bot__starters {
   display: flex;
   flex-wrap: wrap;
+  min-height: 0;
+  max-height: 128px;
+  overflow: auto;
+  overscroll-behavior: contain;
   gap: 6px;
   padding: 12px 15px;
   border-top: 1px solid var(--line);
@@ -1471,6 +1486,40 @@ body.bot-open .back-to-top {
 
 .portfolio-bot__form button:hover {
   background: var(--accent-dark);
+}
+
+.floating-sidebar__panel.is-compact .portfolio-bot__starters {
+  display: none;
+}
+
+.floating-sidebar__panel.is-compact .floating-sidebar__header {
+  align-items: center;
+  padding: 10px 14px;
+}
+
+.floating-sidebar__panel.is-compact .portfolio-bot__eyebrow {
+  display: none;
+}
+
+.floating-sidebar__panel.is-compact .floating-sidebar__header h2 {
+  margin-top: 0;
+}
+
+.floating-sidebar__panel.is-tiny .floating-sidebar__header {
+  padding: 4px 10px;
+}
+
+.floating-sidebar__panel.is-tiny .floating-sidebar__header h2 {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.floating-sidebar__panel.is-tiny .portfolio-bot__messages {
+  padding: 4px 10px;
+}
+
+.floating-sidebar__panel.is-tiny .portfolio-bot__form {
+  padding: 6px 10px;
 }
 
 /* Motion */
@@ -2143,10 +2192,6 @@ html:lang(en) .education-track em {
     filter: drop-shadow(0 5px 10px rgba(15, 23, 42, 0.2));
   }
 
-  .floating-sidebar.open {
-    animation-play-state: paused;
-  }
-
   body.bot-open {
     overflow: hidden;
   }
@@ -2220,23 +2265,6 @@ html:lang(en) .education-track em {
     min-height: 40px;
     font-size: 13px;
     white-space: nowrap;
-  }
-
-  .floating-sidebar__panel.is-compact .portfolio-bot__starters {
-    display: none;
-  }
-
-  .floating-sidebar__panel.is-compact .floating-sidebar__header {
-    align-items: center;
-    padding: 10px 14px;
-  }
-
-  .floating-sidebar__panel.is-compact .portfolio-bot__eyebrow {
-    display: none;
-  }
-
-  .floating-sidebar__panel.is-compact .floating-sidebar__header h2 {
-    margin-top: 0;
   }
 
   .portfolio-bot__form {

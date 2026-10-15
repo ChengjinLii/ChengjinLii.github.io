@@ -305,39 +305,45 @@ function applyBotPosition(position) {
 
 function positionBotPanel() {
   if (!bot?.classList.contains("open") || !botPanel) return;
-  if (botBackdrop) botBackdrop.hidden = !botMobileViewport.matches;
-  if (!botMobileViewport.matches) {
-    ["left", "top", "bottom", "width", "max-height"].forEach((property) => {
-      botPanel.style.removeProperty(property);
-    });
-    botPanel.classList.remove("is-compact");
-    botPanel.removeAttribute("aria-modal");
-    return;
-  }
-
+  const mobile = botMobileViewport.matches;
+  if (botBackdrop) botBackdrop.hidden = !mobile;
   const viewport = window.visualViewport;
   const visibleTop = viewport?.offsetTop || 0;
   const visibleLeft = viewport?.offsetLeft || 0;
   const visibleWidth = viewport?.width || window.innerWidth;
   const visibleHeight = viewport?.height || window.innerHeight;
   const headerBottom = document.querySelector(".topbar")?.getBoundingClientRect().bottom || 0;
-  const top = Math.max(visibleTop, headerBottom) + 12;
+  let top = Math.max(visibleTop, headerBottom) + 12;
   const keyboardOpen = visibleHeight < window.innerHeight * 0.75;
-  const bottom = visibleTop + visibleHeight - (keyboardOpen ? 16 : 84);
-  const availableHeight = Math.max(120, bottom - top);
+  const bottomInset = mobile && !keyboardOpen && visibleHeight >= 480 ? 84 : 12;
+  const bottom = visibleTop + visibleHeight - bottomInset;
+  // A short viewport or on-screen keyboard leaves the composer priority over navigation.
+  if (bottom - top < 180) top = visibleTop + 12;
+  const availableHeight = Math.max(0, bottom - top);
+  const maxHeight = mobile ? availableHeight : Math.min(visibleHeight * 0.78, availableHeight);
+  const width = Math.max(0, mobile ? visibleWidth - 32 : Math.min(370, visibleWidth - 32));
 
-  botPanel.style.width = `${Math.max(240, visibleWidth - 32)}px`;
-  botPanel.style.maxHeight = `${availableHeight}px`;
-  botPanel.classList.toggle("is-compact", availableHeight < 360);
-  botPanel.setAttribute("aria-modal", "true");
+  botPanel.style.bottom = "auto";
+  botPanel.style.width = `${width}px`;
+  botPanel.style.maxHeight = `${maxHeight}px`;
+  botPanel.classList.toggle("is-compact", maxHeight < 360);
+  botPanel.classList.toggle("is-tiny", maxHeight < 240);
+  if (mobile) botPanel.setAttribute("aria-modal", "true");
+  else botPanel.removeAttribute("aria-modal");
 
-  // Anchor the dialog to the visible viewport without moving the draggable mascot.
+  // Reposition only the dialog; opening or growing a reply must not move the mascot.
   const anchor = bot.getBoundingClientRect();
-  const x = visibleLeft + (visibleWidth - botPanel.offsetWidth) / 2;
-  const y = Math.max(top, bottom - botPanel.offsetHeight);
+  const panelWidth = botPanel.offsetWidth;
+  let x = visibleLeft + (visibleWidth - panelWidth) / 2;
+  if (!mobile) {
+    x = anchor.right + 16;
+    if (x + panelWidth > visibleLeft + visibleWidth - 16) x = anchor.left - panelWidth - 16;
+  }
+  x = Math.max(visibleLeft + 16, Math.min(x, visibleLeft + visibleWidth - panelWidth - 16));
+  const preferredY = mobile ? bottom - botPanel.offsetHeight : anchor.top;
+  const y = Math.max(top, Math.min(preferredY, bottom - botPanel.offsetHeight));
   botPanel.style.left = `${x - anchor.left}px`;
   botPanel.style.top = `${y - anchor.top}px`;
-  botPanel.style.bottom = "auto";
 }
 
 let eyeAnimationFrame = null;
