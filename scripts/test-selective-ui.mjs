@@ -135,8 +135,9 @@ try {
       assert.match(layout.projects[2].text, language === 'zh' ? /参与设计/ : /Contributed/);
       assert.match(layout.projects[3].text, /Python \/ Qt/);
       assert.ok(layout.studyhub.data.approximate);
+      assert.deepEqual(layout.studyhub.displayed.map((metric) => metric.key), ['users', 'downloads']);
       for (const metric of layout.studyhub.displayed) {
-        assert.equal(metric.text, `${language === 'zh' ? '\u7ea6' : '~'}${layout.studyhub.data[metric.key]}`);
+        assert.equal(metric.text, `~${layout.studyhub.data[metric.key]}`);
       }
       assert.equal(layout.chineseCv, layout.configuredCv, 'Sidebar and Bot must share the versioned CV URL');
       assert.match(layout.chineseCv, /\?v=/);

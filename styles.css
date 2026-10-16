@@ -241,6 +241,20 @@ h3 {
   white-space: nowrap;
 }
 
+/* Give the displayed name a restrained, handwritten character. */
+html:lang(zh-CN) .profile-sidebar h1 > span {
+  font-family: "Xingkai SC", "STXingkai", "HanziPen SC", "STKaiti", "Kaiti SC", "KaiTi", serif;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+
+html:lang(en) .profile-sidebar h1 > span {
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
 .profile-sidebar h1 small {
   display: inline-flex;
   align-items: baseline;
@@ -1969,7 +1983,7 @@ html:lang(en) .education-track em {
 
   .metric-row {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
     margin-top: 16px;
   }
@@ -1983,10 +1997,6 @@ html:lang(en) .education-track em {
   .metric-row strong {
     font-size: 20px;
     line-height: 1.2;
-  }
-
-  .metric-row > span:last-child strong {
-    font-size: 16px;
   }
 
   .metric-row em {
@@ -2273,20 +2283,6 @@ html:lang(en) .education-track em {
     font-size: 12px;
   }
 
-  .metric-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .metric-row > span:last-child {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .metric-row > span:last-child em {
-    margin-top: 0;
-  }
 }
 
 

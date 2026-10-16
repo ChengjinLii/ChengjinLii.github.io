@@ -8,7 +8,7 @@ let activeLanguage = "zh";
 function studyhubMetric(key, language) {
   const data = siteData.studyhub || {};
   const value = data[key] || (key === "users" ? "400" : "2,000");
-  const prefix = data.approximate !== false ? (language === "zh" ? "约" : "~") : "";
+  const prefix = data.approximate !== false ? "~" : "";
   return `${prefix}${value}`;
 }
 
