@@ -34,7 +34,7 @@
     </script>
     <title>Chengjin Li | 李承锦</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261015-bot-viewport" />
+    <link rel="stylesheet" href="./styles.css?v=20261016-selective-ui" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -42,7 +42,7 @@
 
     <header class="topbar">
       <div class="topbar-inner">
-        <nav class="nav-links" aria-label="Primary">
+        <nav class="nav-links" aria-label="主导航" data-en-title="Main navigation" data-zh-title="主导航">
           <a href="#about" data-en="About" data-zh="简介">简介</a>
           <a href="#projects" data-en="Projects" data-zh="项目">项目</a>
           <a href="#research" data-en="Research" data-zh="科研">科研</a>
@@ -52,6 +52,7 @@
         <div class="language-switch" aria-label="Language switch">
           <a class="lang-btn" href="?lang=en" data-lang="en">English</a>
           <a class="lang-btn is-active" href="?lang=zh" data-lang="zh">中文</a>
+          <button class="language-toggle" type="button" data-en="中" data-zh="EN" data-en-title="Switch to Chinese" data-zh-title="切换到英文" aria-label="切换到英文">EN</button>
         </div>
       </div>
     </header>
@@ -98,14 +99,6 @@
               <span data-en="Full-stack systems" data-zh="全栈系统">全栈系统</span>
             </dd>
           </div>
-          <div>
-            <dt data-en="Platform" data-zh="平台成果">平台成果</dt>
-            <dd class="platform-proof">
-              <strong>StudyHub</strong>
-              <span><b>380</b><em data-en="users" data-zh="用户">用户</em></span>
-              <span><b>1,885</b><em data-en="downloads" data-zh="下载">下载</em></span>
-            </dd>
-          </div>
         </dl>
 
         <dl class="profile-summary">
@@ -131,31 +124,25 @@
           <li>
             <span data-en="Email" data-zh="邮箱">邮箱</span>
             <div class="profile-link-row">
-              <a href="mailto:chengjinli@std.uestc.edu.cn">chengjinli@std.uestc.edu.cn</a>
+              <a href="mailto:chengjinli@std.uestc.edu.cn">chengjinli@<wbr />std.uestc.edu.cn</a>
               <button class="copy-btn" type="button" data-copy-value="chengjinli@std.uestc.edu.cn" data-en="Copy" data-zh="复制">复制</button>
             </div>
           </li>
           <li><span data-en="GitHub" data-zh="GitHub">GitHub</span><a href="https://github.com/ChengjinLii">github.com/ChengjinLii</a></li>
-          <li><span data-en="Website" data-zh="网站">网站</span><a href="https://study-hub.cn">study-hub.cn</a></li>
-          <li>
-            <span data-en="Address" data-zh="地址">地址</span>
-            <em data-en="UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China" data-zh="四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731">四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731</em>
-          </li>
         </ul>
       </aside>
 
       <div class="content-column">
         <section class="content-section reveal" id="projects">
-          <div class="section-title">
+          <h2 class="section-title">
             <span data-en="Selected Projects" data-zh="代表项目">代表项目</span>
-            <small>01 / SELECTED WORK</small>
-          </div>
+            <small aria-hidden="true">01 / Selected work</small>
+          </h2>
 
           <article class="entry">
             <div class="entry-year">01</div>
             <div class="entry-main">
               <div class="entry-badges">
-                <span data-en="380 Users" data-zh="380 用户">380 用户</span>
                 <span data-en="AI + MCP" data-zh="AI + MCP">AI + MCP</span>
                 <span data-en="Open-source Platform" data-zh="开源平台">开源平台</span>
               </div>
@@ -401,65 +388,81 @@
         </section>
 
         <section class="content-section reveal" id="research">
-          <div class="section-title">
+          <h2 class="section-title">
             <span data-en="Research" data-zh="科研">科研</span>
-            <small>02 / RESEARCH LOG</small>
-          </div>
+            <small aria-hidden="true">02 / Research log</small>
+          </h2>
           <div class="compact-list">
             <article>
-              <div class="timeline-mark"><time>2026</time><span>Journal</span></div>
-              <strong>Advanced Science</strong>
-              <p
-                data-en="DDSurfer paper accepted by Advanced Science (<strong>JCR Q1 / top-tier journal</strong>, Impact Factor 14.1)."
-                data-zh="DDSurfer 论文已被 Advanced Science 录用（中科院<strong>一区 Top 期刊</strong>，影响因子 14.1）。"
-              >
-                DDSurfer 论文已被 Advanced Science 录用（中科院<strong>一区 Top 期刊</strong>，影响因子 14.1）。
-              </p>
+              <div class="timeline-mark"><span class="timeline-year">2026</span><span data-en="Journal" data-zh="期刊论文">期刊论文</span></div>
+              <div class="research-body">
+                <div class="research-heading">
+                  <h3>Advanced Science</h3>
+                  <a class="publication-link" href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.76596" target="_blank" rel="noopener noreferrer" data-en="Paper ↗" data-zh="论文 ↗">论文 ↗</a>
+                </div>
+                <p class="publication-title">DDSurfer: A Weakly-Supervised Dual-Stream Deep Learning Framework for Cortical Surface Reconstruction From Diffusion MRI.</p>
+                <p class="publication-authors">Chengjin Li, Wei Zhang, Xi Zhu, et al.</p>
+                <p
+                  data-en="DDSurfer paper accepted by Advanced Science (<strong>JCR Q1 / top-tier journal</strong>, Impact Factor 14.1)."
+                  data-zh="DDSurfer 论文已被 Advanced Science 录用（中科院<strong>一区 Top 期刊</strong>，影响因子 14.1）。"
+                >
+                  DDSurfer 论文已被 Advanced Science 录用（中科院<strong>一区 Top 期刊</strong>，影响因子 14.1）。
+                </p>
+              </div>
             </article>
             <article>
-              <div class="timeline-mark"><time>2025</time><span>Oral</span></div>
-              <strong>ISMRM 2025</strong>
-              <p data-en="Research work accepted as an <strong>Oral presentation</strong>." data-zh="研究工作被接收为 <strong>Oral presentation</strong>。">
-                研究工作被接收为 <strong>Oral presentation</strong>。
-              </p>
+              <div class="timeline-mark"><span class="timeline-year">2025</span><span data-en="Oral" data-zh="口头报告">口头报告</span></div>
+              <div class="research-body">
+                <h3>ISMRM 2025</h3>
+                <p data-en="Research work accepted as an <strong>Oral presentation</strong>." data-zh="研究工作被接收为 <strong>Oral presentation</strong>。">
+                  研究工作被接收为 <strong>Oral presentation</strong>。
+                </p>
+              </div>
             </article>
             <article>
-              <div class="timeline-mark"><time>2025</time><span>Poster</span></div>
-              <strong>OHBM 2025</strong>
-              <p data-en="Research work accepted as a <strong>Poster presentation</strong>." data-zh="研究工作被接收为 <strong>Poster presentation</strong>。">
-                研究工作被接收为 <strong>Poster presentation</strong>。
-              </p>
+              <div class="timeline-mark"><span class="timeline-year">2025</span><span data-en="Poster" data-zh="海报展示">海报展示</span></div>
+              <div class="research-body">
+                <h3>OHBM 2025</h3>
+                <p data-en="Research work accepted as a <strong>Poster presentation</strong>." data-zh="研究工作被接收为 <strong>Poster presentation</strong>。">
+                  研究工作被接收为 <strong>Poster presentation</strong>。
+                </p>
+              </div>
             </article>
             <article>
-              <div class="timeline-mark"><time>2025</time><span>Challenge</span></div>
-              <strong>MICCAI 2025</strong>
-              <p
-                data-en="Third Prize in both classification and segmentation tracks of the PDCADxFoundation Challenge."
-                data-zh="PDCADxFoundation Challenge 分类与分割赛道均获<strong>三等奖</strong>。"
-              >
-                PDCADxFoundation Challenge 分类与分割赛道均获<strong>三等奖</strong>。
-              </p>
+              <div class="timeline-mark"><span class="timeline-year">2025</span><span data-en="Challenge" data-zh="挑战赛">挑战赛</span></div>
+              <div class="research-body">
+                <h3>MICCAI 2025</h3>
+                <p
+                  data-en="<strong>Third Prize</strong> in both classification and segmentation tracks of the PDCADxFoundation Challenge."
+                  data-zh="PDCADxFoundation Challenge 分类与分割赛道均获<strong>三等奖</strong>。"
+                >
+                  PDCADxFoundation Challenge 分类与分割赛道均获<strong>三等奖</strong>。
+                </p>
+              </div>
             </article>
             <article>
-              <div class="timeline-mark"><time>2025</time><span>Poster</span></div>
-              <strong>ISICDM 2025</strong>
-              <p
-                data-en="Third Prize in the poster session."
-                data-zh="海报展示获得<strong>三等奖</strong>。"
-              >
-                海报展示获得<strong>三等奖</strong>。
-              </p>
+              <div class="timeline-mark"><span class="timeline-year">2025</span><span data-en="Poster" data-zh="海报展示">海报展示</span></div>
+              <div class="research-body">
+                <h3>ISICDM 2025</h3>
+                <p
+                  data-en="<strong>Third Prize</strong> in the poster session."
+                  data-zh="海报展示获得<strong>三等奖</strong>。"
+                >
+                  海报展示获得<strong>三等奖</strong>。
+                </p>
+              </div>
             </article>
           </div>
         </section>
 
         <section class="content-section reveal" id="honors">
-          <div class="section-title">
+          <h2 class="section-title">
             <span data-en="Honors" data-zh="奖项与荣誉">奖项与荣誉</span>
-            <small>03 / RECOGNITION</small>
-          </div>
-          <div class="honor-list">
-            <p data-timeline="2026 / Academic Honor">
+            <small aria-hidden="true">03 / Recognition</small>
+          </h2>
+          <ol class="honor-list">
+            <li>
+              <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Academic honor" data-zh="学术荣誉">学术荣誉</span></div>
               <span
                 class="honor-text"
                 data-en="🌟 <strong>HONOR — Academic Star in Information and Communication Engineering</strong>."
@@ -467,8 +470,9 @@
               >
                 🌟 获<strong>荣耀信通—学术之星</strong>荣誉。
               </span>
-            </p>
-            <p data-timeline="2026 / Award">
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Award" data-zh="竞赛获奖">竞赛获奖</span></div>
               <span
                 class="honor-text"
                 data-en="🏆 <strong>First Prize</strong> in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest."
@@ -476,8 +480,9 @@
               >
                 🏆 中国研究生电子设计竞赛人工智能赛道西南赛区<strong>一等奖</strong>。
               </span>
-            </p>
-            <p data-timeline="2025 / Modeling">
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Modeling" data-zh="数学建模">数学建模</span></div>
               <span
                 class="honor-text"
                 data-en="🥉 National <strong>Third Prize</strong>, 2025 Huawei Cup, the 22nd China Graduate Mathematical Contest in Modeling, as team leader."
@@ -485,8 +490,9 @@
               >
                 🥉 2025年“华为杯”第二十二届中国研究生数学建模竞赛国家<strong>三等奖</strong>，担任队长。
               </span>
-            </p>
-            <p data-timeline="2025 / Scholarship">
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Scholarship" data-zh="学业奖学金">学业奖学金</span></div>
               <span
                 class="honor-text"
                 data-en="🎓 UESTC <strong>First-Class Graduate Academic Scholarship</strong>."
@@ -494,35 +500,9 @@
               >
                 🎓 获电子科技大学研究生<strong>学业奖学金一等奖</strong>。
               </span>
-            </p>
-            <p data-timeline="2024 / Project">
-              <span
-                class="honor-text"
-                data-en="💡 <strong>National-level project approval</strong>, Undergraduate Innovation and Entrepreneurship Training Program."
-                data-zh="💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。"
-              >
-                💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。
-              </span>
-            </p>
-            <p data-timeline="2024 / Innovation">
-              <span
-                class="honor-text"
-                data-en="🥇 <strong>Gold Award</strong> at UESTC campus round and <strong>Silver Award</strong> at Sichuan provincial round, China International College Students' Innovation Competition."
-                data-zh="🥇 中国国际大学生创新大赛校赛<strong>金奖</strong>、四川省省赛<strong>银奖</strong>。"
-              >
-                🥇 中国国际大学生创新大赛校赛<strong>金奖</strong>、四川省省赛<strong>银奖</strong>。
-              </span>
-            </p>
-            <p data-timeline="2021–2025 / Scholarship">
-              <span
-                class="honor-text"
-                data-en="🎓 University-Level <strong>Outstanding Student Scholarship</strong> for four consecutive academic years."
-                data-zh="🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。"
-              >
-                🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。
-              </span>
-            </p>
-            <p data-timeline="2025 / Thesis">
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Graduation" data-zh="毕业荣誉">毕业荣誉</span></div>
               <span
                 class="honor-text"
                 data-en="💡 UESTC Undergraduate <strong>Innovation Award</strong> and <strong>Outstanding Undergraduate Thesis</strong>."
@@ -530,15 +510,45 @@
               >
                 💡 获电子科技大学<strong>本科毕业创新奖</strong>，并获得<strong>优秀毕设</strong>。
               </span>
-            </p>
-          </div>
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2024</span><span data-en="Project" data-zh="创新项目">创新项目</span></div>
+              <span
+                class="honor-text"
+                data-en="💡 <strong>National-level project approval</strong>, Undergraduate Innovation and Entrepreneurship Training Program."
+                data-zh="💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。"
+              >
+                💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。
+              </span>
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2024</span><span data-en="Innovation" data-zh="创新竞赛">创新竞赛</span></div>
+              <span
+                class="honor-text"
+                data-en="🥇 <strong>Gold Award</strong> at UESTC campus round and <strong>Silver Award</strong> at Sichuan provincial round, China International College Students' Innovation Competition."
+                data-zh="🥇 中国国际大学生创新大赛校赛<strong>金奖</strong>、四川省省赛<strong>银奖</strong>。"
+              >
+                🥇 中国国际大学生创新大赛校赛<strong>金奖</strong>、四川省省赛<strong>银奖</strong>。
+              </span>
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2021–2025</span><span data-en="Scholarship" data-zh="优秀学生奖学金">优秀学生奖学金</span></div>
+              <span
+                class="honor-text"
+                data-en="🎓 University-Level <strong>Outstanding Student Scholarship</strong> for four consecutive academic years."
+                data-zh="🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。"
+              >
+                🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。
+              </span>
+            </li>
+          </ol>
         </section>
 
         <section class="content-section contact-section reveal" id="contact">
-          <div class="section-title">
+          <h2 class="section-title">
             <span data-en="Contact" data-zh="联系">联系</span>
-            <small>04 / CONNECT</small>
-          </div>
+            <small aria-hidden="true">04 / Connect</small>
+          </h2>
           <div class="contact-card">
             <p
               data-en="Open to research collaboration, engineering work, and AI-for-science systems."
@@ -549,6 +559,7 @@
             <a href="mailto:chengjinli@std.uestc.edu.cn"><span data-en="Email" data-zh="邮箱">邮箱</span>chengjinli@std.uestc.edu.cn</a>
             <a href="https://github.com/ChengjinLii"><span data-en="GitHub" data-zh="GitHub">GitHub</span>github.com/ChengjinLii</a>
             <a href="https://study-hub.cn"><span data-en="Project Site" data-zh="项目网站">项目网站</span>study-hub.cn</a>
+            <div class="contact-address"><span data-en="Address" data-zh="学校地址">学校地址</span><span data-en="UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China" data-zh="四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731">四川省成都市高新区（西区）西源大道2006号，电子科技大学清水河校区，邮编 611731</span></div>
           </div>
         </section>
 
@@ -560,7 +571,7 @@
     </main>
 
     <button class="bot-backdrop" type="button" hidden data-en-title="Close chat" data-zh-title="关闭对话" aria-label="关闭对话"></button>
-    <aside class="floating-sidebar hat-santa" aria-label="Chengjin Bot portfolio assistant">
+    <aside class="floating-sidebar" aria-label="Chengjin Bot portfolio assistant">
       <button class="floating-sidebar__bubble mood-neutral" type="button" aria-expanded="false" aria-controls="portfolio-bot-panel" data-en-title="Open Chengjin Bot" data-zh-title="打开 Chengjin Bot" aria-label="打开 Chengjin Bot">
         <span class="floating-sidebar__hat" aria-hidden="true"></span>
         <span class="floating-face" aria-hidden="true"></span>
@@ -612,6 +623,6 @@
     </button>
 
     <script src="./site-data.js?v=20261013-copy-polish"></script>
-    <script src="./script.js?v=20261015-bot-viewport"></script>
+    <script src="./script.js?v=20261016-selective-ui"></script>
   </body>
 </html>

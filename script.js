@@ -1,5 +1,6 @@
 const languageButtons = document.querySelectorAll(".lang-btn");
-const translatable = document.querySelectorAll("[data-en][data-zh]");
+const languageToggle = document.querySelector(".language-toggle");
+const languageListeners = [];
 const year = document.querySelector("#year");
 const liveRegion = document.querySelector(".sr-live");
 const siteData = window.siteData || {};
@@ -7,9 +8,10 @@ const languageStorageKey = "site-language-v2";
 let activeLanguage = "zh";
 
 function applyLanguage(language) {
+  language = language === "en" ? "en" : "zh";
   activeLanguage = language;
   document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
-  translatable.forEach((node) => {
+  document.querySelectorAll("[data-en][data-zh]").forEach((node) => {
     node.innerHTML = node.dataset[language];
   });
   document.querySelectorAll("[data-en-title][data-zh-title]").forEach((node) => {
@@ -21,8 +23,24 @@ function applyLanguage(language) {
   });
   languageButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === language);
+    if (button.dataset.lang === language) button.setAttribute("aria-current", "true");
+    else button.removeAttribute("aria-current");
   });
-  localStorage.setItem(languageStorageKey, language);
+  languageListeners.forEach((listener) => listener(language));
+  try {
+    localStorage.setItem(languageStorageKey, language);
+  } catch {
+    // A blocked storage API must not prevent the rest of the page from loading.
+  }
+}
+
+function savedLanguage() {
+  try {
+    const value = localStorage.getItem(languageStorageKey);
+    return value === "en" || value === "zh" ? value : null;
+  } catch {
+    return null;
+  }
 }
 
 function languageFromUrl() {
@@ -48,8 +66,11 @@ async function copyText(value) {
   textarea.style.left = "-9999px";
   document.body.appendChild(textarea);
   textarea.select();
-  document.execCommand("copy");
-  textarea.remove();
+  try {
+    if (!document.execCommand("copy")) throw new Error("Copy was not permitted");
+  } finally {
+    textarea.remove();
+  }
 }
 
 function setupCopyButtons() {
@@ -67,7 +88,7 @@ function setupCopyButtons() {
         if (liveRegion) liveRegion.textContent = failedMessage;
       }
       window.setTimeout(() => {
-        button.textContent = defaultLabel;
+        button.textContent = button.dataset[activeLanguage] || defaultLabel;
       }, 1400);
     });
   });
@@ -78,10 +99,13 @@ function setupBackToTop() {
   if (!button) return;
 
   const updateVisibility = () => {
-    button.classList.toggle("is-visible", window.scrollY > 420);
+    const visible = window.scrollY > 420;
+    button.classList.toggle("is-visible", visible);
+    button.tabIndex = visible ? 0 : -1;
   };
 
   button.addEventListener("click", () => {
+    document.querySelector("#top")?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
   window.addEventListener("scroll", updateVisibility, { passive: true });
@@ -137,12 +161,15 @@ function setupHeaderOffset() {
 
 function setupProfileSidebar() {
   const sidebar = document.querySelector(".profile-sidebar");
-  if (!sidebar) return;
+  const header = document.querySelector(".topbar");
+  if (!sidebar || !header) return;
 
   const updatePosition = () => {
-    // Let tall profiles scroll before sticking, so their contact rows remain reachable.
-    const top = Math.min(116, window.innerHeight - sidebar.offsetHeight - 24);
+    const top = header.offsetHeight + 24;
     sidebar.style.setProperty("--profile-sticky-top", `${top}px`);
+    // Do not shift a focused sidebar: tall profiles simply stay in the document flow.
+    const desktop = window.matchMedia("(min-width: 901px)").matches;
+    sidebar.classList.toggle("is-tall", desktop && sidebar.offsetHeight > window.innerHeight - top - 24);
   };
 
   if ("ResizeObserver" in window) {
@@ -160,8 +187,18 @@ languageButtons.forEach((button) => {
   });
 });
 
+languageToggle?.addEventListener("click", () => {
+  const next = activeLanguage === "zh" ? "en" : "zh";
+  applyLanguage(next);
+  setLanguageUrl(next);
+});
+
 year.textContent = new Date().getFullYear();
-applyLanguage(languageFromUrl() || localStorage.getItem(languageStorageKey) || "zh");
+applyLanguage(languageFromUrl() || savedLanguage() || "zh");
+document.querySelectorAll('a[href^="https://"], a[href^="http://"]').forEach((link) => {
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+});
 setupCopyButtons();
 setupBackToTop();
 setupSectionNavigation();
@@ -176,9 +213,10 @@ function setupImageLightbox() {
   lightbox.className = "image-lightbox";
   lightbox.setAttribute("role", "dialog");
   lightbox.setAttribute("aria-modal", "true");
-  lightbox.setAttribute("aria-label", "Image preview");
+  lightbox.setAttribute("aria-hidden", "true");
+  lightbox.inert = true;
   lightbox.innerHTML = `
-    <button class="image-lightbox__close" type="button" aria-label="Close image preview">×</button>
+    <button class="image-lightbox__close" type="button">×</button>
     <figure class="image-lightbox__frame">
       <img alt="" decoding="async" />
       <figcaption class="image-lightbox__meta">
@@ -196,6 +234,22 @@ function setupImageLightbox() {
   let previewRequest = 0;
   let activeSource = null;
 
+  const refreshLabels = (language) => {
+    lightbox.setAttribute("aria-label", language === "zh" ? "图片预览" : "Image preview");
+    closeButton.setAttribute("aria-label", language === "zh" ? "关闭图片预览" : "Close image preview");
+    downloadLink.textContent = language === "zh" ? "下载原图 PNG" : "Download PNG";
+    projectImages.forEach((image) => {
+      image.setAttribute("aria-label", language === "zh"
+        ? `查看大图：${image.alt || "项目图示"}`
+        : `Open larger view: ${image.alt || "project figure"}`);
+    });
+    if (activeSource) {
+      previewCaption.textContent = activeSource.closest("figure")?.querySelector("figcaption")?.textContent.trim() || activeSource.alt;
+    }
+  };
+  languageListeners.push(refreshLabels);
+  refreshLabels(activeLanguage);
+
   function openLightbox(sourceImage) {
     const request = ++previewRequest;
     activeSource = sourceImage;
@@ -210,7 +264,8 @@ function setupImageLightbox() {
     previewCaption.textContent = caption || sourceImage.alt || "";
     downloadLink.href = fullImage;
     downloadLink.download = filename.replace(/\?.*$/, "");
-    downloadLink.textContent = activeLanguage === "zh" ? "下载原图 PNG" : "Download PNG";
+    lightbox.inert = false;
+    lightbox.setAttribute("aria-hidden", "false");
     lightbox.classList.add("is-open");
     document.body.classList.add("lightbox-open");
     closeButton.focus();
@@ -238,12 +293,13 @@ function setupImageLightbox() {
     previewImage.removeAttribute("src");
     activeSource?.focus({ preventScroll: true });
     activeSource = null;
+    lightbox.inert = true;
+    lightbox.setAttribute("aria-hidden", "true");
   }
 
   projectImages.forEach((image) => {
     image.tabIndex = 0;
     image.setAttribute("role", "button");
-    image.setAttribute("aria-label", `Open larger view: ${image.alt || "project figure"}`);
     image.addEventListener("click", () => openLightbox(image));
     image.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") return;
@@ -259,8 +315,20 @@ function setupImageLightbox() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (event.key === "Escape") {
+      event.stopImmediatePropagation();
       closeLightbox();
+    } else if (event.key === "Tab") {
+      const first = closeButton;
+      const last = downloadLink;
+      if (!lightbox.contains(document.activeElement)
+        || (event.shiftKey && document.activeElement === first)
+        || (!event.shiftKey && document.activeElement === last)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      }
+      event.stopImmediatePropagation();
     }
   });
 }
@@ -593,7 +661,7 @@ function renderLinkButton(line) {
   if (!match) return null;
   const label = escapeHtml(match[1]);
   const href = escapeHtml(match[2]);
-  return `<a class="portfolio-bot__link-button" href="${href}" target="_blank" rel="noopener">${label}</a>`;
+  return `<a class="portfolio-bot__link-button" href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
 }
 
 function renderBotMarkdown(value) {
@@ -645,7 +713,14 @@ function renderBotMarkdown(value) {
 function addBotMessage(role, content) {
   const article = document.createElement("article");
   article.className = `portfolio-bot__message portfolio-bot__message--${role}`;
-  if (role === "bot") {
+  if (typeof content === "object") {
+    for (const language of ["zh", "en"]) {
+      article.dataset[language] = role === "bot"
+        ? renderBotMarkdown(content[language])
+        : `<p>${escapeHtml(content[language])}</p>`;
+    }
+    article.innerHTML = article.dataset[activeLanguage];
+  } else if (role === "bot") {
     article.innerHTML = renderBotMarkdown(content);
   } else {
     const paragraph = document.createElement("p");
@@ -712,11 +787,11 @@ document.addEventListener("keydown", (event) => {
 
 botStarters.forEach((button) => {
   button.addEventListener("click", () => {
-    const question = button.dataset[activeLanguage] || button.textContent.trim();
+    const question = { zh: button.dataset.zh, en: button.dataset.en };
     const answer = botAnswers[button.dataset.question] || botAnswers.default;
     openBot();
     addBotMessage("user", question);
-    window.setTimeout(() => addBotMessage("bot", answer[activeLanguage]), 160);
+    window.setTimeout(() => addBotMessage("bot", answer), 160);
   });
 });
 
@@ -727,5 +802,15 @@ botForm?.addEventListener("submit", (event) => {
   botInput.value = "";
   addBotMessage("user", value);
   const answer = pickAnswer(value);
-  window.setTimeout(() => addBotMessage("bot", answer[activeLanguage]), 180);
+  window.setTimeout(() => addBotMessage("bot", answer), 180);
 });
+
+languageListeners.push(() => {
+  positionBotPanel();
+  if (botMessages) botMessages.scrollTop = botMessages.scrollHeight;
+});
+
+const today = new Date();
+const month = today.getMonth() + 1;
+const day = today.getDate();
+bot?.classList.toggle("hat-santa", (month === 12 && day >= 15) || (month === 1 && day <= 5));

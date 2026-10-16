@@ -40,6 +40,26 @@ Set `PLAYWRIGHT_MODULE_PATH` and `CHROMIUM_EXECUTABLE_PATH` to use an existing
 Playwright installation and Chromium binary. Optionally set `BOT_SCREENSHOT_DIR`
 to save screenshots outside the repository.
 
+## Selective UI Regression
+
+The portfolio keeps the original logos, honor emoji, draggable eye-tracking
+mascot, fully expanded project figures, responsive AVIF/WebP images, and PNG
+downloads. Typography, sidebar alignment, mobile navigation, and research/honor
+structure selectively borrow from the local `newui` prototype. Tall desktop
+profiles scroll in normal document flow rather than shifting focused controls.
+
+Run the layout and behavior checks with the same browser environment variables
+documented above:
+
+```bash
+node scripts/test-selective-ui.mjs
+```
+
+The check covers 24 bilingual viewport combinations, complete single-row mobile
+navigation, media and emoji preservation, language-aware chat history, PNG
+downloads, focus stability, blocked storage/scripts, and seasonal mascot hats.
+Set `UI_SCREENSHOT_DIR` to save screenshots outside the repository.
+
 ## Deploy
 
 Create a GitHub repository named `ChengjinLii.github.io`, then push this directory to the `main` branch. GitHub Pages will serve it at:
