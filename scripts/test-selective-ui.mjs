@@ -70,7 +70,7 @@ try {
           return { text: link.textContent, left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, reachable: link === hit || link.contains(hit) };
         });
         const visible = (element) => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden';
-        const typography = [...document.querySelectorAll('.entry-badges span, .tag-row span, .profile-summary dt, .copy-btn, .site-footer')]
+        const typography = [...document.querySelectorAll('.entry-badges span, .tag-row span, .profile-summary dt, .site-footer')]
           .filter(visible).map((element) => ({ font: parseFloat(getComputedStyle(element).fontSize), transform: getComputedStyle(element).textTransform }));
         return {
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
@@ -158,9 +158,9 @@ try {
   assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /Hello/);
   assert.equal(await page.locator('.portfolio-bot__message--user').last().textContent(), '\u4f60\u597d');
   await page.locator('.floating-sidebar__close').click();
-  await page.locator('.language-toggle').click();
+  await page.locator('.lang-btn[data-lang="zh"]').click();
   assert.equal(new URL(page.url()).searchParams.get('lang'), 'zh');
-  await page.locator('.language-toggle').click();
+  await page.locator('.lang-btn[data-lang="en"]').click();
   assert.equal(new URL(page.url()).searchParams.get('lang'), 'en');
   await page.locator('.project-details img').first().click();
   assert.equal(await page.locator('.image-lightbox__download').textContent(), 'Download PNG');
@@ -178,20 +178,14 @@ try {
 
   for (const [width, height, language] of [[1366, 768, 'zh'], [1536, 864, 'en']]) {
     const { page, context } = await open(width, height, language);
-    await page.evaluate(() => {
-      scrollTo(0, 3000);
-      document.querySelector('.copy-btn').addEventListener('click', () => { window.copyClicks = (window.copyClicks || 0) + 1; });
-    });
-    await page.locator('.sidebar-actions a').first().focus();
-    await page.locator('.copy-btn').scrollIntoViewIfNeeded();
-    const before = await page.locator('.copy-btn').boundingBox();
-    await page.mouse.move(before.x + before.width / 2, before.y + before.height / 2);
-    await page.mouse.down();
+    assert.equal(await page.locator('.copy-btn').count(), 0, 'Email copy button should be removed');
+    assert.equal(await page.locator('.profile-link-row a[href^="mailto:"]').count(), 1);
+    await page.locator('.profile-link-row a').scrollIntoViewIfNeeded();
+    const before = await page.locator('.profile-link-row a').boundingBox();
+    await page.locator('.profile-link-row a').focus();
     await page.waitForTimeout(100);
-    const during = await page.locator('.copy-btn').boundingBox();
-    await page.mouse.up();
-    assert.ok(Math.abs(before.y - during.y) <= 1, 'Focus must not shift the copy button while pressed');
-    assert.equal(await page.evaluate(() => window.copyClicks), 1);
+    const after = await page.locator('.profile-link-row a').boundingBox();
+    assert.ok(Math.abs(before.y - after.y) <= 1, 'Focusing email link must not shift sidebar');
     await context.close();
   }
   for (const options of [{ blockStorage: true }, { blockScript: true }]) {
@@ -212,7 +206,7 @@ try {
     await context.close();
   }
   assert.deepEqual(errors, [], 'No page runtime errors');
-  console.log('PASS language-aware chat history, PNG download, focus stability, storage/script fallback, and seasonal mascot');
+  console.log('PASS language-aware chat history, PNG download, email focus, storage/script fallback, and seasonal mascot');
 } finally {
   await browser?.close();
   server.kill();

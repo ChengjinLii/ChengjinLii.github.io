@@ -118,8 +118,7 @@ section,
   gap: 36px;
 }
 
-.nav-links a,
-.lang-btn {
+.nav-links a {
   position: relative;
   padding: 12px 0;
   color: #aeb5b6;
@@ -129,32 +128,9 @@ section,
   transition: color 160ms ease;
 }
 
-.nav-links a::after,
-.lang-btn::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 5px;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0;
-  transform: scaleX(0.4);
-  transition: opacity 160ms ease, transform 160ms ease;
-}
-
 .nav-links a:hover,
-.nav-links a.is-current,
-.lang-btn:hover,
-.lang-btn.is-active {
+.nav-links a.is-current {
   color: #ffffff;
-}
-
-.nav-links a:hover::after,
-.nav-links a.is-current::after,
-.lang-btn.is-active::after {
-  opacity: 1;
-  transform: scaleX(1);
 }
 
 .language-switch {
@@ -162,23 +138,39 @@ section,
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .lang-btn {
-  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: #b8c4c1;
+  font: 650 13px/1.2 var(--sans);
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 
-.language-toggle {
+.lang-btn:hover:not(.is-active) {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+.lang-btn.is-active {
+  background: #f0f8f4;
+  color: #10221a;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
+}
+
+.lang-label-compact {
   display: none;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #f5f7f6;
-  font: 700 13px/1 var(--sans);
-  cursor: pointer;
 }
 
 /* Core layout */
@@ -438,20 +430,6 @@ h3 {
   white-space: nowrap;
 }
 
-.profile-summary .journal-summary dd {
-  align-items: center;
-}
-
-.profile-summary .journal-note {
-  display: grid;
-  gap: 3px;
-}
-
-.journal-note strong {
-  color: var(--ink);
-  font-weight: 750;
-}
-
 .profile-links {
   display: grid;
   gap: 0;
@@ -530,33 +508,11 @@ h3 {
 }
 
 .profile-link-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 6px;
   min-width: 0;
 }
 
 .profile-link-row a {
   min-width: 0;
-}
-
-.copy-btn {
-  min-height: 30px;
-  padding: 0 7px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--muted);
-  font: 650 13px/1.2 var(--sans);
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.copy-btn:hover {
-  border-color: var(--ink);
-  color: var(--ink);
 }
 
 .content-column {
@@ -864,34 +820,10 @@ h3 {
   min-width: 0;
 }
 
-.research-heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 16px;
-}
-
 .research-body h3 {
   color: var(--ink);
   font: 700 18px/1.4 var(--sans);
   letter-spacing: 0.01em;
-}
-
-.publication-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 10px;
-  border: 1px solid var(--line-strong);
-  border-radius: 6px;
-  color: var(--accent-dark);
-  font: 650 13px/1.4 var(--sans);
-}
-
-.publication-link:hover {
-  border-color: var(--accent-dark);
-  background: #e7f8f3;
 }
 
 .compact-list p {
@@ -899,15 +831,6 @@ h3 {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.68;
-}
-
-.compact-list .publication-title {
-  color: var(--ink-2);
-  font-weight: 600;
-}
-
-.compact-list .publication-authors {
-  font-size: 13px;
 }
 
 /* Honors */
@@ -1764,8 +1687,7 @@ html:lang(en) .education-track em {
     overflow: visible;
   }
 
-  .nav-links a,
-  .lang-btn {
+  .nav-links a {
     display: inline-flex;
     flex: 1;
     align-items: center;
@@ -1780,22 +1702,22 @@ html:lang(en) .education-track em {
   .language-switch {
     grid-column: 2;
     justify-self: end;
-    gap: 0;
+    gap: 1px;
+    padding: 3px;
   }
 
-  .language-switch .lang-btn {
+  .lang-btn {
+    min-height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  .lang-label-full {
     display: none;
   }
 
-  .language-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-links a::after,
-  .lang-btn::after {
-    bottom: 6px;
+  .lang-label-compact {
+    display: inline;
   }
 
   .page-shell {
@@ -1941,13 +1863,6 @@ html:lang(en) .education-track em {
   .profile-links em {
     font-size: 13px;
     line-height: 1.6;
-  }
-
-  .copy-btn {
-    min-width: 44px;
-    min-height: 36px;
-    padding: 0 8px;
-    font-size: 13px;
   }
 
   .content-section {

@@ -1,8 +1,6 @@
 const languageButtons = document.querySelectorAll(".lang-btn");
-const languageToggle = document.querySelector(".language-toggle");
 const languageListeners = [];
 const year = document.querySelector("#year");
-const liveRegion = document.querySelector(".sr-live");
 const siteData = window.siteData || {};
 const languageStorageKey = "site-language-v2";
 let activeLanguage = "zh";
@@ -62,46 +60,6 @@ function setLanguageUrl(language) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", language);
   window.history.replaceState({}, "", url);
-}
-
-async function copyText(value) {
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(value);
-    return;
-  }
-  const textarea = document.createElement("textarea");
-  textarea.value = value;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.left = "-9999px";
-  document.body.appendChild(textarea);
-  textarea.select();
-  try {
-    if (!document.execCommand("copy")) throw new Error("Copy was not permitted");
-  } finally {
-    textarea.remove();
-  }
-}
-
-function setupCopyButtons() {
-  document.querySelectorAll("[data-copy-value]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const defaultLabel = button.dataset[activeLanguage] || button.textContent;
-      const successMessage = activeLanguage === "zh" ? "已复制到剪贴板" : "Copied to clipboard";
-      const failedMessage = activeLanguage === "zh" ? "复制失败" : "Copy failed";
-      try {
-        await copyText(button.dataset.copyValue);
-        button.textContent = activeLanguage === "zh" ? "已复制" : "Copied";
-        if (liveRegion) liveRegion.textContent = successMessage;
-      } catch {
-        button.textContent = activeLanguage === "zh" ? "复制失败" : "Failed";
-        if (liveRegion) liveRegion.textContent = failedMessage;
-      }
-      window.setTimeout(() => {
-        button.textContent = button.dataset[activeLanguage] || defaultLabel;
-      }, 1400);
-    });
-  });
 }
 
 function setupBackToTop() {
@@ -197,19 +155,12 @@ languageButtons.forEach((button) => {
   });
 });
 
-languageToggle?.addEventListener("click", () => {
-  const next = activeLanguage === "zh" ? "en" : "zh";
-  applyLanguage(next);
-  setLanguageUrl(next);
-});
-
 year.textContent = new Date().getFullYear();
 applyLanguage(languageFromUrl() || savedLanguage() || "zh");
 document.querySelectorAll('a[href^="https://"], a[href^="http://"]').forEach((link) => {
   link.target = "_blank";
   link.rel = "noopener noreferrer";
 });
-setupCopyButtons();
 setupBackToTop();
 setupSectionNavigation();
 setupHeaderOffset();

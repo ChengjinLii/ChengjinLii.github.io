@@ -34,7 +34,7 @@
     </script>
     <title>Chengjin Li | 李承锦</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261017-cv-projects" />
+    <link rel="stylesheet" href="./styles.css?v=20261017-ui-refine" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -49,10 +49,9 @@
           <a href="#honors" data-en="Honors" data-zh="荣誉">荣誉</a>
           <a href="#contact" data-en="Contact" data-zh="联系">联系</a>
         </nav>
-        <div class="language-switch" aria-label="Language switch">
-          <a class="lang-btn" href="?lang=en" data-lang="en">English</a>
-          <a class="lang-btn is-active" href="?lang=zh" data-lang="zh">中文</a>
-          <button class="language-toggle" type="button" data-en="中" data-zh="EN" data-en-title="Switch to Chinese" data-zh-title="切换到英文" aria-label="切换到英文">EN</button>
+        <div class="language-switch" role="group" aria-label="Language">
+          <a class="lang-btn" href="?lang=en" data-lang="en" aria-label="Switch to English"><span class="lang-label-full">English</span><span class="lang-label-compact" aria-hidden="true">EN</span></a>
+          <a class="lang-btn is-active" href="?lang=zh" data-lang="zh" aria-label="切换到中文"><span class="lang-label-full">中文</span><span class="lang-label-compact" aria-hidden="true">中</span></a>
         </div>
       </div>
     </header>
@@ -86,25 +85,20 @@
 
         <dl class="profile-facts">
           <div>
-            <dt data-en="Research" data-zh="研究方向">研究方向</dt>
+            <dt data-en="Focus" data-zh="研究与工程">研究与工程</dt>
             <dd class="keyword-list">
               <span data-en="Deep learning" data-zh="Deep learning">Deep learning</span>
               <span data-en="Agent" data-zh="Agent">Agent</span>
               <span data-en="Medical imaging" data-zh="医学图像">医学图像</span>
-            </dd>
-          </div>
-          <div>
-            <dt data-en="Engineering" data-zh="工程方向">工程方向</dt>
-            <dd class="keyword-list">
               <span data-en="Full-stack systems" data-zh="全栈系统">全栈系统</span>
             </dd>
           </div>
         </dl>
 
         <dl class="profile-summary">
-          <div class="journal-summary">
+          <div>
             <dt data-en="Journal Papers" data-zh="期刊论文">期刊论文</dt>
-            <dd><span>1</span><small class="journal-note"><span data-en="(Q1 TOP)" data-zh="（一区TOP）">（一区TOP）</span></small></dd>
+            <dd>1</dd>
           </div>
           <div>
             <dt data-en="Conference Papers" data-zh="会议论文">会议论文</dt>
@@ -125,7 +119,6 @@
             <span data-en="Email" data-zh="邮箱">邮箱</span>
             <div class="profile-link-row">
               <a href="mailto:chengjinli@std.uestc.edu.cn">chengjinli@<wbr />std.uestc.edu.cn</a>
-              <button class="copy-btn" type="button" data-copy-value="chengjinli@std.uestc.edu.cn" data-en="Copy" data-zh="复制">复制</button>
             </div>
           </li>
           <li><span data-en="GitHub" data-zh="GitHub">GitHub</span><a href="https://github.com/ChengjinLii">github.com/ChengjinLii</a></li>
@@ -149,7 +142,7 @@
               <div class="entry-head">
                 <h3>StudyHub</h3>
                 <div class="entry-links">
-                  <a href="https://study-hub.cn" data-en="Website" data-zh="网站">网站</a>
+                  <a href="https://study-hub.cn">study-hub.cn</a>
                   <a href="https://github.com/ChengjinLii/studyhub">GitHub</a>
                 </div>
               </div>
@@ -397,17 +390,12 @@
             <article>
               <div class="timeline-mark"><span class="timeline-year">2026</span><span data-en="Journal" data-zh="期刊论文">期刊论文</span></div>
               <div class="research-body">
-                <div class="research-heading">
-                  <h3>Advanced Science</h3>
-                  <a class="publication-link" href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.76596" target="_blank" rel="noopener noreferrer" data-en="Paper ↗" data-zh="论文 ↗">论文 ↗</a>
-                </div>
-                <p class="publication-title">DDSurfer: A Weakly-Supervised Dual-Stream Deep Learning Framework for Cortical Surface Reconstruction From Diffusion MRI.</p>
-                <p class="publication-authors">Chengjin Li, Wei Zhang, Xi Zhu, et al.</p>
+                <h3>Advanced Science 2026</h3>
                 <p
-                  data-en="Published in Advanced Science in 2026 (<strong>CAS Zone 1 Top</strong>, Impact Factor 14.1)."
-                  data-zh="DDSurfer 论文发表于 Advanced Science（2026，<strong>中科院一区 Top</strong>，影响因子 14.1）。"
+                  data-en="DDSurfer paper published in a <strong>CAS Zone 1 Top</strong> journal (Impact Factor 14.1)."
+                  data-zh="DDSurfer 论文已发表（<strong>中科院一区 Top</strong>，影响因子 14.1）。"
                 >
-                  DDSurfer 论文发表于 Advanced Science（2026，<strong>中科院一区 Top</strong>，影响因子 14.1）。
+                  DDSurfer 论文已发表（<strong>中科院一区 Top</strong>，影响因子 14.1）。
                 </p>
               </div>
             </article>
@@ -623,7 +611,7 @@
       <span aria-hidden="true">↑</span>
     </button>
 
-    <script src="./site-data.js?v=20261017-cv-projects"></script>
-    <script src="./script.js?v=20261017-cv-projects"></script>
+    <script src="./site-data.js?v=20261017-ui-refine"></script>
+    <script src="./script.js?v=20261017-ui-refine"></script>
   </body>
 </html>
