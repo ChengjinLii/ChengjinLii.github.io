@@ -754,6 +754,25 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.project-highlights {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 19px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.78;
+  overflow-wrap: anywhere;
+}
+
+.project-highlights li::marker {
+  color: var(--accent-dark);
+}
+
+.project-details > p + p {
+  margin-top: 12px;
+}
+
 .project-details figure {
   margin: 16px 0 0;
   padding: 10px;

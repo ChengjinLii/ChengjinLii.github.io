@@ -4,9 +4,9 @@ window.siteData = {
     studyhub: "https://study-hub.cn",
     studyhubRepo: "https://github.com/ChengjinLii/studyhub",
     ddsurferRepo: "https://github.com/ChengjinLii/DDSurfer",
-    dmriAgentRepo: "https://github.com/ChengjinLii/MRI_Agent",
+    dmriAgentRepo: "https://github.com/azurezhangwei/MRI_Agent",
     slicerRepo: "https://github.com/ChengjinLii/SlicerDDSurfer",
-    chineseCv: "./assets/李承锦-CV-中文.pdf",
+    chineseCv: "./assets/李承锦-CV-中文.pdf?v=bdda306-20261017",
     englishCv: "./assets/Chengjin-Li-CV-English.pdf",
   },
   contact: {
@@ -15,16 +15,17 @@ window.siteData = {
     addressEn: "UESTC Qingshuihe Campus, No. 2006 Xiyuan Ave, West Hi-Tech Zone, Chengdu, Sichuan 611731, China",
   },
   studyhub: {
-    users: "380",
-    downloads: "1,885",
+    users: "400",
+    downloads: "2,000",
+    approximate: true,
   },
   research: {
     journal: {
       venue: "Advanced Science",
       year: "2026",
       impactFactor: "14.1",
-      zh: "DDSurfer 论文已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。",
-      en: "The DDSurfer paper has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**.",
+      zh: "DDSurfer 论文已发表，期刊为 **中科院一区 Top**，影响因子 **14.1**。",
+      en: "The DDSurfer paper is published in a **CAS Zone 1 Top journal** with Impact Factor **14.1**.",
     },
     conferences: [
       {

@@ -60,6 +60,20 @@ navigation, media and emoji preservation, language-aware chat history, PNG
 downloads, focus stability, blocked storage/scripts, and seasonal mascot hats.
 Set `UI_SCREENSHOT_DIR` to save screenshots outside the repository.
 
+## Current CV And Project Copy
+
+The Chinese CV download is built from `ChengjinLii/Chengjin-CV` commit
+`bdda3069715531b36bb0d4f2472ffd2a8a2f64c1` (source edition v30). The upstream
+PDF was older than its TeX source, so the hosted PDF uses the locally compiled
+source rather than that older binary. A versioned URL is shared by the sidebar
+and Bot. The English CV PDF remains the previous edition because the source
+repository currently supplies only Chinese.
+
+Both languages of the project descriptions follow the new CV. StudyHub's
+approximately 400 users and 2,000 downloads are explicitly approximate; the
+display values and Bot responses read `site-data.js`. The project illustrations,
+video, image optimization, lightbox, and download behavior are unchanged.
+
 ## Deploy
 
 Create a GitHub repository named `ChengjinLii.github.io`, then push this directory to the `main` branch. GitHub Pages will serve it at:

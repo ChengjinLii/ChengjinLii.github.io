@@ -7,12 +7,22 @@ const siteData = window.siteData || {};
 const languageStorageKey = "site-language-v2";
 let activeLanguage = "zh";
 
+function studyhubMetric(key, language) {
+  const data = siteData.studyhub || {};
+  const value = data[key] || (key === "users" ? "400" : "2,000");
+  const prefix = data.approximate !== false ? (language === "zh" ? "约" : "~") : "";
+  return `${prefix}${value}`;
+}
+
 function applyLanguage(language) {
   language = language === "en" ? "en" : "zh";
   activeLanguage = language;
   document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
   document.querySelectorAll("[data-en][data-zh]").forEach((node) => {
     node.innerHTML = node.dataset[language];
+  });
+  document.querySelectorAll("[data-studyhub-metric]").forEach((node) => {
+    node.textContent = studyhubMetric(node.dataset.studyhubMetric, language);
   });
   document.querySelectorAll("[data-en-title][data-zh-title]").forEach((node) => {
     node.setAttribute("title", node.dataset[`${language}Title`]);
@@ -536,7 +546,6 @@ if (botPanel && "ResizeObserver" in window) {
 
 const links = siteData.links || {};
 const contact = siteData.contact || {};
-const studyhubData = siteData.studyhub || {};
 const researchData = siteData.research || {};
 const awardData = siteData.awards || {};
 const submissions = researchData.submissions || [];
@@ -567,21 +576,21 @@ const botAnswers = {
   },
   projects: {
     zh:
-      `**代表项目**\n- **StudyHub**：校园知识共享平台，已有 **${studyhubData.users || "380"} 名用户** 与 **${studyhubData.downloads || "1,885"} 次下载**。\n- **DDSurfer**：dMRI 皮层表面重建工作，已被 **${researchData.journal?.venue || "Advanced Science"}** 录用。\n- **dMRI-Agent**：协议驱动的扩散 MRI 智能体工作流，相关论文**在投**。\n- **SlicerDDSurfer**：面向 3D Slicer 的科研软件扩展，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
+      `**代表项目**\n- **StudyHub**：全栈知识共享与 AI 学习平台，累计 **${studyhubMetric("users", "zh")} 名用户**、**${studyhubMetric("downloads", "zh")} 次下载**，覆盖 RAG、增量 Wiki、MCP 与 Agent。\n- **DDSurfer**：弱监督双流 dMRI 皮层重建工作，已发表于 **${researchData.journal?.venue || "Advanced Science"}**。\n- **dMRI-Agent**：参与设计 Planner–Executor 与 Protocol 驱动的医学影像任务编排，相关论文**在投**。\n- **SlicerDDSurfer**：基于 Python / Qt 的 3D Slicer 多算法集成平台，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
     en:
-      `**Representative projects**\n- **StudyHub**: an operated campus knowledge-sharing platform with **${studyhubData.users || "380"} users** and **${studyhubData.downloads || "1,885"} downloads**.\n- **DDSurfer**: a dMRI cortical surface reconstruction project accepted by **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: a protocol-driven agentic workflow for diffusion MRI, with a **submitted manuscript**.\n- **SlicerDDSurfer**: a 3D Slicer research software extension, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
+      `**Representative projects**\n- **StudyHub**: a full-stack knowledge and AI learning platform with **${studyhubMetric("users", "en")} users** and **${studyhubMetric("downloads", "en")} downloads**, combining RAG, incremental Wiki, MCP, and agents.\n- **DDSurfer**: weakly supervised dual-stream cortical reconstruction from dMRI, published in **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: contributed to Planner-Executor and Protocol-based medical imaging orchestration; the manuscript is **submitted**.\n- **SlicerDDSurfer**: a Python / Qt platform integrating multiple algorithms in 3D Slicer, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
   },
   research: {
     zh:
-      `**科研进展概览**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**：${researchData.journal?.zh || "DDSurfer 相关工作已录用，属于 **一区 Top 期刊**，影响因子 **14.1**。"}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**：${researchData.conferences?.[0]?.zh || "研究工作接收为 **Oral presentation**。"}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**：${researchData.conferences?.[1]?.zh || "研究工作接收为 **Poster presentation**。"}\n- **在投工作**：${submissionTextZh || "dMRI-Agent：**在投**；SlicerDDSurfer 投 **Nature Protocols**"}。`,
+      `**科研进展概览**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**：${researchData.journal?.zh || "DDSurfer 论文已发表，期刊为 **中科院一区 Top**，影响因子 **14.1**。"}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**：${researchData.conferences?.[0]?.zh || "研究工作接收为 **Oral presentation**。"}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**：${researchData.conferences?.[1]?.zh || "研究工作接收为 **Poster presentation**。"}\n- **在投工作**：${submissionTextZh || "dMRI-Agent：**在投**；SlicerDDSurfer 投 **Nature Protocols**"}。`,
     en:
-      `**Research snapshot**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**: ${researchData.journal?.en || "DDSurfer-related work has been accepted by a **JCR Q1 top-tier journal** with Impact Factor **14.1**."}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**: ${researchData.conferences?.[0]?.en || "Accepted as an **Oral presentation**."}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**: ${researchData.conferences?.[1]?.en || "Accepted as a **Poster presentation**."}\n- **Submitted manuscripts**: ${submissionTextEn || "dMRI-Agent: **Submitted**; SlicerDDSurfer to **Nature Protocols**"}.`,
+      `**Research snapshot**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**: ${researchData.journal?.en || "DDSurfer is published in a **CAS Zone 1 Top journal** with Impact Factor **14.1**."}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**: ${researchData.conferences?.[0]?.en || "Accepted as an **Oral presentation**."}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**: ${researchData.conferences?.[1]?.en || "Accepted as a **Poster presentation**."}\n- **Submitted manuscripts**: ${submissionTextEn || "dMRI-Agent: **Submitted**; SlicerDDSurfer to **Nature Protocols**"}.`,
   },
   studyhub: {
     zh:
-      `**StudyHub 不是纯 demo**\n- 面向校园资料共享、经验分享、求购协作和校园集市场景。\n- 已累计 **${studyhubData.users || "380"} 名用户**、**${studyhubData.downloads || "1,885"} 次下载**。\n- 做了 **AI 搜索、推荐、内容审核、MCP 接入与 Agent 辅助能力**。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub：真实运营的 AI 学习平台**\n- 负责全栈架构、开发、持续运营、社群与用户反馈，累计 **${studyhubMetric("users", "zh")} 名用户**、**${studyhubMetric("downloads", "zh")} 次下载**。\n- **RAG / Wiki**：结构感知切分、Parent-Child 索引、BM25 + 向量召回 + RRF + Rerank，以及增量 Wiki 与可追溯引用。\n- **Agent / 后训练**：Qwen3.5-9B、MCP、ReAct / Plan-and-Execute、vLLM，并开展 LoRA / SFT 与 GRPO 实验。\n- **安全审核**：Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 双路审核，结合 Guard-as-Jev 概率评分与人工复核。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
     en:
-      `**StudyHub is not just a demo**\n- It supports campus material sharing, experience posts, requests, and marketplace scenarios.\n- It has reached **${studyhubData.users || "380"} users** and **${studyhubData.downloads || "1,885"} downloads**.\n- It includes **AI search, recommendation, moderation, MCP integration, and agent-assisted features**.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+      `**StudyHub: an operated AI learning platform**\n- Led full-stack development, deployment, operations, and user feedback; reached **${studyhubMetric("users", "en")} users** and **${studyhubMetric("downloads", "en")} downloads**.\n- **RAG / Wiki**: structure-aware chunking, parent-child indexing, BM25 + vector retrieval + RRF + reranking, and an incremental Wiki with traceable citations.\n- **Agents / post-training**: Qwen3.5-9B, MCP, ReAct / Plan-and-Execute, vLLM, and LoRA / SFT / GRPO experiments.\n- **Safety**: text/image moderation with Qwen3Guard-Gen-0.6B and ShieldGemma 2-4B, Guard-as-Jev probability scoring, and human review.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
   },
   contact: {
     zh:
@@ -597,9 +606,9 @@ const botAnswers = {
   },
   agent: {
     zh:
-      "**dMRI-Agent**\n- 目标：把 diffusion MRI 分析流程转化为可审计、可复现的智能体工作流。\n- 架构：采用 **planner / executor** 协作模式。\n- 能力：支持任务规划、阶段执行、QC 追踪和结构化日志。\n- 状态：相关论文**在投**。",
+      "**dMRI-Agent**\n- 角色：参与设计医学影像 **Planner–Executor** 分层架构。\n- 协议：通过 **Protocol** 封装领域知识、工具依赖、步骤和 QC 规则，支持多阶段规划与人在环控制。\n- 工程：基于 **LangChain / FastAPI** 实现工具调用、3D Slicer 模块发现、权限校验、异常恢复、上下文压缩与 JSONL 轨迹追踪。\n- 状态：相关论文**在投**。",
     en:
-      "**dMRI-Agent**\n- Goal: convert diffusion MRI analysis into an auditable and reproducible agentic workflow.\n- Architecture: a **planner / executor** collaboration pattern.\n- Capabilities: task planning, staged execution, QC tracking, and structured logs.\n- Status: a related manuscript has been **submitted**.",
+      "**dMRI-Agent**\n- Role: contributed to a **Planner-Executor** architecture for medical imaging.\n- Protocols: package domain knowledge, tool dependencies, steps, and QC rules for multi-stage planning and human-in-the-loop control.\n- Engineering: **LangChain / FastAPI** tool calling, 3D Slicer module discovery, permission checks, recovery, context compression, and JSONL traces.\n- Status: a related manuscript has been **submitted**.",
   },
   skills: {
     zh:
@@ -609,9 +618,9 @@ const botAnswers = {
   },
   cv: {
     zh:
-      `**简历入口**\n可以直接查看下面两个版本：\n[中文简历](${links.chineseCv || "./assets/李承锦-CV-中文.pdf"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
+      `**简历入口**\n中文简历已更新为 Chengjin-CV 仓库版本；英文 PDF 暂保留原版。\n[中文简历](${links.chineseCv || "./assets/李承锦-CV-中文.pdf?v=bdda306-20261017"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
     en:
-      `**CV links**\nOpen either version directly:\n[Chinese CV](${links.chineseCv || "./assets/李承锦-CV-中文.pdf"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
+      `**CV links**\nThe Chinese CV now follows the Chengjin-CV repository; the English PDF remains the previous edition.\n[Chinese CV](${links.chineseCv || "./assets/李承锦-CV-中文.pdf?v=bdda306-20261017"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
   },
   default: {
     zh:

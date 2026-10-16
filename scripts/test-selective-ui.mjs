@@ -89,6 +89,18 @@ try {
           foldedMedia: document.querySelectorAll('details').length,
           brand: !!document.querySelector('.brand'),
           socialMeta: document.querySelectorAll('meta[property^="og:"]').length,
+          projects: [...document.querySelectorAll('#projects .entry')].map((entry) => ({
+            name: entry.querySelector('h3').textContent,
+            text: entry.textContent,
+          })),
+          studyhub: {
+            data: window.siteData.studyhub,
+            displayed: [...document.querySelectorAll('[data-studyhub-metric]')].map((element) => ({
+              key: element.dataset.studyhubMetric, text: element.textContent,
+            })),
+          },
+          chineseCv: document.querySelector('.sidebar-actions a').getAttribute('href'),
+          configuredCv: window.siteData.links.chineseCv,
         };
       });
       const label = `${width}x${height} ${language}`;
@@ -114,6 +126,20 @@ try {
       assert.equal(layout.foldedMedia, 0);
       assert.equal(layout.brand, false);
       assert.ok(layout.socialMeta >= 5);
+      assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDDSurfer']);
+      assert.match(layout.projects[0].text, /RRF/);
+      assert.match(layout.projects[0].text, /Guard-as-Jev/);
+      assert.match(layout.projects[0].text, /GRPO/);
+      assert.match(layout.projects[1].text, /25\.5%/);
+      assert.match(layout.projects[1].text, language === 'zh' ? /发表于/ : /published/i);
+      assert.match(layout.projects[2].text, language === 'zh' ? /参与设计/ : /Contributed/);
+      assert.match(layout.projects[3].text, /Python \/ Qt/);
+      assert.ok(layout.studyhub.data.approximate);
+      for (const metric of layout.studyhub.displayed) {
+        assert.equal(metric.text, `${language === 'zh' ? '\u7ea6' : '~'}${layout.studyhub.data[metric.key]}`);
+      }
+      assert.equal(layout.chineseCv, layout.configuredCv, 'Sidebar and Bot must share the versioned CV URL');
+      assert.match(layout.chineseCv, /\?v=/);
       if (screenshots && [1440, 820, 390].includes(width)) {
         await page.locator('.project-details img').first().evaluate((image) => image.decode());
         await page.screenshot({ path: join(screenshots, `homepage-${width}-${language}.png`) });
@@ -145,6 +171,10 @@ try {
   assert.ok(await page.locator('.image-lightbox').evaluate((node) => node.inert));
   assert.equal(await page.locator('.image-lightbox').getAttribute('aria-hidden'), 'true');
   await context.close();
+
+  const cvResponse = await fetch(new URL('./assets/\u674e\u627f\u9526-CV-\u4e2d\u6587.pdf?v=bdda306-20261017', baseURL));
+  assert.equal(cvResponse.status, 200);
+  assert.equal(Buffer.from(await cvResponse.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
 
   for (const [width, height, language] of [[1366, 768, 'zh'], [1536, 864, 'en']]) {
     const { page, context } = await open(width, height, language);
