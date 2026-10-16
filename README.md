@@ -20,8 +20,10 @@ source PNG, rebuild display variants with Pillow 12 or newer:
 python3 scripts/optimize-images.py --refresh-webp
 ```
 
-The first figure is prioritized; later figures are lazy-loaded. The lightbox
-shows the already-loaded display image while decoding the original PNG.
+Each project presents one representative figure before a native, keyboard-accessible
+expandable detail section; remaining figures, technical notes, and the StudyHub
+video live in the detail section. The lightbox supports both hero and detail
+figures and upgrades the already-loaded preview to the original PNG.
 
 ## Bot Layout Regression
 
@@ -43,7 +45,7 @@ to save screenshots outside the repository.
 ## Selective UI Regression
 
 The portfolio keeps the original logos, honor emoji, draggable eye-tracking
-mascot, fully expanded project figures, responsive AVIF/WebP images, and PNG
+mascot, collapsible technical details, responsive AVIF/WebP images, and PNG
 downloads. Typography, sidebar alignment, mobile navigation, and research/honor
 structure selectively borrow from the local `newui` prototype. Tall desktop
 profiles scroll in normal document flow rather than shifting focused controls.

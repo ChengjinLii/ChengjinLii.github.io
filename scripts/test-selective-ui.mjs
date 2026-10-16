@@ -84,7 +84,7 @@ try {
           summaryWidth: document.querySelector('.profile-summary').getBoundingClientRect().width,
           years: [...document.querySelectorAll('.honor-year')].map((node) => parseInt(node.textContent, 10)),
           honors: [...document.querySelectorAll('.honor-text')].map((node) => node.textContent),
-          figures: [...document.querySelectorAll('.project-details img')].map((image) => ({ src: image.dataset.full, avif: !!image.closest('picture').querySelector('source[type="image/avif"]') })),
+          figures: [...document.querySelectorAll('.project-hero img, .project-details img')].map((image) => ({ src: image.dataset.full, avif: !!image.closest('picture').querySelector('source[type="image/avif"]') })),
           articles: document.querySelectorAll('.compact-list article').length,
           foldedMedia: document.querySelectorAll('details').length,
           brand: !!document.querySelector('.brand'),
@@ -122,8 +122,9 @@ try {
       assert.ok(layout.years.every((year, index) => index === 0 || year <= layout.years[index - 1]));
       assert.equal(layout.articles, 5);
       assert.equal(layout.figures.length, 6);
+      assert.equal(layout.projects.length, 4);
       assert.ok(layout.figures.every((figure) => figure.avif && figure.src.endsWith('.png')));
-      assert.equal(layout.foldedMedia, 0);
+      assert.equal(layout.foldedMedia, 4, 'Four native project disclosures must be present');
       assert.equal(layout.brand, false);
       assert.ok(layout.socialMeta >= 5);
       assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDDSurfer']);
@@ -142,7 +143,7 @@ try {
       assert.equal(layout.chineseCv, layout.configuredCv, 'Sidebar and Bot must share the versioned CV URL');
       assert.match(layout.chineseCv, /\?v=/);
       if (screenshots && [1440, 820, 390].includes(width)) {
-        await page.locator('.project-details img').first().evaluate((image) => image.decode());
+        await page.locator('.project-hero img').first().evaluate((image) => image.decode());
         await page.screenshot({ path: join(screenshots, `homepage-${width}-${language}.png`) });
       }
       await context.close();
@@ -163,12 +164,18 @@ try {
   assert.equal(new URL(page.url()).searchParams.get('lang'), 'zh');
   await page.locator('.lang-btn[data-lang="en"]').click();
   assert.equal(new URL(page.url()).searchParams.get('lang'), 'en');
-  await page.locator('.project-details img').first().click();
+  await page.locator('.project-hero img').first().click();
   assert.equal(await page.locator('.image-lightbox__download').textContent(), 'Download PNG');
   const downloadReady = page.waitForEvent('download');
   await page.locator('.image-lightbox__download').click();
   assert.equal((await downloadReady).suggestedFilename(), 'studyhub-poster.png');
   await page.keyboard.press('Escape');
+  assert.equal(await page.locator('.project-disclosure[open]').count(), 0, 'Project details start collapsed');
+  await page.locator('.project-disclosure').first().locator('summary').click();
+  assert.equal(await page.locator('.project-disclosure[open]').count(), 1);
+  assert.ok(await page.locator('.project-video video').isVisible(), 'Expanded StudyHub details preserve video');
+  await page.locator('.project-disclosure').first().locator('summary').click();
+  assert.equal(await page.locator('.project-disclosure[open]').count(), 0);
   assert.ok(await page.locator('.image-lightbox').evaluate((node) => node.inert));
   assert.equal(await page.locator('.image-lightbox').getAttribute('aria-hidden'), 'true');
   await context.close();

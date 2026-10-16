@@ -167,7 +167,7 @@ setupHeaderOffset();
 setupProfileSidebar();
 
 function setupImageLightbox() {
-  const projectImages = document.querySelectorAll(".project-details img");
+  const projectImages = document.querySelectorAll(".project-hero img, .project-details img");
   if (!projectImages.length) return;
 
   const lightbox = document.createElement("div");
