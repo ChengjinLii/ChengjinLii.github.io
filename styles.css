@@ -582,19 +582,20 @@ html:lang(en) .profile-sidebar h1 > span {
 }
 
 .entry-year {
-  padding-top: 0;
-  color: var(--accent-dark);
-  font: 750 20px/1.1 var(--mono);
-  letter-spacing: -0.04em;
+  padding-top: 2px;
+  color: #798781;
+  font: 500 28px/1 var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.075em;
 }
 
 .entry-year::after {
   content: "";
   display: block;
-  width: 26px;
-  height: 2px;
-  margin-top: 12px;
-  background: var(--accent-dark);
+  width: 30px;
+  height: 1px;
+  margin-top: 15px;
+  background: #bcc9c2;
 }
 
 .entry-main {
@@ -879,7 +880,7 @@ html:lang(en) .profile-sidebar h1 > span {
   align-items: baseline;
   gap: 10px;
   min-width: 0;
-  color: var(--accent-dark);
+  color: var(--ink-2);
   font: 700 15px/1.6 var(--sans);
   letter-spacing: 0.005em;
 }
@@ -1981,15 +1982,19 @@ html:lang(en) .education-track em {
 
   .entry-year {
     position: static;
-    display: block;
-    margin: 0 0 13px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 15px;
     padding: 0;
-    font-size: 19px;
-    line-height: 1.1;
+    font-size: 23px;
+    line-height: 1;
   }
 
   .entry-year::after {
-    display: none;
+    display: block;
+    width: 28px;
+    margin: 0;
   }
 
 

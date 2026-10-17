@@ -102,6 +102,7 @@ try {
           skillGroups: [...document.querySelectorAll('#skills .skill-item')].map((item) => ({
             label: item.querySelector('dt').textContent,
             values: [...item.querySelectorAll('dd span')].map((span) => span.textContent),
+            labelColor: getComputedStyle(item.querySelector('dt')).color,
           })),
           sidebarGitHub: document.querySelectorAll('.profile-sidebar a[href="https://github.com/ChengjinLii"]').length,
           contactGitHub: document.querySelectorAll('#contact a[href="https://github.com/ChengjinLii"]').length,
@@ -114,6 +115,8 @@ try {
             text: entry.textContent,
             number: entry.querySelector('.entry-year').textContent.trim(),
             numberFont: parseFloat(getComputedStyle(entry.querySelector('.entry-year')).fontSize),
+            numberColor: getComputedStyle(entry.querySelector('.entry-year')).color,
+            numberRule: getComputedStyle(entry.querySelector('.entry-year'), '::after').height,
             subtitleFont: parseFloat(getComputedStyle(entry.querySelector('.entry-meta')).fontSize),
             tagsFollowSubtitle: entry.querySelector('.entry-meta').nextElementSibling === entry.querySelector('.tag-row'),
             tags: [...entry.querySelectorAll('.tag-row span')].map((tag) => ({
@@ -210,8 +213,10 @@ try {
       assert.deepEqual(layout.skillGroups.map((group) => group.values.length), [2, 1, 1]);
       assert.ok(layout.skillGroups[0].values.join(' ').includes('Claude Code'));
       assert.ok(layout.skillGroups[0].values.join(' ').includes('Muse'));
-      assert.ok(layout.skillGroups[1].values[0].includes('SGLang'));
+      assert.ok(layout.skillGroups[1].values[0].includes('vLLM'));
       assert.ok(layout.skillGroups[2].values[0].includes('Docker'));
+      assert.ok(layout.skillGroups.every((group) => group.labelColor === 'rgb(32, 36, 38)'),
+        'Technical skill headings use neutral ink');
       assert.equal(layout.figures.length, 6);
       assert.ok(layout.figures.every((figure) => figure.avif && figure.src.endsWith('.png')));
       assert.equal(layout.foldedMedia, 4, 'Four project text disclosures should exist');
@@ -219,7 +224,10 @@ try {
       assert.ok(layout.socialMeta >= 5);
       assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDDSurfer']);
       assert.deepEqual(layout.projects.map((project) => project.number), ['01', '02', '03', '04']);
-      assert.ok(layout.projects.every((project) => project.numberFont >= 19 && project.subtitleFont >= 14 && project.tagsFollowSubtitle && project.subtitleFont >= 15), label);
+      assert.ok(layout.projects.every((project) => project.numberFont >= 23 &&
+        project.subtitleFont >= 15 && project.tagsFollowSubtitle), label);
+      assert.ok(layout.projects.every((project) => project.numberColor === 'rgb(121, 135, 129)' && project.numberRule === '1px'),
+        `${label}: muted editorial project indices with a fine rule`);
       assert.deepEqual(layout.projects.map((project) => project.tags.length), [4, 3, 3, 3]);
       assert.ok(layout.projects.every((project) => project.tags.every((tag) => tag.radius === '999px')), label);
       assert.match(layout.projects[0].text, /RRF/);
