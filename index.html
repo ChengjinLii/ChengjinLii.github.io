@@ -34,7 +34,7 @@
     </script>
     <title>Chengjin Li | 李承锦</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261017-skills-section" />
+    <link rel="stylesheet" href="./styles.css?v=20261017-skills-resume" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -50,7 +50,7 @@
           <a href="#contact" data-en="Contact" data-zh="联系">联系</a>
         </nav>
         <div class="language-switch" role="group" aria-label="Language">
-          <a class="lang-btn" href="?lang=en" data-lang="en" aria-label="Switch to English"><span class="lang-label-full">English</span><span class="lang-label-compact" aria-hidden="true">EN</span></a>
+          <a class="lang-btn" href="?lang=en" data-lang="en" aria-label="Switch to English"><span class="lang-label-full">Eng</span><span class="lang-label-compact" aria-hidden="true">Eng</span></a>
           <a class="lang-btn is-active" href="?lang=zh" data-lang="zh" aria-label="切换到中文"><span class="lang-label-full">中文</span><span class="lang-label-compact" aria-hidden="true">中</span></a>
         </div>
       </div>
@@ -73,10 +73,10 @@
             <p>
               <span>2021–2025</span>
               <b data-en="Bachelor" data-zh="本科">本科</b>
-              <em data-en="Information and Communication Engineering" data-zh="信息与通信工程">信息与通信工程</em>
+              <em data-en="Communication Engineering" data-zh="通信工程">通信工程</em>
             </p>
             <p>
-              <span>2025–2028</span>
+              <span data-en="2025–Present" data-zh="2025–至今">2025–至今</span>
               <b data-en="Master" data-zh="硕士">硕士</b>
               <em data-en="Information and Communication Engineering" data-zh="信息与通信工程">信息与通信工程</em>
             </p>
@@ -228,13 +228,16 @@
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
 
-                <p
-                  data-en="Built a PyTorch dual-branch network with cross-stream feature fusion. Addressed pseudo-label noise and boundary bias through Unidirectional Boundary Loss and geometric regularization, combining implicit-explicit prediction with diffeomorphic deformation in a pipeline from preprocessing and template-space inference to native-space back-projection."
-                  data-zh="基于 PyTorch 构建双分支网络与跨流特征融合，针对伪标签噪声和边界偏差设计 Unidirectional Boundary Loss 与几何正则约束，结合隐式—显式预测及微分同胚形变，形成从预处理、模板空间推理到原始空间回传的完整流程。"
-                >
-                  基于 PyTorch 构建双分支网络与跨流特征融合，针对伪标签噪声和边界偏差设计 Unidirectional Boundary Loss 与几何正则约束，结合隐式—显式预测及微分同胚形变，形成从预处理、模板空间推理到原始空间回传的完整流程。
-                </p>
-                <p data-en="Compared with the initial pseudo-labels, relative standard deviation (RSD) of imaging features within the reconstructed cortical regions decreased from <strong>0.550 to 0.410</strong>, a <strong>25.5% reduction</strong>." data-zh="相较于初始伪标签，重建皮层区域的影像特征相对离散度（RSD）由 <strong>0.550 降至 0.410</strong>，降低 <strong>25.5%</strong>。">相较于初始伪标签，重建皮层区域的影像特征相对离散度（RSD）由 <strong>0.550 降至 0.410</strong>，降低 <strong>25.5%</strong>。</p>
+                <ul class="project-highlights">
+                  <li
+                    data-en="<strong>Methodology.</strong> Built a PyTorch dual-branch network with cross-stream feature fusion. Addressed pseudo-label noise and boundary bias through Unidirectional Boundary Loss and geometric regularization, combining implicit-explicit prediction with diffeomorphic deformation in a pipeline from preprocessing and template-space inference to native-space back-projection."
+                    data-zh="<strong>算法创新：</strong>基于 PyTorch 构建双分支网络与跨流特征融合，针对伪标签噪声和边界偏差设计 Unidirectional Boundary Loss 与几何正则约束，结合隐式—显式预测及微分同胚形变，形成从预处理、模板空间推理到原始空间回传的完整流程。"
+                  ><strong>算法创新：</strong>基于 PyTorch 构建双分支网络与跨流特征融合，针对伪标签噪声和边界偏差设计 Unidirectional Boundary Loss 与几何正则约束，结合隐式—显式预测及微分同胚形变，形成从预处理、模板空间推理到原始空间回传的完整流程。</li>
+                  <li
+                    data-en="<strong>Quantitative results.</strong> Compared with the initial pseudo-labels, relative standard deviation (RSD) of imaging features within the reconstructed cortical regions decreased from <strong>0.550 to 0.410</strong>, a <strong>25.5% reduction</strong>."
+                    data-zh="<strong>量化效果：</strong>相较于初始伪标签，重建皮层区域的影像特征相对离散度（RSD）由 <strong>0.550 降至 0.410</strong>，降低 <strong>25.5%</strong>。"
+                  ><strong>量化效果：</strong>相较于初始伪标签，重建皮层区域的影像特征相对离散度（RSD）由 <strong>0.550 降至 0.410</strong>，降低 <strong>25.5%</strong>。</li>
+                </ul>
                 </details>
                 <div class="figure-stack">
                   <figure>
@@ -348,8 +351,8 @@
                 <h3>SlicerDDSurfer</h3>
                 <div class="entry-links"><a href="https://github.com/ChengjinLii/SlicerDDSurfer">GitHub</a></div>
               </div>
-              <p class="entry-meta" data-en="3D Slicer · Algorithm integration and automated workflows" data-zh="3D Slicer · 多算法集成与自动化工作流">
-                3D Slicer · 多算法集成与自动化工作流
+              <p class="entry-meta" data-en="Medical imaging software · Multi-algorithm integration and automated workflows" data-zh="医学图像分析软件 · 多算法集成与自动化 Workflow">
+                医学图像分析软件 · 多算法集成与自动化 Workflow
               </p>
               <div class="tag-row"><span>3D Slicer</span><span>Python</span><span>Qt</span></div>
               <p
@@ -393,10 +396,34 @@
           </article>
         </section>
 
+        <section class="content-section reveal" id="skills">
+          <h2 class="section-title">
+            <span data-en="Technical Skills" data-zh="技术能力">技术能力</span>
+            <small aria-hidden="true">02 / Technical Skills</small>
+          </h2>
+          <dl class="skills-list">
+            <div class="skill-item">
+              <dt>AI Coding</dt>
+              <dd>
+                <span data-en="Codex, Claude Code" data-zh="Codex、Claude Code">Codex、Claude Code</span>
+                <span data-en="Antigravity, Hermes, Muse" data-zh="Antigravity、Hermes、Muse">Antigravity、Hermes、Muse</span>
+              </dd>
+            </div>
+            <div class="skill-item">
+              <dt data-en="Model Development" data-zh="模型开发">模型开发</dt>
+              <dd><span data-en="PyTorch, Transformers, SGLang" data-zh="PyTorch、Transformers、SGLang">PyTorch、Transformers、SGLang</span></dd>
+            </div>
+            <div class="skill-item">
+              <dt data-en="Engineering & Deployment" data-zh="工程部署">工程部署</dt>
+              <dd><span data-en="Linux, Docker, Git" data-zh="Linux、Docker、Git">Linux、Docker、Git</span></dd>
+            </div>
+          </dl>
+        </section>
+
         <section class="content-section reveal" id="research">
           <h2 class="section-title">
             <span data-en="Research" data-zh="科研">科研</span>
-            <small aria-hidden="true">02 / Research log</small>
+            <small aria-hidden="true">03 / Research log</small>
           </h2>
           <div class="compact-list">
             <article>
@@ -457,29 +484,7 @@
         </section>
 
 
-        <section class="content-section reveal" id="skills">
-          <h2 class="section-title">
-            <span data-en="Technical Skills" data-zh="技术能力">技术能力</span>
-            <small aria-hidden="true">03 / Technical Skills</small>
-          </h2>
-          <dl class="skills-list">
-            <div class="skill-item">
-              <dt>AI Coding</dt>
-              <dd>
-                <span data-en="Codex, Claude Code" data-zh="Codex、Claude Code">Codex、Claude Code</span>
-                <span data-en="Antigravity, Hermes, Muse" data-zh="Antigravity、Hermes、Muse">Antigravity、Hermes、Muse</span>
-              </dd>
-            </div>
-            <div class="skill-item">
-              <dt data-en="Model Development" data-zh="模型开发">模型开发</dt>
-              <dd><span data-en="PyTorch, Transformers, SGLang" data-zh="PyTorch、Transformers、SGLang">PyTorch、Transformers、SGLang</span></dd>
-            </div>
-            <div class="skill-item">
-              <dt data-en="Engineering & Deployment" data-zh="工程部署">工程部署</dt>
-              <dd><span data-en="Linux, Docker, Git" data-zh="Linux、Docker、Git">Linux、Docker、Git</span></dd>
-            </div>
-          </dl>
-        </section>
+
 
         <section class="content-section reveal" id="honors">
           <h2 class="section-title">

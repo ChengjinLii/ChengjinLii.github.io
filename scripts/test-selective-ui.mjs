@@ -83,6 +83,15 @@ try {
           sidebarHeight: sidebar.getBoundingClientRect().height,
           sidebarMaxHeight: getComputedStyle(sidebar).maxHeight,
           sidebarWidth: sidebar.getBoundingClientRect().width,
+          education: [...document.querySelectorAll('.education-track p')].map((row) => ({
+            date: row.querySelector('span').textContent.trim(),
+            degree: row.querySelector('b').textContent.trim(),
+            major: row.querySelector('em').textContent.trim(),
+            font: parseFloat(getComputedStyle(row.querySelector('em')).fontSize),
+          })),
+          ddsurferBullets: document.querySelectorAll('#projects .entry:nth-of-type(2) .project-highlights > li').length,
+          projectSubtitles: [...document.querySelectorAll('#projects .entry-meta')].map((entry) => entry.textContent.trim()),
+          languageButton: document.querySelector('.lang-btn[data-lang="en"] .lang-label-full').textContent.trim(),
           actionWidth: document.querySelector('.sidebar-actions').getBoundingClientRect().width,
           summaryWidth: document.querySelector('.profile-summary').getBoundingClientRect().width,
           years: [...document.querySelectorAll('.honor-year')].map((node) => parseInt(node.textContent, 10)),
@@ -181,8 +190,17 @@ try {
       assert.equal(layout.honors.length, 8);
       assert.ok(layout.honors.every((text) => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(text)), 'Keep all existing honor emoji');
       assert.ok(layout.years.every((year, index) => index === 0 || year <= layout.years[index - 1]));
+      assert.equal(layout.languageButton, 'Eng');
+      assert.deepEqual(layout.education.map((item) => item.date), ['2021–2025', language === 'zh' ? '2025–至今' : '2025–Present']);
+      assert.equal(layout.education[0].major, language === 'zh' ? '通信工程' : 'Communication Engineering');
+      assert.ok(layout.education.every((item) => item.font >= 14));
+      assert.equal(layout.ddsurferBullets, 2);
+      assert.ok(layout.projectSubtitles.every((item) => item.length > 0));
+      assert.equal(layout.projectSubtitles[3], language === 'zh'
+        ? '医学图像分析软件 · 多算法集成与自动化 Workflow'
+        : 'Medical imaging software · Multi-algorithm integration and automated workflows');
       assert.equal(layout.articles, 5);
-      assert.deepEqual(layout.sections, ['projects', 'research', 'skills', 'honors', 'contact']);
+      assert.deepEqual(layout.sections, ['projects', 'skills', 'research', 'honors', 'contact']);
       assert.equal(layout.sidebarGitHub, 0, 'Sidebar should no longer repeat GitHub');
       assert.equal(layout.contactGitHub, 1, 'Keep GitHub link in Contact');
       assert.equal(layout.contactIntro, 0, 'Contact greeting removed');
@@ -201,7 +219,7 @@ try {
       assert.ok(layout.socialMeta >= 5);
       assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDDSurfer']);
       assert.deepEqual(layout.projects.map((project) => project.number), ['01', '02', '03', '04']);
-      assert.ok(layout.projects.every((project) => project.numberFont >= 19 && project.subtitleFont >= 14 && project.tagsFollowSubtitle), label);
+      assert.ok(layout.projects.every((project) => project.numberFont >= 19 && project.subtitleFont >= 14 && project.tagsFollowSubtitle && project.subtitleFont >= 15), label);
       assert.deepEqual(layout.projects.map((project) => project.tags.length), [4, 3, 3, 3]);
       assert.ok(layout.projects.every((project) => project.tags.every((tag) => tag.radius === '999px')), label);
       assert.match(layout.projects[0].text, /RRF/);
