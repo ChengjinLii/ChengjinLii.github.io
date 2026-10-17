@@ -70,7 +70,7 @@ try {
           return { text: link.textContent, left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, reachable: link === hit || link.contains(hit) };
         });
         const visible = (element) => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden';
-        const typography = [...document.querySelectorAll('.entry-badges span, .tag-row span, .profile-summary dt, .site-footer')]
+        const typography = [...document.querySelectorAll('.tag-row span, .profile-summary dt, .site-footer')]
           .filter(visible).map((element) => ({ font: parseFloat(getComputedStyle(element).fontSize), transform: getComputedStyle(element).textTransform }));
         return {
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
@@ -92,6 +92,14 @@ try {
           projects: [...document.querySelectorAll('#projects .entry')].map((entry) => ({
             name: entry.querySelector('h3').textContent,
             text: entry.textContent,
+            number: entry.querySelector('.entry-year').textContent.trim(),
+            numberFont: parseFloat(getComputedStyle(entry.querySelector('.entry-year')).fontSize),
+            subtitleFont: parseFloat(getComputedStyle(entry.querySelector('.entry-meta')).fontSize),
+            tagsFollowSubtitle: entry.querySelector('.entry-meta').nextElementSibling === entry.querySelector('.tag-row'),
+            tags: [...entry.querySelectorAll('.tag-row span')].map((tag) => ({
+              text: tag.textContent.trim(),
+              radius: getComputedStyle(tag).borderRadius,
+            })),
           })),
           studyhub: {
             data: window.siteData.studyhub,
@@ -127,6 +135,11 @@ try {
       assert.equal(layout.brand, false);
       assert.ok(layout.socialMeta >= 5);
       assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDDSurfer']);
+      assert.deepEqual(layout.projects.map((project) => project.number), ['01', '02', '03', '04']);
+      assert.ok(layout.projects.every((project) => project.numberFont >= 19 && project.subtitleFont >= 14 && project.tagsFollowSubtitle), label);
+      assert.deepEqual(layout.projects.map((project) => project.tags.length), [4, 3, 3, 3]);
+      assert.ok(layout.projects.every((project) => project.tags.every((tag) => tag.radius === '999px')), label);
+      assert.equal(document.querySelectorAll?.length, undefined);
       assert.match(layout.projects[0].text, /RRF/);
       assert.match(layout.projects[0].text, /Guard-as-Jev/);
       assert.match(layout.projects[0].text, /GRPO/);
