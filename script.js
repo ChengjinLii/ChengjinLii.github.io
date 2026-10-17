@@ -394,7 +394,7 @@ function sampleEyeTarget() {
   const dx = lastPointer.x - centerX;
   const dy = lastPointer.y - centerY;
   const distance = Math.max(Math.hypot(dx, dy), 1);
-  const maxOffset = 6;
+  const maxOffset = 5; // Match StudyHub: keep both eyes safely inside the round face.
   eyeTarget.x = (dx / distance) * maxOffset;
   eyeTarget.y = (dy / distance) * maxOffset;
 }

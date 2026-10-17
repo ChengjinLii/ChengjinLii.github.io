@@ -53,6 +53,43 @@ try {
     await page.goto(`${baseURL}/?lang=${language}`, { waitUntil: 'load' });
     await page.evaluate(() => document.fonts.ready);
   }
+  // Match StudyHub's 14px eye-shadow spacing: the pair must remain centered at
+  // rest and no more than 5px away when tracking in either horizontal direction.
+  async function assertEyePairCentered() {
+    const geometry = await page.evaluate(() => {
+      const bubble = document.querySelector('.floating-sidebar__bubble');
+      const face = bubble.querySelector('.floating-face');
+      const style = document.createElement('style');
+      style.textContent = `
+        .floating-sidebar__bubble .floating-face::before {
+          animation: none !important;
+          transition: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+      const measure = (eyeX) => {
+        bubble.style.setProperty('--eye-x', `${eyeX}px`, 'important');
+        const eye = getComputedStyle(face, '::before');
+        const offset = new DOMMatrixReadOnly(eye.transform).m41;
+        const eyeWidth = parseFloat(eye.width);
+        const gap = 14; // Second pupil is painted via box-shadow.
+        return { offset, pairCenter: offset + gap / 2, eyeWidth };
+      };
+      const centered = measure(0);
+      const left = measure(-5);
+      const right = measure(5);
+      style.remove();
+      bubble.style.removeProperty('--eye-x');
+      return { centered, left, right };
+    });
+    assert.equal(geometry.centered.eyeWidth, 6);
+    assert.ok(Math.abs(geometry.centered.pairCenter) < 0.1,
+      `Neutral eyes must be centered: ${JSON.stringify(geometry)}`);
+    assert.ok(Math.abs(geometry.left.pairCenter + 5) < 0.1,
+      `Left-tracking eyes should shift only -5px: ${JSON.stringify(geometry)}`);
+    assert.ok(Math.abs(geometry.right.pairCenter - 5) < 0.1,
+      `Right-tracking eyes should shift only +5px: ${JSON.stringify(geometry)}`);
+  }
   const mascot = () => page.locator('.floating-sidebar').boundingBox();
   async function assertUnmoved(before, label) {
     const after = await mascot();
@@ -106,6 +143,8 @@ try {
     await page.locator('.portfolio-bot__form button').click();
     await page.waitForFunction((expected) => document.querySelectorAll('.portfolio-bot__message--bot').length === expected, count + 1);
   }
+  await navigate(1280, 720);
+  await assertEyePairCentered();
   const sizes = [[1600, 1000], [1280, 720], [1024, 600], [800, 600], [900, 480],
     [720, 360], [681, 320], [680, 360], [568, 320], [390, 667],
     [320, 480], [240, 320], [240, 200], [1024, 240], [800, 180]];
