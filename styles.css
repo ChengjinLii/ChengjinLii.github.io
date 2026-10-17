@@ -856,6 +856,48 @@ html:lang(en) .profile-sidebar h1 > span {
   line-height: 1.68;
 }
 
+/* Resume-inspired technical skills, aligned with research timeline typography. */
+.skills-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.skill-item {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: start;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.skill-item dt {
+  color: var(--ink);
+  font: 650 15px/1.65 var(--sans);
+}
+
+.skill-item dd {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font: 500 15px/1.65 var(--sans);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 680px) {
+  .skill-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+    padding: 16px 0;
+  }
+
+  .skill-item dt { font-size: 14px; }
+  .skill-item dd { font-size: 14px; line-height: 1.7; }
+}
+
 /* Honors */
 .honor-list {
   display: grid;

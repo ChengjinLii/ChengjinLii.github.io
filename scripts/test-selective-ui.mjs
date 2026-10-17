@@ -89,6 +89,14 @@ try {
           honors: [...document.querySelectorAll('.honor-text')].map((node) => node.textContent),
           figures: [...document.querySelectorAll('.project-details img')].map((image) => ({ src: image.dataset.full, avif: !!image.closest('picture').querySelector('source[type="image/avif"]') })),
           articles: document.querySelectorAll('.compact-list article').length,
+          sections: [...document.querySelectorAll('.content-column > section[id]')].map((section) => section.id),
+          skillGroups: [...document.querySelectorAll('#skills .skill-item')].map((item) => ({
+            label: item.querySelector('dt').textContent,
+            values: [...item.querySelectorAll('dd span')].map((span) => span.textContent),
+          })),
+          sidebarGitHub: document.querySelectorAll('.profile-sidebar a[href="https://github.com/ChengjinLii"]').length,
+          contactGitHub: document.querySelectorAll('#contact a[href="https://github.com/ChengjinLii"]').length,
+          contactIntro: document.querySelectorAll('#contact .contact-card > p').length,
           foldedMedia: document.querySelectorAll('details').length,
           brand: !!document.querySelector('.brand'),
           socialMeta: document.querySelectorAll('meta[property^="og:"]').length,
@@ -174,6 +182,18 @@ try {
       assert.ok(layout.honors.every((text) => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(text)), 'Keep all existing honor emoji');
       assert.ok(layout.years.every((year, index) => index === 0 || year <= layout.years[index - 1]));
       assert.equal(layout.articles, 5);
+      assert.deepEqual(layout.sections, ['projects', 'research', 'skills', 'honors', 'contact']);
+      assert.equal(layout.sidebarGitHub, 0, 'Sidebar should no longer repeat GitHub');
+      assert.equal(layout.contactGitHub, 1, 'Keep GitHub link in Contact');
+      assert.equal(layout.contactIntro, 0, 'Contact greeting removed');
+      assert.deepEqual(layout.skillGroups.map((group) => group.label),
+        language === 'zh' ? ['AI Coding', '模型开发', '工程部署']
+          : ['AI Coding', 'Model Development', 'Engineering & Deployment']);
+      assert.deepEqual(layout.skillGroups.map((group) => group.values.length), [2, 1, 1]);
+      assert.ok(layout.skillGroups[0].values.join(' ').includes('Claude Code'));
+      assert.ok(layout.skillGroups[0].values.join(' ').includes('Muse'));
+      assert.ok(layout.skillGroups[1].values[0].includes('SGLang'));
+      assert.ok(layout.skillGroups[2].values[0].includes('Docker'));
       assert.equal(layout.figures.length, 6);
       assert.ok(layout.figures.every((figure) => figure.avif && figure.src.endsWith('.png')));
       assert.equal(layout.foldedMedia, 4, 'Four project text disclosures should exist');
