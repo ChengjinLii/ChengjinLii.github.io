@@ -2338,7 +2338,7 @@ html:lang(en) .education-track em {
 
 @media (max-width: 420px) {
   .education-track p {
-    grid-template-columns: 72px 32px minmax(0, 1fr);
+    grid-template-columns: 94px 36px minmax(0, 1fr);
   }
 
 }
