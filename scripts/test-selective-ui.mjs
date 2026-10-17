@@ -79,6 +79,9 @@ try {
           h1: parseFloat(getComputedStyle(document.querySelector('h1')).fontSize),
           h3: parseFloat(getComputedStyle(document.querySelector('.entry-main h3')).fontSize),
           sidebarMode: getComputedStyle(sidebar).position, sidebarTop: getComputedStyle(sidebar).top,
+          sidebarOverflow: getComputedStyle(sidebar).overflowY,
+          sidebarHeight: sidebar.getBoundingClientRect().height,
+          sidebarMaxHeight: getComputedStyle(sidebar).maxHeight,
           sidebarWidth: sidebar.getBoundingClientRect().width,
           actionWidth: document.querySelector('.sidebar-actions').getBoundingClientRect().width,
           summaryWidth: document.querySelector('.profile-summary').getBoundingClientRect().width,
@@ -112,10 +115,10 @@ try {
               const second = element.children[1];
               return {
                 display: getComputedStyle(element).display,
-                columns: getComputedStyle(element).gridTemplateColumns.split(' ').length,
-                borderRadius: parseFloat(getComputedStyle(element).borderRadius),
-                width: element.getBoundingClientRect().width,
-                secondDivider: getComputedStyle(second).borderLeftWidth,
+                borderWidth: getComputedStyle(element).borderTopWidth,
+                background: getComputedStyle(element).backgroundImage,
+                backgroundColor: getComputedStyle(element).backgroundColor,
+                separator: getComputedStyle(second, '::before').content,
                 valueSize: parseFloat(getComputedStyle(first.querySelector('strong')).fontSize),
                 firstBackground: getComputedStyle(first).backgroundColor,
               };
@@ -138,7 +141,24 @@ try {
         assert.ok(Math.abs(layout.actionWidth - layout.sidebarWidth) <= 1, `${label}: CV buttons stretch across sidebar`);
         assert.ok(Math.abs(layout.summaryWidth - layout.sidebarWidth) <= 1, `${label}: summary stretches across sidebar`);
       }
-      if (layout.sidebarMode === 'sticky') assert.ok(parseFloat(layout.sidebarTop) >= layout.header.height, label);
+      if (width > 900) {
+        assert.equal(layout.sidebarMode, 'sticky', `${label}: desktop sidebar must stick`);
+        assert.equal(layout.sidebarOverflow, 'auto', `${label}: tall sidebar must scroll internally`);
+        assert.ok(parseFloat(layout.sidebarTop) >= layout.header.height, label);
+        assert.ok(layout.sidebarHeight <= parseFloat(layout.sidebarMaxHeight) + 2, label);
+        const scrolledSidebar = await page.evaluate(async () => {
+          window.scrollTo({ top: 700, behavior: 'instant' });
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+          const rect = document.querySelector('.profile-sidebar').getBoundingClientRect();
+          return { top: rect.top, bottom: rect.bottom, scrollTop: scrollY };
+        });
+        assert.ok(scrolledSidebar.scrollTop >= 600, `${label}: page must actually scroll`);
+        assert.ok(scrolledSidebar.top >= layout.header.height - 1 &&
+          scrolledSidebar.bottom <= height + 1, `${label}: profile must remain visible while page scrolls ${JSON.stringify(scrolledSidebar)}`);
+      } else {
+        assert.notEqual(layout.sidebarMode, 'sticky', `${label}: mobile sidebar stays in page flow`);
+        assert.equal(layout.sidebarOverflow, 'visible', label);
+      }
       assert.equal(layout.honors.length, 8);
       assert.ok(layout.honors.every((text) => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(text)), 'Keep all existing honor emoji');
       assert.ok(layout.years.every((year, index) => index === 0 || year <= layout.years[index - 1]));
@@ -161,11 +181,12 @@ try {
       assert.match(layout.projects[2].text, language === 'zh' ? /参与设计/ : /Contributed/);
       assert.match(layout.projects[3].text, /Python \/ Qt/);
       assert.ok(layout.studyhub.data.approximate);
-      assert.equal(layout.studyhub.strip.display, 'grid', label);
-      assert.equal(layout.studyhub.strip.columns, 2, label);
-      assert.ok(layout.studyhub.strip.borderRadius >= 12 && layout.studyhub.strip.width > 0, label);
-      assert.equal(layout.studyhub.strip.secondDivider, '1px', label);
-      assert.ok(layout.studyhub.strip.valueSize >= 21, label);
+      assert.equal(layout.studyhub.strip.display, 'flex', label);
+      assert.equal(layout.studyhub.strip.borderWidth, '0px', label);
+      assert.equal(layout.studyhub.strip.background, 'none', label);
+      assert.equal(layout.studyhub.strip.backgroundColor, 'rgba(0, 0, 0, 0)', label);
+      assert.match(layout.studyhub.strip.separator, /·/, label);
+      assert.ok(layout.studyhub.strip.valueSize >= 16, label);
       assert.equal(layout.studyhub.strip.firstBackground, 'rgba(0, 0, 0, 0)', label);
       assert.deepEqual(layout.studyhub.displayed.map((metric) => metric.key), ['users', 'downloads']);
       for (const metric of layout.studyhub.displayed) {
@@ -174,6 +195,7 @@ try {
       assert.equal(layout.chineseCv, layout.configuredCv, 'Sidebar and Bot must share the versioned CV URL');
       assert.match(layout.chineseCv, /\?v=/);
       if (screenshots && [1440, 820, 390].includes(width)) {
+        await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
         await page.locator('.project-details img').first().evaluate((image) => image.decode());
         await page.screenshot({ path: join(screenshots, `homepage-${width}-${language}.png`) });
       }

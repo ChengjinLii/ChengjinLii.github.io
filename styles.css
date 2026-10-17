@@ -194,11 +194,12 @@ section,
   top: var(--profile-sticky-top, 116px);
   align-self: start;
   min-width: 0;
-}
-
-.profile-sidebar.is-tall {
-  position: relative;
-  top: auto;
+  /* Keep tall laptop profiles visible without turning off sticky positioning. */
+  max-height: calc(100vh - var(--profile-sticky-top, 116px) - 16px);
+  max-height: calc(100dvh - var(--profile-sticky-top, 116px) - 16px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccd5d0 transparent;
 }
 .profile-eyebrow {
   display: flex;
@@ -665,58 +666,55 @@ html:lang(en) .profile-sidebar h1 > span {
   font-weight: 750;
 }
 
-/* StudyHub reach — a single, quiet two-column statistic strip. */
+/* Plain, editorial StudyHub reach figures — no nested cards or color fills. */
 .metric-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 450px);
-  gap: 0;
-  margin-top: 21px;
-  padding: 18px 21px;
-  border: 1px solid #dce7e0;
-  border-radius: 14px;
-  background: linear-gradient(120deg, #f2f8f4, #f9fbfa);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  width: auto;
+  margin-top: 17px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
 
 .metric-row > span {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: inline-flex;
+  align-items: baseline;
   gap: 6px;
   min-width: 0;
-  padding: 0 20px;
+  padding: 0;
   border: 0;
-  background: transparent;
+  background: none;
 }
 
-.metric-row > span:first-child {
-  padding-left: 0;
-}
-
-.metric-row > span + span {
-  padding-right: 0;
-  padding-left: 26px;
-  border-left: 1px solid #d4e0d8;
+.metric-row > span + span::before {
+  content: "·";
+  color: var(--line-strong);
+  font: 650 17px/1 var(--sans);
+  margin-right: 10px;
 }
 
 .metric-row strong,
 .metric-row em {
-  display: block;
+  display: inline;
 }
 
 .entry-main .metric-row strong {
-  color: #17362b;
-  font: 730 27px/1.13 var(--mono);
+  color: var(--ink-2);
+  font: 700 17px/1.45 var(--sans);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.02em;
 }
 
 .metric-row em {
   margin: 0;
-  color: #64796f;
-  font: 600 12px/1.35 var(--sans);
+  color: var(--muted);
+  font: 500 14px/1.45 var(--sans);
   font-style: normal;
-  letter-spacing: 0.035em;
+  letter-spacing: 0;
 }
 
 .tag-row {
@@ -1651,6 +1649,8 @@ html:lang(en) .education-track em {
   .profile-sidebar {
     position: relative;
     top: auto;
+    max-height: none;
+    overflow: visible;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
     gap: 20px 30px;
@@ -1973,41 +1973,38 @@ html:lang(en) .education-track em {
   }
 
   .metric-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
-    max-width: 450px;
-    gap: 0;
-    margin-top: 18px;
-    padding: 15px 16px;
-    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    width: auto;
+    max-width: none;
+    margin-top: 16px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
   }
 
   .metric-row > span {
-    padding: 0 12px;
+    display: inline-flex;
+    padding: 0;
     border: 0;
-    border-radius: 0;
-    background: transparent;
+    background: none;
   }
 
-  .metric-row > span:first-child {
-    padding-left: 0;
-  }
-
-  .metric-row > span + span {
-    padding-right: 0;
-    padding-left: 18px;
-    border-left: 1px solid #d4e0d8;
+  .metric-row > span + span::before {
+    margin-right: 6px;
   }
 
   .entry-main .metric-row strong {
-    font-size: clamp(21px, 6.1vw, 26px);
-    line-height: 1.13;
+    font-size: 16px;
+    line-height: 1.45;
   }
 
   .metric-row em {
-    font-size: 12px;
-    line-height: 1.4;
-    letter-spacing: 0.015em;
+    font-size: 13px;
+    line-height: 1.45;
+    letter-spacing: 0;
     text-transform: none;
   }
 

@@ -133,15 +133,13 @@ function setupProfileSidebar() {
   if (!sidebar || !header) return;
 
   const updatePosition = () => {
-    const top = header.offsetHeight + 24;
-    sidebar.style.setProperty("--profile-sticky-top", `${top}px`);
-    // Do not shift a focused sidebar: tall profiles simply stay in the document flow.
-    const desktop = window.matchMedia("(min-width: 901px)").matches;
-    sidebar.classList.toggle("is-tall", desktop && sidebar.offsetHeight > window.innerHeight - top - 24);
+    sidebar.style.setProperty("--profile-sticky-top", `${header.offsetHeight + 24}px`);
+    // CSS limits tall desktop profiles to the visible height, so they remain sticky.
+    // Tablet and mobile layout explicitly resets the scroll container.
   };
 
   if ("ResizeObserver" in window) {
-    new ResizeObserver(updatePosition).observe(sidebar);
+    new ResizeObserver(updatePosition).observe(header);
   }
   window.addEventListener("resize", updatePosition, { passive: true });
   updatePosition();
