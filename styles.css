@@ -665,15 +665,38 @@ html:lang(en) .profile-sidebar h1 > span {
   font-weight: 750;
 }
 
+/* StudyHub reach — a single, quiet two-column statistic strip. */
 .metric-row {
-  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, 450px);
+  gap: 0;
+  margin-top: 21px;
+  padding: 18px 21px;
+  border: 1px solid #dce7e0;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #f2f8f4, #f9fbfa);
 }
 
 .metric-row > span {
-  min-width: 112px;
-  padding: 11px 13px;
-  border-left: 2px solid var(--ink);
-  background: var(--surface-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 20px;
+  border: 0;
+  background: transparent;
+}
+
+.metric-row > span:first-child {
+  padding-left: 0;
+}
+
+.metric-row > span + span {
+  padding-right: 0;
+  padding-left: 26px;
+  border-left: 1px solid #d4e0d8;
 }
 
 .metric-row strong,
@@ -681,16 +704,19 @@ html:lang(en) .profile-sidebar h1 > span {
   display: block;
 }
 
-.metric-row strong {
-  font: 700 22px/1.1 var(--mono);
+.entry-main .metric-row strong {
+  color: #17362b;
+  font: 730 27px/1.13 var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.065em;
 }
 
 .metric-row em {
-  margin-top: 5px;
-  color: var(--muted);
-  font: 650 12px/1.3 var(--sans);
+  margin: 0;
+  color: #64796f;
+  font: 600 12px/1.35 var(--sans);
   font-style: normal;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.035em;
 }
 
 .tag-row {
@@ -1947,27 +1973,41 @@ html:lang(en) .education-track em {
   }
 
   .metric-row {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
-    margin-top: 16px;
+    width: 100%;
+    max-width: 450px;
+    gap: 0;
+    margin-top: 18px;
+    padding: 15px 16px;
+    border-radius: 12px;
   }
 
   .metric-row > span {
-    min-width: 0;
-    padding: 10px 6px;
-    border-radius: 0 6px 6px 0;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
   }
 
-  .metric-row strong {
-    font-size: 20px;
-    line-height: 1.2;
+  .metric-row > span:first-child {
+    padding-left: 0;
+  }
+
+  .metric-row > span + span {
+    padding-right: 0;
+    padding-left: 18px;
+    border-left: 1px solid #d4e0d8;
+  }
+
+  .entry-main .metric-row strong {
+    font-size: clamp(21px, 6.1vw, 26px);
+    line-height: 1.13;
   }
 
   .metric-row em {
     font-size: 12px;
     line-height: 1.4;
-    letter-spacing: 0;
+    letter-spacing: 0.015em;
     text-transform: none;
   }
 

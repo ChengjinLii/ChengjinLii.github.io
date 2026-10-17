@@ -106,6 +106,20 @@ try {
             displayed: [...document.querySelectorAll('[data-studyhub-metric]')].map((element) => ({
               key: element.dataset.studyhubMetric, text: element.textContent,
             })),
+            strip: (() => {
+              const element = document.querySelector('#projects .metric-row');
+              const first = element.children[0];
+              const second = element.children[1];
+              return {
+                display: getComputedStyle(element).display,
+                columns: getComputedStyle(element).gridTemplateColumns.split(' ').length,
+                borderRadius: parseFloat(getComputedStyle(element).borderRadius),
+                width: element.getBoundingClientRect().width,
+                secondDivider: getComputedStyle(second).borderLeftWidth,
+                valueSize: parseFloat(getComputedStyle(first.querySelector('strong')).fontSize),
+                firstBackground: getComputedStyle(first).backgroundColor,
+              };
+            })(),
           },
           chineseCv: document.querySelector('.sidebar-actions a').getAttribute('href'),
           configuredCv: window.siteData.links.chineseCv,
@@ -139,7 +153,6 @@ try {
       assert.ok(layout.projects.every((project) => project.numberFont >= 19 && project.subtitleFont >= 14 && project.tagsFollowSubtitle), label);
       assert.deepEqual(layout.projects.map((project) => project.tags.length), [4, 3, 3, 3]);
       assert.ok(layout.projects.every((project) => project.tags.every((tag) => tag.radius === '999px')), label);
-      assert.equal(document.querySelectorAll?.length, undefined);
       assert.match(layout.projects[0].text, /RRF/);
       assert.match(layout.projects[0].text, /Guard-as-Jev/);
       assert.match(layout.projects[0].text, /GRPO/);
@@ -148,6 +161,12 @@ try {
       assert.match(layout.projects[2].text, language === 'zh' ? /参与设计/ : /Contributed/);
       assert.match(layout.projects[3].text, /Python \/ Qt/);
       assert.ok(layout.studyhub.data.approximate);
+      assert.equal(layout.studyhub.strip.display, 'grid', label);
+      assert.equal(layout.studyhub.strip.columns, 2, label);
+      assert.ok(layout.studyhub.strip.borderRadius >= 12 && layout.studyhub.strip.width > 0, label);
+      assert.equal(layout.studyhub.strip.secondDivider, '1px', label);
+      assert.ok(layout.studyhub.strip.valueSize >= 21, label);
+      assert.equal(layout.studyhub.strip.firstBackground, 'rgba(0, 0, 0, 0)', label);
       assert.deepEqual(layout.studyhub.displayed.map((metric) => metric.key), ['users', 'downloads']);
       for (const metric of layout.studyhub.displayed) {
         assert.equal(metric.text, `~${layout.studyhub.data[metric.key]}`);
