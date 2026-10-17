@@ -104,6 +104,17 @@ try {
               radius: getComputedStyle(tag).borderRadius,
             })),
           })),
+          publication: (() => {
+            const element = document.querySelector('#projects .publication-metrics');
+            return {
+              numberOfFacts: element.querySelectorAll('strong').length,
+              facts: [...element.querySelectorAll('strong')].map((node) => node.textContent.trim()),
+              labels: [...element.querySelectorAll('em')].map((node) => node.textContent.trim()),
+              valueSize: parseFloat(getComputedStyle(element.querySelector('strong')).fontSize),
+              borderWidth: getComputedStyle(element).borderTopWidth,
+              background: getComputedStyle(element).backgroundImage,
+            };
+          })(),
           studyhub: {
             data: window.siteData.studyhub,
             displayed: [...document.querySelectorAll('[data-studyhub-metric]')].map((element) => ({
@@ -177,7 +188,14 @@ try {
       assert.match(layout.projects[0].text, /Guard-as-Jev/);
       assert.match(layout.projects[0].text, /GRPO/);
       assert.match(layout.projects[1].text, /25\.5%/);
-      assert.match(layout.projects[1].text, language === 'zh' ? /发表于/ : /published/i);
+      assert.match(layout.projects[1].text, language === 'zh' ? /无需额外 T1w 结构像/ : /without an additional T1w scan/i);
+      assert.equal(layout.publication.numberOfFacts, 3);
+      assert.deepEqual(layout.publication.facts, ['Advanced Science', language === 'zh' ? '一区 TOP' : 'CAS Q1 TOP', '14.1']);
+      assert.deepEqual(layout.publication.labels, language === 'zh'
+        ? ['期刊', '中科院分区', '影响因子'] : ['Journal', 'CAS ranking', 'IF']);
+      assert.equal(layout.publication.borderWidth, '0px');
+      assert.equal(layout.publication.background, 'none');
+      assert.ok(layout.publication.valueSize >= 21, label);
       assert.match(layout.projects[2].text, language === 'zh' ? /参与设计/ : /Contributed/);
       assert.match(layout.projects[3].text, /Python \/ Qt/);
       assert.ok(layout.studyhub.data.approximate);
@@ -186,7 +204,7 @@ try {
       assert.equal(layout.studyhub.strip.background, 'none', label);
       assert.equal(layout.studyhub.strip.backgroundColor, 'rgba(0, 0, 0, 0)', label);
       assert.match(layout.studyhub.strip.separator, /·/, label);
-      assert.ok(layout.studyhub.strip.valueSize >= 16, label);
+      assert.ok(layout.studyhub.strip.valueSize >= 23, label);
       assert.equal(layout.studyhub.strip.firstBackground, 'rgba(0, 0, 0, 0)', label);
       assert.deepEqual(layout.studyhub.displayed.map((metric) => metric.key), ['users', 'downloads']);
       for (const metric of layout.studyhub.displayed) {
