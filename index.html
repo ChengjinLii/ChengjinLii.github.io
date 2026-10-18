@@ -146,11 +146,9 @@
               </p>
               <div class="tag-row"><span>FastAPI</span><span>Next.js</span><span>RAG</span><span>MCP</span></div>
               <p
-                data-en="Led the architecture, development, and ongoing operation of a campus knowledge-sharing platform spanning study resources, experience sharing, requests, and a student marketplace. Combined a full-stack product with knowledge-base RAG, agentic tool use, and multimodal moderation, while managing outreach, user communities, and feedback-driven iteration."
-                data-zh="主导校园知识共享平台的架构设计、开发与持续运营，覆盖资料共享、经验交流、求购协作与校园集市；将全栈业务系统与知识库 RAG、Agent 工具调用及多模态安全审核整合为 AI 学习平台，并负责平台宣发、用户社群与反馈驱动的迭代。"
-              >
-                主导校园知识共享平台的架构设计、开发与持续运营，覆盖资料共享、经验交流、求购协作与校园集市；将全栈业务系统与知识库 RAG、Agent 工具调用及多模态安全审核整合为 AI 学习平台，并负责平台宣发、用户社群与反馈驱动的迭代。
-              </p>
+                data-en="Led the architecture, core development, and ongoing operation of StudyHub for campus resource sharing, peer experiences, requests, and marketplace listings. Extended the full-stack platform with RAG retrieval, an incremental Wiki, agent-assisted Q&A, and multimodal content moderation while overseeing access control, deployment, and user feedback."
+                data-zh="主导 StudyHub 的产品架构、核心功能开发与持续运营，服务校园资料共享、经验交流、求购协作及校园集市；在全栈业务基础上拓展 RAG 知识检索、增量 Wiki、Agent 问答与多模态内容审核，并负责权限管理、部署运维和用户反馈迭代。"
+              >主导 StudyHub 的产品架构、核心功能开发与持续运营，服务校园资料共享、经验交流、求购协作及校园集市；在全栈业务基础上拓展 RAG 知识检索、增量 Wiki、Agent 问答与多模态内容审核，并负责权限管理、部署运维和用户反馈迭代。</p>
               <div class="metric-row">
                 <span><strong data-studyhub-metric="users">~400</strong><em data-en="users" data-zh="用户">用户</em></span>
                 <span><strong data-studyhub-metric="downloads">~2,000</strong><em data-en="downloads" data-zh="下载">下载</em></span>
@@ -163,10 +161,10 @@
                   </summary>
 
                 <ul class="project-highlights">
-                  <li data-en="<strong>Architecture and deployment.</strong> Built the product with Next.js (React / TypeScript), FastAPI, MySQL, Redis, OSS, and dedicated workers; deployed it with Docker / Nginx and used permission isolation to enforce AI-tool and download-authorization boundaries." data-zh="<strong>全栈架构与部署：</strong>采用 Next.js（React / TypeScript）、FastAPI、MySQL、Redis、OSS 与独立 Worker 服务，结合 Docker / Nginx 部署，通过权限隔离约束 AI 工具调用与下载授权边界。"><strong>全栈架构与部署：</strong>采用 Next.js（React / TypeScript）、FastAPI、MySQL、Redis、OSS 与独立 Worker 服务，结合 Docker / Nginx 部署，通过权限隔离约束 AI 工具调用与下载授权边界。</li>
-                  <li data-en="<strong>RAG and incremental Wiki.</strong> Drawing on WeKnora, designed PDF/OCR parsing, structure-aware chunking, and parent-child indexing; combined BM25, vector retrieval, RRF, and reranking. Used Map-Reduce to aggregate cross-document knowledge and incrementally update the Wiki, with document-, chunk-, and page-level citation traceability." data-zh="<strong>知识库 RAG 与增量 Wiki：</strong>借鉴 WeKnora，设计 PDF/OCR 解析、结构感知切分与 Parent-Child 分层索引；结合 BM25、向量召回、RRF 与 Rerank 构建混合检索，并通过 Map-Reduce 聚合跨文档知识、增量更新 Wiki，保留文档、Chunk 与页码级引用。"><strong>知识库 RAG 与增量 Wiki：</strong>借鉴 WeKnora，设计 PDF/OCR 解析、结构感知切分与 Parent-Child 分层索引；结合 BM25、向量召回、RRF 与 Rerank 构建混合检索，并通过 Map-Reduce 聚合跨文档知识、增量更新 Wiki，保留文档、Chunk 与页码级引用。</li>
-                  <li data-en="<strong>Agents and model optimization.</strong> Implemented ReAct and Plan-and-Execute workflows with Qwen3.5-9B and MCP, using vLLM serving and structured execution traces. Conducted LoRA / SFT and GRPO post-training experiments with verifiable rewards, output constraints, and runtime guards to improve execution reliability." data-zh="<strong>Agent 与模型优化：</strong>基于 Qwen3.5-9B 与 MCP 实现 ReAct、Plan-and-Execute，结合 vLLM 服务与结构化执行轨迹；开展 LoRA / SFT 与 GRPO 后训练实验，通过可验证奖励、输出约束和 Runtime Guard 优化执行可靠性。"><strong>Agent 与模型优化：</strong>基于 Qwen3.5-9B 与 MCP 实现 ReAct、Plan-and-Execute，结合 vLLM 服务与结构化执行轨迹；开展 LoRA / SFT 与 GRPO 后训练实验，通过可验证奖励、输出约束和 Runtime Guard 优化执行可靠性。</li>
-                  <li data-en="<strong>Multimodal safety.</strong> Designed separate text and image moderation paths with Qwen3Guard-Gen-0.6B and ShieldGemma 2-4B. Applied Guard-as-Jev candidate-probability scoring based on model logits, alongside rule fusion, confidence thresholds, and human review for interpretable risk assessment." data-zh="<strong>多模态安全审核：</strong>基于 Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 设计文本、图像双路审核，引入基于模型 Logits 的 Guard-as-Jev 候选概率评分，结合规则融合、置信度阈值与人工复核进行可解释的风险分级。"><strong>多模态安全审核：</strong>基于 Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 设计文本、图像双路审核，引入基于模型 Logits 的 Guard-as-Jev 候选概率评分，结合规则融合、置信度阈值与人工复核进行可解释的风险分级。</li>
+                  <li data-en="<strong>Architecture and deployment.</strong> Built frontend and backend services with Next.js (React / TypeScript), FastAPI, MySQL, Redis, OSS, and dedicated workers, deployed with Docker / Nginx. Enforced permission boundaries for document management, downloads, and AI-tool access." data-zh="<strong>全栈架构与部署：</strong>基于 Next.js（React / TypeScript）、FastAPI、MySQL、Redis、OSS 与独立 Worker 构建前后端服务，通过 Docker / Nginx 部署；围绕资料管理、下载授权和 AI 工具调用设置权限边界。"><strong>全栈架构与部署：</strong>基于 Next.js（React / TypeScript）、FastAPI、MySQL、Redis、OSS 与独立 Worker 构建前后端服务，通过 Docker / Nginx 部署；围绕资料管理、下载授权和 AI 工具调用设置权限边界。</li>
+                  <li data-en="<strong>RAG and incremental Wiki.</strong> Drawing on WeKnora, combined PDF/OCR parsing, structure-aware chunking, parent-child indexing, BM25, BGE-M3 retrieval, RRF fusion, and Qwen3-Reranker-0.6B. Aggregated cross-document entities and concepts with Map-Reduce; maintained the Wiki with chunk-level extraction caching, source traceability, and retraction of unsupported knowledge. In a SciFact subset comparison, Hit@5 rose from 87.5% to 96.9% and MRR@5 from 0.828 to 0.932." data-zh="<strong>知识库 RAG 与增量 Wiki：</strong>参考 WeKnora 的知识库设计，采用 PDF/OCR 解析、结构感知切分和 Parent-Child 分层索引，结合 BM25、BGE-M3 向量召回、RRF 融合与 Qwen3-Reranker-0.6B 重排；以 Map-Reduce 汇聚跨文档实体与概念，通过 Chunk 级抽取缓存、来源追溯和失效知识撤回支持 Wiki 增量更新。SciFact 对照中 Hit@5 由 87.5% 升至 96.9%，MRR@5 由 0.828 升至 0.932。"><strong>知识库 RAG 与增量 Wiki：</strong>参考 WeKnora 的知识库设计，采用 PDF/OCR 解析、结构感知切分和 Parent-Child 分层索引，结合 BM25、BGE-M3 向量召回、RRF 融合与 Qwen3-Reranker-0.6B 重排；以 Map-Reduce 汇聚跨文档实体与概念，通过 Chunk 级抽取缓存、来源追溯和失效知识撤回支持 Wiki 增量更新。SciFact 对照中 Hit@5 由 87.5% 升至 96.9%，MRR@5 由 0.828 升至 0.932。</li>
+                  <li data-en="<strong>Agents and model optimization.</strong> Built a Qwen3.5-9B ReAct tool-use framework with MCP and vLLM, and designed a task-complexity-aware choice between ReAct and Plan-and-Execute. Added tool-call validation, citation feedback and repair, structured refusals, context compaction, and controlled termination. Evaluated LoRA-based SFT and GRPO for tool calling, observing success rates of 87.5% versus 93.8% on a fixed test subset." data-zh="<strong>Agent 与模型优化：</strong>基于 Qwen3.5-9B、MCP 与 vLLM 搭建 ReAct 多步工具调用框架，并设计面向不同任务复杂度的 ReAct / Plan-and-Execute 执行策略；引入工具调用校验、引用反馈修复、结构化拒答、上下文压缩和受控收尾机制。面向 Tool Calling，基于 LoRA 开展 SFT 与 GRPO 后训练及对照评测，工具调用成功率由 87.5% 升至 93.8%。"><strong>Agent 与模型优化：</strong>基于 Qwen3.5-9B、MCP 与 vLLM 搭建 ReAct 多步工具调用框架，并设计面向不同任务复杂度的 ReAct / Plan-and-Execute 执行策略；引入工具调用校验、引用反馈修复、结构化拒答、上下文压缩和受控收尾机制。面向 Tool Calling，基于 LoRA 开展 SFT 与 GRPO 后训练及对照评测，工具调用成功率由 87.5% 升至 93.8%。</li>
+                  <li data-en="<strong>Multimodal safety.</strong> Integrated Qwen3Guard-Gen-0.6B and ShieldGemma 2-4B for text, image, and OCR-assisted moderation. Candidate-class probabilities guide confidence-based routing: high-confidence cases are approved or rejected automatically, while uncertain or controversial cases go to human review. In one offline XSTest text evaluation, automatic coverage was 65.6%, with no observed errors among auto-decided cases." data-zh="<strong>多模态安全审核：</strong>使用 Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 构建文本、图像及 OCR 图文审核流程；通过候选类别概率评分和置信度分流，对高置信度内容自动放行或拒绝，将低置信度及争议内容转人工复核。在一组 XSTest 文本离线测试中，自动审核覆盖率为 65.6%，自动处理部分未观察到错误。"><strong>多模态安全审核：</strong>使用 Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 构建文本、图像及 OCR 图文审核流程；通过候选类别概率评分和置信度分流，对高置信度内容自动放行或拒绝，将低置信度及争议内容转人工复核。在一组 XSTest 文本离线测试中，自动审核覆盖率为 65.6%，自动处理部分未观察到错误。</li>
                 </ul>
                 </details>
                 <figure>
@@ -211,11 +209,9 @@
               </p>
               <div class="tag-row"><span>PyTorch</span><span>dMRI</span><span>Weak Supervision</span></div>
               <p
-                data-en="DDSurfer uses a weakly supervised dual-stream framework to reconstruct white and pial cortical surfaces directly from diffusion MRI, without an additional T1w scan."
-                data-zh="DDSurfer 通过弱监督双流框架，直接从扩散 MRI 重建白质表面与软脑膜表面，无需额外 T1w 结构像。"
-              >
-                DDSurfer 通过弱监督双流框架，直接从扩散 MRI 重建白质表面与软脑膜表面，无需额外 T1w 结构像。
-              </p>
+                data-en="DDSurfer reconstructs white-matter and pial cortical surfaces from diffusion magnetic resonance imaging (dMRI) using a weakly supervised dual-stream framework, without requiring an additional T1-weighted scan. Predicted surfaces are mapped back to native image space."
+                data-zh="DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督双流皮层表面重建方法，无需额外 T1w 结构像即可从 dMRI 重建白质表面和软脑膜表面，并将预测结果映射回原始影像空间。"
+              >DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督双流皮层表面重建方法，无需额外 T1w 结构像即可从 dMRI 重建白质表面和软脑膜表面，并将预测结果映射回原始影像空间。</p>
               <div class="metric-row publication-metrics">
                 <span><strong>Advanced Science</strong><em data-en="Journal" data-zh="期刊">期刊</em></span>
                 <span><strong data-en="CAS Q1 TOP" data-zh="一区 TOP">一区 TOP</strong><em data-en="CAS ranking" data-zh="中科院分区">中科院分区</em></span>
@@ -230,13 +226,13 @@
 
                 <ul class="project-highlights">
                   <li
-                    data-en="<strong>Methodology.</strong> Built a PyTorch dual-branch network with cross-stream feature fusion. Addressed pseudo-label noise and boundary bias through Unidirectional Boundary Loss and geometric regularization, combining implicit-explicit prediction with diffeomorphic deformation in a pipeline from preprocessing and template-space inference to native-space back-projection."
-                    data-zh="<strong>算法创新：</strong>基于 PyTorch 构建双分支网络与跨流特征融合，针对伪标签噪声和边界偏差设计 Unidirectional Boundary Loss 与几何正则约束，结合隐式—显式预测及微分同胚形变，形成从预处理、模板空间推理到原始空间回传的完整流程。"
-                  ><strong>算法创新：</strong>基于 PyTorch 构建双分支网络与跨流特征融合，针对伪标签噪声和边界偏差设计 Unidirectional Boundary Loss 与几何正则约束，结合隐式—显式预测及微分同胚形变，形成从预处理、模板空间推理到原始空间回传的完整流程。</li>
+                    data-en="<strong>Methodology.</strong> Developed a Dual-Stream + Cross-SE network in PyTorch for complementary feature fusion. Used Unidirectional Boundary Loss and geometric regularization to address noisy pseudo-labels and boundary deviations; combined implicit-explicit surface prediction with diffeomorphic deformation, from preprocessing and template-space inference to native-space reconstruction."
+                    data-zh="<strong>算法创新：</strong>使用 PyTorch 构建 Dual-Stream + Cross-SE 双分支特征融合网络，针对伪标签噪声与复杂边界设计 Unidirectional Boundary Loss 和几何正则约束；结合隐式—显式表面预测与微分同胚形变，形成预处理、模板空间推理和原始空间结果回传的重建流程。"
+                  ><strong>算法创新：</strong>使用 PyTorch 构建 Dual-Stream + Cross-SE 双分支特征融合网络，针对伪标签噪声与复杂边界设计 Unidirectional Boundary Loss 和几何正则约束；结合隐式—显式表面预测与微分同胚形变，形成预处理、模板空间推理和原始空间结果回传的重建流程。</li>
                   <li
-                    data-en="<strong>Quantitative results.</strong> Compared with the initial pseudo-labels, relative standard deviation (RSD) of imaging features within the reconstructed cortical regions decreased from <strong>0.550 to 0.410</strong>, a <strong>25.5% reduction</strong>."
-                    data-zh="<strong>量化效果：</strong>相较于初始伪标签，重建皮层区域的影像特征相对离散度（RSD）由 <strong>0.550 降至 0.410</strong>，降低 <strong>25.5%</strong>。"
-                  ><strong>量化效果：</strong>相较于初始伪标签，重建皮层区域的影像特征相对离散度（RSD）由 <strong>0.550 降至 0.410</strong>，降低 <strong>25.5%</strong>。</li>
+                    data-en="<strong>Quantitative results.</strong> Relative to initial pseudo-labels, volumetric similarity for two cortical surfaces improved from <strong>0.944 / 0.923 to 0.985 / 0.980</strong>, while regional imaging-measurement variability decreased by <strong>25.5% / 31.7%</strong>. Generalization was evaluated on four external datasets totaling 203 participants."
+                    data-zh="<strong>量化效果：</strong>相较初始伪标签，两类皮层表面的体积相似性由 <strong>0.944 / 0.923 提升至 0.985 / 0.980</strong>，区域影像测量离散度分别降低 <strong>25.5% / 31.7%</strong>；在 4 个外部数据集、203 名受试者上进行了泛化验证。"
+                  ><strong>量化效果：</strong>相较初始伪标签，两类皮层表面的体积相似性由 <strong>0.944 / 0.923 提升至 0.985 / 0.980</strong>，区域影像测量离散度分别降低 <strong>25.5% / 31.7%</strong>；在 4 个外部数据集、203 名受试者上进行了泛化验证。</li>
                 </ul>
                 </details>
                 <div class="figure-stack">
@@ -289,11 +285,9 @@
               </p>
               <div class="tag-row"><span>LangChain</span><span>FastAPI</span><span>Protocol</span></div>
               <p
-                data-en="Contributed to a Planner-Executor architecture for diffusion MRI analysis. Developed a Protocol mechanism that packages domain knowledge, tool dependencies, execution steps, and QC rules, enabling an LLM to select protocols, produce structured plans, and coordinate multi-stage workflows with human-in-the-loop control. A related manuscript has been submitted."
-                data-zh="参与设计面向扩散 MRI 分析的 Planner–Executor 分层架构，通过 Protocol 封装领域知识、工具依赖、执行步骤与 QC 规则，由 LLM 选择协议并生成结构化计划，支持多阶段编排与人在环控制；相关论文在投。"
-              >
-                参与设计面向扩散 MRI 分析的 Planner–Executor 分层架构，通过 Protocol 封装领域知识、工具依赖、执行步骤与 QC 规则，由 LLM 选择协议并生成结构化计划，支持多阶段编排与人在环控制；相关论文在投。
-              </p>
+                data-en="Contributed to a medical-imaging agent for dMRI analysis. Encoded expert procedures as loadable Protocols specifying inputs, outputs, tool dependencies, stage checks, and error handling. A Planner–Executor design separates task planning from staged execution across 3D Slicer and external analysis tools; a related manuscript is under review."
+                data-zh="参与设计面向 dMRI 分析的医学影像 Agent，将专家操作流程整理为可按需加载的 Protocol，明确输入输出、工具依赖、阶段检查和异常处置；通过 Planner–Executor 分离任务规划与分阶段执行，协调 3D Slicer 及外部分析工具完成多步骤工作流，相关论文在投。"
+              >参与设计面向 dMRI 分析的医学影像 Agent，将专家操作流程整理为可按需加载的 Protocol，明确输入输出、工具依赖、阶段检查和异常处置；通过 Planner–Executor 分离任务规划与分阶段执行，协调 3D Slicer 及外部分析工具完成多步骤工作流，相关论文在投。</p>
               <div class="project-details">
                 <details class="project-text-collapse">
                   <summary>
@@ -302,11 +296,9 @@
                   </summary>
 
                 <p
-                  data-en="Implemented tool calling and 3D Slicer module discovery with LangChain and FastAPI, together with parameter and permission validation, failure recovery, context compression, and JSONL trace logging for controlled, reproducible execution."
-                  data-zh="基于 LangChain 与 FastAPI 实现工具调用、3D Slicer 模块发现，以及参数和权限校验、异常恢复、上下文压缩与 JSONL 轨迹追踪，保障科研任务的受控执行与可复现性。"
-                >
-                  基于 LangChain 与 FastAPI 实现工具调用、3D Slicer 模块发现，以及参数和权限校验、异常恢复、上下文压缩与 JSONL 轨迹追踪，保障科研任务的受控执行与可复现性。
-                </p>
+                  data-en="Integrated controlled tool calling, 3D Slicer module discovery, and parameter/permission validation with LangChain and FastAPI. Stage-level QC, failure recovery, and JSONL execution traces help diagnose failed steps and reproduce workflows. Evaluated the system across five medical-image analysis workflow categories."
+                  data-zh="基于 LangChain、FastAPI 与 3D Slicer 实现受控工具调用、软件模块发现及参数/权限校验；结合阶段 QC、异常恢复和 JSONL 执行轨迹记录定位失败步骤并支持复现。已在 5 类医学影像分析工作流中完成基准任务验证。"
+                >基于 LangChain、FastAPI 与 3D Slicer 实现受控工具调用、软件模块发现及参数/权限校验；结合阶段 QC、异常恢复和 JSONL 执行轨迹记录定位失败步骤并支持复现。已在 5 类医学影像分析工作流中完成基准任务验证。</p>
                 </details>
                 <figure>
                   <picture>
@@ -356,11 +348,9 @@
               </p>
               <div class="tag-row"><span>3D Slicer</span><span>Python</span><span>Qt</span></div>
               <p
-                data-en="Developed an integrated diffusion MRI analysis platform using 3D Slicer and Python / Qt, bringing DDSurfer, DDParcel, DDSeg, and Microstructure pipelines into a consistent interface for research use."
-                data-zh="基于 3D Slicer 及 Python / Qt 开发一体化扩散 MRI 分析平台，统一集成 DDSurfer、DDParcel、DDSeg 与 Microstructure 等算法，提供一致的交互界面与处理入口。"
-              >
-                基于 3D Slicer 及 Python / Qt 开发一体化扩散 MRI 分析平台，统一集成 DDSurfer、DDParcel、DDSeg 与 Microstructure 等算法，提供一致的交互界面与处理入口。
-              </p>
+                data-en="Led development of an open-source 3D Slicer extension for dMRI analysis. Integrated DDSeg, DDParcel, DDSurfer, and downstream image-analysis tools using Python / Qt, with consistent GUI/CLI configuration, automated workflows, and result visualization."
+                data-zh="主导面向 dMRI 的开源 3D Slicer 扩展开发，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游影像分析方法，提供一致的 GUI/CLI 配置入口、自动化处理流程和结果展示。"
+              >主导面向 dMRI 的开源 3D Slicer 扩展开发，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游影像分析方法，提供一致的 GUI/CLI 配置入口、自动化处理流程和结果展示。</p>
               <div class="project-details">
                 <details class="project-text-collapse">
                   <summary>
@@ -369,11 +359,9 @@
                   </summary>
 
                 <p
-                  data-en="Designed modular workflows for task orchestration, dependency management, quality control, and reproducible execution. The associated protocol manuscript has been submitted to Nature Protocols."
-                  data-zh="设计模块化工作流，覆盖任务编排、依赖管理、质量控制（QC）与可复现执行；相关 protocol 论文正在投 Nature Protocols。"
-                >
-                  设计模块化工作流，覆盖任务编排、依赖管理、质量控制（QC）与可复现执行；相关 protocol 论文正在投 Nature Protocols。
-                </p>
+                  data-en="Designed modular, stage-based workflows with shared model-resource and execution configuration, input/dependency checks, stage-level QC, caching, and result provenance. GUI runs automatically load relevant data and results into 3D Slicer; source installation, troubleshooting, and end-to-end workflows have been tested. A related protocol manuscript has been submitted to Nature Protocols."
+                  data-zh="采用模块化阶段编排，统一管理模型资源与运行配置，并加入输入/依赖校验、阶段 QC、缓存复用和结果溯源；GUI 执行时自动加载处理数据与结果，支持源码安装、异常定位及端到端运行，相关 protocol 论文正在投 Nature Protocols。"
+                >采用模块化阶段编排，统一管理模型资源与运行配置，并加入输入/依赖校验、阶段 QC、缓存复用和结果溯源；GUI 执行时自动加载处理数据与结果，支持源码安装、异常定位及端到端运行，相关 protocol 论文正在投 Nature Protocols。</p>
                 </details>
                 <figure>
                   <picture>
