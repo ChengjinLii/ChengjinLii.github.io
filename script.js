@@ -524,10 +524,8 @@ const botAnswers = {
     en: "Goodbye! Click my floating icon whenever you'd like to ask another question.",
   },
   projects: {
-    zh:
-      `**代表项目**\n- **StudyHub**：全栈知识共享与 AI 学习平台，累计 **${studyhubMetric("users", "zh")} 名用户**、**${studyhubMetric("downloads", "zh")} 次下载**，覆盖 RAG、增量 Wiki、MCP 与 Agent。\n- **DDSurfer**：弱监督双流 dMRI 皮层重建工作，已发表于 **${researchData.journal?.venue || "Advanced Science"}**。\n- **dMRI-Agent**：参与设计 Planner–Executor 与 Protocol 驱动的医学影像任务编排，相关论文**在投**。\n- **SlicerDDSurfer**：基于 Python / Qt 的 3D Slicer 多算法集成平台，protocol 正在投 **${submissions[1]?.venue || "Nature Protocols"}**。`,
-    en:
-      `**Representative projects**\n- **StudyHub**: a full-stack knowledge and AI learning platform with **${studyhubMetric("users", "en")} users** and **${studyhubMetric("downloads", "en")} downloads**, combining RAG, incremental Wiki, MCP, and agents.\n- **DDSurfer**: weakly supervised dual-stream cortical reconstruction from dMRI, published in **${researchData.journal?.venue || "Advanced Science"}**.\n- **dMRI-Agent**: contributed to Planner-Executor and Protocol-based medical imaging orchestration; the manuscript is **submitted**.\n- **SlicerDDSurfer**: a Python / Qt platform integrating multiple algorithms in 3D Slicer, submitted to **${submissions[1]?.venue || "Nature Protocols"}**.`,
+    zh: `**代表项目**\n- **StudyHub**：校园资料共享与 AI 学习平台，约 ${studyhubMetric("users", "zh")} 名用户、${studyhubMetric("downloads", "zh")} 次下载；包含 RAG、增量 Wiki、Agent 问答和多模态审核。\n- **DDSurfer**：基于 dMRI 的弱监督皮层表面重建，第一作者论文发表于 **${researchData.journal?.venue || "Advanced Science"}**（2026）。\n- **dMRI-Agent**：参与 Protocol 驱动的 Planner–Executor 架构、3D Slicer 工具调用及质量控制。\n- **SlicerDDSurfer**：主导基于 3D Slicer 的 dMRI GUI/CLI 分析扩展，集成 DDSeg、DDParcel、DDSurfer 等流程。`,
+    en: `**Representative projects**\n- **StudyHub**: a campus resource and AI learning platform with about ${studyhubMetric("users", "en")} users and ${studyhubMetric("downloads", "en")} downloads; includes RAG, an incremental Wiki, agent Q&A, and multimodal moderation.\n- **DDSurfer**: weakly supervised cortical surface reconstruction from dMRI, published as first author in **${researchData.journal?.venue || "Advanced Science"}** (2026).\n- **dMRI-Agent**: contributions to Protocol-driven Planner–Executor workflows, 3D Slicer tool use, and QC.\n- **SlicerDDSurfer**: an open-source dMRI GUI/CLI extension integrating DDSeg, DDParcel, DDSurfer, and downstream analysis.`,
   },
   research: {
     zh:
@@ -536,10 +534,36 @@ const botAnswers = {
       `**Research snapshot**\n- **${researchData.journal?.venue || "Advanced Science"} ${researchData.journal?.year || "2026"}**: ${researchData.journal?.en || "DDSurfer is published in a **CAS Zone 1 Top journal** with Impact Factor **14.1**."}\n- **${researchData.conferences?.[0]?.venue || "ISMRM 2025"}**: ${researchData.conferences?.[0]?.en || "Accepted as an **Oral presentation**."}\n- **${researchData.conferences?.[1]?.venue || "OHBM 2025"}**: ${researchData.conferences?.[1]?.en || "Accepted as a **Poster presentation**."}\n- **Submitted manuscripts**: ${submissionTextEn || "dMRI-Agent: **Submitted**; SlicerDDSurfer to **Nature Protocols**"}.`,
   },
   studyhub: {
-    zh:
-      `**StudyHub：真实运营的 AI 学习平台**\n- 负责全栈架构、开发、持续运营、社群与用户反馈，累计 **${studyhubMetric("users", "zh")} 名用户**、**${studyhubMetric("downloads", "zh")} 次下载**。\n- **RAG / Wiki**：结构感知切分、Parent-Child 索引、BM25 + 向量召回 + RRF + Rerank，以及增量 Wiki 与可追溯引用。\n- **Agent / 后训练**：Qwen3.5-9B、MCP、ReAct / Plan-and-Execute、vLLM，并开展 LoRA / SFT 与 GRPO 实验。\n- **安全审核**：Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 双路审核，结合 Guard-as-Jev 概率评分与人工复核。\n- 项目网站：\`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
-    en:
-      `**StudyHub: an operated AI learning platform**\n- Led full-stack development, deployment, operations, and user feedback; reached **${studyhubMetric("users", "en")} users** and **${studyhubMetric("downloads", "en")} downloads**.\n- **RAG / Wiki**: structure-aware chunking, parent-child indexing, BM25 + vector retrieval + RRF + reranking, and an incremental Wiki with traceable citations.\n- **Agents / post-training**: Qwen3.5-9B, MCP, ReAct / Plan-and-Execute, vLLM, and LoRA / SFT / GRPO experiments.\n- **Safety**: text/image moderation with Qwen3Guard-Gen-0.6B and ShieldGemma 2-4B, Guard-as-Jev probability scoring, and human review.\n- Project site: \`${(links.studyhub || "https://study-hub.cn").replace(/^https?:\/\//, "")}\``,
+    zh: `**StudyHub：从校园产品到 AI 知识工作流**\n- **产品与运营**：主导架构、核心开发、部署与推广，约 ${studyhubMetric("users", "zh")} 名用户、${studyhubMetric("downloads", "zh")} 次下载。\n- **RAG**：结构感知切分、Parent-Child 索引、BM25 + BGE-M3、RRF 融合与 Qwen3-Reranker 重排。\n- **增量 Wiki**：Map-Reduce 实体与概念聚合，Chunk 级缓存、来源追溯、失效知识撤回。\n- **Agent**：Qwen3.5-9B、MCP、ReAct / Plan-and-Execute、引用反馈修复、上下文压缩和受控收尾。\n- **后训练与审核**：LoRA-based SFT / GRPO 对照实验；Qwen3Guard 与 ShieldGemma 的置信度分流、人工复核。\n- 项目：[StudyHub](${links.studyhub || "https://study-hub.cn"}) · [源代码](${links.studyhubRepo || "https://github.com/ChengjinLii/studyhub"})`,
+    en: `**StudyHub: campus product and AI knowledge workflows**\n- **Product**: led architecture, development, deployment and outreach; about ${studyhubMetric("users", "en")} users and ${studyhubMetric("downloads", "en")} downloads.\n- **RAG**: structure-aware chunking, parent-child indexing, BM25 + BGE-M3, RRF fusion and Qwen3 reranking.\n- **Incremental Wiki**: Map-Reduce extraction and aggregation, chunk-level caching, source traceability and source retraction.\n- **Agent**: Qwen3.5-9B, MCP, ReAct / Plan-and-Execute, citation feedback, context compaction and controlled termination.\n- **Training and safety**: LoRA-based SFT / GRPO comparisons; Qwen3Guard and ShieldGemma with confidence-based human review.\n- Links: [StudyHub](${links.studyhub || "https://study-hub.cn"}) · [Source](${links.studyhubRepo || "https://github.com/ChengjinLii/studyhub"})`,
+  },
+  rag: {
+    zh: `**StudyHub 的 RAG 怎么设计？**\n- **解析与切分**：PDF/OCR 解析、结构感知 Chunk 切分、Parent-Child 分层索引，让召回与回答上下文兼顾。\n- **召回与重排**：BM25 关键词检索 + BGE-M3 向量召回，采用 RRF 融合候选，再用 Qwen3-Reranker-0.6B 排序。\n- **实验**：固定 SciFact 子集上，相较 RRF 基线，Hit@5 从 **87.5% 到 96.9%**，MRR@5 从 **0.828 到 0.932**。\n这是检索子集对照，并非整个知识库问答的通用准确率。`,
+    en: `**How does StudyHub RAG work?**\n- **Parsing and indexing**: PDF/OCR extraction, structure-aware chunks and parent-child indexes.\n- **Retrieval**: BM25 plus BGE-M3 vector search, RRF candidate fusion and Qwen3-Reranker-0.6B.\n- **Evaluation**: on a fixed SciFact subset, Hit@5 improved **87.5% → 96.9%** and MRR@5 **0.828 → 0.932** relative to RRF.\nThese are subset retrieval metrics, not end-to-end QA accuracy.`,
+  },
+  wiki: {
+    zh: `**StudyHub 增量 Wiki 的核心**\n- **Map**：从资料 Chunk 抽取有原文依据的实体、概念与知识声明。\n- **Reduce**：按实体与概念聚合跨文档知识，为条目保留文档、Chunk、版本及原文引句等来源。\n- **增量更新**：复用未变 Chunk 的抽取结果；新增资料补充知识，删除资料时撤回对应来源，无来源支撑的条目不再保留。\n它是可追溯的知识页面聚合，不等同于已实现知识图谱或 GraphRAG。`,
+    en: `**How the incremental Wiki works**\n- **Map**: extract source-grounded entities, concepts and claims from document chunks.\n- **Reduce**: aggregate claims across documents, retaining document, chunk, revision and quotation provenance.\n- **Updates**: reuse unchanged chunk extraction; append new sources and retract deleted ones, dropping claims that lose all support.\nIt is a source-traceable Wiki, not a graph database or a GraphRAG implementation.`,
+  },
+  harness: {
+    zh: `**StudyHub Agent 的执行策略与 Harness**\n- **ReAct** 是核心循环：模型决定工具调用，读取结果，再继续执行。\n- **Plan-and-Execute** 是额外的先规划再执行模式；按任务复杂度自动路由是正在完善的设计方向，不能把它与已完成的 Harness 对照实验混为一谈。\n- **Harness**：工具调用与参数校验、引用反馈修复、结构化拒答、上下文压缩及受控收尾。\n- 对比基础 ReAct 的重点是执行可靠性和预算异常控制，不是证明 Plan-and-Execute 一定优于 ReAct。`,
+    en: `**StudyHub Agent strategy and Harness**\n- **ReAct** is the core tool-use loop: choose actions, read observations and iterate.\n- **Plan-and-Execute** adds a brief plan-first mode. Automatic complexity-based routing is a design direction being completed; it has not been established as the source of Harness evaluation gains.\n- **Harness** adds tool/parameter checks, citation feedback and repair, structured refusals, context compaction and controlled termination.\nThe controlled comparison targets execution reliability, not proof that Plan-and-Execute outperforms ReAct.`,
+  },
+  training: {
+    zh: `**StudyHub 的 Tool Calling 后训练**\n- 使用 **LoRA** 作为参数高效微调方式，分别开展 **SFT**（监督微调）与后续 **GRPO**（强化学习优化）对照。\n- 在固定 BFCL 小子集上，工具调用成功率由 **87.5% 提升至 93.8%**；观察到的增益来自 SFT 阶段，后续 GRPO 没有进一步提升该子集结果。\n- 这不是 BFCL 官方全量榜单成绩。`,
+    en: `**Tool-calling post-training**\n- Applied **LoRA** as the parameter-efficient adaptation method for **SFT**, followed by comparative **GRPO** optimization.\n- On a fixed small BFCL subset, success increased from **87.5% to 93.8%** after SFT; GRPO did not add further gains on that subset.\n- This is not an official full BFCL leaderboard result.`,
+  },
+  moderation: {
+    zh: `**多模态内容审核怎么做？**\n- **文本**：Qwen3Guard-Gen-0.6B；**图像与 OCR 图文**：结合 ShieldGemma 2-4B 的风险判断与图文分流。\n- 依据**候选类别概率与置信度**分流：高置信度自动通过/拒绝，低置信度和争议内容转人工复核。\n- 一组 XSTest 文本离线评测中，**65.6% 自动覆盖率**，自动处理样本未观察到错误；另一独立测试为 **46.9% 覆盖率**，且出现 1 次误拒。\n- 自动覆盖率反映无需人工的比例；AUROC 衡量排序，不等于自动覆盖率或审核准确率。`,
+    en: `**How is multimodal moderation handled?**\n- **Text**: Qwen3Guard-Gen-0.6B; **images and OCR-assisted content**: ShieldGemma 2-4B and modality-specific routing.\n- Candidate-class probabilities and confidence thresholds route high-confidence cases to automatic approve/reject decisions; uncertain or controversial cases go to human review.\n- One offline XSTest text set showed **65.6% automatic coverage** with no observed auto-decision errors. A separate holdout showed **46.9% coverage** and one false rejection.\n- Coverage measures automation; AUROC measures ranking, not coverage or accuracy.`,
+  },
+  ddsurfer: {
+    zh: `**DDSurfer 的技术要点**\n- **任务**：无需额外 T1w，直接从扩散磁共振成像（dMRI）重建白质表面及软脑膜表面。\n- **方法**：弱监督 Dual-Stream + Cross-SE，使用 Unidirectional Boundary Loss、几何正则与微分同胚形变缓解伪标签噪声和边界偏差。\n- **结果**：体积相似性 **0.944/0.923 → 0.985/0.980**；两类区域影像测量离散度降低 **25.5%/31.7%**，并在 4 个外部数据集（203 名受试者）验证。\n- **论文**：第一作者，**Advanced Science (2026)**，[DOI 10.1002/advs.76596](https://doi.org/10.1002/advs.76596)。`,
+    en: `**DDSurfer technical overview**\n- **Task**: reconstruct white-matter and pial cortical surfaces from dMRI without an additional T1-weighted scan.\n- **Method**: weakly supervised Dual-Stream + Cross-SE, Unidirectional Boundary Loss, geometric regularization and diffeomorphic deformation.\n- **Results**: volumetric similarity **0.944/0.923 → 0.985/0.980**; regional measurement variability reduced by **25.5%/31.7%**, with four external datasets (203 subjects).\n- **Paper**: first-author work in **Advanced Science (2026)**, [DOI](https://doi.org/10.1002/advs.76596).`,
+  },
+  slicer: {
+    zh: `**SlicerDDSurfer 做什么？**\n- 面向 dMRI 的开源 **3D Slicer 扩展**，集成 DDSeg、DDParcel、DDSurfer 和下游影像分析。\n- 统一 GUI/CLI 参数、模型资源与运行记录，支持自动加载数据和处理结果。\n- 采用阶段编排、依赖与输入检查、QC、缓存复用和结果溯源；已在 Linux 的 3D Slicer 5.10 环境验证真实数据工作流。\n- [查看源码](${links.slicerRepo || "https://github.com/ChengjinLii/SlicerDDSurfer"})`,
+    en: `**What does SlicerDDSurfer provide?**\n- An open-source **3D Slicer extension** for dMRI, integrating DDSeg, DDParcel, DDSurfer and downstream image analysis.\n- Shared GUI/CLI options, model resources and execution records, plus automatic loading of inputs and outputs.\n- Staged workflows with dependency/input checks, QC, caching and provenance, tested with real data on 3D Slicer 5.10 for Linux.\n- [Source code](${links.slicerRepo || "https://github.com/ChengjinLii/SlicerDDSurfer"})`,
   },
   contact: {
     zh:
@@ -554,28 +578,20 @@ const botAnswers = {
       `**Selected honors**\n${(awardListEn.length ? awardListEn : ["2026 **First Prize** in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest."]).map((item) => `- ${item}`).join("\n")}`,
   },
   agent: {
-    zh:
-      "**dMRI-Agent**\n- 角色：参与设计医学影像 **Planner–Executor** 分层架构。\n- 协议：通过 **Protocol** 封装领域知识、工具依赖、步骤和 QC 规则，支持多阶段规划与人在环控制。\n- 工程：基于 **LangChain / FastAPI** 实现工具调用、3D Slicer 模块发现、权限校验、异常恢复、上下文压缩与 JSONL 轨迹追踪。\n- 状态：相关论文**在投**。",
-    en:
-      "**dMRI-Agent**\n- Role: contributed to a **Planner-Executor** architecture for medical imaging.\n- Protocols: package domain knowledge, tool dependencies, steps, and QC rules for multi-stage planning and human-in-the-loop control.\n- Engineering: **LangChain / FastAPI** tool calling, 3D Slicer module discovery, permission checks, recovery, context compression, and JSONL traces.\n- Status: a related manuscript has been **submitted**.",
+    zh: `**dMRI-Agent：Protocol 驱动的医学影像 Agent**\n- **角色**：参与 Planner–Executor 架构、外部分析软件集成和实验验证。\n- **Protocol**：把专家流程整理为输入输出、工具依赖、阶段 QC 与异常处置明确的可加载规范。\n- **工程**：面向 3D Slicer 的受控工具调用、模块发现、参数/权限校验、异常恢复和 JSONL 轨迹。\n- **验证**：在 5 类图像分析工作流中完成基准任务与人工参考结果复现；相关论文在投。`,
+    en: `**dMRI-Agent: Protocol-driven medical imaging**\n- **Role**: contributed to the Planner–Executor architecture, external tool integration and evaluation.\n- **Protocols**: encode expert procedures with inputs/outputs, dependencies, stage QC and error handling.\n- **Engineering**: controlled 3D Slicer tool calls, module discovery, parameter/permission validation, recovery and JSONL traces.\n- **Evaluation**: completed benchmark workflows in five medical imaging task categories, with reference outputs reproduced; manuscript submitted.`,
   },
   skills: {
-    zh:
-      "**技术能力**\n- 语言：`Python` / `TypeScript`\n- 医学影像与深度学习：`PyTorch` / `3D Slicer` / `SimpleITK` / `nibabel`\n- 全栈与后端：`FastAPI` / `Next.js` / `MySQL` / `Redis` / `OSS`\n- 工程工具：`Docker` / `Git`",
-    en:
-      "**Technical stack**\n- Languages: `Python` / `TypeScript`\n- Medical imaging and deep learning: `PyTorch` / `3D Slicer` / `SimpleITK` / `nibabel`\n- Full-stack and backend: `FastAPI` / `Next.js` / `MySQL` / `Redis` / `OSS`\n- Engineering tools: `Docker` / `Git`",
+    zh: `**技术能力**\n- **AI Coding**：Codex、Claude Code、Antigravity、Hermes、Muse。\n- **模型开发**：PyTorch、Hugging Face Transformers、vLLM；涉及模型微调、Tool Calling 与推理部署。\n- **应用与工程**：Python、TypeScript、Next.js、FastAPI、MySQL、Redis、Docker、Linux、Git。\n- **医学影像**：3D Slicer、SimpleITK、dMRI 预处理、分割与三维表面重建。`,
+    en: `**Technical skills**\n- **AI coding**: Codex, Claude Code, Antigravity, Hermes, Muse.\n- **Model work**: PyTorch, Hugging Face Transformers and vLLM; fine-tuning, tool calling and inference serving.\n- **Applications and engineering**: Python, TypeScript, Next.js, FastAPI, MySQL, Redis, Docker, Linux and Git.\n- **Medical imaging**: 3D Slicer, SimpleITK, dMRI preprocessing, segmentation and 3D surface reconstruction.`,
   },
   cv: {
-    zh:
-      `**简历入口**\n中文简历已更新为 Chengjin-CV 仓库版本；英文 PDF 暂保留原版。\n[中文简历](${links.chineseCv || "./assets/李承锦-CV-中文.pdf?v=bdda306-20261017"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
-    en:
-      `**CV links**\nThe Chinese CV now follows the Chengjin-CV repository; the English PDF remains the previous edition.\n[Chinese CV](${links.chineseCv || "./assets/李承锦-CV-中文.pdf?v=bdda306-20261017"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
+    zh: `**简历下载**\n可下载本站提供的中英文 PDF；最新项目细节亦可在 [GitHub 简历源码](https://github.com/ChengjinLii/Chengjin-CV) 查看。\n[中文简历](${links.chineseCv || "./assets/李承锦-CV-中文.pdf"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
+    en: `**Download the CV**\nThe site hosts Chinese and English PDF editions. The [CV source repository](https://github.com/ChengjinLii/Chengjin-CV) also contains the latest project wording.\n[Chinese CV](${links.chineseCv || "./assets/李承锦-CV-中文.pdf"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
   },
   default: {
-    zh:
-      "我可以回答关于 **项目、论文、奖项、StudyHub、技术栈、联系方式和简历** 的问题。也可以直接点击上方预设问题。",
-    en:
-      "I can answer questions about **projects, papers, awards, StudyHub, technical skills, contact information, and CV**. You can also click one of the preset questions above.",
+    zh: `可以问我关于 **StudyHub、RAG 检索、增量 Wiki、Agent Harness、后训练、内容审核、DDSurfer、dMRI-Agent、SlicerDDSurfer、技术能力、论文和简历** 的问题；也可以点击预设问题。`,
+    en: `Ask me about **StudyHub, RAG, the incremental Wiki, Agent Harness, post-training, moderation, DDSurfer, dMRI-Agent, SlicerDDSurfer, skills, research or the CV**. You can also choose a preset question.`,
   },
 };
 
@@ -694,14 +710,22 @@ function pickAnswer(raw) {
   const text = raw.toLowerCase().trim();
   if (/你是谁|你叫什么|你的名字|介绍(?:一下)?你自己|who\s+(?:are|r)\s+(?:you|u)|what(?:'s|\s+is)\s+your\s+name/.test(text)) return botAnswers.identity;
   if (/你(?:能|可以).*(?:做|帮|回答)|你会(?:什么|些什么)|你有什么(?:功能|能力)|怎么(?:用|提问)|what\s+can\s+you\s+do|how\s+(?:do|can)\s+i\s+(?:use|ask)|^help[!?.\s]*$/.test(text)) return botAnswers.default;
-  if (/cv|resume|简历|pdf/.test(text)) return botAnswers.cv;
-  if (/studyhub|用户|下载|平台|mcp|搜索|推荐/.test(text)) return botAnswers.studyhub;
-  if (/agent|智能体|dmri-agent|dmri agent|workflow|工作流/.test(text)) return botAnswers.agent;
-  if (/skill|stack|技术|能力|python|typescript|pytorch|fastapi|next/.test(text)) return botAnswers.skills;
+  if (/简历|求职|resume|\bcv\b|下载简历/.test(text)) return botAnswers.cv;
+  if (/dmri[-\s]?agent|mri_agent|医学影像智能体|医学影像agent/.test(text)) return botAnswers.agent;
+  if (/slicerddsurfer|slicer[\s-]*ddsurfer|3d\s*slicer\s*插件|slicer扩展/.test(text)) return botAnswers.slicer;
+  if (/ddsurfer|皮层|脑表面|cortical|surface reconstruction|弱监督三维/.test(text)) return botAnswers.ddsurfer;
+  if (/guard|审核|安全策略|moderation|shieldgemma|\bocr\b|置信度|人工复核|xstest|拒判/.test(text)) return botAnswers.moderation;
+  if (/\bwiki\b|map[-\s]?reduce|增量知识|知识聚合|来源追溯|chunk\s*缓存|失效知识/.test(text)) return botAnswers.wiki;
+  if (/\brag\b|rerank|重排|bm25|bge[-\s]?m3|parent[-\s]?child|知识检索|向量召回|rrf|scifact/.test(text)) return botAnswers.rag;
+  if (/lora|\bsft\b|grpo|bfcl|tool[-\s]?calling|后训练|强化学习|微调/.test(text)) return botAnswers.training;
+  if (/react|plan[-\s]?(?:and[-\s]?)?execute|harness|引用修复|执行策略|复杂度路由|动态路由|上下文压缩|受控收尾/.test(text)) return botAnswers.harness;
+  if (/studyhub|用户|下载|平台|\bmcp\b|推荐|校园/.test(text)) return botAnswers.studyhub;
+  if (/agent|智能体|workflow|工作流|任务规划/.test(text)) return botAnswers.harness;
+  if (/skill|stack|技术|能力|python|typescript|pytorch|fastapi|next|vllm|transformers/.test(text)) return botAnswers.skills;
   if (/paper|论文|advanced|ismrm|ohbm|nature|期刊|会议|在投/.test(text)) return botAnswers.research;
   if (/award|honor|academic star|奖|奖学金|毕设|竞赛|华为杯|学术之星|荣耀/.test(text)) return botAnswers.awards;
   if (/contact|email|github|联系|邮箱|网站/.test(text)) return botAnswers.contact;
-  if (/project|项目|ddsurfer|slicer|dmri/.test(text)) return botAnswers.projects;
+  if (/project|项目|dmri/.test(text)) return botAnswers.projects;
   if (/^(你好(?:呀|啊)?|您好|嗨|哈[喽啰]|早上好|下午好|晚上好|hi|hello|hey)(?:[！!。，,.?？\s]|$)/.test(text)) return botAnswers.greeting;
   if (/谢谢|感谢|多谢|thanks|thank\s*you|thx/.test(text)) return botAnswers.thanks;
   if (/再见|拜拜|goodbye|bye|see\s+you/.test(text)) return botAnswers.goodbye;
