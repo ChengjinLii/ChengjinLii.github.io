@@ -589,15 +589,6 @@ html:lang(en) .profile-sidebar h1 > span {
   letter-spacing: -0.075em;
 }
 
-.entry-year::after {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 1px;
-  margin-top: 15px;
-  background: #bcc9c2;
-}
-
 .entry-main {
   min-width: 0;
 }
@@ -1986,17 +1977,10 @@ html:lang(en) .education-track em {
     position: static;
     display: flex;
     align-items: center;
-    gap: 14px;
     margin: 0 0 15px;
     padding: 0;
     font-size: 23px;
     line-height: 1;
-  }
-
-  .entry-year::after {
-    display: block;
-    width: 28px;
-    margin: 0;
   }
 
 
