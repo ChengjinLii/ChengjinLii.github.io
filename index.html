@@ -208,10 +208,10 @@
                 弱监督深度学习 · 大脑皮层三维重建
               </p>
               <div class="tag-row"><span>PyTorch</span><span>dMRI</span><span>Weak Supervision</span></div>
-              <p
-                data-en="DDSurfer reconstructs white-matter and pial cortical surfaces from diffusion magnetic resonance imaging (dMRI) using a weakly supervised dual-stream framework, without requiring an additional T1-weighted scan. Predicted surfaces are mapped back to native image space."
-                data-zh="DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督双流皮层表面重建方法，无需额外 T1w 结构像即可从 dMRI 重建白质表面和软脑膜表面，并将预测结果映射回原始影像空间。"
-              >DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督双流皮层表面重建方法，无需额外 T1w 结构像即可从 dMRI 重建白质表面和软脑膜表面，并将预测结果映射回原始影像空间。</p>
+                            <p
+                data-en="DDSurfer is a weakly supervised cortical surface reconstruction model for diffusion magnetic resonance imaging (dMRI). It predicts white-matter and pial surfaces without an additional T1-weighted scan. The first-author paper appeared in Advanced Science (2026)."
+                data-zh="DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督皮层表面重建模型，无需额外 T1w 结构像即可预测白质表面和软脑膜表面；相关第一作者论文已发表于 Advanced Science（2026）。"
+              >DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督皮层表面重建模型，无需额外 T1w 结构像即可预测白质表面和软脑膜表面；相关第一作者论文已发表于 Advanced Science（2026）。</p>
               <div class="metric-row publication-metrics">
                 <span><strong>Advanced Science</strong><em data-en="Journal" data-zh="期刊">期刊</em></span>
                 <span><strong data-en="CAS Q1 TOP" data-zh="一区 TOP">一区 TOP</strong><em data-en="CAS ranking" data-zh="中科院分区">中科院分区</em></span>
@@ -223,16 +223,11 @@
                     <span class="project-text-label--closed" data-en="Show technical details" data-zh="展开技术细节">展开技术细节</span>
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
-
                 <ul class="project-highlights">
-                  <li
-                    data-en="<strong>Methodology.</strong> Developed a Dual-Stream + Cross-SE network in PyTorch for complementary feature fusion. Used Unidirectional Boundary Loss and geometric regularization to address noisy pseudo-labels and boundary deviations; combined implicit-explicit surface prediction with diffeomorphic deformation, from preprocessing and template-space inference to native-space reconstruction."
-                    data-zh="<strong>算法创新：</strong>使用 PyTorch 构建 Dual-Stream + Cross-SE 双分支特征融合网络，针对伪标签噪声与复杂边界设计 Unidirectional Boundary Loss 和几何正则约束；结合隐式—显式表面预测与微分同胚形变，形成预处理、模板空间推理和原始空间结果回传的重建流程。"
-                  ><strong>算法创新：</strong>使用 PyTorch 构建 Dual-Stream + Cross-SE 双分支特征融合网络，针对伪标签噪声与复杂边界设计 Unidirectional Boundary Loss 和几何正则约束；结合隐式—显式表面预测与微分同胚形变，形成预处理、模板空间推理和原始空间结果回传的重建流程。</li>
-                  <li
-                    data-en="<strong>Quantitative results.</strong> Relative to initial pseudo-labels, volumetric similarity for two cortical surfaces improved from <strong>0.944 / 0.923 to 0.985 / 0.980</strong>, while regional imaging-measurement variability decreased by <strong>25.5% / 31.7%</strong>. Generalization was evaluated on four external datasets totaling 203 participants."
-                    data-zh="<strong>量化效果：</strong>相较初始伪标签，两类皮层表面的体积相似性由 <strong>0.944 / 0.923 提升至 0.985 / 0.980</strong>，区域影像测量离散度分别降低 <strong>25.5% / 31.7%</strong>；在 4 个外部数据集、203 名受试者上进行了泛化验证。"
-                  ><strong>量化效果：</strong>相较初始伪标签，两类皮层表面的体积相似性由 <strong>0.944 / 0.923 提升至 0.985 / 0.980</strong>，区域影像测量离散度分别降低 <strong>25.5% / 31.7%</strong>；在 4 个外部数据集、203 名受试者上进行了泛化验证。</li>
+                  <li data-en="<strong>Role and development.</strong> Led network design, training, ablation studies and cross-dataset evaluation, covering dMRI feature preprocessing, template-space inference and native-space cortical mesh reconstruction." data-zh="<strong>职责与协作：</strong>主导网络架构设计、模型训练、消融实验与跨数据集评估，完成从 dMRI 特征预处理、模板空间推理到原始空间三维网格重建的主要算法开发。"><strong>职责与协作：</strong>主导网络架构设计、模型训练、消融实验与跨数据集评估，完成从 dMRI 特征预处理、模板空间推理到原始空间三维网格重建的主要算法开发。</li>
+                  <li data-en="<strong>Weak supervision.</strong> Generated training pseudo-labels with conventional image-processing methods and introduced <strong>Unidirectional Boundary Loss</strong> and geometric regularization to mitigate label noise and cortical boundary deviations." data-zh="<strong>弱监督训练：</strong>利用传统图像处理方法生成训练伪标签，并设计 <strong>Unidirectional Boundary Loss</strong> 与几何正则约束，减轻伪标签噪声和复杂皮层边界偏差。"><strong>弱监督训练：</strong>利用传统图像处理方法生成训练伪标签，并设计 <strong>Unidirectional Boundary Loss</strong> 与几何正则约束，减轻伪标签噪声和复杂皮层边界偏差。</li>
+                  <li data-en="<strong>Architecture.</strong> Developed a <strong>Dual-Stream + Cross-SE</strong> attention-based fusion network with multiscale features and <strong>diffeomorphic deformation</strong> for topology-preserving 3D surface reconstruction." data-zh="<strong>模型架构：</strong>构建 <strong>Dual-Stream + Cross-SE</strong> 双分支注意力融合网络，结合多尺度特征建模与<strong>微分同胚形变</strong>，在保持表面拓扑结构的前提下完成三维重建。"><strong>模型架构：</strong>构建 <strong>Dual-Stream + Cross-SE</strong> 双分支注意力融合网络，结合多尺度特征建模与<strong>微分同胚形变</strong>，在保持表面拓扑结构的前提下完成三维重建。</li>
+                  <li data-en="<strong>Evaluation.</strong> Relative to initial pseudo-labels, volumetric similarity for two cortical surfaces improved from <strong>0.944 / 0.923</strong> to <strong>0.985 / 0.980</strong>; regional imaging-measurement variability fell by <strong>25.5% / 31.7%</strong>. Evaluated generalization on <strong>four external datasets (203 participants)</strong>." data-zh="<strong>性能验证：</strong>相较初始伪标签，两类皮层表面的体积相似性从 <strong>0.944 / 0.923</strong> 提升至 <strong>0.985 / 0.980</strong>；区域影像测量离散度降低 <strong>25.5% / 31.7%</strong>，并在 <strong>4 个外部数据集（203 名受试者）</strong>上评估泛化能力。"><strong>性能验证：</strong>相较初始伪标签，两类皮层表面的体积相似性从 <strong>0.944 / 0.923</strong> 提升至 <strong>0.985 / 0.980</strong>；区域影像测量离散度降低 <strong>25.5% / 31.7%</strong>，并在 <strong>4 个外部数据集（203 名受试者）</strong>上评估泛化能力。</li>
                 </ul>
                 </details>
                 <div class="figure-stack">
@@ -284,21 +279,22 @@
                 Plan-and-Execute Agent · 医学影像任务编排
               </p>
               <div class="tag-row"><span>LangChain</span><span>FastAPI</span><span>Protocol</span></div>
-              <p
-                data-en="Contributed to a medical-imaging agent for dMRI analysis. Encoded expert procedures as loadable Protocols specifying inputs, outputs, tool dependencies, stage checks, and error handling. A Planner–Executor design separates task planning from staged execution across 3D Slicer and external analysis tools; a related manuscript is under review."
-                data-zh="参与设计面向 dMRI 分析的医学影像 Agent，将专家操作流程整理为可按需加载的 Protocol，明确输入输出、工具依赖、阶段检查和异常处置；通过 Planner–Executor 分离任务规划与分阶段执行，协调 3D Slicer 及外部分析工具完成多步骤工作流，相关论文在投。"
-              >参与设计面向 dMRI 分析的医学影像 Agent，将专家操作流程整理为可按需加载的 Protocol，明确输入输出、工具依赖、阶段检查和异常处置；通过 Planner–Executor 分离任务规划与分阶段执行，协调 3D Slicer 及外部分析工具完成多步骤工作流，相关论文在投。</p>
+                            <p
+                data-en="Contributed to a medical-imaging agent that uses natural-language instructions to drive multi-step processing, algorithm execution and result analysis in 3D Slicer. Expert workflows are packaged as Protocols and coordinated through a Planner–Executor design."
+                data-zh="参与研发面向医学影像分析的 Agent 系统，通过自然语言驱动 3D Slicer 执行多步骤数据处理、算法调用与结果分析；将专家工作流封装为 Protocol，以 Planner–Executor 组织任务规划与阶段执行。"
+              >参与研发面向医学影像分析的 Agent 系统，通过自然语言驱动 3D Slicer 执行多步骤数据处理、算法调用与结果分析；将专家工作流封装为 Protocol，以 Planner–Executor 组织任务规划与阶段执行。</p>
               <div class="project-details">
                 <details class="project-text-collapse">
                   <summary>
                     <span class="project-text-label--closed" data-en="Show technical details" data-zh="展开技术细节">展开技术细节</span>
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
-
-                <p
-                  data-en="Integrated controlled tool calling, 3D Slicer module discovery, and parameter/permission validation with LangChain and FastAPI. Stage-level QC, failure recovery, and JSONL execution traces help diagnose failed steps and reproduce workflows. Evaluated the system across five medical-image analysis workflow categories."
-                  data-zh="基于 LangChain、FastAPI 与 3D Slicer 实现受控工具调用、软件模块发现及参数/权限校验；结合阶段 QC、异常恢复和 JSONL 执行轨迹记录定位失败步骤并支持复现。已在 5 类医学影像分析工作流中完成基准任务验证。"
-                >基于 LangChain、FastAPI 与 3D Slicer 实现受控工具调用、软件模块发现及参数/权限校验；结合阶段 QC、异常恢复和 JSONL 执行轨迹记录定位失败步骤并支持复现。已在 5 类医学影像分析工作流中完成基准任务验证。</p>
+                <ul class="project-highlights">
+                  <li data-en="<strong>Role and collaboration.</strong> Contributed to the agent architecture, integration of external analysis tools and workflow evaluation, including protocol specifications, execution constraints and interaction design." data-zh="<strong>职责与协作：</strong>参与 Agent 架构设计、外部分析工具集成与工作流实验验证，协同完善协议描述、运行约束和交互流程。"><strong>职责与协作：</strong>参与 Agent 架构设计、外部分析工具集成与工作流实验验证，协同完善协议描述、运行约束和交互流程。</li>
+                  <li data-en="<strong>Task planning.</strong> Packaged expert procedures into <strong>Agent Skills-like Protocols</strong> with on-demand loading, defined inputs/outputs, tool choices, stage checks and error handling. An <strong>adaptive Planner–Executor</strong> separates global planning from staged execution and adjusts task decomposition to complexity." data-zh="<strong>任务规划：</strong>将专家操作流程整理为<strong>类 Agent Skills 的 Protocol</strong>，按需加载并明确输入输出、工具选择、阶段检查和异常处置；采用<strong>自适应 Planner–Executor</strong> 分离全局规划与分阶段执行，根据任务复杂度划分步骤。"><strong>任务规划：</strong>将专家操作流程整理为<strong>类 Agent Skills 的 Protocol</strong>，按需加载并明确输入输出、工具选择、阶段检查和异常处置；采用<strong>自适应 Planner–Executor</strong> 分离全局规划与分阶段执行，根据任务复杂度划分步骤。</li>
+                  <li data-en="<strong>Tool use and recovery.</strong> Integrated controlled <strong>tool calling</strong>, 3D Slicer module discovery and parameter/permission checks using LangChain and FastAPI. Stage-level QC, recovery logic and <strong>JSONL execution traces</strong> support fault diagnosis and reproducibility." data-zh="<strong>工具调用与容错：</strong>基于 LangChain、FastAPI 与 3D Slicer 实现受控 <strong>Tool Calling</strong>、软件模块发现和参数/权限校验；利用阶段 QC、异常恢复与 <strong>JSONL 执行轨迹</strong>定位失败步骤并追溯执行过程。"><strong>工具调用与容错：</strong>基于 LangChain、FastAPI 与 3D Slicer 实现受控 <strong>Tool Calling</strong>、软件模块发现和参数/权限校验；利用阶段 QC、异常恢复与 <strong>JSONL 执行轨迹</strong>定位失败步骤并追溯执行过程。</li>
+                  <li data-en="<strong>Efficiency evaluation.</strong> Completed benchmark tasks across <strong>five medical-image analysis workflows</strong> and reproduced manual reference outputs. Against Claude Code, Codex and Qwen Code under matched model configurations, <strong>token use decreased by 77.8%–88.5%</strong> and <strong>LLM request counts by 46.2%–73.9%</strong>." data-zh="<strong>效率验证：</strong>在 <strong>5 类医学图像分析工作流</strong>中完成基准任务并复现人工参考结果；与同模型配置下的 Claude Code、Codex、Qwen Code 相比，<strong>Token 消耗降低 77.8%–88.5%</strong>，<strong>LLM 请求次数减少 46.2%–73.9%</strong>。"><strong>效率验证：</strong>在 <strong>5 类医学图像分析工作流</strong>中完成基准任务并复现人工参考结果；与同模型配置下的 Claude Code、Codex、Qwen Code 相比，<strong>Token 消耗降低 77.8%–88.5%</strong>，<strong>LLM 请求次数减少 46.2%–73.9%</strong>。</li>
+                </ul>
                 </details>
                 <figure>
                   <picture>
@@ -347,21 +343,21 @@
                 医学图像分析软件 · 多算法集成与自动化 Workflow
               </p>
               <div class="tag-row"><span>3D Slicer</span><span>Python</span><span>Qt</span></div>
-              <p
-                data-en="Led development of an open-source 3D Slicer extension for dMRI analysis. Integrated DDSeg, DDParcel, DDSurfer, and downstream image-analysis tools using Python / Qt, with consistent GUI/CLI configuration, automated workflows, and result visualization."
-                data-zh="主导面向 dMRI 的开源 3D Slicer 扩展开发，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游影像分析方法，提供一致的 GUI/CLI 配置入口、自动化处理流程和结果展示。"
-              >主导面向 dMRI 的开源 3D Slicer 扩展开发，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游影像分析方法，提供一致的 GUI/CLI 配置入口、自动化处理流程和结果展示。</p>
+                            <p
+                data-en="Led development of an open-source 3D Slicer extension for dMRI analysis. Built with Python / Qt, it integrates DDSeg, DDParcel, DDSurfer, downstream quantitative analysis and structural connectivity workflows through reproducible GUI/CLI execution."
+                data-zh="主导开发面向 dMRI 分析的开源 3D Slicer 插件，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游定量分析与结构连接计算，通过 GUI/CLI 提供可复现的自动化工作流。"
+              >主导开发面向 dMRI 分析的开源 3D Slicer 插件，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游定量分析与结构连接计算，通过 GUI/CLI 提供可复现的自动化工作流。</p>
               <div class="project-details">
                 <details class="project-text-collapse">
                   <summary>
                     <span class="project-text-label--closed" data-en="Show technical details" data-zh="展开技术细节">展开技术细节</span>
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
-
-                <p
-                  data-en="Designed modular, stage-based workflows with shared model-resource and execution configuration, input/dependency checks, stage-level QC, caching, and result provenance. GUI runs automatically load relevant data and results into 3D Slicer; source installation, troubleshooting, and end-to-end workflows have been tested. A related protocol manuscript has been submitted to Nature Protocols."
-                  data-zh="采用模块化阶段编排，统一管理模型资源与运行配置，并加入输入/依赖校验、阶段 QC、缓存复用和结果溯源；GUI 执行时自动加载处理数据与结果，支持源码安装、异常定位及端到端运行，相关 protocol 论文正在投 Nature Protocols。"
-                >采用模块化阶段编排，统一管理模型资源与运行配置，并加入输入/依赖校验、阶段 QC、缓存复用和结果溯源；GUI 执行时自动加载处理数据与结果，支持源码安装、异常定位及端到端运行，相关 protocol 论文正在投 Nature Protocols。</p>
+                <ul class="project-highlights">
+                  <li data-en="<strong>Role and integration.</strong> Led extension architecture, Qt interface design and algorithm integration. Unified <strong>GUI/CLI configuration</strong>, model resources and execution records, with bilingual interaction and automatic loading of data and results during GUI runs." data-zh="<strong>职责与协作：</strong>主导插件架构、图形界面与算法模块集成，统一 <strong>GUI/CLI 配置</strong>、模型资源和运行记录，支持中英文交互，并在 GUI 执行过程中自动加载相关数据与结果。"><strong>职责与协作：</strong>主导插件架构、图形界面与算法模块集成，统一 <strong>GUI/CLI 配置</strong>、模型资源和运行记录，支持中英文交互，并在 GUI 执行过程中自动加载相关数据与结果。</li>
+                  <li data-en="<strong>Algorithms and workflow.</strong> Combined deep-learning and conventional image-processing tools for tissue segmentation, cortical surface reconstruction, quantitative analysis and structural connectomes. Implemented staged execution, input/dependency validation, <strong>stage-level QC, cache reuse and output provenance</strong>." data-zh="<strong>算法与流程：</strong>集成深度学习与传统影像处理方法，覆盖组织分割、皮层表面重建、定量分析与结构连接组计算；实现阶段编排、输入与依赖检查、<strong>阶段 QC、缓存复用和结果溯源</strong>。"><strong>算法与流程：</strong>集成深度学习与传统影像处理方法，覆盖组织分割、皮层表面重建、定量分析与结构连接组计算；实现阶段编排、输入与依赖检查、<strong>阶段 QC、缓存复用和结果溯源</strong>。</li>
+                  <li data-en="<strong>Engineering validation.</strong> Validated GUI functions and end-to-end workflows with real dMRI data in <strong>3D Slicer 5.10 (Linux)</strong>, including installation from source, troubleshooting and automatic result display." data-zh="<strong>工程验证：</strong>在 <strong>3D Slicer 5.10（Linux）</strong>环境下完成界面功能和真实 dMRI 数据的端到端工作流验证，支持源码安装、异常定位与结果自动展示。"><strong>工程验证：</strong>在 <strong>3D Slicer 5.10（Linux）</strong>环境下完成界面功能和真实 dMRI 数据的端到端工作流验证，支持源码安装、异常定位与结果自动展示。</li>
+                </ul>
                 </details>
                 <figure>
                   <picture>
