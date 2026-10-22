@@ -101,8 +101,8 @@
             <dd>1</dd>
           </div>
           <div>
-            <dt data-en="Conference Papers" data-zh="会议论文">会议论文</dt>
-            <dd>2</dd>
+            <dt data-en="Conference Presentations" data-zh="会议交流">会议交流</dt>
+            <dd>3</dd>
           </div>
           <div>
             <dt data-en="Submitted Papers" data-zh="在投论文">在投论文</dt>
@@ -145,10 +145,7 @@
                 校园知识共享平台 · 全栈开发与 AI 应用研发
               </p>
               <div class="tag-row"><span>Next.js</span><span>FastAPI</span><span>MySQL</span><span>Redis</span><span>MCP</span><span>vLLM</span><span>Docker</span></div>
-              <p
-                data-en="Led the architecture, core development, and ongoing operation of StudyHub for campus resource sharing, peer experiences, requests, and marketplace listings. Extended the full-stack platform with RAG retrieval, an incremental Wiki, agent-assisted Q&A, and multimodal content moderation while overseeing access control, deployment, and user feedback."
-                data-zh="主导 StudyHub 的产品架构、核心功能开发与持续运营，服务校园资料共享、经验交流、求购协作及校园集市；在全栈业务基础上拓展 RAG 知识检索、增量 Wiki、Agent 问答与多模态内容审核，并负责权限管理、部署运维和用户反馈迭代。"
-              >主导 StudyHub 的产品架构、核心功能开发与持续运营，服务校园资料共享、经验交流、求购协作及校园集市；在全栈业务基础上拓展 RAG 知识检索、增量 Wiki、Agent 问答与多模态内容审核，并负责权限管理、部署运维和用户反馈迭代。</p>
+              <p data-en="Led architecture, core development and operation of the StudyHub campus knowledge-sharing platform. Extended its full-stack services with RAG, an incremental Wiki, agent Q&amp;A, multimodal moderation and Monitor–Muse–Codex AI-assisted operations." data-zh="主导 StudyHub 校园知识共享平台的架构、核心开发与运营，服务资料共享与 AI 学习；在全栈业务之上集成 RAG、增量 Wiki、Agent 问答、多模态审核与 Monitor–Muse–Codex 自动化运维。">主导 StudyHub 校园知识共享平台的架构、核心开发与运营，服务资料共享与 AI 学习；在全栈业务之上集成 RAG、增量 Wiki、Agent 问答、多模态审核与 Monitor–Muse–Codex 自动化运维。</p>
               <div class="metric-row">
                 <span><strong data-studyhub-metric="users">~400</strong><em data-en="users" data-zh="用户">用户</em></span>
                 <span><strong data-studyhub-metric="downloads">~2,000</strong><em data-en="downloads" data-zh="下载">下载</em></span>
@@ -161,10 +158,13 @@
                   </summary>
 
                 <ul class="project-highlights">
-                  <li data-en="<strong>Architecture and deployment.</strong> Built frontend and backend services with Next.js (React / TypeScript), FastAPI, MySQL, Redis, OSS, and dedicated workers, deployed with Docker / Nginx. Enforced permission boundaries for document management, downloads, and AI-tool access." data-zh="<strong>全栈架构与部署：</strong>基于 Next.js（React / TypeScript）、FastAPI、MySQL、Redis、OSS 与独立 Worker 构建前后端服务，通过 Docker / Nginx 部署；围绕资料管理、下载授权和 AI 工具调用设置权限边界。"><strong>全栈架构与部署：</strong>基于 Next.js（React / TypeScript）、FastAPI、MySQL、Redis、OSS 与独立 Worker 构建前后端服务，通过 Docker / Nginx 部署；围绕资料管理、下载授权和 AI 工具调用设置权限边界。</li>
-                  <li data-en="<strong>RAG retrieval pipeline and Wiki knowledge aggregation and updates.</strong> Drawing on WeKnora, combined PDF/OCR parsing, structure-aware chunking, parent-child indexing, BM25, BGE-M3 retrieval, RRF fusion, and Qwen3-Reranker-0.6B. Aggregated cross-document entities and concepts with Map-Reduce; maintained the Wiki with chunk-level extraction caching, source traceability, and retraction of unsupported knowledge. In a SciFact subset comparison, Hit@5 rose from 87.5% to 96.9% and MRR@5 from 0.828 to 0.932." data-zh="<strong>RAG 检索管线、Wiki 知识聚合与更新：</strong>参考 WeKnora 的知识库设计，采用 PDF/OCR 解析、结构感知切分和 Parent-Child 分层索引，结合 BM25、BGE-M3 向量召回、RRF 融合与 Qwen3-Reranker-0.6B 重排；以 Map-Reduce 汇聚跨文档实体与概念，通过 Chunk 级抽取缓存、来源追溯和失效知识撤回支持 Wiki 增量更新。SciFact 对照中 Hit@5 由 87.5% 升至 96.9%，MRR@5 由 0.828 升至 0.932。"><strong>RAG 检索管线、Wiki 知识聚合与更新：</strong>参考 WeKnora 的知识库设计，采用 PDF/OCR 解析、结构感知切分和 Parent-Child 分层索引，结合 BM25、BGE-M3 向量召回、RRF 融合与 Qwen3-Reranker-0.6B 重排；以 Map-Reduce 汇聚跨文档实体与概念，通过 Chunk 级抽取缓存、来源追溯和失效知识撤回支持 Wiki 增量更新。SciFact 对照中 Hit@5 由 87.5% 升至 96.9%，MRR@5 由 0.828 升至 0.932。</li>
-                  <li data-en="<strong>Agent Harness and model optimization.</strong> Built a Qwen3.5-9B ReAct tool-use framework with MCP and vLLM, and designed a task-complexity-aware choice between ReAct and Plan-and-Execute. Designed tool-call validation, citation verification and correction, insufficient-evidence handling, context compaction, and execution-budget controls. Evaluated LoRA-based SFT and GRPO for tool calling, observing success rates of 87.5% versus 93.8% on a fixed test subset." data-zh="<strong>Agent Harness 与模型优化：</strong>基于 Qwen3.5-9B、MCP 与 vLLM 搭建 ReAct 多步工具调用框架，并设计面向不同任务复杂度的 ReAct / Plan-and-Execute 执行策略；设计工具调用校验、引用校验与纠错、证据不足处理、上下文压缩及执行预算控制等机制。面向 Tool Calling，基于 LoRA 开展 SFT 与 GRPO 后训练及对照评测，工具调用成功率由 87.5% 升至 93.8%。"><strong>Agent Harness 与模型优化：</strong>基于 Qwen3.5-9B、MCP 与 vLLM 搭建 ReAct 多步工具调用框架，并设计面向不同任务复杂度的 ReAct / Plan-and-Execute 执行策略；设计工具调用校验、引用校验与纠错、证据不足处理、上下文压缩及执行预算控制等机制。面向 Tool Calling，基于 LoRA 开展 SFT 与 GRPO 后训练及对照评测，工具调用成功率由 87.5% 升至 93.8%。</li>
-                  <li data-en="<strong>Multimodal safety.</strong> Integrated Qwen3Guard-Gen-0.6B and ShieldGemma 2-4B for text, image, and OCR-assisted moderation. Candidate-class probabilities and a default 0.85 confidence threshold guide routing: high-confidence cases may be approved or rejected automatically when enabled and permitted by policy, while uncertain or controversial cases go to human review. In one offline XSTest text evaluation, automatic coverage reached 73.4%." data-zh="<strong>多模态安全审核：</strong>使用 Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 构建文本、图像及 OCR 图文审核流程；通过候选类别概率评分与默认 0.85 置信度门槛分流，支持高置信度内容按规则自动放行或拒绝，低置信度及争议内容转人工复核。在一组 XSTest 文本离线测试中，自动处理覆盖率为 73.4%。"><strong>多模态安全审核：</strong>使用 Qwen3Guard-Gen-0.6B 与 ShieldGemma 2-4B 构建文本、图像及 OCR 图文审核流程；通过候选类别概率评分与默认 0.85 置信度门槛分流，支持高置信度内容按规则自动放行或拒绝，低置信度及争议内容转人工复核。在一组 XSTest 文本离线测试中，自动处理覆盖率为 73.4%。</li>
+                  <li data-en="<strong>Role and engineering.</strong> Initiated StudyHub and led its architecture and core full-stack development, including access control, material management, deployment, open-source collaboration and pull-request review, assisted by Codex and Claude Code." data-zh="<strong>职责与协作：</strong>提出项目构想并主导产品架构与前后端核心功能开发，负责权限与资料管理、部署运维、开源协作与 PR 审核；结合 Codex 和 Claude Code 辅助开发测试。"><strong>职责与协作：</strong>提出项目构想并主导产品架构与前后端核心功能开发，负责权限与资料管理、部署运维、开源协作与 PR 审核；结合 Codex 和 Claude Code 辅助开发测试。</li>
+                  <li data-en="<strong>AI-assisted operations.</strong> Designed a Monitor–Muse–Codex workflow: Monitor checks service and API health, traffic anomalies and host resource pressure, sending email alerts with diagnostic context; Muse interprets alerts and logs, then coordinates Codex for targeted fixes, tests and recovery verification." data-zh="<strong>AI 自动化运维：</strong>设计 Monitor–Muse–Codex 协同机制：Monitor 监测服务与关键接口、流量和服务器资源异常，通过邮件预警提供运行信息；Muse 结合告警与日志分析原因，按问题类型协调 Codex 进行代码修复、测试与恢复验证。"><strong>AI 自动化运维：</strong>设计 Monitor–Muse–Codex 协同机制：Monitor 监测服务与关键接口、流量和服务器资源异常，通过邮件预警提供运行信息；Muse 结合告警与日志分析原因，按问题类型协调 Codex 进行代码修复、测试与恢复验证。</li>
+                  <li data-en="<strong>RAG retrieval.</strong> Combined structure-aware chunking, parent-child indexing, BM25, BGE-M3 embeddings, RRF fusion and Qwen3-Reranker-0.6B reranking. On SciFact, Hit@5 improved from <strong>87.5% to 96.9%</strong> and MRR@5 from <strong>0.828 to 0.932</strong>." data-zh="<strong>RAG 检索管线：</strong>采用结构感知切分与 Parent-Child 分层索引，结合 BM25、BGE-M3 向量召回、RRF 融合及 Qwen3-Reranker-0.6B 重排；SciFact 评测中，Hit@5 从 <strong>87.5% 提升至 96.9%</strong>，MRR@5 从 <strong>0.828 提升至 0.932</strong>。"><strong>RAG 检索管线：</strong>采用结构感知切分与 Parent-Child 分层索引，结合 BM25、BGE-M3 向量召回、RRF 融合及 Qwen3-Reranker-0.6B 重排；SciFact 评测中，Hit@5 从 <strong>87.5% 提升至 96.9%</strong>，MRR@5 从 <strong>0.828 提升至 0.932</strong>。</li>
+                  <li data-en="<strong>Incremental Wiki.</strong> Used Map–Reduce to consolidate entities and concepts across documents with chunk-level extraction caching, source provenance and retraction of unsupported claims." data-zh="<strong>Wiki 知识聚合与更新：</strong>以 Map–Reduce 实现跨文档实体及概念聚合，设计 Chunk 级抽取结果缓存、来源追溯和失效知识撤回机制，支持增量构建与更新。"><strong>Wiki 知识聚合与更新：</strong>以 Map–Reduce 实现跨文档实体及概念聚合，设计 Chunk 级抽取结果缓存、来源追溯和失效知识撤回机制，支持增量构建与更新。</li>
+                  <li data-en="<strong>Agent Harness.</strong> Built a Qwen3.5-9B tool-use framework with task-aware ReAct / Plan-and-Execute selection, tool and citation validation, recovery, context compaction and execution budgets. Required-source citation coverage pass rate improved from <strong>12.5% to 91.7%</strong>, with <strong>zero</strong> context-budget terminations." data-zh="<strong>Agent Harness：</strong>基于 Qwen3.5-9B 构建多步工具调用框架，支持面向任务复杂度的 ReAct / Plan-and-Execute 策略选择、参数与引用校验、异常纠错、上下文压缩和执行预算管理；规定来源引用覆盖通过率由 <strong>12.5% 提升至 91.7%</strong>，上下文预算异常终止降至 <strong>0 次</strong>。"><strong>Agent Harness：</strong>基于 Qwen3.5-9B 构建多步工具调用框架，支持面向任务复杂度的 ReAct / Plan-and-Execute 策略选择、参数与引用校验、异常纠错、上下文压缩和执行预算管理；规定来源引用覆盖通过率由 <strong>12.5% 提升至 91.7%</strong>，上下文预算异常终止降至 <strong>0 次</strong>。</li>
+                  <li data-en="<strong>Model post-training.</strong> Evaluated LoRA-based SFT and GRPO for tool calling. Tool-call success increased from <strong>87.5% to 93.8%</strong> in controlled evaluation." data-zh="<strong>模型后训练：</strong>面向 Tool Calling，基于 LoRA 开展 SFT 与 GRPO 后训练和对照评测；工具调用成功率由 <strong>87.5% 提升至 93.8%</strong>。"><strong>模型后训练：</strong>面向 Tool Calling，基于 LoRA 开展 SFT 与 GRPO 后训练和对照评测；工具调用成功率由 <strong>87.5% 提升至 93.8%</strong>。</li>
+                  <li data-en="<strong>Multimodal moderation.</strong> Integrated Qwen3Guard-Gen-0.6B, ShieldGemma 2-4B and OCR for text and image screening, routing content to automatic decisions or human review based on class probabilities and a 0.85 confidence threshold. Offline XSTest automatic coverage was <strong>73.4%</strong>." data-zh="<strong>多模态内容审核：</strong>基于 Qwen3Guard-Gen-0.6B、ShieldGemma 2-4B 和 OCR 构建文本与图像审核流程，通过候选类别概率和 0.85 置信度阈值分流至自动处理或人工复核；XSTest 文本离线评测自动处理覆盖率为 <strong>73.4%</strong>。"><strong>多模态内容审核：</strong>基于 Qwen3Guard-Gen-0.6B、ShieldGemma 2-4B 和 OCR 构建文本与图像审核流程，通过候选类别概率和 0.85 置信度阈值分流至自动处理或人工复核；XSTest 文本离线评测自动处理覆盖率为 <strong>73.4%</strong>。</li>
                 </ul>
                 </details>
                 <figure>
@@ -208,10 +208,7 @@
                 弱监督深度学习 · 大脑皮层三维重建
               </p>
               <div class="tag-row"><span>Python</span><span>PyTorch</span><span>SimpleITK</span><span>Trimesh</span><span>FreeSurfer</span></div>
-                            <p
-                data-en="DDSurfer is a weakly supervised cortical surface reconstruction model for diffusion magnetic resonance imaging (dMRI). It predicts white-matter and pial surfaces without an additional T1-weighted scan. The first-author paper appeared in Advanced Science (2026)."
-                data-zh="DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督皮层表面重建模型，无需额外 T1w 结构像即可预测白质表面和软脑膜表面；相关第一作者论文已发表于 Advanced Science（2026）。"
-              >DDSurfer 是面向扩散磁共振成像（dMRI）的弱监督皮层表面重建模型，无需额外 T1w 结构像即可预测白质表面和软脑膜表面；相关第一作者论文已发表于 Advanced Science（2026）。</p>
+                            <p data-en="A weakly supervised model for reconstructing white-matter and pial cortical surfaces directly from diffusion MRI without requiring T1-weighted images; first-author paper published in Advanced Science (2026)." data-zh="面向扩散磁共振成像（dMRI）的弱监督大脑皮层重建模型，无需额外 T1w 图像即可生成白质表面和软脑膜表面；第一作者论文发表于 Advanced Science（2026）。">面向扩散磁共振成像（dMRI）的弱监督大脑皮层重建模型，无需额外 T1w 图像即可生成白质表面和软脑膜表面；第一作者论文发表于 Advanced Science（2026）。</p>
               <div class="metric-row publication-metrics">
                 <span><strong>Advanced Science</strong><em data-en="Journal" data-zh="期刊">期刊</em></span>
                 <span><strong data-en="CAS Q1 TOP" data-zh="一区 TOP">一区 TOP</strong><em data-en="CAS ranking" data-zh="中科院分区">中科院分区</em></span>
@@ -224,10 +221,12 @@
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
                 <ul class="project-highlights">
-                  <li data-en="<strong>Role and development.</strong> Led network design, training, ablation studies and cross-dataset evaluation, covering dMRI feature preprocessing, template-space inference and native-space cortical mesh reconstruction." data-zh="<strong>职责与协作：</strong>主导网络架构设计、模型训练、消融实验与跨数据集评估，完成从 dMRI 特征预处理、模板空间推理到原始空间三维网格重建的主要算法开发。"><strong>职责与协作：</strong>主导网络架构设计、模型训练、消融实验与跨数据集评估，完成从 dMRI 特征预处理、模板空间推理到原始空间三维网格重建的主要算法开发。</li>
-                  <li data-en="<strong>Weak supervision.</strong> Generated training pseudo-labels with conventional image-processing methods and introduced <strong>Unidirectional Boundary Loss</strong> and geometric regularization to mitigate label noise and cortical boundary deviations." data-zh="<strong>弱监督训练：</strong>利用传统图像处理方法生成训练伪标签，并设计 <strong>Unidirectional Boundary Loss</strong> 与几何正则约束，减轻伪标签噪声和复杂皮层边界偏差。"><strong>弱监督训练：</strong>利用传统图像处理方法生成训练伪标签，并设计 <strong>Unidirectional Boundary Loss</strong> 与几何正则约束，减轻伪标签噪声和复杂皮层边界偏差。</li>
-                  <li data-en="<strong>Architecture.</strong> Developed a <strong>Dual-Stream + Cross-SE</strong> attention-based fusion network with multiscale features and <strong>diffeomorphic deformation</strong> for topology-preserving 3D surface reconstruction." data-zh="<strong>模型架构：</strong>构建 <strong>Dual-Stream + Cross-SE</strong> 双分支注意力融合网络，结合多尺度特征建模与<strong>微分同胚形变</strong>，在保持表面拓扑结构的前提下完成三维重建。"><strong>模型架构：</strong>构建 <strong>Dual-Stream + Cross-SE</strong> 双分支注意力融合网络，结合多尺度特征建模与<strong>微分同胚形变</strong>，在保持表面拓扑结构的前提下完成三维重建。</li>
-                  <li data-en="<strong>Evaluation.</strong> Relative to initial pseudo-labels, volumetric similarity for two cortical surfaces improved from <strong>0.944 / 0.923</strong> to <strong>0.985 / 0.980</strong>; regional imaging-measurement variability fell by <strong>25.5% / 31.7%</strong>. Evaluated generalization on <strong>four external datasets (203 participants)</strong>." data-zh="<strong>性能验证：</strong>相较初始伪标签，两类皮层表面的体积相似性从 <strong>0.944 / 0.923</strong> 提升至 <strong>0.985 / 0.980</strong>；区域影像测量离散度降低 <strong>25.5% / 31.7%</strong>，并在 <strong>4 个外部数据集（203 名受试者）</strong>上评估泛化能力。"><strong>性能验证：</strong>相较初始伪标签，两类皮层表面的体积相似性从 <strong>0.944 / 0.923</strong> 提升至 <strong>0.985 / 0.980</strong>；区域影像测量离散度降低 <strong>25.5% / 31.7%</strong>，并在 <strong>4 个外部数据集（203 名受试者）</strong>上评估泛化能力。</li>
+                  <li data-en="<strong>Role.</strong> Led network, loss-function and training-strategy design, preprocessing, ablations, external-dataset evaluations and core research implementation." data-zh="<strong>职责与协作：</strong>主导网络设计、损失函数、训练策略、数据预处理、消融实验和外部数据集泛化评估，并推进核心算法实现与论文实验。"><strong>职责与协作：</strong>主导网络设计、损失函数、训练策略、数据预处理、消融实验和外部数据集泛化评估，并推进核心算法实现与论文实验。</li>
+                  <li data-en="<strong>Weak supervision.</strong> Trained on conventionally generated pseudo-labels using Unidirectional Boundary Loss and geometric regularization to reduce label noise and boundary errors." data-zh="<strong>弱监督训练：</strong>使用传统方法生成训练伪标签，设计 Unidirectional Boundary Loss 与几何正则约束，缓解噪声标签和复杂皮层边界偏差。"><strong>弱监督训练：</strong>使用传统方法生成训练伪标签，设计 Unidirectional Boundary Loss 与几何正则约束，缓解噪声标签和复杂皮层边界偏差。</li>
+                  <li data-en="<strong>Architecture.</strong> Designed a Dual-Stream network for anisotropy and diffusivity features with Cross-SE fusion, multiscale features and large-kernel attention. Predicted a time-varying velocity field (TVF) for diffeomorphic template-mesh deformation." data-zh="<strong>模型架构：</strong>设计 Dual-Stream 双分支网络，分别提取各向异性与扩散率特征，经 Cross-SE 跨分支注意力融合；结合多尺度特征、大核注意力和时变速度场（TVF），以微分同胚形变驱动皮层模板网格连续重建。"><strong>模型架构：</strong>设计 Dual-Stream 双分支网络，分别提取各向异性与扩散率特征，经 Cross-SE 跨分支注意力融合；结合多尺度特征、大核注意力和时变速度场（TVF），以微分同胚形变驱动皮层模板网格连续重建。</li>
+                  <li data-en="<strong>Ablations.</strong> Evaluated single-stream, no Cross-SE, no large-kernel attention and single-channel variants; full-model rCoV decreased by <strong>12.4% / 28.3%</strong> versus the single-stream baseline." data-zh="<strong>消融实验：</strong>对单分支、移除 Cross-SE、大核注意力及单通道输入进行对照；完整模型相对单分支基线的两类表面 rCoV 分别降低 <strong>12.4% / 28.3%</strong>。"><strong>消融实验：</strong>对单分支、移除 Cross-SE、大核注意力及单通道输入进行对照；完整模型相对单分支基线的两类表面 rCoV 分别降低 <strong>12.4% / 28.3%</strong>。</li>
+                  <li data-en="<strong>Postprocessing.</strong> Built a FreeSurfer-compatible workflow for mesh checks, thickness/curvature/area measurements, parcellation and standard-surface mapping; multimetric mapping time fell from <strong>13.68 s to 3.23 s</strong>." data-zh="<strong>后处理：</strong>构建 FreeSurfer 兼容的表面处理流程，包括网格校验、厚度/曲率/面积计算、脑区分区及标准空间映射；多指标映射步骤由 <strong>13.68 秒缩短至 3.23 秒</strong>。"><strong>后处理：</strong>构建 FreeSurfer 兼容的表面处理流程，包括网格校验、厚度/曲率/面积计算、脑区分区及标准空间映射；多指标映射步骤由 <strong>13.68 秒缩短至 3.23 秒</strong>。</li>
+                  <li data-en="<strong>Evaluation.</strong> Volumetric similarity increased from <strong>0.944 / 0.923</strong> to <strong>0.985 / 0.980</strong>, while regional variability decreased by <strong>25.5% / 31.7%</strong>; validated on <strong>four external datasets (203 subjects)</strong>." data-zh="<strong>性能验证：</strong>两类皮层表面的体积相似性由 <strong>0.944 / 0.923</strong> 提升至 <strong>0.985 / 0.980</strong>，区域测量离散度降低 <strong>25.5% / 31.7%</strong>；在 <strong>4 个外部数据集（203 名受试者）</strong>进行泛化验证。"><strong>性能验证：</strong>两类皮层表面的体积相似性由 <strong>0.944 / 0.923</strong> 提升至 <strong>0.985 / 0.980</strong>，区域测量离散度降低 <strong>25.5% / 31.7%</strong>；在 <strong>4 个外部数据集（203 名受试者）</strong>进行泛化验证。</li>
                 </ul>
                 </details>
                 <div class="figure-stack">
@@ -279,10 +278,7 @@
                 Plan-and-Execute Agent · 医学影像任务编排
               </p>
               <div class="tag-row"><span>Python</span><span>LangChain</span><span>FastAPI</span><span>3D Slicer</span></div>
-                            <p
-                data-en="Contributed to a medical-imaging agent that uses natural-language instructions to drive multi-step processing, algorithm execution and result analysis in 3D Slicer. Expert workflows are packaged as Protocols and coordinated through a Planner–Executor design."
-                data-zh="参与研发面向医学影像分析的 Agent 系统，通过自然语言驱动 3D Slicer 执行多步骤数据处理、算法调用与结果分析；将专家工作流封装为 Protocol，以 Planner–Executor 组织任务规划与阶段执行。"
-              >参与研发面向医学影像分析的 Agent 系统，通过自然语言驱动 3D Slicer 执行多步骤数据处理、算法调用与结果分析；将专家工作流封装为 Protocol，以 Planner–Executor 组织任务规划与阶段执行。</p>
+                            <p data-en="Contributed to a medical-imaging agent for multi-step analysis in 3D Slicer, combining structured Protocols, an adaptive Planner–Executor and controlled tool calls. (Manuscript submitted.)" data-zh="参与研发以自然语言驱动 3D Slicer 的医学影像 Agent，使用结构化 Protocol、自适应 Planner–Executor 和受控工具调用完成多阶段数据处理与结果分析。（在投）">参与研发以自然语言驱动 3D Slicer 的医学影像 Agent，使用结构化 Protocol、自适应 Planner–Executor 和受控工具调用完成多阶段数据处理与结果分析。（在投）</p>
               <div class="project-details">
                 <details class="project-text-collapse">
                   <summary>
@@ -290,10 +286,10 @@
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
                 <ul class="project-highlights">
-                  <li data-en="<strong>Role and collaboration.</strong> Contributed to the agent architecture, integration of external analysis tools and workflow evaluation, including protocol specifications, execution constraints and interaction design." data-zh="<strong>职责与协作：</strong>参与 Agent 架构设计、外部分析工具集成与工作流实验验证，协同完善协议描述、运行约束和交互流程。"><strong>职责与协作：</strong>参与 Agent 架构设计、外部分析工具集成与工作流实验验证，协同完善协议描述、运行约束和交互流程。</li>
-                  <li data-en="<strong>Task planning.</strong> Packaged expert procedures into <strong>structured Protocols</strong> with <strong>progressive disclosure</strong> inspired by Agent Skills, loading task steps and tool guidance on demand while specifying inputs/outputs, stage checks and exception handling. An <strong>adaptive Planner–Executor</strong> separates global planning from staged execution and adjusts task decomposition to complexity." data-zh="<strong>任务规划：</strong>将专家操作流程封装为<strong>结构化 Protocol</strong>，借鉴 Agent Skills 的<strong>渐进式披露机制</strong>，按需加载任务步骤与工具说明，并明确输入输出、阶段检查及异常处置；采用<strong>自适应 Planner–Executor</strong> 分离全局规划与分阶段执行，根据任务复杂度划分步骤。"><strong>任务规划：</strong>将专家操作流程封装为<strong>结构化 Protocol</strong>，借鉴 Agent Skills 的<strong>渐进式披露机制</strong>，按需加载任务步骤与工具说明，并明确输入输出、阶段检查及异常处置；采用<strong>自适应 Planner–Executor</strong> 分离全局规划与分阶段执行，根据任务复杂度划分步骤。</li>
-                  <li data-en="<strong>Tool use and recovery.</strong> Integrated controlled <strong>tool calling</strong>, 3D Slicer module discovery and parameter/permission checks using LangChain and FastAPI. Stage-level QC, recovery logic and <strong>JSONL execution traces</strong> support fault diagnosis and reproducibility." data-zh="<strong>工具调用与容错：</strong>基于 LangChain、FastAPI 与 3D Slicer 实现受控 <strong>Tool Calling</strong>、软件模块发现和参数/权限校验；利用阶段 QC、异常恢复与 <strong>JSONL 执行轨迹</strong>定位失败步骤并追溯执行过程。"><strong>工具调用与容错：</strong>基于 LangChain、FastAPI 与 3D Slicer 实现受控 <strong>Tool Calling</strong>、软件模块发现和参数/权限校验；利用阶段 QC、异常恢复与 <strong>JSONL 执行轨迹</strong>定位失败步骤并追溯执行过程。</li>
-                  <li data-en="<strong>Efficiency evaluation.</strong> Completed benchmark tasks across <strong>five medical-image analysis workflows</strong> and reproduced manual reference outputs. Against Claude Code, Codex and Qwen Code under matched model configurations, <strong>token use decreased by 77.8%–88.5%</strong> and <strong>LLM request counts by 46.2%–73.9%</strong>." data-zh="<strong>效率验证：</strong>在 <strong>5 类医学图像分析工作流</strong>中完成基准任务并复现人工参考结果；与同模型配置下的 Claude Code、Codex、Qwen Code 相比，<strong>Token 消耗降低 77.8%–88.5%</strong>，<strong>LLM 请求次数减少 46.2%–73.9%</strong>。"><strong>效率验证：</strong>在 <strong>5 类医学图像分析工作流</strong>中完成基准任务并复现人工参考结果；与同模型配置下的 Claude Code、Codex、Qwen Code 相比，<strong>Token 消耗降低 77.8%–88.5%</strong>，<strong>LLM 请求次数减少 46.2%–73.9%</strong>。</li>
+                  <li data-en="<strong>Role.</strong> Contributed to agent architecture, integration with external analysis software, workflow protocol design and experimental evaluation." data-zh="<strong>职责与协作：</strong>参与 Agent 架构设计、外部分析软件集成和实验验证，协同完善工作流协议与交互流程。"><strong>职责与协作：</strong>参与 Agent 架构设计、外部分析软件集成和实验验证，协同完善工作流协议与交互流程。</li>
+                  <li data-en="<strong>Planning.</strong> Encapsulated expert procedures in structured Protocols using Agent Skills-inspired progressive disclosure, with an adaptive Planner–Executor separating global planning from staged execution." data-zh="<strong>任务规划：</strong>将专家操作封装为结构化 Protocol，借鉴 Agent Skills 渐进式披露按需加载步骤与工具说明；设计自适应 Planner–Executor，分离全局规划与分阶段执行。"><strong>任务规划：</strong>将专家操作封装为结构化 Protocol，借鉴 Agent Skills 渐进式披露按需加载步骤与工具说明；设计自适应 Planner–Executor，分离全局规划与分阶段执行。</li>
+                  <li data-en="<strong>Tool use and recovery.</strong> Implemented controlled tool calls, module discovery, parameter and permission validation, stage-level QC, error recovery and traceable JSONL execution logs." data-zh="<strong>工具调用与容错：</strong>实现受控 Tool Calling、软件模块发现及参数/权限校验；结合阶段质量检查、异常恢复与 JSONL 执行轨迹支持失败定位和追溯。"><strong>工具调用与容错：</strong>实现受控 Tool Calling、软件模块发现及参数/权限校验；结合阶段质量检查、异常恢复与 JSONL 执行轨迹支持失败定位和追溯。</li>
+                  <li data-en="<strong>Benchmark.</strong> Covered five workflows and hidden-failure cases, completing <strong>5/5 tasks</strong>. Against Claude Code, Codex and Qwen Code under matched model settings, token usage fell by <strong>77.8%–88.5%</strong>, LLM requests by <strong>46.2%–73.9%</strong> and tool calls by <strong>49.7%–56.3%</strong>." data-zh="<strong>性能评测：</strong>构建覆盖 5 类工作流及隐藏异常场景的 Benchmark，<strong>5/5 类任务全部完成</strong>；同模型配置下相较 Claude Code、Codex 和 Qwen Code，Token 消耗降低 <strong>77.8%–88.5%</strong>，LLM 请求减少 <strong>46.2%–73.9%</strong>，工具调用减少 <strong>49.7%–56.3%</strong>。"><strong>性能评测：</strong>构建覆盖 5 类工作流及隐藏异常场景的 Benchmark，<strong>5/5 类任务全部完成</strong>；同模型配置下相较 Claude Code、Codex 和 Qwen Code，Token 消耗降低 <strong>77.8%–88.5%</strong>，LLM 请求减少 <strong>46.2%–73.9%</strong>，工具调用减少 <strong>49.7%–56.3%</strong>。</li>
                 </ul>
                 </details>
                 <figure>
@@ -343,10 +339,7 @@
                 医学图像分析软件 · 多算法集成与自动化 Workflow
               </p>
               <div class="tag-row"><span>Python</span><span>PyTorch</span><span>Qt</span><span>3D Slicer</span></div>
-                            <p
-                data-en="Led development of an open-source 3D Slicer extension for dMRI analysis. Built with Python / Qt, it integrates DDSeg, DDParcel, DDSurfer, downstream quantitative analysis and structural connectivity workflows through reproducible GUI/CLI execution."
-                data-zh="主导开发面向 dMRI 分析的开源 3D Slicer 插件，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游定量分析与结构连接计算，通过 GUI/CLI 提供可复现的自动化工作流。"
-              >主导开发面向 dMRI 分析的开源 3D Slicer 插件，基于 Python / Qt 统一集成 DDSeg、DDParcel、DDSurfer 及下游定量分析与结构连接计算，通过 GUI/CLI 提供可复现的自动化工作流。</p>
+                            <p data-en="Led development of an open-source 3D Slicer extension for dMRI analysis, integrating deep-learning models and third-party tools into reproducible GUI/CLI workflows. (Manuscript submitted.)" data-zh="主导开发面向 dMRI 分析的开源 3D Slicer 插件，整合多种深度学习模型和第三方计算工具，通过统一的 GUI/CLI 调度提供可复现的影像处理与分析工作流。（在投）">主导开发面向 dMRI 分析的开源 3D Slicer 插件，整合多种深度学习模型和第三方计算工具，通过统一的 GUI/CLI 调度提供可复现的影像处理与分析工作流。（在投）</p>
               <div class="project-details">
                 <details class="project-text-collapse">
                   <summary>
@@ -354,9 +347,10 @@
                     <span class="project-text-label--open" data-en="Hide technical details" data-zh="收起技术细节">收起技术细节</span>
                   </summary>
                 <ul class="project-highlights">
-                  <li data-en="<strong>Role and integration.</strong> Led extension architecture, Qt interface design and algorithm integration; used Codex to assist coding and testing." data-zh="<strong>职责与协作：</strong>主导插件架构、图形界面与算法模块集成，使用 Codex 辅助代码开发与测试。"><strong>职责与协作：</strong>主导插件架构、图形界面与算法模块集成，使用 Codex 辅助代码开发与测试。</li>
-                  <li data-en="<strong>Algorithms and workflow.</strong> Combined deep-learning and conventional image-processing tools for tissue segmentation, cortical surface reconstruction, quantitative analysis and structural connectomes. Implemented staged execution, input/dependency validation, stage-level QC, cache reuse and output provenance." data-zh="<strong>算法与流程：</strong>集成深度学习与传统影像处理方法，覆盖组织分割、皮层表面重建、定量分析与结构连接组计算；实现阶段编排、输入与依赖检查、阶段 QC、缓存复用和结果溯源。"><strong>算法与流程：</strong>集成深度学习与传统影像处理方法，覆盖组织分割、皮层表面重建、定量分析与结构连接组计算；实现阶段编排、输入与依赖检查、阶段 QC、缓存复用和结果溯源。</li>
-                  <li data-en="<strong>Engineering validation.</strong> Validated GUI functions and end-to-end workflows with real dMRI data in <strong>3D Slicer 5.10 (Linux)</strong>, including installation from source, troubleshooting and automatic result display." data-zh="<strong>工程验证：</strong>在 <strong>3D Slicer 5.10（Linux）</strong>环境下完成界面功能和真实 dMRI 数据的端到端工作流验证，支持源码安装、异常定位与结果自动展示。"><strong>工程验证：</strong>在 <strong>3D Slicer 5.10（Linux）</strong>环境下完成界面功能和真实 dMRI 数据的端到端工作流验证，支持源码安装、异常定位与结果自动展示。</li>
+                  <li data-en="<strong>Role.</strong> Led extension architecture, Qt GUI and core functionality, algorithm integration, workflow orchestration, testing and deployment." data-zh="<strong>职责与协作：</strong>主导插件架构、Qt 图形界面和核心功能开发，负责算法集成、工作流调度、工程测试及部署。"><strong>职责与协作：</strong>主导插件架构、Qt 图形界面和核心功能开发，负责算法集成、工作流调度、工程测试及部署。</li>
+                  <li data-en="<strong>Modular integration.</strong> Wrapped PyTorch models and third-party tools as reusable modules with unified I/O, configuration and result management, dependency checks, resource validation and on-demand execution." data-zh="<strong>多模型集成与模块化设计：</strong>将 PyTorch 模型和第三方计算工具封装为独立可复用模块，统一输入输出、参数配置和结果管理，并设计依赖检查、模型资源校验及按需执行机制。"><strong>多模型集成与模块化设计：</strong>将 PyTorch 模型和第三方计算工具封装为独立可复用模块，统一输入输出、参数配置和结果管理，并设计依赖检查、模型资源校验及按需执行机制。</li>
+                  <li data-en="<strong>Workflow orchestration.</strong> Built configuration-driven, dependency-aware pipelines with a shared GUI/CLI execution layer, task state tracking, cache reuse, resumption and traceable logs." data-zh="<strong>自动化工作流编排：</strong>构建配置驱动、依赖感知的多阶段流程，GUI 与 CLI 共享底层调度；支持任务状态管理、缓存复用、断点续跑和日志追溯。"><strong>自动化工作流编排：</strong>构建配置驱动、依赖感知的多阶段流程，GUI 与 CLI 共享底层调度；支持任务状态管理、缓存复用、断点续跑和日志追溯。</li>
+                  <li data-en="<strong>Performance.</strong> Optimized streamline processing and region statistics using NumPy/VTK vectorization, chunked computation and label grouping. Filtering and geometry copying for <strong>50k streamlines</strong> fell from <strong>6.32 s to 0.11 s</strong>; region-statistics export from <strong>5.55 s to 0.55 s</strong>, with output-equivalence checks." data-zh="<strong>性能优化：</strong>针对大规模轨迹处理与区域统计，采用 NumPy/VTK 向量化、分块批量计算和按标签分组；<strong>5 万条轨迹筛选与几何拷贝</strong>由 <strong>6.32 秒降至 0.11 秒</strong>，<strong>区域统计导出</strong>由 <strong>5.55 秒降至 0.55 秒</strong>，并进行输出一致性校验。"><strong>性能优化：</strong>针对大规模轨迹处理与区域统计，采用 NumPy/VTK 向量化、分块批量计算和按标签分组；<strong>5 万条轨迹筛选与几何拷贝</strong>由 <strong>6.32 秒降至 0.11 秒</strong>，<strong>区域统计导出</strong>由 <strong>5.55 秒降至 0.55 秒</strong>，并进行输出一致性校验。</li>
                 </ul>
                 </details>
                 <figure>
@@ -444,24 +438,14 @@
               <div class="timeline-mark"><span class="timeline-year">2025</span><span data-en="Challenge" data-zh="挑战赛">挑战赛</span></div>
               <div class="research-body">
                 <h3>MICCAI 2025</h3>
-                <p
-                  data-en="<strong>Third Prize</strong> in both classification and segmentation tracks of the PDCADxFoundation Challenge."
-                  data-zh="PDCADxFoundation Challenge 分类与分割赛道均获<strong>三等奖</strong>。"
-                >
-                  PDCADxFoundation Challenge 分类与分割赛道均获<strong>三等奖</strong>。
-                </p>
+                <p data-en="Placed <strong>fifth</strong> in both classification and segmentation tracks of the PDCADxFoundation Challenge." data-zh="PDCADxFoundation Challenge 分类与分割赛道均获得<strong>第五名</strong>。">PDCADxFoundation Challenge 分类与分割赛道均获得<strong>第五名</strong>。</p>
               </div>
             </article>
             <article>
               <div class="timeline-mark"><span class="timeline-year">2025</span><span data-en="Poster" data-zh="海报展示">海报展示</span></div>
               <div class="research-body">
                 <h3>ISICDM 2025</h3>
-                <p
-                  data-en="<strong>Third Prize</strong> in the poster session."
-                  data-zh="海报展示获得<strong>三等奖</strong>。"
-                >
-                  海报展示获得<strong>三等奖</strong>。
-                </p>
+                <p data-en="Research work accepted as a <strong>Poster presentation</strong>." data-zh="研究工作获接收为 <strong>Poster presentation</strong>。">研究工作获接收为 <strong>Poster presentation</strong>。</p>
               </div>
             </article>
           </div>
@@ -478,93 +462,35 @@
           <ol class="honor-list">
             <li>
               <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Academic honor" data-zh="学术荣誉">学术荣誉</span></div>
-              <span
-                class="honor-text"
-                data-en="🌟 <strong>HONOR — Academic Star in Information and Communication Engineering</strong>."
-                data-zh="🌟 获<strong>荣耀信通—学术之星</strong>荣誉。"
-              >
-                🌟 获<strong>荣耀信通—学术之星</strong>荣誉。
-              </span>
-            </li>
-            <li>
-              <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Award" data-zh="竞赛获奖">竞赛获奖</span></div>
-              <span
-                class="honor-text"
-                data-en="🏆 <strong>First Prize</strong> in the AI Track, Southwest Regional Contest, China Graduate Electronics Design Contest."
-                data-zh="🏆 中国研究生电子设计竞赛人工智能赛道西南赛区<strong>一等奖</strong>。"
-              >
-                🏆 中国研究生电子设计竞赛人工智能赛道西南赛区<strong>一等奖</strong>。
-              </span>
-            </li>
-            <li>
-              <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Modeling" data-zh="数学建模">数学建模</span></div>
-              <span
-                class="honor-text"
-                data-en="🥉 National <strong>Third Prize</strong>, 2025 Huawei Cup, the 22nd China Graduate Mathematical Contest in Modeling, as team leader."
-                data-zh="🥉 2025年“华为杯”第二十二届中国研究生数学建模竞赛国家<strong>三等奖</strong>，担任队长。"
-              >
-                🥉 2025年“华为杯”第二十二届中国研究生数学建模竞赛国家<strong>三等奖</strong>，担任队长。
-              </span>
+              <span class="honor-text" data-en="🌟 Received the <strong>HONOR · Academic Star</strong> distinction in Information and Communication Engineering; <strong>only two recipients in the cohort</strong>." data-zh="🌟 获「<strong>荣耀信通 · 学术之星</strong>」荣誉，<strong>同年级仅 2 人获评</strong>。">🌟 获「<strong>荣耀信通 · 学术之星</strong>」荣誉，<strong>同年级仅 2 人获评</strong>。</span>
             </li>
             <li>
               <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Scholarship" data-zh="学业奖学金">学业奖学金</span></div>
-              <span
-                class="honor-text"
-                data-en="🎓 UESTC <strong>First-Class Graduate Academic Scholarship</strong> (2026)."
-                data-zh="🎓 获电子科技大学研究生<strong>学业奖学金一等奖</strong>（2026）。"
-              >
-                🎓 获电子科技大学研究生<strong>学业奖学金一等奖</strong>（2026）。
-              </span>
+              <span class="honor-text" data-en="🎓 UESTC <strong>First-Class Graduate Academic Scholarship</strong>." data-zh="🎓 电子科技大学研究生<strong>学业奖学金一等奖</strong>。">🎓 电子科技大学研究生<strong>学业奖学金一等奖</strong>。</span>
             </li>
             <li>
               <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Scholarship" data-zh="学业奖学金">学业奖学金</span></div>
-              <span
-                class="honor-text"
-                data-en="🎓 UESTC <strong>First-Class Graduate Academic Scholarship</strong>."
-                data-zh="🎓 获电子科技大学研究生<strong>学业奖学金一等奖</strong>。"
-              >
-                🎓 获电子科技大学研究生<strong>学业奖学金一等奖</strong>。
-              </span>
+              <span class="honor-text" data-en="🎓 UESTC <strong>First-Class Graduate Academic Scholarship</strong>." data-zh="🎓 电子科技大学研究生<strong>学业奖学金一等奖</strong>。">🎓 电子科技大学研究生<strong>学业奖学金一等奖</strong>。</span>
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Competition" data-zh="竞赛获奖">竞赛获奖</span></div>
+              <span class="honor-text" data-en="🏆 <strong>First Prize</strong> in the AI track, Southwest Region, China Graduate Electronics Design Contest." data-zh="🏆 中国研究生电子设计竞赛人工智能赛道西南赛区<strong>一等奖</strong>。">🏆 中国研究生电子设计竞赛人工智能赛道西南赛区<strong>一等奖</strong>。</span>
+            </li>
+            <li>
+              <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Competition" data-zh="竞赛获奖">竞赛获奖</span></div>
+              <span class="honor-text" data-en="🥉 National <strong>Third Prize</strong>, Huawei Cup Graduate Mathematical Contest in Modeling (team leader)." data-zh="🥉 华为杯中国研究生数学建模竞赛<strong>国家三等奖</strong>（队长）。">🥉 华为杯中国研究生数学建模竞赛<strong>国家三等奖</strong>（队长）。</span>
             </li>
             <li>
               <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Graduation" data-zh="毕业荣誉">毕业荣誉</span></div>
-              <span
-                class="honor-text"
-                data-en="💡 UESTC Undergraduate <strong>Innovation Award</strong> and <strong>Outstanding Undergraduate Thesis</strong>."
-                data-zh="💡 获电子科技大学<strong>本科毕业创新奖</strong>，并获得<strong>优秀毕设</strong>。"
-              >
-                💡 获电子科技大学<strong>本科毕业创新奖</strong>，并获得<strong>优秀毕设</strong>。
-              </span>
+              <span class="honor-text" data-en="💡 UESTC <strong>Undergraduate Graduation Innovation Award</strong>." data-zh="💡 获电子科技大学<strong>本科毕业创新奖</strong>。">💡 获电子科技大学<strong>本科毕业创新奖</strong>。</span>
             </li>
             <li>
               <div class="honor-meta"><span class="honor-year">2024</span><span data-en="Project" data-zh="创新项目">创新项目</span></div>
-              <span
-                class="honor-text"
-                data-en="💡 <strong>National-level project approval</strong>, Undergraduate Innovation and Entrepreneurship Training Program."
-                data-zh="💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。"
-              >
-                💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。
-              </span>
-            </li>
-            <li>
-              <div class="honor-meta"><span class="honor-year">2024</span><span data-en="Innovation" data-zh="创新竞赛">创新竞赛</span></div>
-              <span
-                class="honor-text"
-                data-en="🥇 <strong>Gold Award</strong> at UESTC campus round and <strong>Silver Award</strong> at Sichuan provincial round, China International College Students' Innovation Competition."
-                data-zh="🥇 中国国际大学生创新大赛校赛<strong>金奖</strong>、四川省省赛<strong>银奖</strong>。"
-              >
-                🥇 中国国际大学生创新大赛校赛<strong>金奖</strong>、四川省省赛<strong>银奖</strong>。
-              </span>
+              <span class="honor-text" data-en="💡 <strong>National-level project approval</strong>, Undergraduate Innovation and Entrepreneurship Training Program." data-zh="💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。">💡 大学生创新创业训练计划项目获<strong>国家级立项</strong>。</span>
             </li>
             <li>
               <div class="honor-meta"><span class="honor-year">2021–2025</span><span data-en="Scholarship" data-zh="优秀学生奖学金">优秀学生奖学金</span></div>
-              <span
-                class="honor-text"
-                data-en="🎓 University-Level <strong>Outstanding Student Scholarship</strong> for four consecutive academic years."
-                data-zh="🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。"
-              >
-                🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。
-              </span>
+              <span class="honor-text" data-en="🎓 UESTC <strong>Outstanding Student Scholarship</strong> for four consecutive academic years." data-zh="🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。">🎓 连续四学年获得电子科技大学校级<strong>优秀学生奖学金</strong>。</span>
             </li>
           </ol>
         </section>
@@ -641,7 +567,7 @@
       <span aria-hidden="true">↑</span>
     </button>
 
-    <script src="./site-data.js?v=20261019-academic-scholarship"></script>
-    <script src="./script.js?v=20261019-review-734"></script>
+    <script src="./site-data.js?v=20261022-cv17"></script>
+    <script src="./script.js?v=20261022-cv17"></script>
   </body>
 </html>
