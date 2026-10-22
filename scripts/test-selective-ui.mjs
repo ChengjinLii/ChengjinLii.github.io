@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE_PATH || 'playwright');
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
+const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261020-v17';
 const screenshots = process.env.UI_SCREENSHOT_DIR;
 if (screenshots) mkdirSync(screenshots, { recursive: true });
 const port = await new Promise((resolve, reject) => {
@@ -257,7 +258,7 @@ try {
         assert.equal(metric.text, `~${layout.studyhub.data[metric.key]}`);
       }
       assert.equal(layout.chineseCv, layout.configuredCv, 'Sidebar and Bot must share the versioned CV URL');
-      assert.match(layout.chineseCv, /\?v=/);
+      assert.equal(layout.chineseCv, chineseCvURL, 'Use the renamed, published CV directly');
       if (screenshots && [1440, 820, 390].includes(width)) {
         await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
         await page.locator('.project-details img').first().evaluate((image) => image.decode());
@@ -305,7 +306,7 @@ try {
   assert.equal(await page.locator('.image-lightbox').getAttribute('aria-hidden'), 'true');
   await context.close();
 
-  const cvResponse = await fetch(new URL('./assets/\u674e\u627f\u9526-CV-\u4e2d\u6587.pdf?v=bdda306-20261017', baseURL));
+  const cvResponse = await fetch(new URL(chineseCvURL, baseURL));
   assert.equal(cvResponse.status, 200);
   assert.equal(Buffer.from(await cvResponse.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
 
@@ -325,6 +326,8 @@ try {
     const { page, context } = await open(390, 844, 'en', options);
     assert.equal(await page.locator('body').evaluate((node) => getComputedStyle(node).visibility), 'visible');
     assert.ok(await page.locator('h1').isVisible());
+    assert.equal(await page.locator('.sidebar-actions a').first().getAttribute('href'), chineseCvURL,
+      'CV remains available when storage or JavaScript is blocked');
     if (options.blockStorage) {
       assert.equal(await page.locator('html').getAttribute('lang'), 'en');
       await page.locator('.floating-sidebar__bubble').click();

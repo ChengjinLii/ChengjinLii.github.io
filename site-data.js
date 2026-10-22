@@ -6,7 +6,7 @@ window.siteData = {
     ddsurferRepo: "https://github.com/ChengjinLii/DDSurfer",
     dmriAgentRepo: "https://github.com/azurezhangwei/MRI_Agent",
     slicerRepo: "https://github.com/ChengjinLii/SlicerDDSurfer",
-    chineseCv: "./assets/李承锦-CV-中文.pdf?v=bdda306-20261017",
+    chineseCv: "./assets/ChengjinLi_CV.pdf?v=20261020-v17",
     englishCv: "./assets/Chengjin-Li-CV-English.pdf",
   },
   contact: {

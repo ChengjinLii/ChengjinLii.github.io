@@ -62,12 +62,16 @@ Set `UI_SCREENSHOT_DIR` to save screenshots outside the repository.
 
 ## Current CV And Project Copy
 
-The Chinese CV download is built from `ChengjinLii/Chengjin-CV` commit
-`bdda3069715531b36bb0d4f2472ffd2a8a2f64c1` (source edition v30). The upstream
-PDF was older than its TeX source, so the hosted PDF uses the locally compiled
-source rather than that older binary. A versioned URL is shared by the sidebar
-and Bot. The English CV PDF remains the previous edition because the source
-repository currently supplies only Chinese.
+The Chinese CV download is [ChengjinLi_CV.pdf](assets/ChengjinLi_CV.pdf),
+published from the supplied `Chengjin_CV_2026-10-20_v17.pdf` without changing its
+contents. The sidebar and Bot share a versioned URL; the link also works without
+JavaScript and requires no availability probe. When updating the CV, replace
+this file and update the version in `index.html`, `site-data.js`, `script.js`,
+and both CV regression scripts. The English CV PDF remains unchanged.
+
+Run `node scripts/test-cv-download.mjs` with the Playwright environment variables
+above to check PDF bytes, MIME types, bilingual desktop/mobile download links,
+Bot buttons, and fallbacks when configuration or JavaScript is unavailable.
 
 Both languages of the project descriptions follow the new CV. StudyHub's
 approximately 400 users and 2,000 downloads are explicitly approximate; the

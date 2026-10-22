@@ -64,7 +64,7 @@
           <small data-en="李承锦" data-zh="Chengjin Li">Chengjin Li</small>
         </h1>
         <div class="sidebar-actions">
-          <a href="./assets/李承锦-CV-中文.pdf?v=bdda306-20261017" data-latest-href="./assets/李承锦-CV-中文-v17.pdf?v=20261022-v17" data-en="Chinese CV" data-zh="中文简历">中文简历</a>
+          <a href="./assets/ChengjinLi_CV.pdf?v=20261020-v17" data-en="Chinese CV" data-zh="中文简历">中文简历</a>
           <a href="./assets/Chengjin-Li-CV-English.pdf" data-en="English CV" data-zh="English CV">English CV</a>
         </div>
         <div class="education-block">
@@ -567,24 +567,7 @@
       <span aria-hidden="true">↑</span>
     </button>
 
-    <script src="./site-data.js?v=20261022-cv17"></script>
-    <script>
-      // Switch to the updated CV only after its PDF has been published.
-      // The existing download stays intact until the new file is available.
-      (() => {
-        const link = document.querySelector(".sidebar-actions a[data-latest-href]");
-        if (!link) return;
-        const latest = link.dataset.latestHref;
-        fetch(latest, { method: "HEAD", cache: "no-store" })
-          .then((response) => {
-            if (!response.ok) return;
-            link.href = latest;
-            if (window.siteData?.links) window.siteData.links.chineseCv = latest;
-          })
-          .catch(() => { /* Keep the existing working PDF link. */ });
-      })();
-    </script>
-
-    <script src="./script.js?v=20261022-cv17"></script>
+    <script src="./site-data.js?v=20261023-cv17-download"></script>
+    <script src="./script.js?v=20261023-cv17-download"></script>
   </body>
 </html>
