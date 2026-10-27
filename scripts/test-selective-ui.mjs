@@ -87,7 +87,11 @@ try {
           education: [...document.querySelectorAll('.education-track p')].map((row) => ({
             date: row.querySelector('span').textContent.trim(),
             degree: row.querySelector('b').textContent.trim(),
-            major: row.querySelector('em').textContent.trim(),
+            major: row.querySelector('.education-major').textContent.trim(),
+            detail: row.querySelector('.education-detail').textContent.trim(),
+            detailColor: getComputedStyle(row.querySelector('.education-detail')).color,
+            detailTop: row.querySelector('.education-detail').getBoundingClientRect().top,
+            majorBottom: row.querySelector('.education-major').getBoundingClientRect().bottom,
             font: parseFloat(getComputedStyle(row.querySelector('em')).fontSize),
           })),
           ddsurferBullets: document.querySelectorAll('#projects .entry:nth-of-type(2) .project-highlights > li').length,
@@ -196,10 +200,12 @@ try {
       assert.ok(layout.years.every((year, index) => index === 0 || year <= layout.years[index - 1]));
       assert.equal(layout.languageButton, 'Eng');
       assert.deepEqual(layout.education.map((item) => item.date), ['2021–2025', language === 'zh' ? '2025–至今' : '2025–Present']);
-      assert.equal(layout.education[0].major, language === 'zh'
-        ? '通信工程 · GPA 3.84/4.0 · 前 10%'
-        : 'Communication Engineering · GPA 3.84/4.0 · Top 10%');
-      assert.match(layout.education[1].major, /9\/318/);
+      assert.equal(layout.education[0].major, language === 'zh' ? '通信工程' : 'Communication Engineering');
+      assert.equal(layout.education[0].detail, language === 'zh'
+        ? 'GPA 3.84/4.0 · 前 10%' : 'GPA 3.84/4.0 · Top 10%');
+      assert.equal(layout.education[1].detail, language === 'zh' ? '综合排名 9/318' : 'Overall rank: 9/318');
+      assert.ok(layout.education.every((item) => item.detailColor === 'rgb(98, 106, 109)' &&
+        item.detailTop >= item.majorBottom), `${label}: education metrics sit below majors in muted text`);
       assert.ok(layout.education.every((item) => item.font >= 14));
       assert.equal(layout.ddsurferBullets, 6);
       assert.ok(layout.projectSubtitles.every((item) => item.length > 0));
@@ -301,7 +307,15 @@ try {
   assert.match(await projectToggles.first().locator('summary').textContent(), /Show technical details/);
   assert.equal(await page.locator('.project-text-collapse[open]').count(), 0);
   assert.equal(await page.locator('.project-details img').count(), 6, 'All project figures remain outside text disclosures');
-  assert.ok(await page.locator('.project-video video').isVisible(), 'StudyHub video remains visible');
+  const videos = page.locator('.project-video video');
+  assert.equal(await videos.count(), 2, 'StudyHub and SlicerDDSurfer films are available');
+  for (const video of await videos.all()) {
+    assert.ok(await video.isVisible(), 'Project films remain outside text disclosures');
+    assert.equal(await video.getAttribute('preload'), 'none', 'No automatic video download');
+    assert.notEqual(await video.getAttribute('controls'), null);
+    assert.notEqual(await video.getAttribute('playsinline'), null);
+    assert.equal(await video.getAttribute('autoplay'), null);
+  }
   await projectToggles.first().locator('summary').click();
   assert.equal(await page.locator('.project-text-collapse[open]').count(), 1);
   assert.ok(await page.locator('.project-highlights li').first().isVisible(), 'Expanded StudyHub details readable');

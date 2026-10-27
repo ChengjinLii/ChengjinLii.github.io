@@ -371,6 +371,20 @@ html:lang(en) .profile-sidebar h1 > span {
   line-height: 1.5;
 }
 
+.education-track .education-major {
+  display: block;
+  color: var(--ink-2);
+  font: inherit;
+  white-space: normal;
+}
+
+.education-track .education-detail {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font: 400 13px/1.55 var(--sans);
+}
+
 .profile-facts {
   border-top: 1px solid var(--line);
   margin-bottom: 0;

@@ -23,6 +23,21 @@ python3 scripts/optimize-images.py --refresh-webp
 The first figure is prioritized; later figures are lazy-loaded. The lightbox
 shows the already-loaded display image while decoding the original PNG.
 
+## Project Films
+
+StudyHub and SlicerDDSurfer each have an inline video below their project figure,
+using the same responsive player, poster, and bilingual caption. Both use
+`preload="none"`, native controls, and `playsinline`; neither autoplays.
+
+The SlicerDDSurfer film and cover are copied without re-encoding from its
+`docs/site/media/SlicerDDSurfer_promo_1080p.mp4` and
+`docs/site/assets/img/poster.jpg`. The film is a 1080p H.264/AAC MP4 with its
+metadata before media data for progressive playback. Original quality is kept,
+and the 47,838,648-byte film is fetched only when playback is requested.
+
+Run `node scripts/test-project-videos.mjs` with the browser environment variables
+below to check media requests, bilingual captions, metadata, and playback.
+
 ## Bot Layout Regression
 
 With Node.js 22+, Python 3, and Playwright installed, run:
@@ -79,7 +94,7 @@ Bot buttons, and fallbacks when configuration or JavaScript is unavailable.
 Both languages of the project descriptions follow the new CV. StudyHub's
 approximately 400 users and 2,000 downloads are explicitly approximate; the
 display values and Bot responses read `site-data.js`. The project illustrations,
-video, image optimization, lightbox, and download behavior are unchanged.
+films, image optimization, lightbox, and download behavior are preserved.
 
 ## Deploy
 
