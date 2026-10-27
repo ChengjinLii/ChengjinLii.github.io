@@ -2335,14 +2335,22 @@ html:lang(en) .education-track em {
 }
 
 @media (max-width: 360px) {
+  html:lang(en) .topbar-inner {
+    width: calc(100% - 16px);
+    column-gap: 4px;
+  }
+
   html:lang(en) .nav-links {
-    gap: 3px;
+    gap: 0;
   }
 
   html:lang(en) .nav-links a {
     font-size: 12px;
   }
 
+  html:lang(en) .lang-btn {
+    padding-inline: 4px;
+  }
 }
 
 

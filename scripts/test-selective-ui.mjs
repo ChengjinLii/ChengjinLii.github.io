@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE_PATH || 'playwright');
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261020-v17';
+const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261027-64c8449';
 const screenshots = process.env.UI_SCREENSHOT_DIR;
 if (screenshots) mkdirSync(screenshots, { recursive: true });
 const port = await new Promise((resolve, reject) => {
@@ -117,7 +117,7 @@ try {
             number: entry.querySelector('.entry-year').textContent.trim(),
             numberFont: parseFloat(getComputedStyle(entry.querySelector('.entry-year')).fontSize),
             numberColor: getComputedStyle(entry.querySelector('.entry-year')).color,
-            numberRule: getComputedStyle(entry.querySelector('.entry-year'), '::after').height,
+            numberRule: getComputedStyle(entry.querySelector('.entry-year'), '::after').content,
             subtitleFont: parseFloat(getComputedStyle(entry.querySelector('.entry-meta')).fontSize),
             tagsFollowSubtitle: entry.querySelector('.entry-meta').nextElementSibling === entry.querySelector('.tag-row'),
             tags: [...entry.querySelectorAll('.tag-row span')].map((tag) => ({
@@ -196,9 +196,12 @@ try {
       assert.ok(layout.years.every((year, index) => index === 0 || year <= layout.years[index - 1]));
       assert.equal(layout.languageButton, 'Eng');
       assert.deepEqual(layout.education.map((item) => item.date), ['2021–2025', language === 'zh' ? '2025–至今' : '2025–Present']);
-      assert.equal(layout.education[0].major, language === 'zh' ? '通信工程' : 'Communication Engineering');
+      assert.equal(layout.education[0].major, language === 'zh'
+        ? '通信工程 · GPA 3.84/4.0 · 前 10%'
+        : 'Communication Engineering · GPA 3.84/4.0 · Top 10%');
+      assert.match(layout.education[1].major, /9\/318/);
       assert.ok(layout.education.every((item) => item.font >= 14));
-      assert.equal(layout.ddsurferBullets, 2);
+      assert.equal(layout.ddsurferBullets, 6);
       assert.ok(layout.projectSubtitles.every((item) => item.length > 0));
       assert.equal(layout.projectSubtitles[3], language === 'zh'
         ? '医学图像分析软件 · 多算法集成与自动化 Workflow'
@@ -227,15 +230,17 @@ try {
       assert.deepEqual(layout.projects.map((project) => project.number), ['01', '02', '03', '04']);
       assert.ok(layout.projects.every((project) => project.numberFont >= 23 &&
         project.subtitleFont >= 15 && project.tagsFollowSubtitle), label);
-      assert.ok(layout.projects.every((project) => project.numberColor === 'rgb(121, 135, 129)' && project.numberRule === '1px'),
-        `${label}: muted editorial project indices with a fine rule`);
-      assert.deepEqual(layout.projects.map((project) => project.tags.length), [4, 3, 3, 3]);
+      assert.ok(layout.projects.every((project) => project.numberColor === 'rgb(121, 135, 129)' && project.numberRule === 'none'),
+        `${label}: muted editorial project indices without decorative rules`);
+      assert.deepEqual(layout.projects.map((project) => project.tags.length), [7, 5, 4, 4]);
       assert.ok(layout.projects.every((project) => project.tags.every((tag) => tag.radius === '999px')), label);
       assert.match(layout.projects[0].text, /RRF/);
-      assert.match(layout.projects[0].text, /Guard-as-Jev/);
+      assert.match(layout.projects[0].text, /Qwen3Guard-Gen-0\.6B/);
+      assert.match(layout.projects[0].text, /73\.4%/);
       assert.match(layout.projects[0].text, /GRPO/);
       assert.match(layout.projects[1].text, /25\.5%/);
-      assert.match(layout.projects[1].text, language === 'zh' ? /无需额外 T1w 结构像/ : /without an additional T1w scan/i);
+      assert.match(layout.projects[1].text, language === 'zh' ? /无需额外 T1w 图像/ : /without requiring T1-weighted images/i);
+      assert.match(layout.projects[1].text, /p < 0\.05/);
       assert.equal(layout.publication.numberOfFacts, 3);
       assert.deepEqual(layout.publication.facts, ['Advanced Science', language === 'zh' ? '一区 TOP' : 'CAS Q1 TOP', '14.1']);
       assert.deepEqual(layout.publication.labels, language === 'zh'
@@ -243,8 +248,9 @@ try {
       assert.equal(layout.publication.borderWidth, '0px');
       assert.equal(layout.publication.background, 'none');
       assert.ok(layout.publication.valueSize >= 21, label);
-      assert.match(layout.projects[2].text, language === 'zh' ? /参与设计/ : /Contributed/);
-      assert.match(layout.projects[3].text, /Python \/ Qt/);
+      assert.match(layout.projects[2].text, language === 'zh' ? /参与研发/ : /Contributed/);
+      assert.match(layout.projects[3].text, /Python/);
+      assert.match(layout.projects[3].text, /Qt/);
       assert.ok(layout.studyhub.data.approximate);
       assert.equal(layout.studyhub.strip.display, 'flex', label);
       assert.equal(layout.studyhub.strip.borderWidth, '0px', label);
@@ -277,6 +283,14 @@ try {
   await page.evaluate(() => applyLanguage('en'));
   assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /Hello/);
   assert.equal(await page.locator('.portfolio-bot__message--user').last().textContent(), '\u4f60\u597d');
+  await page.locator('.portfolio-bot__input').fill('dMRI-Agent');
+  await page.locator('.portfolio-bot__form button').click();
+  await page.waitForFunction(() => document.querySelectorAll('.portfolio-bot__message--bot').length === 3);
+  assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /progressive disclosure/);
+  assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /49\.7%–56\.3%/);
+  await page.evaluate(() => applyLanguage('zh'));
+  assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /渐进式披露/);
+  await page.evaluate(() => applyLanguage('en'));
   await page.locator('.floating-sidebar__close').click();
   await page.locator('.lang-btn[data-lang="zh"]').click();
   assert.equal(new URL(page.url()).searchParams.get('lang'), 'zh');
@@ -294,7 +308,7 @@ try {
   await projectToggles.first().locator('summary').click();
   assert.equal(await page.locator('.project-text-collapse[open]').count(), 0);
   await projectToggles.nth(1).locator('summary').click();
-  assert.ok(await projectToggles.nth(1).locator('p').first().isVisible(), 'DDSurfer technical paragraphs reveal');
+  assert.ok(await projectToggles.nth(1).locator('.project-highlights li').first().isVisible(), 'DDSurfer technical details reveal');
   await projectToggles.nth(1).locator('summary').click();
   await page.locator('.project-details img').first().click();
   assert.equal(await page.locator('.image-lightbox__download').textContent(), 'Download PNG');

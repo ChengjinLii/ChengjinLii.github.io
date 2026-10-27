@@ -6,7 +6,7 @@ window.siteData = {
     ddsurferRepo: "https://github.com/ChengjinLii/DDSurfer",
     dmriAgentRepo: "https://github.com/azurezhangwei/MRI_Agent",
     slicerRepo: "https://github.com/ChengjinLii/SlicerDDSurfer",
-    chineseCv: "./assets/ChengjinLi_CV.pdf?v=20261020-v17",
+    chineseCv: "./assets/ChengjinLi_CV.pdf?v=20261027-64c8449",
     englishCv: "./assets/Chengjin-Li-CV-English.pdf",
   },
   contact: {
@@ -41,8 +41,8 @@ window.siteData = {
     zh: [
       "2026 年获「**荣耀信通 · 学术之星**」荣誉，**同年级仅 2 人获评**。",
       "2026 年获电子科技大学研究生 **学业奖学金一等奖**。",
-      "2025 年获电子科技大学研究生 **学业奖学金一等奖**。",
       "2026 年中国研究生电子设计竞赛人工智能赛道西南赛区 **一等奖**。",
+      "2025 年获电子科技大学研究生 **学业奖学金一等奖**。",
       "2025 年华为杯中国研究生数学建模竞赛 **国家三等奖**（队长）。",
       "2025 年获电子科技大学 **本科毕业创新奖**。",
       "2024 年大学生创新创业训练计划项目获 **国家级立项**。",
@@ -51,8 +51,8 @@ window.siteData = {
     en: [
       "2026 **HONOR · Academic Star** in Information and Communication Engineering; **only two recipients in the cohort**.",
       "2026 UESTC **First-Class Graduate Academic Scholarship**.",
-      "2025 UESTC **First-Class Graduate Academic Scholarship**.",
       "2026 **First Prize** in the AI Track, Southwest Region, China Graduate Electronics Design Contest.",
+      "2025 UESTC **First-Class Graduate Academic Scholarship**.",
       "2025 Huawei Cup Graduate Mathematical Contest in Modeling, national **Third Prize** (team leader).",
       "2025 UESTC **Undergraduate Graduation Innovation Award**.",
       "2024 **National-level project approval**, Undergraduate Innovation and Entrepreneurship Training Program.",

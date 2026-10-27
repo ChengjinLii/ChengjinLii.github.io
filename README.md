@@ -63,9 +63,12 @@ Set `UI_SCREENSHOT_DIR` to save screenshots outside the repository.
 ## Current CV And Project Copy
 
 The Chinese CV download is [ChengjinLi_CV.pdf](assets/ChengjinLi_CV.pdf),
-published from the supplied `Chengjin_CV_2026-10-20_v17.pdf` without changing its
-contents. The sidebar and Bot share a versioned URL; the link also works without
-JavaScript and requires no availability probe. When updating the CV, replace
+compiled from `Chengjin_CV.tex` at `ChengjinLii/Chengjin-CV` commit
+`64c84499e4c3fefb79ab1e220246e9e9cde71d15` with XeLaTeX (two A4 pages).
+Missing image dependencies were recovered losslessly from the previously supplied
+PDF; the tracked TeX source was not edited. The sidebar and Bot share a versioned
+URL; the link also works without JavaScript and requires no availability probe.
+When updating the CV, replace
 this file and update the version in `index.html`, `site-data.js`, `script.js`,
 and both CV regression scripts. The English CV PDF remains unchanged.
 
