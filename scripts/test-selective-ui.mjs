@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE_PATH || 'playwright');
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261027-64c8449';
+const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261028-70c709e';
 const screenshots = process.env.UI_SCREENSHOT_DIR;
 if (screenshots) mkdirSync(screenshots, { recursive: true });
 const port = await new Promise((resolve, reject) => {

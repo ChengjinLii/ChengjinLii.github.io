@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE_PATH || 'playwright');
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261027-64c8449';
+const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261028-70c709e';
 const englishCvURL = './assets/Chengjin-Li-CV-English.pdf';
 const port = await new Promise((resolve, reject) => {
   const socket = createServer();
@@ -39,8 +39,8 @@ try {
     assert.equal(bytes.subarray(0, 5).toString(), '%PDF-');
     assert.deepEqual(bytes, readFileSync(join(root, new URL(url, baseURL).pathname)));
     if (url === chineseCvURL) assert.equal(createHash('sha256').update(bytes).digest('hex'),
-      '0d6662776d9d9bdd7648853cbcad3e9c06533c4161a482386aada0828cc19644',
-      'Chinese CV must be the compiled 64c8449 source edition');
+      'c13d4fac4f5b35a7cd8dfe0b117c3dd4d482d978698d02d920c490ada3fa546f',
+      'Chinese CV must be the compiled 70c709e source edition');
   }
   browser = await chromium.launch({
     headless: true,

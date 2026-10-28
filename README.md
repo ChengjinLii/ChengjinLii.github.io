@@ -88,7 +88,7 @@ Set `UI_SCREENSHOT_DIR` to save screenshots outside the repository.
 
 The Chinese CV download is [ChengjinLi_CV.pdf](assets/ChengjinLi_CV.pdf),
 compiled from `Chengjin_CV.tex` at `ChengjinLii/Chengjin-CV` commit
-`64c84499e4c3fefb79ab1e220246e9e9cde71d15` with XeLaTeX (two A4 pages).
+`70c709ef981e829614f52b106e607878c74a1691` with XeLaTeX (two A4 pages).
 Missing image dependencies were recovered losslessly from the previously supplied
 PDF; the tracked TeX source was not edited. The sidebar and Bot share a versioned
 URL; the link also works without JavaScript and requires no availability probe.
