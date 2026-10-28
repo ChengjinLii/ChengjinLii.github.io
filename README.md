@@ -92,9 +92,18 @@ compiled from `Chengjin_CV.tex` at `ChengjinLii/Chengjin-CV` commit
 Missing image dependencies were recovered losslessly from the previously supplied
 PDF; the tracked TeX source was not edited. The sidebar and Bot share a versioned
 URL; the link also works without JavaScript and requires no availability probe.
-When updating the CV, replace
-this file and update the version in `index.html`, `site-data.js`, `script.js`,
-and both CV regression scripts. The English CV PDF remains unchanged.
+The English download is [Chengjin-Li-CV-English.pdf](assets/Chengjin-Li-CV-English.pdf),
+compiled from `Chengjin_CV_English.tex` at CV source commit
+`c6c976004f5dc3ea5c8f20a892717537f79edbe4`. It translates the same Chinese
+edition into polished English, retaining the two-page A4 layout, project roles,
+evaluation conditions, metrics, honors and SlicerDSpace naming. Activity charts
+use the unchanged 13 April--16 October 2026 snapshot with English labels.
+The Chinese PDF is unchanged by this translation update.
+
+Both PDFs use versioned sidebar and Bot links, including static HTML and
+configuration fallbacks. When updating either CV, replace its PDF and update
+the version in `index.html`, `site-data.js`, `script.js`, and the CV regression
+scripts; refresh the PDF checksum assertion and the script cache versions too.
 
 Run `node scripts/test-cv-download.mjs` with the Playwright environment variables
 above to check PDF bytes, MIME types, bilingual desktop/mobile download links,

@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE_PATH || 'playwright');
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const chineseCvURL = './assets/ChengjinLi_CV.pdf?v=20261028-70c709e';
-const englishCvURL = './assets/Chengjin-Li-CV-English.pdf';
+const englishCvURL = './assets/Chengjin-Li-CV-English.pdf?v=20261029-en-c6c9760';
 const port = await new Promise((resolve, reject) => {
   const socket = createServer();
   socket.on('error', reject);
@@ -41,6 +41,9 @@ try {
     if (url === chineseCvURL) assert.equal(createHash('sha256').update(bytes).digest('hex'),
       'c13d4fac4f5b35a7cd8dfe0b117c3dd4d482d978698d02d920c490ada3fa546f',
       'Chinese CV must be the compiled 70c709e source edition');
+    if (url === englishCvURL) assert.equal(createHash('sha256').update(bytes).digest('hex'),
+      'c95749dea65b07a2f5497d801c54fada45141b2235e2e6d2e5d4863d8c1933cc',
+      'English CV must be the synchronized c6c9760 source edition');
   }
   browser = await chromium.launch({
     headless: true,
@@ -66,10 +69,14 @@ try {
           assert.equal(await page.locator('html').getAttribute('lang'), language === 'zh' ? 'zh-CN' : 'en', label);
           if (mode === 'normal') {
             assert.equal(await page.evaluate(() => window.siteData.links.chineseCv), chineseCvURL, label);
+            assert.equal(await page.evaluate(() => window.siteData.links.englishCv), englishCvURL, label);
           }
           await page.locator('.floating-sidebar__bubble').click();
           await page.locator('button[data-question="cv"]').click();
           await page.waitForFunction(() => document.querySelectorAll('.portfolio-bot__message--bot').length === 2);
+          const answer = await page.locator('.portfolio-bot__message--bot').last().innerText();
+          assert.match(answer, language === 'zh' ? /双页版/ : /two-page editions/, label);
+          assert.doesNotMatch(answer, /保留原版|unchanged/, label);
           assert.deepEqual(await page.locator('.portfolio-bot__message--bot').last()
             .locator('.portfolio-bot__link-button').evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
           [chineseCvURL, englishCvURL], label);

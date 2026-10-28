@@ -586,8 +586,8 @@ const botAnswers = {
     en: `**Technical skills**\n- **AI coding**: Codex, Claude Code, Antigravity, Hermes, Muse.\n- **Model work**: PyTorch, Hugging Face Transformers and vLLM; fine-tuning, tool calling and inference serving.\n- **Applications and engineering**: Python, TypeScript, Next.js, FastAPI, MySQL, Redis, Docker, Linux and Git.\n- **Medical imaging**: 3D Slicer, SimpleITK, dMRI preprocessing, segmentation and 3D surface reconstruction.`,
   },
   cv: {
-    zh: `**简历下载**\n中文版已同步最新简历源码；英文 PDF 保留原版。项目细节亦可在 [GitHub 简历源码](https://github.com/ChengjinLii/Chengjin-CV) 查看。\n[中文简历](${links.chineseCv || "./assets/ChengjinLi_CV.pdf?v=20261028-70c709e"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
-    en: `**Download the CV**\nThe Chinese PDF follows the latest CV source; the English edition is unchanged. The [CV source repository](https://github.com/ChengjinLii/Chengjin-CV) also contains the latest project wording.\n[Chinese CV](${links.chineseCv || "./assets/ChengjinLi_CV.pdf?v=20261028-70c709e"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf"})`,
+    zh: `**简历下载**\n中英文简历均为双页版，教育、项目、评测结果和荣誉内容已同步。可在 [GitHub 简历源码](https://github.com/ChengjinLii/Chengjin-CV) 查看对应的可编辑版本。\n[中文简历](${links.chineseCv || "./assets/ChengjinLi_CV.pdf?v=20261028-70c709e"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf?v=20261029-en-c6c9760"})`,
+    en: `**Download the CV**\nBoth two-page editions cover the same education, projects, evaluation results and honors. Editable versions are available in the [CV source repository](https://github.com/ChengjinLii/Chengjin-CV).\n[Chinese CV](${links.chineseCv || "./assets/ChengjinLi_CV.pdf?v=20261028-70c709e"})\n[English CV](${links.englishCv || "./assets/Chengjin-Li-CV-English.pdf?v=20261029-en-c6c9760"})`,
   },
   default: {
     zh: `可以问我关于 **StudyHub、RAG 检索、增量 Wiki、Agent Harness、后训练、内容审核、DDSurfer、dMRI-Agent、SlicerDSpace、技术能力、论文和简历** 的问题；也可以点击预设问题。`,
