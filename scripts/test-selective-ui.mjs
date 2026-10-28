@@ -50,6 +50,8 @@ try {
       await document.fonts.ready;
       const animations = [...document.querySelectorAll('.reveal')].flatMap((element) => element.getAnimations());
       await Promise.all(animations.map((animation) => animation.finished.catch(() => {})));
+      // Let language-dependent styles settle before measuring narrow navigation.
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     });
     return { page, context };
   }
@@ -101,7 +103,11 @@ try {
           summaryWidth: document.querySelector('.profile-summary').getBoundingClientRect().width,
           years: [...document.querySelectorAll('.honor-year')].map((node) => parseInt(node.textContent, 10)),
           honors: [...document.querySelectorAll('.honor-text')].map((node) => node.textContent),
-          figures: [...document.querySelectorAll('.project-details img')].map((image) => ({ src: image.dataset.full, avif: !!image.closest('picture').querySelector('source[type="image/avif"]') })),
+          figures: [...document.querySelectorAll('.project-details img')].map((image) => ({
+            src: image.dataset.full, width: image.width, height: image.height,
+            declaredWidth: image.getAttribute('width'), declaredHeight: image.getAttribute('height'),
+            avif: !!image.closest('picture').querySelector('source[type="image/avif"]'),
+          })),
           articles: document.querySelectorAll('.compact-list article').length,
           sections: [...document.querySelectorAll('.content-column > section[id]')].map((section) => section.id),
           skillGroups: [...document.querySelectorAll('#skills .skill-item')].map((item) => ({
@@ -162,6 +168,7 @@ try {
           },
           chineseCv: document.querySelector('.sidebar-actions a').getAttribute('href'),
           configuredCv: window.siteData.links.chineseCv,
+          configuredSlicerRepo: window.siteData.links.slicerRepo,
         };
       });
       const label = `${width}x${height} ${language}`;
@@ -229,10 +236,14 @@ try {
         'Technical skill headings use neutral ink');
       assert.equal(layout.figures.length, 6);
       assert.ok(layout.figures.every((figure) => figure.avif && figure.src.endsWith('.png')));
+      assert.equal(layout.figures.at(-1).src, './assets/slicerdspace-figure1.png');
+      assert.equal(layout.figures.at(-1).declaredWidth, '4326');
+      assert.equal(layout.figures.at(-1).declaredHeight, '2642');
+      assert.equal(layout.configuredSlicerRepo, 'https://github.com/ChengjinLii/SlicerDSpace');
       assert.equal(layout.foldedMedia, 4, 'Four project text disclosures should exist');
       assert.equal(layout.brand, false);
       assert.ok(layout.socialMeta >= 5);
-      assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDDSurfer']);
+      assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDSpace']);
       assert.deepEqual(layout.projects.map((project) => project.number), ['01', '02', '03', '04']);
       assert.ok(layout.projects.every((project) => project.numberFont >= 23 &&
         project.subtitleFont >= 15 && project.tagsFollowSubtitle), label);
@@ -297,6 +308,16 @@ try {
   await page.evaluate(() => applyLanguage('zh'));
   assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /渐进式披露/);
   await page.evaluate(() => applyLanguage('en'));
+  let botCount = 3;
+  for (const name of ['SlicerDSpace', 'SlicerDDSurfer']) {
+    await page.locator('.portfolio-bot__input').fill(name);
+    await page.locator('.portfolio-bot__form button').click();
+    botCount += 1;
+    await page.waitForFunction((count) => document.querySelectorAll('.portfolio-bot__message--bot').length === count, botCount);
+    assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /SlicerDSpace/);
+    assert.equal(await page.locator('.portfolio-bot__message--bot').last().locator('.portfolio-bot__link-button').getAttribute('href'),
+      'https://github.com/ChengjinLii/SlicerDSpace');
+  }
   await page.locator('.floating-sidebar__close').click();
   await page.locator('.lang-btn[data-lang="zh"]').click();
   assert.equal(new URL(page.url()).searchParams.get('lang'), 'zh');
@@ -308,7 +329,7 @@ try {
   assert.equal(await page.locator('.project-text-collapse[open]').count(), 0);
   assert.equal(await page.locator('.project-details img').count(), 6, 'All project figures remain outside text disclosures');
   const videos = page.locator('.project-video video');
-  assert.equal(await videos.count(), 2, 'StudyHub and SlicerDDSurfer films are available');
+  assert.equal(await videos.count(), 2, 'StudyHub and SlicerDSpace films are available');
   for (const video of await videos.all()) {
     assert.ok(await video.isVisible(), 'Project films remain outside text disclosures');
     assert.equal(await video.getAttribute('preload'), 'none', 'No automatic video download');
@@ -332,6 +353,12 @@ try {
   await page.keyboard.press('Escape');
   assert.ok(await page.locator('.image-lightbox').evaluate((node) => node.inert));
   assert.equal(await page.locator('.image-lightbox').getAttribute('aria-hidden'), 'true');
+  await page.locator('img[data-full="./assets/slicerdspace-figure1.png"]').click();
+  await page.waitForFunction(() => document.querySelector('.image-lightbox__frame img').naturalWidth === 4326);
+  const slicerDownloadReady = page.waitForEvent('download');
+  await page.locator('.image-lightbox__download').click();
+  assert.equal((await slicerDownloadReady).suggestedFilename(), 'slicerdspace-figure1.png');
+  await page.keyboard.press('Escape');
   await context.close();
 
   const cvResponse = await fetch(new URL(chineseCvURL, baseURL));

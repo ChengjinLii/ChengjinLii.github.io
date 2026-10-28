@@ -23,17 +23,26 @@ python3 scripts/optimize-images.py --refresh-webp
 The first figure is prioritized; later figures are lazy-loaded. The lightbox
 shows the already-loaded display image while decoding the original PNG.
 
+The SlicerDSpace illustration is paper Figure 1, rendered at 600 dpi from
+`docs/paper/figures/method_overview_paper.pdf` in the source project on 2026-10-28.
+Its 4326 x 2642 PNG is available for full-resolution viewing and downloads;
+AVIF/WebP variants serve the inline figure. Source PDF SHA-256:
+`5be1469bbaa875fce0cc9f19f30c6e22ce6c2186edbe8e8d6ee2b07b829e2072`.
+
 ## Project Films
 
-StudyHub and SlicerDDSurfer each have an inline video below their project figure,
+StudyHub and SlicerDSpace each have an inline video below their project figure,
 using the same responsive player, poster, and bilingual caption. Both use
 `preload="none"`, native controls, and `playsinline`; neither autoplays.
 
-The SlicerDDSurfer film and cover are copied without re-encoding from its
+The SlicerDSpace film and cover are copied without re-encoding from its
 `docs/site/media/SlicerDDSurfer_promo_1080p.mp4` and
 `docs/site/assets/img/poster.jpg`. The film is a 1080p H.264/AAC MP4 with its
 metadata before media data for progressive playback. Original quality is kept,
 and the 47,838,648-byte film is fetched only when playback is requested.
+The film still uses the former SlicerDDSurfer branding; its caption explicitly
+identifies it as the pre-rename edition. Its file URL is kept for compatibility.
+Chengjin Bot recognizes both names, but uses SlicerDSpace in current answers.
 
 Run `node scripts/test-project-videos.mjs` with the browser environment variables
 below to check media requests, bilingual captions, metadata, and playback.

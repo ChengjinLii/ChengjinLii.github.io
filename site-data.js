@@ -5,7 +5,7 @@ window.siteData = {
     studyhubRepo: "https://github.com/ChengjinLii/studyhub",
     ddsurferRepo: "https://github.com/ChengjinLii/DDSurfer",
     dmriAgentRepo: "https://github.com/azurezhangwei/MRI_Agent",
-    slicerRepo: "https://github.com/ChengjinLii/SlicerDDSurfer",
+    slicerRepo: "https://github.com/ChengjinLii/SlicerDSpace",
     chineseCv: "./assets/ChengjinLi_CV.pdf?v=20261027-64c8449",
     englishCv: "./assets/Chengjin-Li-CV-English.pdf",
   },
@@ -34,7 +34,7 @@ window.siteData = {
     ],
     submissions: [
       { project: "dMRI-Agent" },
-      { project: "SlicerDDSurfer" },
+      { project: "SlicerDSpace" },
     ],
   },
   awards: {

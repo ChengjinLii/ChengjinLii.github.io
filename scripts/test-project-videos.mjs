@@ -69,9 +69,9 @@ try {
       assert.equal(await film.getAttribute('autoplay'), null);
       assert.deepEqual(mediaRequests, [], 'Do not request either film before playback');
       assert.equal(await film.evaluate((video) => video.closest('figure').previousElementSibling.querySelector('img')?.dataset.full),
-        './assets/slicerddsurfer-workflow.png', 'Film follows the workflow figure');
+        './assets/slicerdspace-figure1.png', 'Film follows the workflow figure');
       assert.match(await film.locator('..').locator('figcaption').textContent(),
-        language === 'zh' ? /SlicerDDSurfer 宣传片/ : /SlicerDDSurfer promotional film/);
+        language === 'zh' ? /SlicerDSpace 宣传片/ : /SlicerDSpace promotional film/);
       const geometry = await film.boundingBox();
       assert.ok(geometry.width <= width && Math.abs(geometry.width / geometry.height - 16 / 9) < 0.03);
       await film.evaluate((video) => { video.preload = 'metadata'; video.load(); });
