@@ -108,6 +108,14 @@ try {
             declaredWidth: image.getAttribute('width'), declaredHeight: image.getAttribute('height'),
             avif: !!image.closest('picture').querySelector('source[type="image/avif"]'),
           })),
+          figureNumbers: [...document.querySelectorAll('.project-details picture')]
+            .map((picture) => picture.closest('figure').querySelector('figcaption strong').textContent.match(/\d+/)[0]),
+          wordmark: (() => {
+            const image = document.querySelector('#project-slicerdspace .project-wordmark');
+            const rect = image.getBoundingClientRect();
+            return { src: image.getAttribute('src'), width: rect.width, height: rect.height,
+              left: rect.left, right: rect.right };
+          })(),
           articles: document.querySelectorAll('.compact-list article').length,
           sections: [...document.querySelectorAll('.content-column > section[id]')].map((section) => section.id),
           skillGroups: [...document.querySelectorAll('#skills .skill-item')].map((item) => ({
@@ -170,7 +178,7 @@ try {
           configuredCv: window.siteData.links.chineseCv,
           configuredSlicerRepo: window.siteData.links.slicerRepo,
           configuredSlicerSite: window.siteData.links.slicerSite,
-          slicerLinks: [...document.querySelectorAll('#projects .entry:nth-of-type(4) .entry-links a')]
+          slicerLinks: [...document.querySelectorAll('#project-slicerdspace .entry-links a')]
             .map((link) => ({ href: link.getAttribute('href'), label: link.textContent.trim() })),
         };
       });
@@ -219,7 +227,7 @@ try {
       assert.ok(layout.education.every((item) => item.font >= 14));
       assert.equal(layout.ddsurferBullets, 6);
       assert.ok(layout.projectSubtitles.every((item) => item.length > 0));
-      assert.equal(layout.projectSubtitles[3], language === 'zh'
+      assert.equal(layout.projectSubtitles[2], language === 'zh'
         ? '医学图像分析软件 · 多算法集成与自动化 Workflow'
         : 'Medical imaging software · Multi-algorithm integration and automated workflows');
       assert.equal(layout.articles, 5);
@@ -239,9 +247,14 @@ try {
         'Technical skill headings use neutral ink');
       assert.equal(layout.figures.length, 6);
       assert.ok(layout.figures.every((figure) => figure.avif && figure.src.endsWith('.png')));
-      assert.equal(layout.figures.at(-1).src, './assets/slicerdspace-figure1-20261031.png');
-      assert.equal(layout.figures.at(-1).declaredWidth, '4326');
-      assert.equal(layout.figures.at(-1).declaredHeight, '2642');
+      assert.equal(layout.figures[3].src, './assets/slicerdspace-figure1-20261031.png');
+      assert.equal(layout.figures[3].declaredWidth, '4326');
+      assert.equal(layout.figures[3].declaredHeight, '2642');
+      assert.deepEqual(layout.figureNumbers, ['1', '2', '3', '4', '5', '6'], 'Sequential figures after project reorder');
+      assert.equal(layout.wordmark.src, './assets/slicerdspace-wordmark.svg');
+      assert.ok(layout.wordmark.width >= 130 && layout.wordmark.width <= 200 && layout.wordmark.height >= 23, label);
+      assert.ok(layout.wordmark.left >= 0 && layout.wordmark.right <= width, `${label}: logo fits the viewport`);
+      assert.ok(Math.abs(layout.wordmark.width / layout.wordmark.height - 1324 / 239) < 0.01, label);
       assert.equal(layout.configuredSlicerRepo, 'https://github.com/ChengjinLii/SlicerDSpace');
       assert.equal(layout.configuredSlicerSite, 'https://chengjinlii.github.io/SlicerDSpace/');
       assert.deepEqual(layout.slicerLinks, [
@@ -251,7 +264,7 @@ try {
       assert.equal(layout.foldedMedia, 4, 'Four project text disclosures should exist');
       assert.equal(layout.brand, false);
       assert.ok(layout.socialMeta >= 5);
-      assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'dMRI-Agent', 'SlicerDSpace']);
+      assert.deepEqual(layout.projects.map((project) => project.name), ['StudyHub', 'DDSurfer', 'SlicerDSpace', 'dMRI-Agent']);
       assert.deepEqual(layout.projects.map((project) => project.number), ['01', '02', '03', '04']);
       assert.ok(layout.projects.every((project) => project.numberFont >= 23 &&
         project.subtitleFont >= 15 && project.tagsFollowSubtitle), label);
@@ -273,9 +286,9 @@ try {
       assert.equal(layout.publication.borderWidth, '0px');
       assert.equal(layout.publication.background, 'none');
       assert.ok(layout.publication.valueSize >= 21, label);
-      assert.match(layout.projects[2].text, language === 'zh' ? /参与研发/ : /Contributed/);
-      assert.match(layout.projects[3].text, /Python/);
-      assert.match(layout.projects[3].text, /Qt/);
+      assert.match(layout.projects[3].text, language === 'zh' ? /参与研发/ : /Contributed/);
+      assert.match(layout.projects[2].text, /Python/);
+      assert.match(layout.projects[2].text, /Qt/);
       assert.ok(layout.studyhub.data.approximate);
       assert.equal(layout.studyhub.strip.display, 'flex', label);
       assert.equal(layout.studyhub.strip.borderWidth, '0px', label);

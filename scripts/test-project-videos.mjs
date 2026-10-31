@@ -12,6 +12,7 @@ const filmURL = './assets/slicerdspace-promo-20261031.mp4';
 const coverURL = './assets/slicerdspace-promo-cover-20261031.jpg';
 const figureURL = './assets/slicerdspace-figure1-20261031.png';
 const websiteURL = 'https://chengjinlii.github.io/SlicerDSpace/';
+const wordmarkURL = './assets/slicerdspace-wordmark.svg';
 const screenshots = process.env.UI_SCREENSHOT_DIR;
 if (screenshots) mkdirSync(screenshots, { recursive: true });
 const bytes = readFileSync(join(root, 'assets', 'slicerdspace-promo-20261031.mp4'));
@@ -23,6 +24,11 @@ assert.equal(createHash('sha256').update(figureBytes).digest('hex'),
   '8f12a905a738677fa8a944d72adfa0091a02e75fae082fdba9b3d2a2a646065d', 'Use current paper-latex Figure 1');
 assert.equal(figureBytes.readUInt32BE(16), 4326);
 assert.equal(figureBytes.readUInt32BE(20), 2642);
+const wordmarkBytes = readFileSync(join(root, 'assets', 'slicerdspace-wordmark.svg'));
+assert.equal(createHash('sha256').update(wordmarkBytes).digest('hex'),
+  '499c206b72b1901b5615559c83a4d28e169b22073879396f396ec68f7a7b30f2', 'Keep the approved SVG wordmark');
+assert.doesNotMatch(wordmarkBytes.toString(), /<(?:image|script|foreignObject)\b|data:image\//i,
+  'Wordmark must contain vector paths, not an embedded bitmap');
 const boxes = [];
 for (let offset = 0; offset < bytes.length;) {
   const size = bytes.readUInt32BE(offset);
@@ -75,7 +81,20 @@ try {
       page.on('request', (request) => { if (request.url().includes('.mp4')) mediaRequests.push(request.url()); });
       await page.goto(`${baseURL}/?lang=${language}`);
       await page.evaluate(() => document.fonts.ready);
-      const project = page.locator('#projects .entry').nth(3);
+      const project = page.locator('#project-slicerdspace');
+      assert.equal(await project.locator('.entry-year').textContent(), '03');
+      assert.equal(await project.getByRole('heading', { name: 'SlicerDSpace', exact: true }).count(), 1);
+      const wordmark = project.locator('.project-wordmark');
+      assert.equal(await wordmark.getAttribute('src'), wordmarkURL);
+      await wordmark.evaluate((image) => image.decode());
+      const logo = await wordmark.evaluate((image) => ({
+        width: image.naturalWidth, height: image.naturalHeight,
+        renderedWidth: image.getBoundingClientRect().width, renderedHeight: image.getBoundingClientRect().height,
+      }));
+      assert.equal(logo.width, 1324);
+      assert.equal(logo.height, 239);
+      assert.ok(logo.renderedWidth >= 130 && logo.renderedWidth <= 200 && logo.renderedHeight >= 23);
+      assert.ok(Math.abs(logo.renderedWidth / logo.renderedHeight - 1324 / 239) < 0.01, 'Do not distort SVG');
       const projectLinks = project.locator('.entry-links a');
       assert.deepEqual(await projectLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
         [websiteURL, 'https://github.com/ChengjinLii/SlicerDSpace'], 'Website comes before GitHub');
@@ -106,7 +125,7 @@ try {
       assert.ok(geometry.width <= width && Math.abs(geometry.width / geometry.height - 16 / 9) < 0.03);
       await film.evaluate((video) => { video.preload = 'metadata'; video.load(); });
       await page.waitForFunction(() => {
-        const video = document.querySelector('#projects .entry:nth-of-type(4) video');
+        const video = document.querySelector('#project-slicerdspace video');
         return video.readyState >= 1 || video.error;
       });
       const metadata = await film.evaluate((video) => ({
@@ -117,7 +136,7 @@ try {
       assert.equal(metadata.height, 1080);
       assert.ok(Math.abs(metadata.duration - 72) < 0.1);
       await film.evaluate(async (video) => { video.muted = true; await video.play(); });
-      await page.waitForFunction(() => document.querySelector('#projects .entry:nth-of-type(4) video').currentTime > 0.2);
+      await page.waitForFunction(() => document.querySelector('#project-slicerdspace video').currentTime > 0.2);
       await film.evaluate((video) => video.pause());
       if (screenshots) {
         await project.screenshot({ path: join(screenshots, `slicerdspace-${width}-${language}.png`) });

@@ -67,7 +67,8 @@ section,
   scroll-margin-top: var(--header-offset, 104px);
 }
 
-.sr-live {
+.sr-live,
+.sr-only {
   position: fixed;
   width: 1px;
   height: 1px;
@@ -626,6 +627,20 @@ html:lang(en) .profile-sidebar h1 > span {
 .entry-main h3 {
   font-size: 30px;
   line-height: 1.15;
+}
+
+.project-wordmark-title {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 1.15em;
+}
+
+.project-wordmark {
+  display: block;
+  width: 6.4em;
+  max-width: 100%;
+  height: auto;
 }
 
 .entry-links {

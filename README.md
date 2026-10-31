@@ -52,6 +52,11 @@ The bilingual project card links to its website at
 the same website and source-code links.
 Chengjin Bot recognizes both names, but uses SlicerDSpace in current answers.
 
+Project cards are ordered StudyHub, DDSurfer, SlicerDSpace, then dMRI-Agent;
+figure numbers follow this reading order. The SlicerDSpace heading uses the
+approved outlined SVG wordmark (`slicerdspace-wordmark.svg`) copied unchanged
+from the project website, with a screen-reader heading and responsive sizing.
+
 Run `node scripts/test-project-videos.mjs` with the browser environment variables
 below to check media requests, bilingual captions, metadata, and playback.
 
