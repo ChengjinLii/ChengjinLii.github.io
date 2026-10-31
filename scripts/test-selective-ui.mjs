@@ -169,6 +169,9 @@ try {
           chineseCv: document.querySelector('.sidebar-actions a').getAttribute('href'),
           configuredCv: window.siteData.links.chineseCv,
           configuredSlicerRepo: window.siteData.links.slicerRepo,
+          configuredSlicerSite: window.siteData.links.slicerSite,
+          slicerLinks: [...document.querySelectorAll('#projects .entry:nth-of-type(4) .entry-links a')]
+            .map((link) => ({ href: link.getAttribute('href'), label: link.textContent.trim() })),
         };
       });
       const label = `${width}x${height} ${language}`;
@@ -236,10 +239,15 @@ try {
         'Technical skill headings use neutral ink');
       assert.equal(layout.figures.length, 6);
       assert.ok(layout.figures.every((figure) => figure.avif && figure.src.endsWith('.png')));
-      assert.equal(layout.figures.at(-1).src, './assets/slicerdspace-figure1.png');
+      assert.equal(layout.figures.at(-1).src, './assets/slicerdspace-figure1-20261031.png');
       assert.equal(layout.figures.at(-1).declaredWidth, '4326');
       assert.equal(layout.figures.at(-1).declaredHeight, '2642');
       assert.equal(layout.configuredSlicerRepo, 'https://github.com/ChengjinLii/SlicerDSpace');
+      assert.equal(layout.configuredSlicerSite, 'https://chengjinlii.github.io/SlicerDSpace/');
+      assert.deepEqual(layout.slicerLinks, [
+        { href: 'https://chengjinlii.github.io/SlicerDSpace/', label: language === 'zh' ? '项目网站' : 'Website' },
+        { href: 'https://github.com/ChengjinLii/SlicerDSpace', label: 'GitHub' },
+      ]);
       assert.equal(layout.foldedMedia, 4, 'Four project text disclosures should exist');
       assert.equal(layout.brand, false);
       assert.ok(layout.socialMeta >= 5);
@@ -315,8 +323,9 @@ try {
     botCount += 1;
     await page.waitForFunction((count) => document.querySelectorAll('.portfolio-bot__message--bot').length === count, botCount);
     assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /SlicerDSpace/);
-    assert.equal(await page.locator('.portfolio-bot__message--bot').last().locator('.portfolio-bot__link-button').getAttribute('href'),
-      'https://github.com/ChengjinLii/SlicerDSpace');
+    assert.deepEqual(await page.locator('.portfolio-bot__message--bot').last().locator('.portfolio-bot__link-button')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
+    ['https://chengjinlii.github.io/SlicerDSpace/', 'https://github.com/ChengjinLii/SlicerDSpace']);
   }
   await page.locator('.floating-sidebar__close').click();
   await page.locator('.lang-btn[data-lang="zh"]').click();
@@ -353,11 +362,11 @@ try {
   await page.keyboard.press('Escape');
   assert.ok(await page.locator('.image-lightbox').evaluate((node) => node.inert));
   assert.equal(await page.locator('.image-lightbox').getAttribute('aria-hidden'), 'true');
-  await page.locator('img[data-full="./assets/slicerdspace-figure1.png"]').click();
+  await page.locator('img[data-full="./assets/slicerdspace-figure1-20261031.png"]').click();
   await page.waitForFunction(() => document.querySelector('.image-lightbox__frame img').naturalWidth === 4326);
   const slicerDownloadReady = page.waitForEvent('download');
   await page.locator('.image-lightbox__download').click();
-  assert.equal((await slicerDownloadReady).suggestedFilename(), 'slicerdspace-figure1.png');
+  assert.equal((await slicerDownloadReady).suggestedFilename(), 'slicerdspace-figure1-20261031.png');
   await page.keyboard.press('Escape');
   await context.close();
 

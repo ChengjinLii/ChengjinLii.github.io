@@ -14,7 +14,7 @@ IMAGE_NAMES = (
     "ddsurfer_network_architecture",
     "dMRI-Agent-workflow",
     "dMRI-Agent",
-    "slicerdspace-figure1",
+    "slicerdspace-figure1-20261031",
 )
 
 

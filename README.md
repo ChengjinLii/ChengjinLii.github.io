@@ -24,10 +24,13 @@ The first figure is prioritized; later figures are lazy-loaded. The lightbox
 shows the already-loaded display image while decoding the original PNG.
 
 The SlicerDSpace illustration is paper Figure 1, rendered at 600 dpi from
-`docs/paper/figures/method_overview_paper.pdf` in the source project on 2026-10-28.
+`docs/paper/figures/method_overview_paper.pdf` in the separate `ChengjinLii/paper-latex`
+project at commit `8c385bb0716f8ad4cfc54e5ec4378b7fcf8fb49d` on 2026-10-31.
 Its 4326 x 2642 PNG is available for full-resolution viewing and downloads;
 AVIF/WebP variants serve the inline figure. Source PDF SHA-256:
-`5be1469bbaa875fce0cc9f19f30c6e22ce6c2186edbe8e8d6ee2b07b829e2072`.
+`dd78ab57c9b28d52e445bed616dcc79c97a2fcc7407fa43a41765bfb623c2f71`.
+The PNG and all display variants use the `slicerdspace-figure1-20261031` stem
+to avoid stale browser caches after the artwork update.
 
 ## Project Films
 
@@ -36,12 +39,17 @@ using the same responsive player, poster, and bilingual caption. Both use
 `preload="none"`, native controls, and `playsinline`; neither autoplays.
 
 The SlicerDSpace film and cover are copied without re-encoding from its
-`docs/site/media/SlicerDDSurfer_promo_1080p.mp4` and
-`docs/site/assets/img/poster.jpg`. The film is a 1080p H.264/AAC MP4 with its
-metadata before media data for progressive playback. Original quality is kept,
-and the 47,838,648-byte film is fetched only when playback is requested.
-The film still uses the former SlicerDDSurfer branding; its caption explicitly
-identifies it as the pre-rename edition. Its file URL is kept for compatibility.
+`docs/site/media/SlicerDSpace_promo_1080p.mp4` and
+`docs/site/assets/img/poster.jpg` in `ChengjinLii/SlicerDSpace` (source commit
+`469af30`, synchronized 2026-10-31). The updated SlicerDSpace-branded film is
+a 1080p H.264/AAC MP4 with its metadata before media data for progressive playback.
+The project's optimized 24,799,408-byte edition is copied byte-for-byte and
+fetched only when playback is requested. Film SHA-256:
+`877f7e3a4dc7afbf4641a609398940a65bf2b21c26d918c3f170efee78c27df9`.
+The film and cover URLs also include the `20261031` revision.
+The bilingual project card links to its website at
+`https://chengjinlii.github.io/SlicerDSpace/` before GitHub; Bot responses expose
+the same website and source-code links.
 Chengjin Bot recognizes both names, but uses SlicerDSpace in current answers.
 
 Run `node scripts/test-project-videos.mjs` with the browser environment variables
