@@ -48,7 +48,7 @@ fetched only when playback is requested. Film SHA-256:
 `877f7e3a4dc7afbf4641a609398940a65bf2b21c26d918c3f170efee78c27df9`.
 The film and cover URLs also include the `20261031` revision.
 The bilingual project card links to its website at
-`https://chengjinlii.github.io/SlicerDSpace/` before GitHub; Bot responses expose
+`https://neurodmri.github.io/SlicerDSpace/` before GitHub; Bot responses expose
 the same website and source-code links.
 Chengjin Bot recognizes both names, but uses SlicerDSpace in current answers.
 

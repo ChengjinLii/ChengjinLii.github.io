@@ -11,7 +11,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const filmURL = './assets/slicerdspace-promo-20261031.mp4';
 const coverURL = './assets/slicerdspace-promo-cover-20261031.jpg';
 const figureURL = './assets/slicerdspace-figure1-20261031.png';
-const websiteURL = 'https://chengjinlii.github.io/SlicerDSpace/';
+const websiteURL = 'https://neurodmri.github.io/SlicerDSpace/';
 const wordmarkURL = './assets/slicerdspace-wordmark.svg';
 const screenshots = process.env.UI_SCREENSHOT_DIR;
 if (screenshots) mkdirSync(screenshots, { recursive: true });
@@ -97,7 +97,7 @@ try {
       assert.ok(Math.abs(logo.renderedWidth / logo.renderedHeight - 1324 / 239) < 0.01, 'Do not distort SVG');
       const projectLinks = project.locator('.entry-links a');
       assert.deepEqual(await projectLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
-        [websiteURL, 'https://github.com/ChengjinLii/SlicerDSpace'], 'Website comes before GitHub');
+        [websiteURL, 'https://github.com/NeuroDMRI/SlicerDSpace'], 'Website comes before GitHub');
       assert.equal(await projectLinks.first().textContent(), language === 'zh' ? '项目网站' : 'Website');
       assert.equal(await page.evaluate(() => window.siteData.links.slicerSite), websiteURL);
       const websiteBox = await projectLinks.nth(0).boundingBox();

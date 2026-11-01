@@ -255,11 +255,11 @@ try {
       assert.ok(layout.wordmark.width >= 130 && layout.wordmark.width <= 200 && layout.wordmark.height >= 23, label);
       assert.ok(layout.wordmark.left >= 0 && layout.wordmark.right <= width, `${label}: logo fits the viewport`);
       assert.ok(Math.abs(layout.wordmark.width / layout.wordmark.height - 1324 / 239) < 0.01, label);
-      assert.equal(layout.configuredSlicerRepo, 'https://github.com/ChengjinLii/SlicerDSpace');
-      assert.equal(layout.configuredSlicerSite, 'https://chengjinlii.github.io/SlicerDSpace/');
+      assert.equal(layout.configuredSlicerRepo, 'https://github.com/NeuroDMRI/SlicerDSpace');
+      assert.equal(layout.configuredSlicerSite, 'https://neurodmri.github.io/SlicerDSpace/');
       assert.deepEqual(layout.slicerLinks, [
-        { href: 'https://chengjinlii.github.io/SlicerDSpace/', label: language === 'zh' ? '项目网站' : 'Website' },
-        { href: 'https://github.com/ChengjinLii/SlicerDSpace', label: 'GitHub' },
+        { href: 'https://neurodmri.github.io/SlicerDSpace/', label: language === 'zh' ? '项目网站' : 'Website' },
+        { href: 'https://github.com/NeuroDMRI/SlicerDSpace', label: 'GitHub' },
       ]);
       assert.equal(layout.foldedMedia, 4, 'Four project text disclosures should exist');
       assert.equal(layout.brand, false);
@@ -338,7 +338,7 @@ try {
     assert.match(await page.locator('.portfolio-bot__message--bot').last().textContent(), /SlicerDSpace/);
     assert.deepEqual(await page.locator('.portfolio-bot__message--bot').last().locator('.portfolio-bot__link-button')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
-    ['https://chengjinlii.github.io/SlicerDSpace/', 'https://github.com/ChengjinLii/SlicerDSpace']);
+    ['https://neurodmri.github.io/SlicerDSpace/', 'https://github.com/NeuroDMRI/SlicerDSpace']);
   }
   await page.locator('.floating-sidebar__close').click();
   await page.locator('.lang-btn[data-lang="zh"]').click();
