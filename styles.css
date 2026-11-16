@@ -3398,3 +3398,298 @@ html:lang(en) .page-shell .profile-hero .profile-facts div {
     gap: 6px;
   }
 }
+
+
+/* Portfolio profile polish, 2026-11-16: quiet grouped facts and left-aligned sections. */
+.page-shell .section-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+}
+
+.page-shell .section-title > span {
+  text-align: left;
+}
+
+.page-shell .section-title > small {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+/* One understated surface replaces isolated raw text and oversized KPI cards. */
+.page-shell .profile-hero .profile-highlights {
+  width: 100%;
+  margin-top: 19px;
+  padding: 16px 22px 14px;
+  border: 1px solid #dfe5e2;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.77);
+  box-shadow: 0 5px 22px rgba(21, 31, 26, 0.025);
+}
+
+.page-shell .profile-hero .profile-highlights .profile-facts {
+  margin: 0;
+  border: 0;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-facts div,
+html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
+  display: grid;
+  grid-template-columns: 102px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 0 0 13px;
+  border: 0;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-facts dt {
+  flex-basis: auto;
+  width: auto;
+  color: #707975;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-highlights .keyword-list {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-shell .profile-hero .profile-highlights .keyword-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 9px;
+  border: 1px solid #e6ebe8;
+  border-radius: 5px;
+  background: #f5f7f6;
+  color: #35413c;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.3;
+}
+
+.page-shell .profile-hero .profile-highlights .keyword-list span + span::before {
+  content: none;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  gap: 0;
+  margin: 0;
+  padding: 14px 0 13px;
+  border-top: 1px solid #e5e9e7;
+  border-bottom: 1px solid #e5e9e7;
+  background: none;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-summary div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0 13px 0 21px;
+  border: 0;
+  border-left: 1px solid #e8ecea;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-summary div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-summary dt {
+  min-height: 0;
+  color: #707975;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-summary dd {
+  display: block;
+  margin: 0;
+  color: #151b18;
+  font: 650 22px/1.15 var(--mono);
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-links {
+  display: flex;
+  justify-content: flex-start;
+  margin: 11px 0 0;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-links li {
+  display: flex;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 0;
+  border: 0;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-links > li > span {
+  color: #707975;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-links a {
+  color: #253a32;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #c7d4cd;
+  text-underline-offset: 3px;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-links a:hover {
+  color: #006b59;
+  text-decoration-color: currentColor;
+}
+
+/* Intro reads as editorial text rather than a promotional hero banner. */
+.page-shell .profile-introduction {
+  width: 100%;
+  padding: 0 0 0 17px;
+  margin: 0 0 30px;
+  border-left: 2px solid #aabbb2;
+  text-align: left;
+}
+
+.page-shell .profile-introduction h2 {
+  margin: 0 0 7px;
+  color: #66746d;
+  font: 650 12px/1.4 var(--sans);
+  letter-spacing: .045em;
+}
+
+.page-shell .profile-introduction p {
+  max-width: 900px;
+  margin: 0;
+  color: #35413d;
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 1.9;
+  letter-spacing: .005em;
+}
+
+.page-shell .profile-introduction a {
+  color: #1e4034;
+  text-decoration: underline;
+  text-decoration-color: #b9cfc4;
+  text-underline-offset: 3px;
+}
+
+.page-shell .profile-introduction a:hover {
+  color: #006b59;
+  text-decoration-color: currentColor;
+}
+
+/* Letter shapes are the original StudyHub path-based wordmark, recolored black;
+   the capital H stays the original cool gray. */
+.entry-main .studyhub-wordmark-title {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  line-height: 1;
+}
+
+.studyhub-wordmark {
+  display: block;
+  width: clamp(163px, 19vw, 205px);
+  height: auto;
+  aspect-ratio: 844 / 160;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 680px) {
+  .page-shell .section-title {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .page-shell .section-title > small {
+    max-width: 45%;
+    font-size: 10px;
+  }
+
+  .page-shell .profile-hero .profile-highlights {
+    margin-top: 15px;
+    padding: 13px 14px 12px;
+    border-radius: 11px;
+  }
+
+  .page-shell .profile-hero .profile-highlights .profile-facts div,
+  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding-bottom: 12px;
+  }
+
+  .page-shell .profile-hero .profile-highlights .keyword-list {
+    gap: 5px;
+  }
+
+  .page-shell .profile-hero .profile-highlights .keyword-list span {
+    min-height: 25px;
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .page-shell .profile-hero .profile-highlights .profile-summary {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 12px 0;
+  }
+
+  .page-shell .profile-hero .profile-highlights .profile-summary div {
+    gap: 6px;
+    padding: 0 5px 0 8px;
+  }
+
+  .page-shell .profile-hero .profile-highlights .profile-summary div:first-child {
+    padding-left: 0;
+  }
+
+  .page-shell .profile-hero .profile-highlights .profile-summary dt {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .page-shell .profile-hero .profile-highlights .profile-summary dd {
+    font-size: clamp(16px, 5vw, 21px);
+  }
+
+  .page-shell .profile-introduction {
+    padding-left: 13px;
+    margin-bottom: 25px;
+  }
+
+  .page-shell .profile-introduction p {
+    font-size: 13px;
+    line-height: 1.83;
+  }
+
+  .studyhub-wordmark {
+    width: clamp(154px, 42vw, 190px);
+  }
+}
