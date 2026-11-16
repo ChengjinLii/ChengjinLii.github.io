@@ -799,3 +799,12 @@ const today = new Date();
 const month = today.getMonth() + 1;
 const day = today.getDate();
 bot?.classList.toggle("hat-santa", (month === 12 && day >= 15) || (month === 1 && day <= 5));
+
+// Restore the original poster and idle play controls after a promotional film finishes.
+// Calling load() resets the media element (unlike currentTime = 0, which shows
+// the video's first frame), while preload="none" avoids downloading it again.
+document.querySelectorAll(".project-video video[poster]").forEach((video) => {
+  video.addEventListener("ended", () => {
+    video.load();
+  });
+});
