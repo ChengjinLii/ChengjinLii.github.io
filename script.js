@@ -29,6 +29,9 @@ function applyLanguage(language) {
   document.querySelectorAll("[data-en-placeholder][data-zh-placeholder]").forEach((node) => {
     node.setAttribute("placeholder", node.dataset[`${language}Placeholder`]);
   });
+  document.querySelectorAll("[data-en-alt][data-zh-alt]").forEach((node) => {
+    node.setAttribute("alt", node.dataset[`${language}Alt`]);
+  });
   languageButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === language);
     if (button.dataset.lang === language) button.setAttribute("aria-current", "true");
