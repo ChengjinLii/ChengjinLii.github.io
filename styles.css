@@ -2868,7 +2868,7 @@ html:lang(en) .profile-hero .profile-facts div {
 @media (max-width: 900px) {
   .page-shell {
     display: block;
-    width: min(100% - 36px, 980px);
+    width: min(calc(100% - 36px), 980px);
     margin-top: 38px;
   }
 
