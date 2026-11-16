@@ -34,7 +34,7 @@
     </script>
     <title>Chengjin Li | 李承锦</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261031-project-wordmark" />
+    <link rel="stylesheet" href="./styles.css?v=20261116-centered-profile-activity" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -57,7 +57,7 @@
     </header>
 
     <main class="page-shell" id="top" tabindex="-1">
-      <aside class="profile-sidebar reveal" id="about">
+      <section class="profile-sidebar profile-hero reveal" id="about">
         <p class="profile-eyebrow"><span aria-hidden="true"></span><span data-en="Personal Homepage" data-zh="个人主页">个人主页</span></p>
         <h1>
           <span data-en="Chengjin Li" data-zh="李承锦">李承锦</span>
@@ -128,7 +128,7 @@
             </div>
           </li>
         </ul>
-      </aside>
+      </section>
 
       <div class="content-column">
         <section class="content-section reveal" id="projects">
@@ -412,6 +412,41 @@
               <dd><span data-en="Linux, Docker, Git" data-zh="Linux、Docker、Git">Linux、Docker、Git</span></dd>
             </div>
           </dl>
+
+          <div class="activity-overview">
+            <div class="activity-overview__intro">
+              <h3 data-zh="开发活跃度" data-en="Coding activity">开发活跃度</h3>
+              <p data-zh="简历中的两个数据快照 · 2026.04.13–2026.10.16" data-en="Two snapshots from my CV · Apr 13–Oct 16, 2026">简历中的两个数据快照 · 2026.04.13–2026.10.16</p>
+            </div>
+            <div class="activity-grid">
+              <article class="activity-card">
+                <div class="activity-card__heading">
+                  <div>
+                    <h4>Codex</h4>
+                    <p data-zh="Token 用量" data-en="Token usage">Token 用量</p>
+                  </div>
+                  <strong><span data-zh="71.06 亿" data-en="7.106B">71.06 亿</span><small>Tokens</small></strong>
+                </div>
+                <div class="heatmap-months" aria-hidden="true"><span data-zh="4月" data-en="Apr">4月</span><span data-zh="5月" data-en="May">5月</span><span data-zh="6月" data-en="Jun">6月</span><span data-zh="7月" data-en="Jul">7月</span><span data-zh="8月" data-en="Aug">8月</span><span data-zh="9月" data-en="Sep">9月</span><span data-zh="10月" data-en="Oct">10月</span></div>
+                <img class="activity-heatmap" src="./assets/codex-token-heatmap-20260413-20261016.svg" width="296" height="77" loading="lazy" decoding="async" alt="2026 年 4 月至 10 月 Codex Token 用量热力图" data-zh-alt="2026 年 4 月至 10 月 Codex Token 用量热力图" data-en-alt="Codex token usage heatmap, April to October 2026" />
+                <div class="activity-legend"><span data-zh="少" data-en="Less">少</span><span class="legend-cell codex-level-1"></span><span class="legend-cell codex-level-2"></span><span class="legend-cell codex-level-3"></span><span class="legend-cell codex-level-4"></span><span class="legend-cell codex-level-5"></span><span data-zh="多" data-en="More">多</span></div>
+                <p class="activity-note" data-zh="累计统计，包含缓存命中 Tokens；非实时数据。" data-en="Cumulative total including cache-hit tokens; historical snapshot, not live data.">累计统计，包含缓存命中 Tokens；非实时数据。</p>
+              </article>
+              <article class="activity-card">
+                <div class="activity-card__heading">
+                  <div>
+                    <h4>GitHub</h4>
+                    <p data-zh="贡献活跃度" data-en="Contribution activity">贡献活跃度</p>
+                  </div>
+                  <strong>1,139<small data-zh="次贡献" data-en="contributions">次贡献</small></strong>
+                </div>
+                <div class="heatmap-months" aria-hidden="true"><span data-zh="4月" data-en="Apr">4月</span><span data-zh="5月" data-en="May">5月</span><span data-zh="6月" data-en="Jun">6月</span><span data-zh="7月" data-en="Jul">7月</span><span data-zh="8月" data-en="Aug">8月</span><span data-zh="9月" data-en="Sep">9月</span><span data-zh="10月" data-en="Oct">10月</span></div>
+                <img class="activity-heatmap" src="./assets/github-contributions-heatmap-20260413-20261016.svg" width="296" height="77" loading="lazy" decoding="async" alt="2026 年 4 月至 10 月 GitHub 贡献热力图" data-zh-alt="2026 年 4 月至 10 月 GitHub 贡献热力图" data-en-alt="GitHub contributions heatmap, April to October 2026" />
+                <div class="activity-legend"><span data-zh="少" data-en="Less">少</span><span class="legend-cell github-level-1"></span><span class="legend-cell github-level-2"></span><span class="legend-cell github-level-3"></span><span class="legend-cell github-level-4"></span><span class="legend-cell github-level-5"></span><span data-zh="多" data-en="More">多</span></div>
+                <p class="activity-note" data-zh="该区间共 1,139 次贡献，101 天活跃；非实时数据。" data-en="1,139 contributions across 101 active days in this period; historical snapshot.">该区间共 1,139 次贡献，101 天活跃；非实时数据。</p>
+              </article>
+            </div>
+          </div>
         </section>
 
         <section class="content-section reveal" id="research">
@@ -493,8 +528,8 @@
               <span class="honor-text" data-en="🎓 UESTC <strong>First-Class Graduate Academic Scholarship</strong>." data-zh="🎓 电子科技大学研究生<strong>学业奖学金一等奖</strong>。">🎓 电子科技大学研究生<strong>学业奖学金一等奖</strong>。</span>
             </li>
             <li>
-              <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Competition" data-zh="竞赛获奖">竞赛获奖</span></div>
-              <span class="honor-text" data-en="🥉 National <strong>Third Prize</strong>, Huawei Cup Graduate Mathematical Contest in Modeling (team leader)." data-zh="🥉 华为杯中国研究生数学建模竞赛<strong>国家三等奖</strong>（队长）。">🥉 华为杯中国研究生数学建模竞赛<strong>国家三等奖</strong>（队长）。</span>
+              <div class="honor-meta"><span class="honor-year">2026</span><span data-en="Competition" data-zh="竞赛获奖">竞赛获奖</span></div>
+              <span class="honor-text" data-en="🥈 <strong>Second Prize</strong>, Huawei Cup Graduate Mathematical Contest in Modeling (team leader)." data-zh="🥈 华为杯中国研究生数学建模竞赛<strong>二等奖</strong>（队长）。">🥈 华为杯中国研究生数学建模竞赛<strong>二等奖</strong>（队长）。</span>
             </li>
             <li>
               <div class="honor-meta"><span class="honor-year">2025</span><span data-en="Graduation" data-zh="毕业荣誉">毕业荣誉</span></div>
