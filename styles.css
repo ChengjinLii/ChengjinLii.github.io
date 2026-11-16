@@ -3693,3 +3693,250 @@ html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
     width: clamp(154px, 42vw, 190px);
   }
 }
+
+
+/* 2026-11-16 final editorial refinement: consistent left headings, restrained profile. */
+/* Section labels stay on the reading axis; metadata remains secondary on the right. */
+.page-shell .section-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  text-align: left;
+}
+.page-shell .section-title > span,
+.page-shell .section-title > small {
+  text-align: left;
+}
+.page-shell .section-title > small {
+  margin-left: auto;
+  text-align: right;
+}
+.activity-overview__intro {
+  margin-bottom: 15px;
+  text-align: left;
+}
+.activity-overview__intro h3,
+.activity-overview__intro p {
+  text-align: left;
+}
+
+.page-shell > .profile-hero {
+  width: min(100%, 900px);
+  text-align: left;
+}
+.page-shell .profile-hero .profile-highlights {
+  width: 100%;
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.page-shell .profile-hero .profile-highlights .profile-facts {
+  margin: 0;
+  width: 100%;
+}
+.page-shell .profile-hero .profile-highlights .profile-facts div,
+html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
+  grid-template-columns: 108px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+}
+.page-shell .profile-hero .profile-highlights .profile-facts dt {
+  color: #737e78;
+  font-size: 12px;
+  font-weight: 600;
+}
+.page-shell .profile-hero .profile-highlights .keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.page-shell .profile-hero .profile-highlights .keyword-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: #e9efeb;
+  color: #34473d;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 550;
+}
+.page-shell .profile-hero .profile-highlights .profile-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 14px 0 0;
+  padding: 17px 14px;
+  border: 1px solid #e2e7e3;
+  border-radius: 10px;
+  background: #f9fbfa;
+}
+.page-shell .profile-hero .profile-highlights .profile-summary div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0 20px;
+  border: 0;
+  border-left: 1px solid #e1e7e3;
+  background: none;
+}
+.page-shell .profile-hero .profile-highlights .profile-summary div:first-child {
+  padding-left: 9px;
+  border-left: 0;
+}
+.page-shell .profile-hero .profile-highlights .profile-summary dd {
+  order: -1;
+  display: block;
+  margin: 0;
+  font: 680 25px/1 var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.035em;
+  color: var(--ink-2);
+}
+.page-shell .profile-hero .profile-highlights .profile-summary dt {
+  color: #7b8580;
+  font: 550 12px/1.4 var(--sans);
+  letter-spacing: 0;
+}
+.page-shell .profile-hero .profile-highlights .profile-links {
+  width: 100%;
+  margin: 12px 0 0;
+  padding: 0;
+  border: 0;
+}
+.page-shell .profile-hero .profile-highlights .profile-links li {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  min-height: 25px;
+}
+.page-shell .profile-hero .profile-highlights .profile-links > li > span {
+  min-width: 103px;
+  color: #737e78;
+  font-size: 12px;
+}
+.page-shell .profile-hero .profile-highlights .profile-links a {
+  color: #305b48;
+  text-decoration: none;
+  border-bottom: 1px solid #bad0c4;
+  text-underline-offset: 0;
+  font-size: 13px;
+}
+.page-shell .profile-hero .profile-highlights .profile-links a:hover {
+  color: #006b59;
+  border-bottom-color: currentColor;
+}
+
+.page-shell .content-column {
+  margin-top: 24px;
+}
+.page-shell .profile-introduction {
+  width: 100%;
+  margin: 0 0 37px;
+  padding: 17px 0 0;
+  border: 0;
+  border-top: 1px solid #dce3de;
+  text-align: left;
+}
+.page-shell .profile-introduction h2 {
+  margin: 0 0 9px;
+  color: #52625a;
+  font: 650 13px/1.5 var(--sans);
+  text-align: left;
+}
+.page-shell .profile-introduction p {
+  max-width: 880px;
+  color: #44514b;
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: .002em;
+  text-align: left;
+}
+.page-shell .profile-introduction strong {
+  color: #243b2f;
+  font-weight: 620;
+}
+
+@media (max-width: 900px) {
+  .page-shell .content-column { margin-top: 22px; }
+}
+@media (max-width: 680px) {
+  .page-shell .section-title {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    text-align: left;
+  }
+  .page-shell .section-title > span { text-align: left; }
+  .page-shell .section-title > small {
+    max-width: 42%;
+    margin-left: auto;
+    font-size: 10px;
+    text-align: right;
+  }
+  .page-shell .profile-hero .profile-highlights {
+    margin-top: 15px;
+    padding: 0;
+  }
+  .page-shell .profile-hero .profile-highlights .profile-facts div,
+  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+  .page-shell .profile-hero .profile-highlights .keyword-list { gap: 5px; }
+  .page-shell .profile-hero .profile-highlights .keyword-list span {
+    min-height: 25px;
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  .page-shell .profile-hero .profile-highlights .profile-summary {
+    margin-top: 13px;
+    padding: 13px 5px;
+  }
+  .page-shell .profile-hero .profile-highlights .profile-summary div {
+    padding: 0 8px;
+    gap: 6px;
+  }
+  .page-shell .profile-hero .profile-highlights .profile-summary div:first-child { padding-left: 9px; }
+  .page-shell .profile-hero .profile-highlights .profile-summary dd {
+    font-size: clamp(19px, 5.5vw, 24px);
+  }
+  .page-shell .profile-hero .profile-highlights .profile-summary dt {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 14px;
+  }
+  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-summary div:nth-child(3) {
+    padding-left: 9px;
+    border-left: 0;
+  }
+  .page-shell .profile-hero .profile-highlights .profile-links { margin-top: 9px; }
+  .page-shell .profile-hero .profile-highlights .profile-links > li > span { min-width: 60px; }
+  .page-shell .content-column { margin-top: 20px; }
+  .page-shell .profile-introduction {
+    margin-bottom: 29px;
+    padding-top: 16px;
+  }
+  .page-shell .profile-introduction p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+}
