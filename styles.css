@@ -3940,3 +3940,30 @@ html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
     line-height: 1.8;
   }
 }
+
+
+/* 2026-11-16: align profile with the content column and use standard name type. */
+.page-shell > .profile-hero {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+html:lang(zh-CN) .page-shell .profile-hero .profile-heading h1 > span,
+html:lang(en) .page-shell .profile-hero .profile-heading h1 > span,
+.page-shell .profile-hero .profile-heading h1 > span {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.page-shell .profile-hero .profile-heading h1 small {
+  font-family: var(--sans);
+  font-style: normal;
+  letter-spacing: 0;
+}
+/* Both the profile header and the introduction now use the same left edge. */
+.page-shell .content-column,
+.page-shell .profile-introduction {
+  width: 100%;
+}
