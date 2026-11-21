@@ -3400,13 +3400,13 @@ html:lang(en) .page-shell .profile-hero .profile-facts div {
 }
 
 
-/* Portfolio profile polish, 2026-11-16: quiet grouped facts and left-aligned sections. */
+/* Portfolio profile polish: left-aligned section titles, StudyHub wordmark, and unified profile hero card. */
 .page-shell .section-title {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
+  align-items: baseline;
+  gap: 14px;
   text-align: left;
 }
 
@@ -3416,189 +3416,18 @@ html:lang(en) .page-shell .profile-hero .profile-facts div {
 
 .page-shell .section-title > small {
   flex: 0 0 auto;
+  margin-left: auto;
   text-align: right;
 }
 
-/* One understated surface replaces isolated raw text and oversized KPI cards. */
-.page-shell .profile-hero .profile-highlights {
-  width: 100%;
-  margin-top: 19px;
-  padding: 16px 22px 14px;
-  border: 1px solid #dfe5e2;
-  border-radius: 13px;
-  background: rgba(255, 255, 255, 0.77);
-  box-shadow: 0 5px 22px rgba(21, 31, 26, 0.025);
-}
-
-.page-shell .profile-hero .profile-highlights .profile-facts {
-  margin: 0;
-  border: 0;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-facts div,
-html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
-  display: grid;
-  grid-template-columns: 102px minmax(0, 1fr);
-  align-items: center;
-  gap: 10px;
-  padding: 0 0 13px;
-  border: 0;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-facts dt {
-  flex-basis: auto;
-  width: auto;
-  color: #707975;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.55;
+.activity-overview__intro {
+  margin-bottom: 15px;
   text-align: left;
 }
 
-.page-shell .profile-hero .profile-highlights .keyword-list {
-  justify-content: flex-start;
-  align-items: center;
-  gap: 6px;
-}
-
-.page-shell .profile-hero .profile-highlights .keyword-list span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  padding: 3px 9px;
-  border: 1px solid #e6ebe8;
-  border-radius: 5px;
-  background: #f5f7f6;
-  color: #35413c;
-  font-size: 12px;
-  font-weight: 550;
-  line-height: 1.3;
-}
-
-.page-shell .profile-hero .profile-highlights .keyword-list span + span::before {
-  content: none;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-summary {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: 100%;
-  gap: 0;
-  margin: 0;
-  padding: 14px 0 13px;
-  border-top: 1px solid #e5e9e7;
-  border-bottom: 1px solid #e5e9e7;
-  background: none;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-summary div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 6px;
-  min-width: 0;
-  margin: 0;
-  padding: 0 13px 0 21px;
-  border: 0;
-  border-left: 1px solid #e8ecea;
-  border-radius: 0;
-  background: none;
+.activity-overview__intro h3,
+.activity-overview__intro p {
   text-align: left;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-summary div:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-summary dt {
-  min-height: 0;
-  color: #707975;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-summary dd {
-  display: block;
-  margin: 0;
-  color: #151b18;
-  font: 650 22px/1.15 var(--mono);
-  letter-spacing: -0.03em;
-  text-align: left;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-links {
-  display: flex;
-  justify-content: flex-start;
-  margin: 11px 0 0;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-links li {
-  display: flex;
-  justify-content: flex-start;
-  gap: 18px;
-  padding: 0;
-  border: 0;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-links > li > span {
-  color: #707975;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-links a {
-  color: #253a32;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: #c7d4cd;
-  text-underline-offset: 3px;
-}
-
-.page-shell .profile-hero .profile-highlights .profile-links a:hover {
-  color: #006b59;
-  text-decoration-color: currentColor;
-}
-
-/* Intro reads as editorial text rather than a promotional hero banner. */
-.page-shell .profile-introduction {
-  width: 100%;
-  padding: 0 0 0 17px;
-  margin: 0 0 30px;
-  border-left: 2px solid #aabbb2;
-  text-align: left;
-}
-
-.page-shell .profile-introduction h2 {
-  margin: 0 0 7px;
-  color: #66746d;
-  font: 650 12px/1.4 var(--sans);
-  letter-spacing: .045em;
-}
-
-.page-shell .profile-introduction p {
-  max-width: 900px;
-  margin: 0;
-  color: #35413d;
-  font-size: 14px;
-  font-weight: 450;
-  line-height: 1.9;
-  letter-spacing: .005em;
-}
-
-.page-shell .profile-introduction a {
-  color: #1e4034;
-  text-decoration: underline;
-  text-decoration-color: #b9cfc4;
-  text-underline-offset: 3px;
-}
-
-.page-shell .profile-introduction a:hover {
-  color: #006b59;
-  text-decoration-color: currentColor;
 }
 
 /* Letter shapes are the original StudyHub path-based wordmark, recolored black;
@@ -3619,262 +3448,476 @@ html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
   object-fit: contain;
 }
 
-@media (max-width: 680px) {
-  .page-shell .section-title {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 8px;
-    text-align: left;
-  }
-
-  .page-shell .section-title > small {
-    max-width: 45%;
-    font-size: 10px;
-  }
-
-  .page-shell .profile-hero .profile-highlights {
-    margin-top: 15px;
-    padding: 13px 14px 12px;
-    border-radius: 11px;
-  }
-
-  .page-shell .profile-hero .profile-highlights .profile-facts div,
-  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
-    grid-template-columns: 1fr;
-    gap: 7px;
-    padding-bottom: 12px;
-  }
-
-  .page-shell .profile-hero .profile-highlights .keyword-list {
-    gap: 5px;
-  }
-
-  .page-shell .profile-hero .profile-highlights .keyword-list span {
-    min-height: 25px;
-    padding: 3px 8px;
-    font-size: 11px;
-  }
-
-  .page-shell .profile-hero .profile-highlights .profile-summary {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 12px 0;
-  }
-
-  .page-shell .profile-hero .profile-highlights .profile-summary div {
-    gap: 6px;
-    padding: 0 5px 0 8px;
-  }
-
-  .page-shell .profile-hero .profile-highlights .profile-summary div:first-child {
-    padding-left: 0;
-  }
-
-  .page-shell .profile-hero .profile-highlights .profile-summary dt {
-    font-size: 10px;
-    white-space: nowrap;
-  }
-
-  .page-shell .profile-hero .profile-highlights .profile-summary dd {
-    font-size: clamp(16px, 5vw, 21px);
-  }
-
-  .page-shell .profile-introduction {
-    padding-left: 13px;
-    margin-bottom: 25px;
-  }
-
-  .page-shell .profile-introduction p {
-    font-size: 13px;
-    line-height: 1.83;
-  }
-
-  .studyhub-wordmark {
-    width: clamp(154px, 42vw, 190px);
-  }
-}
-
-
-/* 2026-11-16 final editorial refinement: consistent left headings, restrained profile. */
-/* Section labels stay on the reading axis; metadata remains secondary on the right. */
-.page-shell .section-title {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 14px;
-  text-align: left;
-}
-.page-shell .section-title > span,
-.page-shell .section-title > small {
-  text-align: left;
-}
-.page-shell .section-title > small {
-  margin-left: auto;
-  text-align: right;
-}
-.activity-overview__intro {
-  margin-bottom: 15px;
-  text-align: left;
-}
-.activity-overview__intro h3,
-.activity-overview__intro p {
-  text-align: left;
-}
-
+/* Unified Editorial Profile Hero Card (matches .entry surface language) */
 .page-shell > .profile-hero {
-  width: min(100%, 900px);
-  text-align: left;
-}
-.page-shell .profile-hero .profile-highlights {
+  display: block;
   width: 100%;
-  margin-top: 18px;
+  max-width: none;
+  margin: 0;
   padding: 0;
   border: 0;
   border-radius: 0;
   background: none;
   box-shadow: none;
+  text-align: left;
 }
-.page-shell .profile-hero .profile-highlights .profile-facts {
-  margin: 0;
+
+.page-shell .profile-hero .profile-card {
+  padding: 30px 34px 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.page-shell .content-column {
   width: 100%;
+  margin-top: 72px;
 }
-.page-shell .profile-hero .profile-highlights .profile-facts div,
-html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
-  grid-template-columns: 108px minmax(0, 1fr);
+
+/* Tier 1: Name + Pill CV Actions */
+.page-shell .profile-hero .profile-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.page-shell .profile-hero .profile-heading h1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 8px 12px;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(32px, 3.6vw, 40px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+html:lang(zh-CN) .page-shell .profile-hero .profile-heading h1 > span,
+html:lang(en) .page-shell .profile-hero .profile-heading h1 > span,
+.page-shell .profile-hero .profile-heading h1 > span {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-shell .profile-hero .profile-heading h1 small {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.page-shell .profile-hero .profile-heading h1 small::before {
+  content: "/";
+  display: inline;
+  margin-right: 10px;
+  color: var(--line-strong);
+  font-weight: 400;
+}
+
+.page-shell .profile-hero .profile-heading .sidebar-actions {
+  display: flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 10px;
-  padding: 0;
-  border: 0;
+  width: auto;
+  margin: 0;
 }
-.page-shell .profile-hero .profile-highlights .profile-facts dt {
-  color: #737e78;
-  font-size: 12px;
-  font-weight: 600;
-}
-.page-shell .profile-hero .profile-highlights .keyword-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
-.page-shell .profile-hero .profile-highlights .keyword-list span {
+
+.page-shell .profile-hero .profile-heading .sidebar-actions a {
   display: inline-flex;
   align-items: center;
-  min-height: 27px;
-  padding: 4px 10px;
-  border: 0;
-  border-radius: 5px;
-  background: #e9efeb;
-  color: #34473d;
-  font-size: 12px;
-  line-height: 1.35;
-  font-weight: 550;
-}
-.page-shell .profile-hero .profile-highlights .profile-summary {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  margin: 14px 0 0;
-  padding: 17px 14px;
-  border: 1px solid #e2e7e3;
-  border-radius: 10px;
-  background: #f9fbfa;
-}
-.page-shell .profile-hero .profile-highlights .profile-summary div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0 18px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: #ffffff;
+  font: 650 13px/1.3 var(--sans);
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.page-shell .profile-hero .profile-heading .sidebar-actions a:hover {
+  border-color: var(--ink);
+  background: var(--accent);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.page-shell .profile-hero .profile-heading .sidebar-actions a + a {
+  border-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
+}
+
+.page-shell .profile-hero .profile-heading .sidebar-actions a + a:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #ffffff;
+}
+
+/* Tier 2: Lead Bio */
+.page-shell .profile-hero .profile-introduction {
+  width: 100%;
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-introduction p {
+  max-width: 890px;
+  margin: 0;
+  color: #2f3935;
+  font-size: 15.5px;
+  font-weight: 450;
+  line-height: 1.84;
+  letter-spacing: 0.002em;
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-introduction strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.page-shell .profile-hero .profile-introduction a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: #9acbbd;
+  text-underline-offset: 3px;
+}
+
+.page-shell .profile-hero .profile-introduction a:hover {
+  color: var(--accent-dark);
+  text-decoration-color: currentColor;
+}
+
+/* Tier 3: Editorial Achievement Strip (unboxed, matching .metric-row) */
+.page-shell .profile-hero .profile-summary,
+html:lang(en) .page-shell .profile-hero .profile-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 10px 16px;
+  width: auto;
+  margin: 20px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: none;
+}
+
+.page-shell .profile-hero .profile-summary div {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex: 0 0 auto;
   gap: 7px;
   min-width: 0;
   min-height: 0;
   margin: 0;
-  padding: 0 20px;
+  padding: 0;
   border: 0;
-  border-left: 1px solid #e1e7e3;
+  border-radius: 0;
   background: none;
+  text-align: left;
 }
-.page-shell .profile-hero .profile-highlights .profile-summary div:first-child {
-  padding-left: 9px;
-  border-left: 0;
+
+.page-shell .profile-hero .profile-summary div + div::before {
+  order: -2;
+  content: "·";
+  margin-right: 9px;
+  color: #a0aaa5;
+  font: 500 16px/1 var(--sans);
 }
-.page-shell .profile-hero .profile-highlights .profile-summary dd {
+
+.page-shell .profile-hero .profile-summary dd {
   order: -1;
-  display: block;
+  display: inline;
   margin: 0;
-  font: 680 25px/1 var(--mono);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -.035em;
   color: var(--ink-2);
+  font: 650 25px/1.2 var(--sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.028em;
+  text-align: left;
 }
-.page-shell .profile-hero .profile-highlights .profile-summary dt {
-  color: #7b8580;
-  font: 550 12px/1.4 var(--sans);
+
+.page-shell .profile-hero .profile-summary dt {
+  display: inline;
+  min-height: 0;
+  margin: 0;
+  color: var(--muted);
+  font: 500 13.5px/1.4 var(--sans);
   letter-spacing: 0;
 }
-.page-shell .profile-hero .profile-highlights .profile-links {
+
+/* Tier 4: Full-Width Education Block with Larger Typography */
+.page-shell .profile-hero .education-block,
+html:lang(en) .page-shell .profile-hero .education-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 13px;
+  min-width: 0;
   width: 100%;
-  margin: 12px 0 0;
+  margin: 24px 0 0;
+  padding: 22px 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.page-shell .profile-hero .education-block > strong {
+  display: block;
+  padding: 0;
+  color: var(--ink);
+  font: 700 18px/1.35 var(--sans);
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+
+.page-shell .profile-hero .education-block > strong::before {
+  content: none;
+}
+
+.page-shell .profile-hero .education-track {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding-left: 15px;
+  border-left: 2px solid var(--accent-dark);
+}
+
+.page-shell .profile-hero .education-track p {
+  display: grid;
+  grid-template-columns: 98px 48px minmax(0, 1fr);
+  align-items: baseline;
+  justify-content: start;
+  gap: 4px 12px;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 1px 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+}
+
+html:lang(en) .page-shell .profile-hero .education-track p {
+  display: grid;
+  grid-template-columns: 112px 78px minmax(0, 1fr);
+  align-items: baseline;
+  justify-content: start;
+  gap: 4px 12px;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 1px 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+}
+
+.page-shell .profile-hero .education-track p::before {
+  content: none;
+}
+
+.page-shell .profile-hero .education-track p > span {
+  color: var(--muted);
+  font: 600 15px/1.55 var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.page-shell .profile-hero .education-track b {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--accent-dark);
+  font: 700 15.5px/1.55 var(--sans);
+  white-space: nowrap;
+}
+
+.page-shell .profile-hero .education-track em,
+html:lang(en) .page-shell .profile-hero .education-track em {
+  display: block;
+  grid-column: 3;
+  width: auto;
+  min-width: 0;
+  font-style: normal;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.page-shell .profile-hero .education-track .education-major {
+  display: inline;
+  color: var(--ink);
+  font: 650 16px/1.55 var(--sans);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.page-shell .profile-hero .education-track .education-detail {
+  display: inline;
+  margin: 0;
+  color: var(--muted);
+  font: 450 14.5px/1.55 var(--sans);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.page-shell .profile-hero .education-track .education-detail::before {
+  content: " · ";
+  color: #9aa6a1;
+  white-space: pre;
+}
+
+/* Tier 5: Bottom Metadata Bar */
+.page-shell .profile-hero .profile-highlights.profile-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  width: 100%;
+  margin: 22px 0 0;
+  padding: 18px 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-facts {
+  width: auto;
+  margin: 0;
+  border: 0;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-facts div,
+html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px 12px;
   padding: 0;
   border: 0;
 }
-.page-shell .profile-hero .profile-highlights .profile-links li {
+
+.page-shell .profile-hero .profile-highlights .profile-facts dt {
+  flex: 0 0 auto;
+  width: auto;
+  color: var(--muted);
+  font: 650 13px/1.4 var(--sans);
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-highlights .keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+}
+
+.page-shell .profile-hero .profile-highlights .keyword-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 12px;
+  border: 1px solid #e3ebe6;
+  border-radius: 999px;
+  background: #f2f6f4;
+  color: #3b6155;
+  font: 600 12.5px/1.4 var(--sans);
+}
+
+.page-shell .profile-hero .profile-highlights .keyword-list span + span::before {
+  content: none;
+}
+
+.page-shell .profile-hero .profile-highlights .profile-links {
   display: flex;
   justify-content: flex-start;
-  gap: 15px;
-  min-height: 25px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
+
+.page-shell .profile-hero .profile-highlights .profile-links li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 .page-shell .profile-hero .profile-highlights .profile-links > li > span {
-  min-width: 103px;
-  color: #737e78;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0;
+  color: var(--muted);
+  font: 650 13px/1.4 var(--sans);
 }
+
+.page-shell .profile-hero .profile-highlights .profile-links > li > span::before {
+  content: "";
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-dark);
+}
+
 .page-shell .profile-hero .profile-highlights .profile-links a {
-  color: #305b48;
+  color: var(--ink-2);
+  font: 600 13.5px/1.4 var(--mono);
   text-decoration: none;
-  border-bottom: 1px solid #bad0c4;
-  text-underline-offset: 0;
-  font-size: 13px;
+  border-bottom: 1px solid #bfd2c9;
 }
+
 .page-shell .profile-hero .profile-highlights .profile-links a:hover {
-  color: #006b59;
+  color: var(--accent-dark);
   border-bottom-color: currentColor;
 }
 
-.page-shell .content-column {
-  margin-top: 24px;
-}
-.page-shell .profile-introduction {
-  width: 100%;
-  margin: 0 0 37px;
-  padding: 17px 0 0;
-  border: 0;
-  border-top: 1px solid #dce3de;
-  text-align: left;
-}
-.page-shell .profile-introduction h2 {
-  margin: 0 0 9px;
-  color: #52625a;
-  font: 650 13px/1.5 var(--sans);
-  text-align: left;
-}
-.page-shell .profile-introduction p {
-  max-width: 880px;
-  color: #44514b;
-  font-size: 14px;
-  line-height: 1.85;
-  letter-spacing: .002em;
-  text-align: left;
-}
-.page-shell .profile-introduction strong {
-  color: #243b2f;
-  font-weight: 620;
-}
-
-@media (max-width: 900px) {
-  .page-shell .content-column { margin-top: 22px; }
-}
 @media (max-width: 680px) {
   .page-shell .section-title {
     flex-direction: row;
@@ -3882,88 +3925,141 @@ html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
     align-items: baseline;
     text-align: left;
   }
-  .page-shell .section-title > span { text-align: left; }
+
+  .page-shell .section-title > span {
+    text-align: left;
+  }
+
   .page-shell .section-title > small {
     max-width: 42%;
     margin-left: auto;
     font-size: 10px;
     text-align: right;
   }
-  .page-shell .profile-hero .profile-highlights {
-    margin-top: 15px;
-    padding: 0;
+
+  .studyhub-wordmark {
+    width: clamp(154px, 42vw, 190px);
   }
-  .page-shell .profile-hero .profile-highlights .profile-facts div,
-  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
-    grid-template-columns: 1fr;
-    gap: 7px;
+
+  .page-shell .profile-hero .profile-card {
+    padding: 22px 18px 18px;
+    border-radius: 16px;
   }
-  .page-shell .profile-hero .profile-highlights .keyword-list { gap: 5px; }
-  .page-shell .profile-hero .profile-highlights .keyword-list span {
-    min-height: 25px;
-    padding: 3px 8px;
-    font-size: 11px;
+
+  .page-shell .profile-hero .profile-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
-  .page-shell .profile-hero .profile-highlights .profile-summary {
-    margin-top: 13px;
-    padding: 13px 5px;
+
+  .page-shell .profile-hero .profile-heading h1 {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 10px;
+    font-size: 30px;
   }
-  .page-shell .profile-hero .profile-highlights .profile-summary div {
-    padding: 0 8px;
-    gap: 6px;
+
+  .page-shell .profile-hero .profile-heading h1 small {
+    font-size: 14px;
   }
-  .page-shell .profile-hero .profile-highlights .profile-summary div:first-child { padding-left: 9px; }
-  .page-shell .profile-hero .profile-highlights .profile-summary dd {
-    font-size: clamp(19px, 5.5vw, 24px);
-  }
-  .page-shell .profile-hero .profile-highlights .profile-summary dt {
-    font-size: 10px;
-    white-space: nowrap;
-  }
-  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-summary {
+
+  .page-shell .profile-hero .profile-heading .sidebar-actions {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 14px;
+    width: 100%;
+    gap: 8px;
   }
-  html:lang(en) .page-shell .profile-hero .profile-highlights .profile-summary div:nth-child(3) {
-    padding-left: 9px;
-    border-left: 0;
-  }
-  .page-shell .profile-hero .profile-highlights .profile-links { margin-top: 9px; }
-  .page-shell .profile-hero .profile-highlights .profile-links > li > span { min-width: 60px; }
-  .page-shell .content-column { margin-top: 20px; }
-  .page-shell .profile-introduction {
-    margin-bottom: 29px;
-    padding-top: 16px;
-  }
-  .page-shell .profile-introduction p {
+
+  .page-shell .profile-hero .profile-heading .sidebar-actions a {
+    min-height: 38px;
+    padding: 0 10px;
     font-size: 13px;
-    line-height: 1.8;
   }
-}
 
+  .page-shell .profile-hero .profile-introduction {
+    margin-top: 14px;
+  }
 
-/* 2026-11-16: align profile with the content column and use standard name type. */
-.page-shell > .profile-hero {
-  width: 100%;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
-}
-html:lang(zh-CN) .page-shell .profile-hero .profile-heading h1 > span,
-html:lang(en) .page-shell .profile-hero .profile-heading h1 > span,
-.page-shell .profile-hero .profile-heading h1 > span {
-  font-family: var(--sans);
-  font-style: normal;
-  font-weight: 650;
-  letter-spacing: -0.025em;
-}
-.page-shell .profile-hero .profile-heading h1 small {
-  font-family: var(--sans);
-  font-style: normal;
-  letter-spacing: 0;
-}
-/* Both the profile header and the introduction now use the same left edge. */
-.page-shell .content-column,
-.page-shell .profile-introduction {
-  width: 100%;
+  .page-shell .profile-hero .profile-introduction p {
+    font-size: 14.5px;
+    line-height: 1.78;
+  }
+
+  .page-shell .profile-hero .profile-summary,
+  html:lang(en) .page-shell .profile-hero .profile-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 18px;
+  }
+
+  .page-shell .profile-hero .profile-summary div + div::before {
+    display: none;
+  }
+
+  .page-shell .profile-hero .profile-summary dd {
+    font-size: 22px;
+  }
+
+  .page-shell .profile-hero .profile-summary dt {
+    font-size: 13px;
+  }
+
+  .page-shell .profile-hero .education-block,
+  html:lang(en) .page-shell .profile-hero .education-block {
+    margin-top: 20px;
+    padding-top: 18px;
+    gap: 11px;
+  }
+
+  .page-shell .profile-hero .education-block > strong {
+    font-size: 16.5px;
+  }
+
+  .page-shell .profile-hero .education-track p {
+    grid-template-columns: 88px 42px minmax(0, 1fr);
+    gap: 2px 8px;
+  }
+
+  html:lang(en) .page-shell .profile-hero .education-track p {
+    grid-template-columns: 98px 68px minmax(0, 1fr);
+    gap: 2px 8px;
+  }
+
+  .page-shell .profile-hero .education-track p > span {
+    font-size: 14px;
+  }
+
+  .page-shell .profile-hero .education-track b {
+    font-size: 14.5px;
+  }
+
+  .page-shell .profile-hero .education-track .education-major {
+    display: block;
+    font-size: 15px;
+  }
+
+  .page-shell .profile-hero .education-track .education-detail {
+    display: block;
+    margin-top: 2px;
+    font-size: 13.5px;
+  }
+
+  .page-shell .profile-hero .education-track .education-detail::before {
+    content: none;
+  }
+
+  .page-shell .profile-hero .profile-highlights.profile-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 14px;
+  }
+
+  .page-shell .content-column {
+    margin-top: 48px;
+  }
 }
