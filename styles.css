@@ -3614,6 +3614,34 @@ html:lang(en) .page-shell .profile-hero .profile-heading h1 > span,
   text-decoration-color: currentColor;
 }
 
+.page-shell .profile-hero .profile-introduction .profile-bio-highlights {
+  display: grid;
+  gap: 8px;
+  max-width: 890px;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: #2f3935;
+  font-size: 14.5px;
+  font-weight: 450;
+  line-height: 1.76;
+  letter-spacing: 0.002em;
+  text-align: left;
+}
+
+.page-shell .profile-hero .profile-introduction .profile-bio-highlights li {
+  min-width: 0;
+  padding-left: 2px;
+  overflow-wrap: break-word;
+}
+
+.page-shell .profile-hero .profile-introduction .profile-bio-highlights li::marker {
+  color: var(--accent-dark);
+}
+
+.page-shell .profile-hero .profile-introduction em {
+  font-style: italic;
+}
+
 /* Tier 3: Editorial Achievement Strip (unboxed, matching .metric-row) */
 .page-shell .profile-hero .profile-summary,
 html:lang(en) .page-shell .profile-hero .profile-summary {
@@ -3985,6 +4013,14 @@ html:lang(en) .page-shell .profile-hero .profile-highlights .profile-facts div {
   .page-shell .profile-hero .profile-introduction p {
     font-size: 14.5px;
     line-height: 1.78;
+  }
+
+  .page-shell .profile-hero .profile-introduction .profile-bio-highlights {
+    gap: 7px;
+    margin-top: 10px;
+    padding-left: 16px;
+    font-size: 13.8px;
+    line-height: 1.72;
   }
 
   .page-shell .profile-hero .profile-summary,
